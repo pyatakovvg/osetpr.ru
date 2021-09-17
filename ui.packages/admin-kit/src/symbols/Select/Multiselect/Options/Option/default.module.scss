@@ -1,0 +1,47 @@
+
+@import "~@ui.packages/theme";
+
+
+.option {
+
+  display: block;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 200ms;
+
+  &:hover {
+    background-color: $pale-grey;
+  }
+
+  &--active,
+  &--active:hover {
+
+    background-color: rgba($information, .3);
+  }
+
+  & + & {
+
+    margin: 3px 0 0;
+  }
+}
+
+.icon {
+
+  display: inline-block;
+  margin: 0 8px 0 0;
+  font-size: 10px;
+  color: $success;
+}
+
+.text {
+
+  display: block;
+  padding: 10px 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 14px;
+  color: $black;
+}

@@ -1,0 +1,42 @@
+
+@import "~@ui.packages/theme";
+
+
+.breadcrumbs {
+
+  display: block;
+
+  &__item {
+
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__delimiter {
+
+    display: block;
+    font-family: inherit;
+    font-weight: 300;
+    font-size: 14px;
+    color: $gray;
+    padding: 0 10px;
+  }
+
+  &__link {
+
+    display: block;
+    color: $primary;
+    font-family: inherit;
+    font-weight: 300;
+    font-size: 14px;
+  }
+
+  &__title {
+
+    display: block;
+    color: $coal-dark;
+    font-family: inherit;
+    font-weight: 300;
+    font-size: 14px;
+  }
+}

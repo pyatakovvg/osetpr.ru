@@ -1,0 +1,61 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: block;
+  height: 170px;
+  border-radius: 3px;
+  border: 1px solid $pale-lilac;
+  padding: 8px;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.option {
+
+  display: block;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 200ms;
+
+  &__text {
+
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 300;
+    vertical-align: middle;
+  }
+
+  &:hover {
+
+    background: $pale-grey;
+  }
+
+  & + & {
+
+    margin: 3px 0 0;
+  }
+}
+
+.active,
+.active:hover {
+
+  background: rgba($information, .3);
+}
+
+.active .marker {
+
+  display: inline-block;
+}
+
+.marker {
+
+  display: none;
+  font-size: 10px;
+  vertical-align: middle;
+  margin-right: 10px;
+  color: $success;
+}

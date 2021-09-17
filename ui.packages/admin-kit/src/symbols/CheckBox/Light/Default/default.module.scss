@@ -1,0 +1,138 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: inline-block;
+  cursor: pointer;
+}
+
+.wrapper:hover .checkbox {
+
+  border-color: $blue-grey;
+}
+
+.disabled {
+
+  cursor: default;
+}
+
+.disabled .checkbox,
+.disabled:hover .checkbox {
+
+  background: transparent;
+  border-color: $pale-grey;
+  color: $pale-lilac;
+  cursor: default;
+}
+
+
+.label {
+
+  display: inline-block;
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 14px;
+  color: inherit;
+  margin: 0 0 0 12px;
+  vertical-align: middle;
+}
+
+.checkbox {
+
+  display: inline-block;
+  width: 21px;
+  height: 21px;
+  border: 1px solid $pale-lilac;
+  border-radius: 5px;
+  color: $coal-dark;
+  font-size: 0;
+  outline: none;
+  padding: 0 0 0 2px;
+  box-sizing: border-box;
+  vertical-align: middle;
+  transition: background 200ms, border 200ms;
+
+  & + & {
+    margin: 0 0 0 10px;
+  }
+
+  &__marker {
+
+    display: none;
+    font-size: 11px;
+    padding: 4px 0 0 2px;
+  }
+
+  &--checked &__marker {
+
+    display: inline-flex;
+  }
+}
+
+.control {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.mode {
+  &--info {
+
+    border-color: $information;
+    background: $information;
+    color: $coal-dark;
+
+    &:hover {
+      background: darken($information, 10%);
+    }
+  }
+
+  &--primary {
+
+    border-color: $primary;
+    background: $primary;
+    color: $white;
+
+    &:hover {
+      background: darken($primary, 10%);
+    }
+  }
+
+  &--success {
+
+    border-color: $success;
+    background: $success;
+    color: $white;
+
+    &:hover {
+      background: darken($success, 10%);
+    }
+  }
+
+  &--warning {
+
+    border-color: $warning;
+    background: $warning;
+    color: $white;
+
+    &:hover {
+      background: darken($warning, 10%);
+    }
+  }
+
+  &--danger {
+
+    border-color: $danger;
+    background: $danger;
+    color: $white;
+
+    &:hover {
+      background: darken($danger, 10%);
+    }
+  }
+}

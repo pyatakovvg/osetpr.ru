@@ -1,0 +1,56 @@
+
+@import "~@ui.packages/theme";
+
+
+.block {
+
+  display: inline-block;
+}
+
+.action {
+
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 200ms;
+
+  & + & {
+
+    margin: 0 0 0 12px;
+  }
+
+  &--edit {
+
+    color: $gray;
+
+    &:hover {
+
+      color: $success;
+    }
+  }
+
+  &--copy {
+
+    color: $gray;
+
+    &:hover {
+
+      color: $primary;
+    }
+  }
+
+  &--delete {
+
+    color: $gray;
+
+    &:hover {
+
+      color: $danger;
+    }
+  }
+}
+
+.disabled {
+
+  color: $pale-grey;
+}

@@ -1,0 +1,57 @@
+
+@import "~@ui.packages/theme";
+
+
+.status {
+
+  display: inline-block;
+  border: 2px solid $blue-grey;
+  padding: 7px 24px 9px 16px;
+  border-radius: 5px;
+  color: $blue-grey;
+}
+
+.text {
+
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  vertical-align: middle;
+  color: inherit;
+
+  &:before {
+
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    border: 3px solid;
+    vertical-align: middle;
+    margin: 0 8px 0 0;
+    content: '';
+  }
+}
+
+.mode--success {
+
+  border-color: $success;
+  color: $success;
+}
+
+.mode--primary {
+
+  border-color: $primary;
+  color: $primary;
+}
+
+.mode--warning {
+
+  border-color: $warning;
+  color: $warning;
+}
+
+.mode--danger {
+
+  border-color: $danger;
+  color: $danger;
+}

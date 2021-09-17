@@ -1,0 +1,72 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex: 1 0;
+  flex-direction: column;
+}
+
+.search {
+
+  position: relative;
+  display: block;
+  padding: 0 0 20px;
+}
+
+.input {
+
+  display: block;
+  border: 1px solid $pale-lilac;
+  border-radius: 5px;
+  background: $white;
+  padding: 10px 15px;
+  color: $black;
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  background: transparent;
+  overflow: hidden;
+  transition: border 200ms;
+
+  &:hover,
+  &--focus {
+
+    border-color: $coal-dark;
+  }
+}
+
+.icon {
+
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: inline-block;
+  color: $pale-lilac;
+  font-size: 18px;
+}
+
+.row {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  margin: 20px 0 0;
+}
+
+.col {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+
+  & + & {
+
+    margin: 0 0 0 20px;
+  }
+}

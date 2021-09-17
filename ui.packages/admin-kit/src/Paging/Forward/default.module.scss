@@ -1,0 +1,42 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: inline-block;
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 5px;
+  color: $blue-grey;
+  padding: 10px 0;
+  width: 36px;
+  height: 16px;
+  transition: color 200ms, border 200ms, background-color 200ms;
+  overflow: hidden;
+  cursor: pointer;
+
+  &:hover {
+
+    color: $white;
+  }
+
+  & + * {
+
+    margin: 0 0 0 5px;
+  }
+}
+
+.icon {
+
+  display: block;
+  color: inherit;
+  text-align: center;
+}
+
+.disabled,
+.disabled:hover {
+
+  color: $blue-grey;
+  cursor: default;
+}

@@ -1,0 +1,37 @@
+
+@import "~@ui.packages/theme";
+
+
+.item {
+
+  display: inline-block;
+  color: $coal-dark;
+  cursor: pointer;
+  transition: color 200ms;
+
+  &:hover {
+
+    color: $primary;
+  }
+
+  &--active,
+  &--active:hover {
+
+    color: $primary;
+  }
+}
+
+.link {
+
+  display: inline-block;
+  padding: 15px 20px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.text {
+
+  font-size: 14px;
+  font-weight: 600;
+  color: inherit;
+}

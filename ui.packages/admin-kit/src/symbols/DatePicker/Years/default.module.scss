@@ -1,0 +1,44 @@
+
+@import "~@ui.packages/theme";
+
+
+.year {
+
+  display: inline-block;
+
+  &__prev {
+
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px;
+    color: $gray;
+    transition: color 200ms;
+
+    &:hover {
+      color: $coal-dark;
+    }
+  }
+
+  &__value {
+
+    display: inline-block;
+    vertical-align: middle;
+    font-family: inherit;
+    font-weight: 300;
+    font-size: 14px;
+    margin: 0 8px;
+  }
+
+  &__next {
+
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px;
+    color: $gray;
+    transition: color 200ms;
+
+    &:hover {
+      color: $coal-dark;
+    }
+  }
+}

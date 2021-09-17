@@ -1,0 +1,73 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex: 1 0;
+  flex-direction: column;
+  border: 1px solid $pale-lilac;
+  border-radius: 3px;
+  height: 122px;
+  overflow: hidden;
+  transition: border 200ms;
+
+  &:hover,
+  &--focus {
+
+    border-color: $coal-dark;
+  }
+}
+
+.textarea {
+
+  display: block;
+  padding: 10px 0 8px 10px;
+  color: $coal-dark;
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border: none;
+  letter-spacing: .5px;
+  background: transparent;
+  resize: none;
+
+  &:disabled {
+
+    border-color: $pale-lilac;
+    color: $gray;
+  }
+}
+
+.mode {
+  &--info {
+    border-color: $information;
+  }
+
+  &--primary {
+    border-color: $primary;
+  }
+
+  &--success {
+    border-color: $success;
+  }
+
+  &--warning {
+    border-color: $warning;
+  }
+
+  &--danger {
+    border-color: $danger;
+  }
+
+  &--disabled {
+
+    background: $pale-lilac;
+    border-color: $gray;
+  }
+}

@@ -1,0 +1,104 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  flex: 1 1;
+  box-sizing: border-box;
+}
+
+.content {
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  z-index: 10;
+}
+
+.arrows {
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  z-index: 20;
+}
+
+.prev,
+.next {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  width: 50%;
+  cursor: pointer;
+  align-items: flex-start;
+  justify-content: center;
+  text-shadow: 3px 0 $white, 0 3px $white, 0 -3px $white, -3px 0 $white;
+}
+
+.next {
+
+  align-items: flex-end;
+  margin: 0 -30px 0 0;
+}
+
+.prev {
+
+  margin: 0 0 0 -30px;
+}
+
+.prev:hover,
+.next:hover {
+
+  .icon {
+
+    transform: scale(1.2);
+  }
+}
+
+.icon {
+
+  display: inline-block;
+  font-size: 32px;
+  color: $coal-dark;
+  transition: transform 400ms;
+}
+
+.count {
+
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  display: inline-block;
+  background: $coal-dark;
+  padding: 4px 9px 5px;
+  width: 50px;
+  text-align: center;
+  border-radius: 4px;
+  margin: 0 0 0 -34px;
+  z-index: 30;
+  box-shadow: 0 0 0 3px $white;
+}
+
+.number {
+
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  color: $white;
+}

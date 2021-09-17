@@ -1,0 +1,46 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  padding: 40px 40px 180px;
+  overflow: auto;
+  z-index: 0;
+}
+
+.spinner {
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  height: 3px;
+  background-image: linear-gradient(to right, $warning 0, #fff 30px, $warning 60px);
+  background-color: $success;
+  background-position: right;
+  background-repeat: repeat-x;
+  background-size: 50%;
+  animation: line 500ms linear infinite;
+  transition: opacity 100ms;
+  opacity: 0;
+
+  &--process {
+
+    opacity: 1;
+  }
+}
+
+@keyframes line {
+  0% {
+    background-position-x: -50%;
+  }
+  100% {
+    background-position-x: 50%;
+  }
+}

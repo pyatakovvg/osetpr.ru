@@ -1,0 +1,125 @@
+
+@import "~@ui.packages/theme";
+
+.container {
+
+  display: inline-block;
+}
+
+.wrapper {
+
+  display: inline-block;
+  cursor: pointer;
+}
+
+.label {
+
+  display: inline-block;
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 14px;
+  color: $coal-dark;
+  margin: 0 0 0 10px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.radio {
+
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  border: 1px solid $pale-lilac;
+  border-radius: 50%;
+  background: $white;
+  color: $gray;
+  font-size: 0;
+  outline: none;
+  justify-content: center;
+  align-items: center;
+  transition: background 400ms;
+  vertical-align: middle;
+
+  & + & {
+    margin: 0 0 0 10px;
+  }
+
+  &__marker {
+
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: $coal-dark;
+    border-radius: 50%;
+  }
+
+  &--checked &__marker {
+
+    display: inline-flex;
+  }
+
+  &--disabled {
+
+    background: $pale-lilac;
+    border-color: $gray;
+    color: $gray;
+    text-shadow: -1px 1px 0 $white;
+    cursor: default;
+  }
+
+  &--info {
+
+    border-color: $information;
+    background: $information;
+    color: $coal-dark;
+
+    &:hover {
+      background: darken($information, 10%);
+    }
+  }
+
+  &--primary {
+
+    border-color: $primary;
+    background: $primary;
+    color: $white;
+
+    &:hover {
+      background: darken($primary, 10%);
+    }
+  }
+
+  &--success {
+
+    border-color: $success;
+    background: $success;
+    color: $white;
+
+    &:hover {
+      background: darken($success, 10%);
+    }
+  }
+
+  &--warning {
+
+    border-color: $warning;
+    background: $warning;
+    color: $white;
+
+    &:hover {
+      background: darken($warning, 10%);
+    }
+  }
+
+  &--danger {
+
+    border-color: $danger;
+    background: $danger;
+    color: $white;
+
+    &:hover {
+      background: darken($danger, 10%);
+    }
+  }
+}

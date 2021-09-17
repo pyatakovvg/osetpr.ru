@@ -1,0 +1,57 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex: 1 0;
+  flex-direction: column;
+}
+
+.label {
+
+  display: block;
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 12px;
+  color: $blue-grey;
+  margin: 0 0 6px 15px;
+  transition: color 200ms;
+}
+
+.require {
+  &:after {
+    display: inline-block;
+    content: '*';
+    color: $danger;
+    margin: 0 0 0 2px;
+  }
+}
+
+.disabled .label {
+  color: $danger;
+}
+
+.content {
+
+  position: relative;
+  display: block;
+}
+
+.error {
+
+  position: absolute;
+  top: 100%;
+  right: 5px;
+  display: block;
+
+  &__message {
+
+    font-family: inherit;
+    font-weight: 300;
+    font-size: 11px;
+    color: $danger;
+    letter-spacing: .5px;
+  }
+}

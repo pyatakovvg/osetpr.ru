@@ -1,0 +1,135 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: inline-flex;
+  flex-direction: row;
+  flex: 1 0;
+  align-items: center;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.wrapper:hover .checkbox {
+
+  border-color: $pale-lilac;
+}
+
+.disabled {
+
+  cursor: default;
+}
+
+.disabled .checkbox,
+.disabled:hover .checkbox {
+
+  background: transparent;
+  border-color: $pale-lilac;
+  color: $pale-lilac;
+  cursor: default;
+}
+
+
+.label {
+
+  display: inline-flex;
+  flex-direction: column;
+  flex: 1 0;
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 14px;
+  color: inherit;
+  margin: 0 0 0 12px;
+}
+
+.checkbox {
+
+  display: block;
+  width: 21px;
+  height: 21px;
+  border: 1px solid $blue-grey;
+  border-radius: 5px;
+  color: $coal-dark;
+  font-size: 0;
+  outline: none;
+  padding: 0 0 0 2px;
+  box-sizing: border-box;
+  text-align: center;
+  transition: background 200ms, border 200ms;
+
+  & + & {
+    margin: 0 0 0 10px;
+  }
+
+  &__marker {
+
+    display: none;
+    font-size: 11px;
+    padding: 4px 0 0;
+  }
+
+  &--checked &__marker {
+
+    display: inline-flex;
+  }
+}
+
+
+.mode {
+  &--info {
+
+    border-color: $information;
+    background: $information;
+    color: $coal-dark;
+
+    &:hover {
+      background: darken($information, 10%);
+    }
+  }
+
+  &--primary {
+
+    border-color: $primary;
+    background: $primary;
+    color: $white;
+
+    &:hover {
+      background: darken($primary, 10%);
+    }
+  }
+
+  &--success {
+
+    border-color: $success;
+    background: $success;
+    color: $white;
+
+    &:hover {
+      background: darken($success, 10%);
+    }
+  }
+
+  &--warning {
+
+    border-color: $warning;
+    background: $warning;
+    color: $white;
+
+    &:hover {
+      background: darken($warning, 10%);
+    }
+  }
+
+  &--danger {
+
+    border-color: $danger;
+    background: $danger;
+    color: $white;
+
+    &:hover {
+      background: darken($danger, 10%);
+    }
+  }
+}

@@ -1,0 +1,26 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 0 0;
+  margin: 0 20px 0 0;
+}
+
+.header-one {
+
+  font-size: 22px;
+}
+
+.header-two {
+
+  font-size: 17px;
+}
+
+.header-three {
+
+  font-size: 12px;
+}

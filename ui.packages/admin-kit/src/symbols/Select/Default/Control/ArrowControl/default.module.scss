@@ -1,0 +1,30 @@
+
+@import "~@ui.packages/theme";
+
+
+.row {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0;
+  justify-content: center;
+  align-items: center;
+  color: $pale-lilac;
+  padding: 0 3px;
+  transition: color 200ms;
+
+  &--hover {
+    color: $coal-dark;
+  }
+}
+
+.icon {
+
+  display: inline-block;
+  font-size: 14px;
+}
+
+.disabled {
+
+  color: $blue-grey;
+}

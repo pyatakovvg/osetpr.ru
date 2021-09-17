@@ -1,0 +1,87 @@
+
+@import "~@ui.packages/theme";
+
+
+.container {
+
+  display: flex;
+  flex: 1 0;
+  flex-direction: column;
+  border: 1px solid $pale-lilac;
+  border-radius: 3px;
+  background: $white;
+  overflow: hidden;
+  transition: border 200ms;
+
+  &:hover,
+  &--focus {
+
+    border-color: $coal-dark;
+  }
+}
+
+.input {
+
+  display: block;
+  padding: 10px 15px;
+  color: $black;
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  background: transparent;
+
+  &:disabled {
+
+    background: $pale-grey;
+    color: $gray;
+  }
+}
+
+.disabled,
+.disabled:hover {
+
+  border-color: $pale-lilac;
+}
+
+.mode {
+  &--info,
+  &--info:hover {
+
+    border-color: $information;
+  }
+
+  &--primary,
+  &--primary:hover {
+
+    border-color: $primary;
+  }
+
+  &--success,
+  &--success:hover {
+
+    border-color: $success;
+  }
+
+  &--warning,
+  &--warning:hover {
+
+    border-color: $warning;
+  }
+
+  &--danger,
+  &--danger:hover {
+
+    border-color: $danger;
+  }
+
+  &--disabled {
+
+    background: $pale-grey;
+    border-color: $pale-lilac;
+    color: $gray;
+  }
+}

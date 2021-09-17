@@ -1,0 +1,7 @@
+{
+  "name": "@ui.packages/timer",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./src/index.js",
+  "dependencies": {}
+}

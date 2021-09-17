@@ -1,0 +1,20 @@
+
+@import "~@ui.packages/theme";
+
+
+.header {
+
+  display: block;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 24px;
+  color: $white;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.bold {
+
+  font-weight: 700;
+}

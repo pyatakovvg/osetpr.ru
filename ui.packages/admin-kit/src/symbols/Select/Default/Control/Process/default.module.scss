@@ -1,0 +1,45 @@
+
+@import "~@ui.packages/theme";
+
+
+.row {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0;
+  justify-content: center;
+  align-items: center;
+  padding: 0 3px;
+  color: $success;
+}
+
+.icon {
+
+  display: inline-block;
+  font-size: 14px;
+  transition: color 200ms, transform 200ms;
+  animation: spin 2s infinite linear;
+}
+
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

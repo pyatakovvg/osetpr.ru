@@ -1,0 +1,19 @@
+
+.col {
+
+  display: flex;
+  flex: 1 0;
+  flex-direction: column;
+  max-width: 100%;
+  min-width: 0;
+
+  & + & {
+
+    margin: 0 0 0 20px;
+  }
+}
+
+.wrapper {
+
+  display: block;
+}

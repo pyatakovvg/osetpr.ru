@@ -1,0 +1,109 @@
+
+@import "~@ui.packages/theme";
+
+
+.evaluation {
+
+  display: inline-block;
+  font-size: 0;
+
+  &__star {
+
+    display: inline-block;
+    font-size: 16px;
+    color: $gray;
+    transition: color 400ms;
+
+    &:hover {
+      color: darken($gray, 10%);
+      cursor: pointer;
+    }
+
+    & + & {
+      margin: 0 0 0 4px;
+    }
+  }
+}
+
+.wrapper {
+
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+}
+
+.label {
+
+  display: block;
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 14px;
+  color: $blue-grey;
+  margin: 0 0 6px 15px;
+  transition: color 400ms;
+}
+
+.container {
+
+  display: block;
+  margin: 0 0 0 14px;
+}
+
+.mode {
+  &--info  .evaluation__star {
+
+    color: darken($information, 10%);
+
+    &:hover {
+      color: darken($information, 15%);
+    }
+  }
+
+  &--primary .evaluation__star {
+
+    color: $primary;
+
+    &:hover {
+      color: darken($primary, 10%);
+    }
+  }
+
+  &--success .evaluation__star {
+
+    color: $success;
+
+    &:hover {
+      color: darken($success, 10%);
+    }
+  }
+
+  &--warning .evaluation__star {
+
+    color: $warning;
+
+    &:hover {
+      color: darken($warning, 10%);
+    }
+  }
+
+  &--danger .evaluation__star {
+
+    color: $danger;
+
+    &:hover {
+      color: darken($danger, 10%);
+    }
+  }
+}
+
+.size {
+  &--small .evaluation__star {
+
+    font-size: 14px;
+  }
+
+  &--large .evaluation__star {
+
+    font-size: 18px;
+  }
+}

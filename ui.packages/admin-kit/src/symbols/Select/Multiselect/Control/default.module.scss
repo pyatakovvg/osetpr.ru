@@ -1,0 +1,96 @@
+
+@import "~@ui.packages/theme";
+
+
+.select {
+
+  display: flex;
+  flex: 1 0;
+  border: 1px solid $pale-lilac;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: $white;
+  transition: border-color 200ms, background-color 200ms;
+
+  &--hover {
+    border-color: $coal-dark;
+  }
+
+  &--disabled {
+    background-color: $pale-grey;
+  }
+}
+
+.container {
+
+  display: flex;
+  flex: 1 0;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.content {
+
+  display: flex;
+  flex: 1 0;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.values {
+
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.text,
+.placeholder {
+
+  display: block;
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 14px;
+  padding: 13px 0 12px 16px;
+  width: 100%;
+  text-align: left;
+  box-sizing: border-box;
+  transition: color 200ms;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &--disabled {
+    color: $blue-grey;
+  }
+}
+
+.placeholder {
+
+  color: $blue-grey;
+  font-style: italic;
+}
+
+.item {
+
+  display: inline-block;
+
+  & + & {
+    &:before {
+
+      display: inline-block;
+      content: ',';
+      padding: 0 4px 0 0;
+    }
+  }
+}
+
+.controls {
+
+  display: flex;
+  flex-direction: row;
+  flex: 0 0;
+  margin: 0 7px 0 0;
+}

@@ -1,0 +1,10 @@
+
+.idea
+
+build/
+
+lib/
+node_modules/
+data/
+
+.eslintcache

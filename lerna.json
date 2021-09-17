@@ -1,0 +1,18 @@
+{
+  "lerna": "4.0.0",
+  "version": "independent",
+  "packages": [
+    "sys.packages/*",
+    "ui.packages/*",
+    "packages/*",
+    "modules/order/*",
+    "clients/*",
+    "gateway/*",
+    "services/*"
+  ],
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "command": {
+
+  }
+}

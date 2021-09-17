@@ -1,0 +1,45 @@
+{
+  "private": true,
+  "name": "@ui.packages/admin-kit",
+  "version": "1.0.0",
+  "main": "./lib/index.js",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production babel ./src --out-dir ./lib --copy-files",
+    "start:dev": "cross-env NODE_ENV=development babel ./src --out-dir ./lib --copy-files --watch"
+  },
+  "dependencies": {
+    "@packages/moment": "1.0.0",
+    "@packages/numeral": "1.0.0",
+    "@shopify/draggable": "1.0.0-beta.8",
+    "@ui.packages/editor": "1.0.0",
+    "@ui.packages/request": "1.0.0",
+    "@ui.packages/theme": "1.0.0",
+    "@ui.packages/types": "1.0.0",
+    "@ui.packages/utils": "1.0.0",
+    "array-move": "4.0.0",
+    "classnames": "2.3.1",
+    "prop-types": "15.7.2",
+    "react": "17.0.2",
+    "react-dadata": "2.10.1",
+    "react-dom": "17.0.2",
+    "react-input-mask": "2.0.4",
+    "react-router-dom": "6.0.0-beta.0",
+    "react-sortable-hoc": "2.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.14.8",
+    "@babel/core": "7.15.0",
+    "cross-env": "7.0.3",
+    "resolve": "1.20.0"
+  },
+  "babel": {
+    "presets": [
+      [
+        "react-app",
+        {
+          "absoluteRuntime": false
+        }
+      ]
+    ]
+  }
+}

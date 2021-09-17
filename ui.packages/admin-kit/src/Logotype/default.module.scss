@@ -1,0 +1,19 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: inline-block;
+}
+
+.logotype {
+
+  display: inline-block;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 20px;
+  color: $white;
+  text-decoration: none;
+  letter-spacing: .5px;
+}

@@ -1,0 +1,123 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex: 1 0;
+  flex-direction: row;
+  border: 1px solid $pale-lilac;
+  border-radius: 5px;
+  background: $white;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border 400ms;
+
+  &:hover,
+  &--focus {
+
+    border-color: $coal-dark;
+  }
+
+  &--info,
+  &--info:hover {
+
+    border-color: $information;
+  }
+
+  &--primary,
+  &--primary:hover {
+
+    border-color: $primary;
+  }
+
+  &--success,
+  &--success:hover {
+
+    border-color: $success;
+  }
+
+  &--warning,
+  &--warning:hover {
+
+    border-color: $warning;
+  }
+
+  &--danger,
+  &--danger:hover {
+
+    border-color: $danger;
+  }
+
+  &--disabled {
+
+    background: $pale-grey;
+    border-color: $pale-lilac;
+    color: $gray;
+  }
+}
+
+.container {
+
+  display: flex;
+  flex: 1 0;
+  flex-direction: column;
+  padding: 9px 14px 8px;
+  overflow: hidden;
+
+  &:disabled {
+
+    border-color: $pale-lilac;
+    color: $gray;
+  }
+}
+
+.file-name {
+
+  display: inline-block;
+  color: $black;
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  letter-spacing: .5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.placeholder {
+
+  display: inline-block;
+  color: $blue-grey;
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  letter-spacing: .5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.button {
+
+  display: block;
+
+  &__caption {
+
+    display: inline-block;
+    font-family: inherit;
+    font-weight: 300;
+    font-size: 14px;
+    background: $success;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin: 0 6px 0 0;
+    color: $white;
+  }
+}

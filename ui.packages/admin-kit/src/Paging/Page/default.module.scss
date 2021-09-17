@@ -1,0 +1,55 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: inline-block;
+  border: 1px solid $blue-grey;
+  border-radius: 5px;
+  background: transparent;
+  color: $white;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 16px;
+  transition: color 200ms, border 200ms, background-color 200ms;
+  overflow: hidden;
+  cursor: pointer;
+
+  &:hover {
+
+    border-color: $white;
+    color: $white;
+  }
+
+  & + & {
+
+    margin: 0 0 0 10px;
+  }
+}
+
+.number {
+
+  display: block;
+  color: inherit;
+  padding: 10px 0;
+  width: 36px;
+  text-align: center;
+}
+
+.disabled,
+.disabled:hover {
+
+  color: $pale-lilac;
+  border-color: $pale-lilac;
+  cursor: default;
+}
+
+.active,
+.active:hover {
+
+  color: $coal-dark;
+  border-color: $pale-lilac;
+  background: $pale-lilac;
+  font-weight: 700;
+}

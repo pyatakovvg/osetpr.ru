@@ -1,0 +1,14 @@
+
+@import "~@ui.packages/theme";
+
+
+.link {
+
+  display: inline-block;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: .5px;
+  color: $primary;
+}

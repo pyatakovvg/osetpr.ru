@@ -1,0 +1,11 @@
+{
+  "name": "@sys.packages/rabbit",
+  "version": "1.0.0",
+  "main": "src/index.mjs",
+  "dependencies": {
+    "@packages/errors": "1.0.0",
+    "@sys.packages/logger": "1.0.0",
+    "@sys.packages/utils": "1.0.0",
+    "amqplib": "0.8.0"
+  }
+}

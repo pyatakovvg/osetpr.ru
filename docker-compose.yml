@@ -1,0 +1,165 @@
+
+version: "3.7"
+services:
+
+  db:
+    container_name: postgre_sql
+    build: ./postgresql
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+    ports:
+      - 50004:5432
+
+
+  rabbit:
+    container_name: rabbit_mq
+    build: ./rabbit
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+    ports:
+      - 50002:15672
+
+
+  mail_srv:
+    container_name: mail_srv
+    build:
+      context: ./
+      dockerfile: Dockerfile.mail-srv
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+
+
+  identity_srv:
+    container_name: identity_srv
+    build:
+      context: ./
+      dockerfile: Dockerfile.identity-srv
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+    depends_on:
+      - db
+      - mail_srv
+    links:
+      - db
+      - mail_srv
+
+
+  order_srv:
+    container_name: product_srv
+    build:
+      context: ./
+      dockerfile: Dockerfile.order-srv
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+    depends_on:
+      - db
+      - rabbit
+      - mail_srv
+    links:
+      - db
+      - rabbit
+      - mail_srv
+
+
+  order_gw:
+    container_name: admin_gw
+    build:
+      context: ./
+      dockerfile: Dockerfile.order-gw
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+    depends_on:
+      - rabbit
+      - order_srv
+      - identity_srv
+    links:
+      - rabbit
+      - order_srv
+      - identity_srv
+
+
+  order_ui:
+    container_name: order_ui
+    build:
+      context: ./
+      dockerfile: Dockerfile.order-ui
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+    depends_on:
+      - order_gw
+    links:
+      - order_gw
+    volumes:
+      - ./clients/order-ui/nginx/conf.d:/etc/nginx/conf.d:ro
+    environment:
+      - NODE_ENV=production
+
+
+  certbot:
+    user: root
+    container_name: certbot
+    image: certbot/certbot
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt:rw
+      - ./data/certbot/www:/var/www/certbot:rw
+    entrypoint: /bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'
+
+
+  proxy:
+    user: root
+    container_name: proxy
+    build: ./nginx
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+    depends_on:
+      - order_ui
+    links:
+      - order_ui
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx/init-letsencrypt.sh:/etc/nginx/init-letsencrypt.sh
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    command: '/bin/sh -c ''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''

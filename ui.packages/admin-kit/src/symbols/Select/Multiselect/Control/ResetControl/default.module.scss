@@ -1,0 +1,38 @@
+
+@import "~@ui.packages/theme";
+
+
+.row {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0;
+  justify-content: center;
+  align-items: center;
+  padding: 0 3px;
+  color: $pale-lilac;
+
+  &--hover {
+    color: rgba($danger, .4);
+  }
+
+  &:hover {
+    color: $danger;
+  }
+
+  &:active {
+     transform: scale(.95, .95);
+   }
+}
+
+.icon {
+
+  display: inline-block;
+  font-size: 14px;
+  transition: color 200ms, transform 200ms;
+}
+
+.disabled {
+
+  color: $blue-grey;
+}

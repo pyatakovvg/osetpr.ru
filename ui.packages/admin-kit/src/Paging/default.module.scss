@@ -1,0 +1,35 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: inline-flex;
+  flex-direction: row;
+  flex: 1 0;
+}
+
+.controls {
+
+  display: flex;
+  flex-direction: row;
+  flex: 0 0;
+  align-items: center;
+
+  &:first-child {
+
+    margin: 0 15px 0 0;
+  }
+
+  &:last-child {
+
+    margin: 0 0 0 15px;
+  }
+}
+
+.numbers {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+}

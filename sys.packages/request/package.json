@@ -1,0 +1,11 @@
+{
+  "name": "@sys.packages/request",
+  "version": "1.0.0",
+  "main": "./src/index.mjs",
+  "dependencies": {
+    "@packages/errors": "1.0.0",
+    "@sys.packages/logger": "1.0.0",
+    "axios": "0.21.1",
+    "qs": "6.10.1"
+  }
+}

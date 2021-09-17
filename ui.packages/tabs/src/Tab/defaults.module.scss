@@ -1,0 +1,60 @@
+
+@import "~@ui.packages/theme";
+
+
+.tab {
+
+  display: inline-block;
+  padding: 10px 24px;
+  cursor: pointer;
+  color: $white;
+  border-radius: 4px;
+  transition: background 200ms, color 200ms, border 200ms;
+
+  & + & {
+
+    margin: 0 0 0 20px;
+  }
+
+  &:hover {
+
+    background: $white;
+    border-color: $pale-lilac;
+    color: $coal-dark;
+  }
+
+  &__caption {
+
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+  }
+
+  &--active,
+  &--active:hover {
+
+    background: $whitesmoke;
+    color: $coal-dark;
+  }
+}
+
+.text {
+
+  display: inline-block;
+  vertical-align: middle;
+  padding: 4px 0;
+}
+
+.count {
+
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0 0 6px;
+  padding: 4px 3px;
+  background: $primary;
+  color: $white;
+  border-radius: 3px;
+  font-weight: 600;
+}

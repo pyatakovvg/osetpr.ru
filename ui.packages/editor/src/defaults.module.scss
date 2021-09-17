@@ -1,0 +1,99 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  border: 1px solid $pale-lilac;
+
+  &--readonly {
+
+    border: none;
+  }
+}
+
+.toolbar {
+
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid $pale-lilac;
+  background: $pale-grey;
+  padding: 4px;
+
+  &--readonly {
+
+    display: none;
+  }
+}
+
+.content {
+
+  margin: 0 10px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: $coal-dark;
+
+  &--readonly {
+
+    margin: 0;
+  }
+
+  * {
+    margin: 0;
+  }
+
+  * + * {
+
+    margin: 25px 0 0;
+  }
+
+  h1 {
+
+    font-size: 28px;
+    font-weight: bold;
+
+    * {
+      margin: 0;
+    }
+
+    & + * {
+      margin: 40px 0 0;
+    }
+  }
+
+  h2 {
+
+    font-size: 22px;
+    font-weight: bold;
+
+    * {
+      margin: 0;
+    }
+
+    & + * {
+      margin: 25px 0 0;
+    }
+  }
+
+  h3 {
+
+    font-size: 16px;
+    font-weight: bold;
+
+    * {
+      margin: 0;
+    }
+
+    & + * {
+      margin: 25px 0 0;
+    }
+  }
+
+  strong {
+
+    font-weight: bold;
+  }
+}

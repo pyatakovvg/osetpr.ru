@@ -1,0 +1,21 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  position: absolute;
+  display: block;
+  padding: 8px 0 0;
+  z-index: 99999;
+}
+
+.container {
+
+  display: block;
+  background-color: $white;
+  border-radius: 3px;
+  padding: 8px 8px;
+  box-shadow: 0 4px 10px 0 $pale-lilac;
+  overflow: auto;
+}

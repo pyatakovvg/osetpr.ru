@@ -1,0 +1,25 @@
+
+# BUILD APP
+FROM node:15-alpine
+
+RUN npm install -g npm@latest
+RUN npm config set package-lock false
+
+WORKDIR /app
+
+COPY ./services/identity-srv/db                ./services/identity-srv/db
+COPY ./services/identity-srv/src               ./services/identity-srv/src
+COPY ./services/identity-srv/.env.production   ./services/identity-srv
+COPY ./services/identity-srv/package.json      ./services/identity-srv
+COPY ./services/identity-srv/.sequelizerc      ./services/identity-srv
+COPY ./sys.packages                            ./sys.packages
+COPY ./packages                                ./packages
+COPY ./package.json                            ./
+COPY ./lerna.json                              ./
+COPY ./yarn.lock                               ./
+
+RUN yarn
+
+WORKDIR /app/services/identity-srv
+
+ENTRYPOINT ["yarn", "run", "start"]

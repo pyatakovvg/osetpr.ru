@@ -1,0 +1,15 @@
+
+@import "~@ui.packages/theme";
+
+
+.text {
+
+  display: block;
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: $blue-grey;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

@@ -1,0 +1,30 @@
+{
+  "name": "root",
+  "private": true,
+  "devDependencies": {
+    "lerna": "4.0.0",
+    "lerna-update-wizard": "0.17.8"
+  },
+  "license": "MIT",
+  "homepage": "https://магазиночков.рф",
+  "bin": {
+    "lerna": "node_modules/lerna/cli.js",
+    "yarn": "node_modules/yarn/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pyatakovvg/shop.git"
+  },
+  "workspaces": [
+    "sys.packages/*",
+    "ui.packages/*",
+    "packages/*",
+    "modules/order/*",
+    "clients/*",
+    "gateway/*",
+    "services/*"
+  ],
+  "scripts": {
+    "build:packages": "sh ./build-client-packages.sh && sh build-order-packages.sh"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "@sys.packages/jwt",
+  "version": "1.0.0",
+  "main": "src/index.mjs",
+  "dependencies": {
+    "@packages/errors": "1.0.0",
+    "@sys.packages/request": "1.0.0",
+    "jsonwebtoken": "8.5.1"
+  }
+}

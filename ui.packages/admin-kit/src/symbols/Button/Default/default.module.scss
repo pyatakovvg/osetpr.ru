@@ -1,0 +1,108 @@
+
+@import "~@ui.packages/theme";
+
+
+.button {
+
+  display: inline-block;
+  padding: 8px 30px;
+  border: 1px solid $pale-lilac;
+  border-radius: 3px;
+  cursor: pointer;
+  background: $pale-grey;
+  color: $coal-dark;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  outline: none;
+  text-decoration: none;
+  transition: border 200ms, background 200ms;
+
+  & + * {
+    margin: 0 0 0 10px;
+  }
+
+  &:hover {
+    background: darken($white, 5%);
+  }
+
+  &:disabled,
+  &:disabled:hover {
+
+    background: $gray;
+    border-color: $gray;
+    color: $pale-grey;
+    cursor: default;
+  }
+}
+
+.mode {
+  &--info {
+
+    border-color: $information;
+    background: $information;
+    color: $coal-dark;
+
+    &:hover {
+      background: darken($information, 5%);
+    }
+  }
+
+  &--primary {
+
+    border-color: $primary;
+    background: $primary;
+    color: $white;
+
+    &:hover {
+      background: darken($primary, 5%);
+    }
+  }
+
+  &--success {
+
+    border-color: $success;
+    background: $success;
+    color: $white;
+
+    &:hover {
+      background: darken($success, 5%);
+    }
+  }
+
+  &--warning {
+
+    border-color: $warning;
+    background: $warning;
+    color: $white;
+
+    &:hover {
+      background: darken($warning, 5%);
+    }
+  }
+
+  &--danger {
+
+    border-color: $danger;
+    background: $danger;
+    color: $white;
+
+    &:hover {
+      background: darken($danger, 5%);
+    }
+  }
+}
+
+.size {
+  &--small {
+
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  &--large {
+
+    font-size: 16px;
+    padding: 16px 25px;
+  }
+}

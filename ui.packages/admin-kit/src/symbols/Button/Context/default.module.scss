@@ -1,0 +1,95 @@
+
+@import "~@ui.packages/theme";
+
+
+.button {
+
+  display: inline-block;
+  padding: 10px 30px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  background: transparent;
+  color: $coal-dark;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  outline: none;
+  text-decoration: underline;
+  transition: color 200ms;
+
+  & + & {
+    margin: 0 0 0 10px;
+  }
+
+  &:hover {
+    color: darken($coal-dark, 5%);
+  }
+
+  &:disabled,
+  &:disabled:hover {
+
+    color: $pale-lilac;
+    cursor: default;
+  }
+}
+
+.mode {
+  &--info {
+
+    color: $information;
+
+    &:hover {
+      color: darken($information, 10%);
+    }
+  }
+
+  &--primary {
+
+    color: $primary;
+
+    &:hover {
+      color: darken($primary, 10%);
+    }
+  }
+
+  &--success {
+
+    color: $success;
+
+    &:hover {
+      color: darken($success, 10%);
+    }
+  }
+
+  &--warning {
+
+    color: $warning;
+
+    &:hover {
+      color: darken($warning, 10%);
+    }
+  }
+
+  &--danger {
+
+    color: $danger;
+
+    &:hover {
+      color: darken($danger, 10%);
+    }
+  }
+}
+
+.size {
+  &--small {
+
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  &--large {
+
+    font-size: 16px;
+    padding: 16px 25px;
+  }
+}

@@ -1,0 +1,51 @@
+
+@import "~@ui.packages/theme";
+
+
+.container {
+
+  display: block;
+}
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  background: $white;
+  z-index: 9999;
+
+  & + & {
+
+    margin: 8px 0 0;
+  }
+}
+
+.handle {
+
+  display: block;
+  margin: 20px 0 0;
+  cursor: grabbing;
+}
+
+.helper .icon,
+.handle:hover .icon {
+
+  color: $primary;
+}
+
+.icon {
+
+  font-size: 16px;
+  color: $pale-lilac;
+  margin: 10px 0 0;
+  transition: color 200ms;
+}
+
+.content {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  margin: 0 0 0 10px;
+}

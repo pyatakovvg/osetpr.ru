@@ -1,0 +1,38 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: block;
+}
+
+.content {
+
+  display: block;
+}
+
+.list {
+
+  display: block;
+  max-height: 400px;
+  overflow: auto;
+}
+
+.info {
+
+  display: block;
+  margin: 15px 0 0;
+  text-align: right;
+  padding: 15px 10px;
+  border-radius: 0 0 5px 5px;
+  background: $pale-grey;
+  border-top: 1px solid $pale-lilac;
+}
+
+.controls {
+
+  display: block;
+  text-align: right;
+  margin: 30px 0 0;
+}
