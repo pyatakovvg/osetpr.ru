@@ -31,7 +31,9 @@ cd ../../modules/order || return
 
 echo '[--- Order main ---]'
 cd  ./order-main && npx yarn build
-echo '[--- Order main ---]'
+echo '[--- Order sign in ---]'
 cd  ../order-sign-in && npx yarn build
+echo '[--- Order sign up ---]'
+cd  ../order-sign-up && npx yarn build
 
 exit 0

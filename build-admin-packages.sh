@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo ''
-echo 'Сборка пакетов "UI" для "Order"'
+echo 'Сборка пакетов "UI" для "Admin"'
 echo '-------------------'
 
 cd ./ui.packages || return
@@ -24,14 +24,14 @@ echo '[--- Editor ---]'
 cd ../editor && npx yarn build
 
 echo ''
-echo 'Сборка модулей для приложения "Order"'
+echo 'Сборка модулей для приложения "Admin"'
 echo '-----------------------------------------'
 
-cd ../../modules/order || return
+cd ../../modules/admin || return
 
-echo '[--- Order main ---]'
-cd  ./order-main && npx yarn build
-echo '[--- Order main ---]'
-cd  ../order-sign-in && npx yarn build
+echo '[--- Admin oder ---]'
+cd  ./admin-order && npx yarn build
+echo '[--- Admin sign in ---]'
+cd  ../admin-sign-in && npx yarn build
 
 exit 0
