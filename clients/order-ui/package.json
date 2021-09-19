@@ -9,6 +9,7 @@
   "dependencies": {
     "@modules/order-main": "1.0.0",
     "@modules/order-sign-in": "1.0.0",
+    "@modules/order-sign-up": "1.0.0",
     "@ui.packages/admin-kit": "1.0.0",
     "@ui.packages/application": "1.0.0",
     "@ui.packages/dialog": "1.0.0",

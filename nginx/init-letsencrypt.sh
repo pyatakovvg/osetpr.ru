@@ -1,6 +1,6 @@
 #!/bin/bash
 
-domains=("osetpr.ru" "www.osetpr.ru" "order.osetpr.ru" "www.order.osetpr.ru")
+domains=("osetpr.ru" "www.osetpr.ru" "order.osetpr.ru" "www.order.osetpr.ru" "admin.osetpr.ru" "www.admin.osetpr.ru")
 email="pyatakov.viktor@gmail.com" # Adding a valid address is strongly recommended
 staging=0 # Set to 1 if you're testing your setup to avoid hitting request limits
 

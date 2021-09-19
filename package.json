@@ -20,6 +20,7 @@
     "ui.packages/*",
     "packages/*",
     "modules/order/*",
+    "modules/admin/*",
     "clients/*",
     "gateway/*",
     "services/*"

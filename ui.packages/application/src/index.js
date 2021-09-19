@@ -136,5 +136,5 @@ class App {
 
 export default App;
 export { default as Context } from './Context';
-export { signIn, signOut } from './ducks/commands';
+export { signIn, signUp, signOut } from './ducks/commands';
 export { selectInProcess, selectProfile, redirectToAction } from './ducks/slice';

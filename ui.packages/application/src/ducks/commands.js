@@ -8,6 +8,10 @@ import {
   signInRequestFailAction,
   signInRequestSuccessAction,
 
+  signUpRequestAction,
+  signUpRequestFailAction,
+  signUpRequestSuccessAction,
+
   getProfileRequestAction,
   getProfileRequestFailAction,
   getProfileRequestSuccessAction,
@@ -61,6 +65,51 @@ export const signIn = (formData) => async (dispatch) => {
   }
   catch(error) {
     dispatch(signInRequestFailAction(error));
+
+    const notification = {
+      mode: '',
+      title: '',
+      content: '',
+      autoClose: false,
+    };
+
+    if (error['status'] === 404) {
+      notification['mode'] = 'warning';
+      notification['title'] = 'Ошибка авторизации';
+      notification['content'] = 'Не верный логин или пароль';
+    }
+    else if (error['status'] === 500) {
+      notification['mode'] = 'danger';
+      notification['title'] = 'Ошибка доступа';
+      notification['content'] = `${error['data']['message']} (${error['data']['code']})`;
+    }
+
+    dispatch(pushNotification(notification));
+
+    return false;
+  }
+};
+
+export const signUp = (formData) => async (dispatch) => {
+  try {
+    dispatch(signUpRequestAction());
+
+    const result = await request({
+      url: '/sign-up',
+      method: 'post',
+      data: {
+        ...formData,
+      }
+    });
+
+    await dispatch(getProfile());
+
+    dispatch(signUpRequestSuccessAction(result));
+
+    return true;
+  }
+  catch(error) {
+    dispatch(signUpRequestFailAction(error));
 
     const notification = {
       mode: '',

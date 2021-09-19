@@ -1,5 +1,5 @@
 
-@import "../../../../../node_modules/@ui.packages/theme";
+@import "~@ui.packages/theme";
 
 
 .wrapper {
@@ -22,11 +22,6 @@
 .content {
 
   display: block;
-  border-radius: 5px;
-  border: 1px solid $pale-lilac;
-  background: $white;
-  padding: 30px;
-  margin: 6px 0 0;
 }
 
 .controls {

@@ -5,20 +5,12 @@ export { name, reducer } from './ducks/slice';
 export {
   resetStateAction,
 
-  resetItemAction,
-
-  selectItem,
+  selectMeta,
   selectItems,
-  selectUnits,
+  selectStatuses,
   selectInProcess,
-  selectInFormProcess,
 } from './ducks/slice';
 
 export {
-  getItem,
   getItems,
-  getUnits,
-  createItem,
-  updateItem,
-  deleteItem,
 } from './ducks/commands';

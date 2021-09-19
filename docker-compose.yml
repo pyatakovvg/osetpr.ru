@@ -61,7 +61,7 @@ services:
 
 
   order_srv:
-    container_name: product_srv
+    container_name: order_srv
     build:
       context: ./
       dockerfile: Dockerfile.order-srv
@@ -82,10 +82,31 @@ services:
 
 
   order_gw:
-    container_name: admin_gw
+    container_name: order_gw
     build:
       context: ./
       dockerfile: Dockerfile.order-gw
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+    depends_on:
+      - rabbit
+      - order_srv
+      - identity_srv
+    links:
+      - rabbit
+      - order_srv
+      - identity_srv
+
+
+  admin_gw:
+    container_name: admin_gw
+    build:
+      context: ./
+      dockerfile: Dockerfile.admin-gw
     restart: always
     logging:
       driver: "json-file"
@@ -119,6 +140,27 @@ services:
       - order_gw
     volumes:
       - ./clients/order-ui/nginx/conf.d:/etc/nginx/conf.d:ro
+    environment:
+      - NODE_ENV=production
+
+
+  admin_ui:
+    container_name: admin_ui
+    build:
+      context: ./
+      dockerfile: Dockerfile.admin-ui
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+    depends_on:
+      - admin_gw
+    links:
+      - admin_gw
+    volumes:
+      - ./clients/admin-ui/nginx/conf.d:/etc/nginx/conf.d:ro
     environment:
       - NODE_ENV=production
 

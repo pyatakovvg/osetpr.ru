@@ -40,6 +40,16 @@ const applicationSlice = createSlice({
       state['inProcess'] = false;
     },
 
+    signUpRequestAction(state) {
+      state['inProcess'] = true;
+    },
+    signUpRequestFailAction(state) {
+      state['inProcess'] = false;
+    },
+    signUpRequestSuccessAction(state) {
+      state['inProcess'] = false;
+    },
+
     getProfileRequestAction(state) {},
     getProfileRequestFailAction(state) {},
     getProfileRequestSuccessAction(state, { payload }) {
@@ -79,6 +89,10 @@ export const {
   signInRequestAction,
   signInRequestFailAction,
   signInRequestSuccessAction,
+
+  signUpRequestAction,
+  signUpRequestFailAction,
+  signUpRequestSuccessAction,
 
   getProfileRequestAction,
   getProfileRequestFailAction,

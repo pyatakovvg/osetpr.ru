@@ -7,19 +7,19 @@ RUN npm config set package-lock false
 
 WORKDIR /app
 
-COPY ./services/product-srv/db                   ./services/product-srv/db
-COPY ./services/product-srv/src                  ./services/product-srv/src
-COPY ./services/product-srv/.env.production      ./services/product-srv
-COPY ./services/product-srv/package.json         ./services/product-srv
-COPY ./services/product-srv/.sequelizerc         ./services/product-srv
-COPY ./sys.packages                              ./sys.packages
-COPY ./packages                                  ./packages
-COPY ./package.json                              ./
-COPY ./lerna.json                                ./
-COPY ./yarn.lock                                 ./
+COPY ./services/order-srv/db                   ./services/order-srv/db
+COPY ./services/order-srv/src                  ./services/order-srv/src
+COPY ./services/order-srv/.env.production      ./services/order-srv
+COPY ./services/order-srv/package.json         ./services/order-srv
+COPY ./services/order-srv/.sequelizerc         ./services/order-srv
+COPY ./sys.packages                            ./sys.packages
+COPY ./packages                                ./packages
+COPY ./package.json                            ./
+COPY ./lerna.json                              ./
+COPY ./yarn.lock                               ./
 
 RUN yarn
 
-WORKDIR /app/services/product-srv
+WORKDIR /app/services/order-srv
 
 ENTRYPOINT ["yarn", "run", "start"]

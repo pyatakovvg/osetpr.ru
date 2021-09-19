@@ -5,10 +5,10 @@ import { connect, check, getAll, update, refresh } from '../controllers/Identity
 export default (router) => {
 
   router
-    .get('/v1/api/users', getAll())
-    .put('/v1/api/users/:id', update())
+    .get('/api/v1/users', getAll())
+    .put('/api/v1/users/:id', update())
 
-    .post('/v1/api/check', check())
-    .post('/v1/api/refresh', refresh())
-    .post('/v1/api/connect', connect());
+    .post('/api/v1/check', check())
+    .post('/api/v1/refresh', refresh())
+    .post('/api/v1/connect', connect());
 }

@@ -1,5 +1,5 @@
 {
-  "name": "admin-gateway",
+  "name": "order-gateway",
   "license": "MIT",
   "version": "1.0.0",
   "scripts": {

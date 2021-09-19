@@ -1,5 +1,5 @@
 {
-  "name": "product2-srv",
+  "name": "order-srv",
   "license": "MIT",
   "version": "1.0.0",
   "scripts": {
