@@ -60,6 +60,27 @@ services:
       - mail_srv
 
 
+  customer_srv:
+    container_name: customer_srv
+    build:
+      context: ./
+      dockerfile: Dockerfile.customer-srv
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+    depends_on:
+      - db
+      - mail_srv
+      - identity_srv
+    links:
+      - db
+      - mail_srv
+      - identity_srv
+
+
   order_srv:
     container_name: order_srv
     build:
