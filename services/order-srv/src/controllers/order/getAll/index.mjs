@@ -3,6 +3,7 @@ import { models } from '@sys.packages/db';
 
 
 export default () => async (ctx) => {
+  let where = {};
   let offset = {};
   let options = {};
 
@@ -12,7 +13,12 @@ export default () => async (ctx) => {
     limit = null,
     skip = null,
     take = null,
+    userUuid = null,
   } = ctx['request']['query'];
+
+  if (userUuid) {
+    where['userUuid'] = userUuid;
+  }
 
   if (limit) {
     options['limit'] = Number(limit);
@@ -27,11 +33,13 @@ export default () => async (ctx) => {
     ...options,
     ...offset,
     distinct: true,
+    where: { ...where },
     order: [['createdAt', 'asc']],
     attributes: ['uuid', 'userUuid', 'title', 'description', 'dateTo', 'createdAt', 'updatedAt'],
     include: [
       {
         model: Status,
+        required: true,
         as: 'status',
       },
     ],

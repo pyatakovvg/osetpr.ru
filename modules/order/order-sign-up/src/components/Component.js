@@ -10,16 +10,13 @@ import Form from './Form';
 import styles from './default.module.scss';
 
 
-function SignIn() {
+function SignUp() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   async function handleSignIn(data) {
-    const isSuccess = await dispatch(signUp({
-      ...data,
-      type: 'legal',
-      role: '',
-    }));
+    const isSuccess = await dispatch(signUp(data));
+
     if (isSuccess) {
       navigate(process.env['PUBLIC_URL'] + '/');
     }
@@ -32,4 +29,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default SignUp;

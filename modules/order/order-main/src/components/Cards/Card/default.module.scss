@@ -6,62 +6,12 @@
 
   display: block;
   border-radius: 5px;
-  border: 1px solid $pale-lilac;
+  border: 2px solid $pale-lilac;
   background: $white;
   padding: 24px;
+  cursor: pointer;
 
-  & + & {
-
-    margin: 16px 0 0;
+  &:hover {
+    border-color: $primary;
   }
-}
-
-.header {
-
-  display: flex;
-  flex-direction: row;
-  flex: 1 0;
-  align-items: flex-end;
-}
-
-.title {
-
-  display: flex;
-  flex-direction: column;
-  flex: 1 0;
-}
-
-.date {
-
-  display: block;
-}
-
-.content {
-
-  display: block;
-  margin: 16px 0 0;
-}
-
-.footer {
-
-  display: flex;
-  flex-direction: row;
-  flex: 1 0;
-  border-top: 1px solid $pale-lilac;
-  margin: 16px 0 0;
-  padding: 16px 0 0;
-  align-items: flex-end;
-}
-
-.created {
-
-  display: flex;
-  flex-direction: column;
-  flex: 1 0;
-}
-
-.status {
-
-  display: block;
-  width: 220px;
 }

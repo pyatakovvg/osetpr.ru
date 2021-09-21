@@ -25,8 +25,8 @@ export default function (sequelize, DataType) {
     },
     type: {
       type: DataType.ENUM,
-      values: ['customer', 'seller'],
-      defaultValue: 'seller',
+      values: ['customer', 'admin'],
+      defaultValue: 'customer',
       allowNull: false,
     },
   }, {

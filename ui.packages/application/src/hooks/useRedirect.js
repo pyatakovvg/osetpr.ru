@@ -10,6 +10,7 @@ export default function() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isSignIn = useMatch('/sign-in');
+  const isSignUp = useMatch('/sign-up');
   const isRedirectTo401 = useSelector(selectRedirectTo401);
 
   const [isInit, setInit] = useState(null);
@@ -17,7 +18,7 @@ export default function() {
   useEffect(function checkState() {
     if (isInit) {
       if (isRedirectTo401) {
-        if ( ! isSignIn) {
+        if ( ! isSignIn && ! isSignUp) {
           navigate(process.env['PUBLIC_URL'] + '/sign-in');
         }
         dispatch(resetStateAction());

@@ -1,5 +1,5 @@
 
-class BaseError extends Error {
+export class BaseError extends Error {
   constructor(status = 500, data = 'Что-то пошло не так') {
     super();
 

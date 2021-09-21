@@ -2,52 +2,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 
-const initialState = {
-  items: [],
-  statuses: [],
-  meta: {},
-  inProcess: false,
-};
+const initialState = {};
 
-const REDUCER_NAME = 'orders';
+const REDUCER_NAME = 'main';
 
 
-const typesSlice = createSlice({
+const slice = createSlice({
   name: REDUCER_NAME,
   initialState,
-  reducers: {
-    resetStateAction(state) {
-      state['items'] = [];
-      state['statuses'] = [];
-      state['meta'] = {};
-      state['inProcess'] = false;
-    },
-
-    getItemsRequestAction() {},
-    getItemsRequestFailAction(state) {
-      state['inProcess'] = false;
-    },
-    getItemsRequestSuccessAction(state, { payload }) {
-      state['statuses'] = payload['statuses'];
-      state['items'] = payload['data'];
-      state['meta'] = payload['meta'];
-      state['inProcess'] = false;
-    },
-  },
+  reducers: {},
 });
 
-export const {
-  resetStateAction,
+export const {} = slice['actions'];
 
-  getItemsRequestAction,
-  getItemsRequestFailAction,
-  getItemsRequestSuccessAction,
-} = typesSlice['actions'];
-
-export const selectMeta = (state) => state[REDUCER_NAME]['meta'];
-export const selectItems = (state) => state[REDUCER_NAME]['items'];
-export const selectStatuses = (state) => state[REDUCER_NAME]['statuses'];
-export const selectInProcess = (state) => state[REDUCER_NAME]['inProcess'];
-
-export const name = typesSlice['name'];
-export const reducer = typesSlice['reducer'];
+export const name = slice['name'];
+export const reducer = slice['reducer'];

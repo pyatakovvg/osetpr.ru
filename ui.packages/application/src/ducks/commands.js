@@ -1,4 +1,5 @@
 
+import { Mode } from "@ui.packages/types";
 import request from "@ui.packages/request";
 import { pushNotification } from "@ui.packages/notifications";
 import { joinToRoom, leaveFromRoom } from '@ui.packages/socket';
@@ -33,7 +34,7 @@ export const getProfile = () => async (dispatch) => {
     });
 
     dispatch(getProfileRequestSuccessAction(data));
-    joinToRoom(data['id']);
+    joinToRoom(data['uuid']);
 
     return data;
   }
@@ -105,6 +106,11 @@ export const signUp = (formData) => async (dispatch) => {
     await dispatch(getProfile());
 
     dispatch(signUpRequestSuccessAction(result));
+
+    dispatch(pushNotification({
+      title: 'Успешная регистрация',
+      mode: Mode.SUCCESS,
+    }));
 
     return true;
   }

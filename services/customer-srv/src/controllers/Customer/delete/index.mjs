@@ -4,23 +4,27 @@ import { sequelize, models } from '@sys.packages/db';
 
 
 export default () => async (ctx) => {
-  const { id } = ctx['request']['body'];
-  const { Client, Address, Meta } = models;
+  const { uuid } = ctx['request']['body'];
+  const { Customer, Legal, Individual } = models;
 
   const transaction = await sequelize.transaction();
 
-  await Address.destroy({
-    where: { clientId: id },
+  await Customer.destroy({
+    where: { uuid },
     transaction,
   });
 
-  await Meta.destroy({
-    where: { clientId: id },
+  await Legal.destroy({
+    where: {
+      customerUuid: uuid,
+    },
     transaction,
   });
 
-  await Client.destroy({
-    where: { id },
+  await Individual.destroy({
+    where: {
+      customerUuid: uuid,
+    },
     transaction,
   });
 
@@ -28,6 +32,6 @@ export default () => async (ctx) => {
 
   ctx.body = {
     success: true,
-    data: id,
+    data: uuid,
   };
 };

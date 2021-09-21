@@ -62,7 +62,7 @@ class App {
     if (process.env['REACT_APP_SOCKET_HOST'] && process.env['REACT_APP_SOCKET_PATH']) {
       socket = Socket(process.env['REACT_APP_SOCKET_HOST'], {
         path: process.env['REACT_APP_SOCKET_PATH'],
-      })
+      });
     }
 
     this.options = {

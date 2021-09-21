@@ -9,11 +9,27 @@ const routes = [
     ),
   },
   {
-    path: '/customers',
+    path: '/orders',
     wrapper: 'Navigate',
     module: import(
-      /* webpackChunkName: "customers" */
-      '@modules/order-main'
+      /* webpackChunkName: "orders" */
+      '@modules/order-orders'
+    ),
+  },
+  {
+    path: '/orders/create',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "order-modify" */
+      '@modules/order-order-modify'
+    ),
+  },
+  {
+    path: '/orders/:uuid',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "order-modify" */
+      '@modules/order-order-modify'
     ),
   },
   {

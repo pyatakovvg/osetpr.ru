@@ -47,7 +47,6 @@ function Profile() {
         <span className={cn(styles['icon'], "far fa-user-circle")} />
         <div className={styles['row']}>
           <span className={styles['name']}>{ userName }</span>
-          <span className={styles['role']}>{ profile['role']['name'] }</span>
         </div>
       </div>
       <div className={styles['options']}>
