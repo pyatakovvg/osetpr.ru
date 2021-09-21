@@ -26,6 +26,7 @@ export default class CopySaga {
       return await saga.execute(params);
     }
     catch (e) {
+      console.log(e)
       if (e instanceof Sagas.SagaExecutionFailed) {
         throw new NetworkError({ code: '2.0.0', message: e['message'] });
       }
@@ -56,20 +57,26 @@ export default class CopySaga {
 
       .step('Create Customer')
       .invoke(async (params) => {
+        logger.info('Create customer');
         const userUuid = params.getUserUuid();
         const customerUuid = await createCustomer(userUuid, body['customer']);
         params.setCustomerUuid(customerUuid);
+        logger.info('Customer ' + customerUuid + ' has created');
       })
       .withCompensation(async (params) => {
+        logger.info('Delete customer');
         const customerUuid = params.getCustomerUuid();
         await deleteCustomer(customerUuid);
+        logger.info('Customer ' + customerUuid + ' has deleted');
       })
 
       .step('Authorize')
       .invoke(async (params) => {
+        logger.info('Auth user');
         const userUuid = params.getUserUuid();
         const authData = await connectUser(this.ctx, userUuid);
         params.setAuthData(authData);
+        logger.info('User has auth');
       })
 
       // .step('Send event')
