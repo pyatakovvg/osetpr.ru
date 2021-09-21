@@ -54,6 +54,7 @@ services:
         max-size: 10m
     depends_on:
       - db
+      - rabbit
     links:
       - db
       - rabbit
@@ -72,6 +73,7 @@ services:
         max-size: 10m
     depends_on:
       - db
+      - rabbit
       - customer_srv
     links:
       - db
@@ -133,12 +135,10 @@ services:
         max-file: "5"
         max-size: 10m
     depends_on:
-      - rabbit
       - order_srv
       - identity_srv
       - customer_srv
     links:
-      - rabbit
       - order_srv
       - identity_srv
       - customer_srv
