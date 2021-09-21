@@ -51,8 +51,10 @@ export default class CopySaga {
       .withCompensation(async (params) => {
         logger.info('Delete user');
         const userUuid = params.getUserUuid();
-        await deleteUser(userUuid);
-        logger.info('User ' + userUuid + ' has deleted');
+        if (userUuid) {
+          await deleteUser(userUuid);
+          logger.info('User ' + userUuid + ' has deleted');
+        }
       })
 
       .step('Create Customer')
@@ -66,8 +68,10 @@ export default class CopySaga {
       .withCompensation(async (params) => {
         logger.info('Delete customer');
         const customerUuid = params.getCustomerUuid();
-        await deleteCustomer(customerUuid);
-        logger.info('Customer ' + customerUuid + ' has deleted');
+        if (customerUuid) {
+          await deleteCustomer(customerUuid);
+          logger.info('Customer ' + customerUuid + ' has deleted');
+        }
       })
 
       .step('Authorize')
