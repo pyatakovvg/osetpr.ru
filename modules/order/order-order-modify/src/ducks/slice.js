@@ -21,13 +21,37 @@ const typesSlice = createSlice({
       state['inProcess'] = false;
     },
 
-    getItemsRequestAction() {},
-    getItemsRequestFailAction(state) {
+    getItemRequestAction(state) {
+      state['inProcess'] = true;
+    },
+    getItemRequestFailAction(state) {
       state['inProcess'] = false;
     },
-    getItemsRequestSuccessAction(state, { payload }) {
+    getItemRequestSuccessAction(state, { payload }) {
       state['statuses'] = payload['statuses'];
       state['item'] = payload['data'];
+      state['inProcess'] = false;
+    },
+
+    createItemRequestAction(state) {
+      state['inProcess'] = true;
+    },
+    createItemRequestFailAction(state) {
+      state['inProcess'] = false;
+    },
+    createItemRequestSuccessAction(state, { payload }) {
+      state['item'] = payload;
+      state['inProcess'] = false;
+    },
+
+    updateItemRequestAction(state) {
+      state['inProcess'] = true;
+    },
+    updateItemRequestFailAction(state) {
+      state['inProcess'] = false;
+    },
+    updateItemRequestSuccessAction(state, { payload }) {
+      state['item'] = payload;
       state['inProcess'] = false;
     },
   },
@@ -39,6 +63,14 @@ export const {
   getItemRequestAction,
   getItemRequestFailAction,
   getItemRequestSuccessAction,
+
+  createItemRequestAction,
+  createItemRequestFailAction,
+  createItemRequestSuccessAction,
+
+  updateItemRequestAction,
+  updateItemRequestFailAction,
+  updateItemRequestSuccessAction,
 } = typesSlice['actions'];
 
 export const selectItem = (state) => state[REDUCER_NAME]['item'];

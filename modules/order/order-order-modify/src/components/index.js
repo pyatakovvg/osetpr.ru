@@ -15,10 +15,10 @@ export default function HOC() {
   const dispatch = useDispatch();
 
   useMount(async function() {
-    document.title = `${process.env['REACT_APP_WEBSITE_NAME']} - Заказ`;
+    document.title = `${process.env['REACT_APP_WEBSITE_NAME']} - ` + params['uuid'] ? 'Редактирование заказа' : 'Новый заказ';
 
     if (params['uuid']) {
-      await dispatch(getItem());
+      await dispatch(getItem(params['uuid']));
     }
   });
 

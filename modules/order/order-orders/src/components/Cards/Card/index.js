@@ -3,10 +3,11 @@ import { selectStatuses } from '@modules/order-orders';
 
 import moment from '@packages/moment';
 
-import { Header, Text, Status } from '@ui.packages/admin-kit';
+import { Header, Text, Status, Button } from '@ui.packages/admin-kit';
 
 import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import styles from './default.module.scss';
 
@@ -21,10 +22,22 @@ function getStatusMode(code) {
   }
 }
 
-function Card({ title, description, status, dateTo, createdAt }) {
+function Card({ uuid, title, description, status, dateTo, createdAt }) {
+  const navigate = useNavigate();
+
   const statuses = useSelector(selectStatuses);
+
   const statusName = useMemo(() => statuses.find(item => item['code'] === status['code']), [status['code']]);
   const statusMode = useMemo(() => getStatusMode(status['code']), [status['code']]);
+  const isEditable = useMemo(() => status['code'] === 'new', [status['code']]);
+
+  function handleEdit() {
+    navigate(process.env['PUBLIC_URL'] + '/orders/' + uuid);
+  }
+
+  function handleCancel() {
+
+  }
 
   return (
     <div className={styles['wrapper']}>
@@ -47,6 +60,20 @@ function Card({ title, description, status, dateTo, createdAt }) {
           <Status mode={statusMode}>{ statusName['displayName'] }</Status>
         </div>
       </div>
+      {isEditable && (
+        <div className={styles['controls']}>
+          <Button
+            form={Button.FORM_OUTLINE}
+            mode={Button.MODE_PRIMARY}
+            onClick={() => handleEdit()}
+          >редактировать</Button>
+          <Button
+            form={Button.FORM_OUTLINE}
+            mode={Button.MODE_DANGER}
+            onClick={() => handleCancel()}
+          >отменить</Button>
+        </div>
+      )}
     </div>
   );
 }

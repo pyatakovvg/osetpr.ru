@@ -1,20 +1,28 @@
 
-import { sendEvent } from '@sys.packages/rabbit';
 import { models } from '@sys.packages/db';
+import { sendEvent } from '@sys.packages/rabbit';
 
 
 export default () => async (ctx) => {
-  const { Unit } = models;
-  const { id } = ctx['params'];
+  const { Order, Status } = models;
+
+  const { uuid } = ctx['params'];
   const data = ctx['request']['body'];
 
-  await Unit.update(data, {
-    where: { id },
+  await Order.update(data, {
+    where: { uuid },
   });
 
-  const result = await Unit.findOne({
-    attributes: ['id', 'value', 'description'],
-    where: { id },
+  const result = await Order.findOne({
+    where: { uuid },
+    attributes: ['uuid', 'userUuid', 'title', 'description', 'dateTo', 'address', 'createdAt', 'updatedAt'],
+    include: [
+      {
+        model: Status,
+        required: true,
+        as: 'status',
+      },
+    ],
   });
 
   await sendEvent(process.env['EXCHANGE_UNIT_UPDATE'], JSON.stringify(result.toJSON()));

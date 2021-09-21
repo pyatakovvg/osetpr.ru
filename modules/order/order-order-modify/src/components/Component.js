@@ -4,6 +4,7 @@ import { selectInProcess } from '@modules/order-order-modify';
 import { Header, Page, PageControls, PageContent, Button } from '@ui.packages/admin-kit';
 
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { reset, submit, isValid, isPristine } from 'redux-form';
 
@@ -13,6 +14,7 @@ import styles from './default.module.scss';
 
 
 function OrderModify() {
+  const params = useParams();
   const dispatch = useDispatch();
 
   const valid = useSelector(isValid('order-modify'));
@@ -41,13 +43,13 @@ function OrderModify() {
             mode={Button.MODE_SUCCESS}
             disabled={ ! valid || pristine || inProcess}
             onClick={() => handleSubmit()}
-          >Сохранить</Button>
+          >{ params['uuid'] ? 'Обновить' : 'Сохранить' }</Button>
         </div>
       </PageControls>
       <PageContent>
         <section className={styles['wrapper']}>
           <div className={styles['header']}>
-            <Header level={1}>Заказы</Header>
+            <Header level={1}>{ params['uuid'] ? 'Обновить заказ' : 'Оформить заказ' }</Header>
           </div>
           <article className={styles['content']}>
             <FormModify />

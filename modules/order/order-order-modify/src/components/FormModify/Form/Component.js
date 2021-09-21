@@ -9,17 +9,22 @@ function Form({ handleSubmit }) {
     <form onSubmit={handleSubmit}>
       <Row>
         <Col>
-          <InputField name={'title'} label={'Название'} />
+          <InputField require name={'title'} label={'Название'} />
         </Col>
       </Row>
       <Row>
         <Col>
-          <TextareaField name={'description'} label={'Описание'} />
+          <TextareaField require name={'description'} label={'Описание'} />
         </Col>
       </Row>
       <Row>
         <Col>
-          <DatePickerField name={'dateTo'} label={'Выполнить до:'} />
+          <DatePickerField require name={'dateTo'} label={'Выполнить до'} />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <InputField require name={'address'} label={'Адрес доставки'} />
         </Col>
       </Row>
     </form>

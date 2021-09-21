@@ -1,16 +1,28 @@
 
-import request from 'axios';
+import { NotfoundError } from '@packages/errors';
+
+import request from '@sys.packages/request';
 
 
 export default () => async (ctx) => {
-  const {operationId} = ctx['params'];
+  const { uuid } = ctx['params'];
 
-  const {data} = await request({
-    url: process.env['OPERATION_API_SRV'] + '/operations/' + operationId,
+  const result = await request({
+    url: process.env['ORDER_API_SRV'] + '/orders',
+    method: 'get',
+    params: {
+      uuid,
+    },
   });
+
+  console.log(result)
+
+  if ( ! result['data'].length) {
+    throw new NotfoundError({ code: '3.0.0', message: 'Операция не найдена' });
+  }
 
   ctx.body = {
     success: true,
-    data,
+    data: result['data'][0],
   };
 }

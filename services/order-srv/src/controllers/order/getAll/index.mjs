@@ -13,8 +13,13 @@ export default () => async (ctx) => {
     limit = null,
     skip = null,
     take = null,
+    uuid = null,
     userUuid = null,
   } = ctx['request']['query'];
+
+  if (uuid) {
+    where['uuid'] = uuid;
+  }
 
   if (userUuid) {
     where['userUuid'] = userUuid;
@@ -34,8 +39,8 @@ export default () => async (ctx) => {
     ...offset,
     distinct: true,
     where: { ...where },
-    order: [['createdAt', 'asc']],
-    attributes: ['uuid', 'userUuid', 'title', 'description', 'dateTo', 'createdAt', 'updatedAt'],
+    order: [['createdAt', 'desc']],
+    attributes: ['uuid', 'userUuid', 'title', 'description', 'dateTo', 'address', 'createdAt', 'updatedAt'],
     include: [
       {
         model: Status,
