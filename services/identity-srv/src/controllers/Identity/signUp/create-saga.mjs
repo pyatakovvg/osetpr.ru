@@ -44,12 +44,14 @@ export default class CopySaga {
       .invoke(async (params) => {
         logger.info('Create user');
         const uuid = await createUser(body);
+        logger.info('User ' + uuid + ' has created');
         params.setUserUuid(uuid);
       })
       .withCompensation(async (params) => {
         logger.info('Delete user');
         const userUuid = params.getUserUuid();
         await deleteUser(userUuid);
+        logger.info('User ' + userUuid + ' has deleted');
       })
 
       .step('Create Customer')

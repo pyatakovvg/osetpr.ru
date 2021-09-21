@@ -28,36 +28,17 @@ services:
       - 50002:15672
 
 
-  mail_srv:
-    container_name: mail_srv
-    build:
-      context: ./
-      dockerfile: Dockerfile.mail-srv
-    restart: always
-    logging:
-      driver: "json-file"
-      options:
-        max-file: "5"
-        max-size: 10m
-
-
-  identity_srv:
-    container_name: identity_srv
-    build:
-      context: ./
-      dockerfile: Dockerfile.identity-srv
-    restart: always
-    logging:
-      driver: "json-file"
-      options:
-        max-file: "5"
-        max-size: 10m
-    depends_on:
-      - db
-      - mail_srv
-    links:
-      - db
-      - mail_srv
+#  mail_srv:
+#    container_name: mail_srv
+#    build:
+#      context: ./
+#      dockerfile: Dockerfile.mail-srv
+#    restart: always
+#    logging:
+#      driver: "json-file"
+#      options:
+#        max-file: "5"
+#        max-size: 10m
 
 
   customer_srv:
@@ -73,12 +54,27 @@ services:
         max-size: 10m
     depends_on:
       - db
-      - mail_srv
-      - identity_srv
     links:
       - db
-      - mail_srv
-      - identity_srv
+
+
+  identity_srv:
+    container_name: identity_srv
+    build:
+      context: ./
+      dockerfile: Dockerfile.identity-srv
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+    depends_on:
+      - db
+      - customer_srv
+    links:
+      - db
+      - customer_srv
 
 
   order_srv:
@@ -95,11 +91,9 @@ services:
     depends_on:
       - db
       - rabbit
-      - mail_srv
     links:
       - db
       - rabbit
-      - mail_srv
 
 
   order_gw:
@@ -117,10 +111,12 @@ services:
       - rabbit
       - order_srv
       - identity_srv
+      - customer_srv
     links:
       - rabbit
       - order_srv
       - identity_srv
+      - customer_srv
 
 
   admin_gw:
@@ -138,10 +134,12 @@ services:
       - rabbit
       - order_srv
       - identity_srv
+      - customer_srv
     links:
       - rabbit
       - order_srv
       - identity_srv
+      - customer_srv
 
 
   order_ui:
@@ -214,8 +212,10 @@ services:
         max-size: 10m
     depends_on:
       - order_ui
+      - admin_ui
     links:
       - order_ui
+      - admin_ui
     ports:
       - 80:80
       - 443:443
