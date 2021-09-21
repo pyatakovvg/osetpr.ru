@@ -8,13 +8,9 @@ USER postgres
 
 RUN /etc/init.d/postgresql start &&\
     psql --command "CREATE USER admin WITH SUPERUSER PASSWORD '1Ctdfcnjgjkm';" &&\
-    createdb -O admin product_srv &&\
+    createdb -O admin order_srv &&\
     createdb -O admin identity_srv &&\
-    createdb -O admin operation_srv &&\
-    createdb -O admin gallery_srv &&\
-    createdb -O admin customer_srv &&\
-    createdb -O admin seller_srv &&\
-    createdb -O admin promotion_srv
+    createdb -O admin customer_srv
 
 RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/10/main/pg_hba.conf
 
