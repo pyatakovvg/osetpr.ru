@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@modules/admin-order",
+  "name": "@modules/admin-orders",
   "version": "1.0.0",
   "main": "lib/index.js",
   "scripts": {

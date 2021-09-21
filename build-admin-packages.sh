@@ -29,8 +29,8 @@ echo '-----------------------------------------'
 
 cd ../../modules/admin || return
 
-echo '[--- Admin oder ---]'
-cd  ./admin-order && npx yarn build
+echo '[--- Admin oders ---]'
+cd  ./admin-orders && npx yarn build
 echo '[--- Admin sign in ---]'
 cd  ../admin-sign-in && npx yarn build
 
