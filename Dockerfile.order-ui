@@ -18,7 +18,7 @@ COPY ./packages                         ./packages
 COPY ./package.json                     ./
 COPY ./lerna.json                       ./
 COPY ./yarn.lock                        ./
-COPY ./build-admin-packages.sh          ./
+COPY ./build-order-packages.sh          ./
 
 RUN yarn
 
