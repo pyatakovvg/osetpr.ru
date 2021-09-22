@@ -81,6 +81,46 @@ services:
       - customer_srv
 
 
+  gallery_srv:
+    container_name: gallery_srv
+    build:
+      context: ./
+      dockerfile: Dockerfile.gallery-srv
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+    depends_on:
+      - db
+      - rabbit
+    links:
+      - db
+      - rabbit
+
+
+  product_srv:
+    container_name: product_srv
+    build:
+      context: ./
+      dockerfile: Dockerfile.product-srv
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+    depends_on:
+      - db
+      - rabbit
+      - gallery_srv
+    links:
+      - db
+      - rabbit
+      - gallery_srv
+
+
   order_srv:
     container_name: order_srv
     build:
@@ -95,9 +135,11 @@ services:
     depends_on:
       - db
       - rabbit
+      - product_srv
     links:
       - db
       - rabbit
+      - product_srv
 
 
   order_gw:
@@ -116,11 +158,15 @@ services:
       - order_srv
       - identity_srv
       - customer_srv
+      - gallery_srv
+      - product_srv
     links:
       - rabbit
       - order_srv
       - identity_srv
       - customer_srv
+      - gallery_srv
+      - product_srv
 
 
   admin_gw:
@@ -139,11 +185,15 @@ services:
       - order_srv
       - identity_srv
       - customer_srv
+      - gallery_srv
+      - product_srv
     links:
       - rabbit
       - order_srv
       - identity_srv
       - customer_srv
+      - gallery_srv
+      - product_srv
 
 
   client_gw:
@@ -162,11 +212,15 @@ services:
       - order_srv
       - identity_srv
       - customer_srv
+      - gallery_srv
+      - product_srv
     links:
       - rabbit
       - order_srv
       - identity_srv
       - customer_srv
+      - gallery_srv
+      - product_srv
 
 
   order_ui:
