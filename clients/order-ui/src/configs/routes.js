@@ -4,7 +4,7 @@ const routes = [
     path: '/',
     wrapper: 'Navigate',
     module: import(
-      /* webpackChunkName: "orders" */
+      /* webpackChunkName: "main" */
       '@modules/order-main'
     ),
   },

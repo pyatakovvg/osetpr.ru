@@ -6,20 +6,21 @@
     "lerna-update-wizard": "0.17.8"
   },
   "license": "MIT",
-  "homepage": "https://магазиночков.рф",
+  "homepage": "https://osetpr.ru",
   "bin": {
     "lerna": "node_modules/lerna/cli.js",
     "yarn": "node_modules/yarn/cli.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pyatakovvg/shop.git"
+    "url": "git+https://github.com/pyatakovvg/osetprru.git"
   },
   "workspaces": [
     "sys.packages/*",
     "ui.packages/*",
     "packages/*",
     "modules/order/*",
+    "modules/client/*",
     "modules/admin/*",
     "clients/*",
     "gateway/*",

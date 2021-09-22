@@ -1,0 +1,39 @@
+
+# BUILD APP
+FROM node:16-alpine3.11 as ui
+
+RUN apk update && apk add bash
+RUN npm install -g npm@latest
+RUN npm config set package-lock false
+
+WORKDIR /app
+
+COPY ./clients/client-ui/src              ./clients/client-ui/src
+COPY ./clients/client-ui/public           ./clients/client-ui/public
+COPY ./clients/client-ui/package.json     ./clients/client-ui
+COPY ./clients/client-ui/.env.production  ./clients/client-ui
+COPY ./modules/client                     ./modules/client
+COPY ./ui.packages                        ./ui.packages
+COPY ./packages                           ./packages
+COPY ./package.json                       ./
+COPY ./lerna.json                         ./
+COPY ./yarn.lock                          ./
+COPY ./build-client-packages.sh           ./
+
+RUN yarn
+
+RUN chmod +x ./build-client-packages.sh
+RUN ./build-client-packages.sh
+
+# BUILD APPLICATION
+WORKDIR /app/clients/client-ui
+RUN ["yarn", "run", "build"]
+
+# START NGINX
+FROM nginx
+
+COPY --from=ui /app/clients/client-ui/build /app
+
+WORKDIR /etc/nginx
+
+CMD ["nginx", "-g", "daemon off;"]
