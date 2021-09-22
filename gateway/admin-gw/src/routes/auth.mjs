@@ -1,8 +1,9 @@
 
 import { getByOrderId, getAllOrders, updateByOrderId, createOrder } from '../controllers/order';
+import { getAllCustomers } from '../controllers/customers';
 
 import { getProfile } from '../controllers/profile';
-import { signOut } from '../controllers/identity';
+import { signIn } from '../controllers/identity';
 
 
 export default (router) => {
@@ -12,7 +13,9 @@ export default (router) => {
   router.post('/orders', createOrder());
   router.put('/orders/:uuid', updateByOrderId());
 
+  router.get('/customers', getAllCustomers());
+
   router.get('/profile', getProfile());
 
-  router.post('/sign-out', signOut());
+  router.post('/sign-in', signIn());
 };

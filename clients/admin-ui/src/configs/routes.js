@@ -1,37 +1,37 @@
 
 const routes = [
-  // {
-  //   path: '/',
-  //   wrapper: 'Navigate',
-  //   module: import(
-  //     /* webpackChunkName: "orders" */
-  //     '@modules/order-main'
-  //   ),
-  // },
-  // {
-  //   path: '/customers',
-  //   wrapper: 'Navigate',
-  //   module: import(
-  //     /* webpackChunkName: "customers" */
-  //     '@modules/order-main'
-  //   ),
-  // },
-  // {
-  //   path: '/sign-in',
-  //   wrapper: 'Empty',
-  //   module: import(
-  //     /* webpackChunkName: "sign-in" */
-  //     '@modules/order-sign-in'
-  //   ),
-  // },
-  // {
-  //   path: '/sign-up',
-  //   wrapper: 'Empty',
-  //   module: import(
-  //     /* webpackChunkName: "sign-up" */
-  //     '@modules/order-sign-up'
-  //   ),
-  // },
+  {
+    path: '/',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "admin-main" */
+      '@modules/admin-main'
+    ),
+  },
+  {
+    path: '/orders',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "admin-orders" */
+      '@modules/admin-orders'
+    ),
+  },
+  {
+    path: '/customers',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "admin-customers" */
+      '@modules/admin-customers'
+    ),
+  },
+  {
+    path: '/sign-in',
+    wrapper: 'Empty',
+    module: import(
+      /* webpackChunkName: "admin-sign-in" */
+      '@modules/admin-sign-in'
+    ),
+  },
 ];
 
 export default routes;

@@ -1,7 +1,7 @@
 
 import { Mode } from '@ui.packages/types';
 import { selectInProcess } from '@ui.packages/application';
-import { InputField, Header, Button, Link } from '@ui.packages/admin-kit'
+import { InputField, Header, Button } from '@ui.packages/admin-kit'
 
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -34,9 +34,6 @@ function Form({ handleSubmit }) {
           mode={Mode.PRIMARY}
           disabled={ ! valid || pristine || inProcess}
         >Войти в кабинет</Button>
-      </div>
-      <div className={styles['controls']}>
-        <Link href={'/sign-up'}>Регистрация</Link>
       </div>
     </form>
   );

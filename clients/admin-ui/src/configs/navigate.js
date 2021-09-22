@@ -2,7 +2,7 @@
 const navigate = [
   {
     title: "Заказы",
-    path: '/',
+    path: '/orders',
     icon: 'fas fa-tag',
   },
   {

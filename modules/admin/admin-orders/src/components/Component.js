@@ -1,18 +1,18 @@
 
+import { selectInProcess } from '@modules/admin-orders';
+
 import { selectProfile } from "@ui.packages/application";
 import { Header, Page, PageControls, PageContent, Button } from '@ui.packages/admin-kit';
 
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import Cards from './Cards';
+import Table from './Table';
 
 import styles from './default.module.scss';
 
-import { selectInProcess } from '../ducks/slice';
 
-
-function Attributes() {
+function Orders() {
   const profile = useSelector(selectProfile);
   const inProcess = useSelector(selectInProcess);
 
@@ -40,7 +40,7 @@ function Attributes() {
             <Header level={1}>Заказы</Header>
           </div>
           <article className={styles['content']}>
-            <Cards />
+            <Table />
           </article>
         </section>
       </PageContent>
@@ -48,10 +48,8 @@ function Attributes() {
   );
 }
 
+Orders.propTypes = {};
 
+Orders.defaultProps = {};
 
-Attributes.propTypes = {};
-
-Attributes.defaultProps = {};
-
-export default Attributes;
+export default Orders;

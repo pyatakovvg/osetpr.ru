@@ -1,5 +1,5 @@
 
-import { resetStateAction, getItems } from '@modules/admin-orders';
+import { getItems , resetStateAction } from '@modules/admin-customers';
 
 import { useMount, useUnmount, useUpdate } from '@ui.packages/hoc';
 
@@ -13,7 +13,7 @@ export default function HOC() {
   const dispatch = useDispatch();
 
   useMount(async function() {
-    document.title = `${process.env['REACT_APP_WEBSITE_NAME']} - Заказы`;
+    document.title = `${process.env['REACT_APP_WEBSITE_NAME']} - Клиенты`;
 
     await dispatch(getItems());
   });

@@ -29,8 +29,12 @@ echo '-----------------------------------------'
 
 cd ../../modules/admin || return
 
-echo '[--- Admin oders ---]'
-cd  ./admin-orders && npx yarn build
+echo '[--- Admin main ---]'
+cd  ./admin-main && npx yarn build
+echo '[--- Admin orders ---]'
+cd  ../admin-orders && npx yarn build
+echo '[--- Admin customers ---]'
+cd  ../admin-customers && npx yarn build
 echo '[--- Admin sign in ---]'
 cd  ../admin-sign-in && npx yarn build
 
