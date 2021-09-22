@@ -4,7 +4,7 @@ const routes = [
     path: '/',
     wrapper: 'Empty',
     module: import(
-      /* webpackChunkName: "main" */
+      /* webpackChunkName: "client-main" */
       '@modules/client-main'
     ),
   },
