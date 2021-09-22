@@ -8,10 +8,53 @@
   border-radius: 5px;
   border: 2px solid $pale-lilac;
   background: $white;
-  padding: 24px;
+  padding: 40px 80px;
+  text-decoration: none;
   cursor: pointer;
+  transition: border 200ms;
+
+  & + & {
+
+    margin: 0 0 0 40px;
+  }
 
   &:hover {
     border-color: $primary;
   }
+
+  &:hover .icon,
+  &:hover .title {
+
+    color: $primary;
+  }
+}
+
+.thumb {
+
+  display: block;
+  text-align: center;
+}
+
+.icon {
+
+  display: inline-block;
+  color: $blue-grey;
+  font-size: 48px;
+  transition: color 200ms;
+}
+
+.title {
+
+  display: block;
+  text-align: center;
+  margin: 24px 0 0;
+  color: $blue-grey;
+  transition: color 200ms;
+}
+
+.text {
+
+  display: inline-block;
+  font-size: 16px;
+  text-transform: uppercase;
 }
