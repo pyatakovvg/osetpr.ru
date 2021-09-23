@@ -1,5 +1,4 @@
 
-import { tabsReducer } from '@ui.packages/tabs';
 import Application from '@ui.packages/application';
 import { reducer as dialogReducer } from '@ui.packages/dialog';
 import { notificationReducer } from '@ui.packages/notifications';
@@ -24,7 +23,6 @@ try {
     portal: document.getElementById('root'),
     reducers: {
       form: formReducer,
-      tabs: tabsReducer,
       dialog: dialogReducer,
       notifications: notificationReducer,
     },
