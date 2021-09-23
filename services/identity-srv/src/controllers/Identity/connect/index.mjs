@@ -7,7 +7,7 @@ import { genHash256, token } from '@sys.packages/utils';
 
 
 export default () => async (ctx) => {
-  const { User, RefreshToken } = models;
+  const { User, RefreshToken, Role } = models;
   const { login, password } = ctx['request']['body'];
 
   const transaction = await sequelize.transaction();
@@ -52,10 +52,26 @@ export default () => async (ctx) => {
 
   await transaction.commit();
 
+  const result = await User.findOne({
+    where: {
+      uuid: user['uuid'],
+    },
+    include: [
+      {
+        model: Role,
+        required: true,
+        attributes: ['code', 'name'],
+        as: 'role',
+      }
+    ]
+  });
+
+  const userJSON = result.toJSON();
+
   // организуем авторизационный объект
   const payload = {
-    uuid: user['uuid'],
-    role: user['role']['code'],
+    uuid: userJSON['uuid'],
+    role: userJSON['role'][0]['code'],
     permissions: [],
     exp: parseInt(String(expirationTime / 1000), 10),
   };

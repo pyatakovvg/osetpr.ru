@@ -21,7 +21,7 @@ export default () => async (ctx) => {
 
   const user = await decode(data['accessToken']);
 
-  if (user['role']['code'] !== 'admin') {
+  if (user['payload']['role'] !== 'admin') {
     throw new ForbiddenError({ code: '4.4.4', message: 'У вас нет прав' });
   }
 
