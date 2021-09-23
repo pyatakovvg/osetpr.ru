@@ -1,0 +1,60 @@
+
+@import "~@ui.packages/theme";
+
+
+.content {
+
+  display: block;
+}
+
+.table {
+
+  display: block;
+}
+
+.controls {
+
+  display: block;
+  text-align: right;
+  margin: 20px 0 0;
+}
+
+.thumb {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  width: 80px;
+  height: 80px;
+}
+
+.name {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  align-items: center;
+  cursor: pointer;
+  overflow: auto;
+}
+
+.name:hover .icon {
+  color: $blue-grey;
+}
+
+.text {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  overflow: auto;
+}
+
+.icon {
+
+  display: inline-block;
+  font-size: 14px;
+  color: $pale-lilac;
+  margin: 0 0 0 8px;
+  transition: color 200ms;
+}

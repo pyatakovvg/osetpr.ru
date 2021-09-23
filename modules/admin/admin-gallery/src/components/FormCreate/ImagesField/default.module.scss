@@ -1,0 +1,63 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  overflow: auto;
+}
+
+.content {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  flex-wrap: wrap;
+  padding: 20px;
+  border: 1px solid $pale-lilac;
+  background: $pale-grey;
+  border-radius: 5px;
+  overflow: auto;
+}
+
+.controls {
+
+  display: block;
+  margin: 0 0 20px;
+  text-align: right;
+}
+
+.image {
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  width: 120px;
+  height: 90px;
+  border: 1px solid $pale-lilac;
+  border-radius: 3px;
+}
+
+.destroy {
+
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  display: flex;
+  flex-direction: column;
+  flex: 0;
+  width: 20px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  background: $danger;
+  color: $white;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 30;
+}

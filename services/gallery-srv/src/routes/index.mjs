@@ -4,9 +4,9 @@ import { getImages, getImage, deleteImages, createImage, updateImage } from '../
 
 export default (router) => {
 
-  router.get('/v1/api/images', getImages());
-  router.get('/v1/api/images/:id', getImage());
-  router.post('/v1/api/images', createImage());
-  router.put('/v1/api/images/:uuid', updateImage());
-  router.delete('/v1/api/images', deleteImages());
+  router.get('/api/v1/images', getImages());
+  router.get('/api/v1/images/:id', getImage());
+  router.post('/api/v1/images', createImage());
+  router.put('/api/v1/images/:uuid', updateImage());
+  router.delete('/api/v1/images', deleteImages());
 };

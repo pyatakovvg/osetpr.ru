@@ -17,6 +17,22 @@ const routes = [
     ),
   },
   {
+    path: '/products',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "admin-products" */
+      '@modules/admin-products'
+    ),
+  },
+  {
+    path: '/gallery',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "admin-gallery" */
+      '@modules/admin-gallery'
+    ),
+  },
+  {
     path: '/customers',
     wrapper: 'Navigate',
     module: import(

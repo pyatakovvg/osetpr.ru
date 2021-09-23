@@ -9,7 +9,9 @@
   "dependencies": {
     "@modules/admin-main": "1.0.0",
     "@modules/admin-orders": "1.0.0",
+    "@modules/admin-products": "1.0.0",
     "@modules/admin-customers": "1.0.0",
+    "@modules/admin-gallery": "1.0.0",
     "@modules/admin-sign-in": "1.0.0",
     "@ui.packages/admin-kit": "1.0.0",
     "@ui.packages/application": "1.0.0",
