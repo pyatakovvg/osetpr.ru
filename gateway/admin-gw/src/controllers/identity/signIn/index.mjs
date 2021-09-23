@@ -19,17 +19,9 @@ export default () => async (ctx) => {
     throw new UserNotFoundError({ code: '3.3.3', message: 'Пользователь не найден' });
   }
 
-  const userData = await decode(data['accessToken']);
+  const user = await decode(data['accessToken']);
 
-  const { data: user } = await request({
-    url: process.env['IDENTITY_API_SRV'] + '/users',
-    method: 'get',
-    params: {
-      uuid: userData['payload']['uuid'],
-    }
-  });
-
-  if ( ! user.length || ! user[0]['role'] || user[0]['role']['code'] !== 'admin') {
+  if (user['role']['code'] !== 'admin') {
     throw new ForbiddenError({ code: '4.4.4', message: 'У вас нет прав' });
   }
 

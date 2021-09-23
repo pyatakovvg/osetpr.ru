@@ -55,6 +55,8 @@ export default () => async (ctx) => {
   // организуем авторизационный объект
   const payload = {
     uuid: user['uuid'],
+    role: user['role']['code'],
+    permissions: [],
     exp: parseInt(String(expirationTime / 1000), 10),
   };
 

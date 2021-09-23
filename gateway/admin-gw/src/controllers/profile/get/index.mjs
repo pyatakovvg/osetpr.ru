@@ -40,6 +40,7 @@ export default () => async (ctx) => {
     data: {
       uuid: users[0]['uuid'],
       role: users[0]['role'],
+      permissions: [],
       login: users[0]['login'],
       customer: customer[0],
     },
