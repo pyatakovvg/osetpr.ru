@@ -18,6 +18,8 @@ echo '[--- Kit ---]'
 cd ../admin-kit && npx yarn build
 echo '[--- HOC ---]'
 cd ../hoc && npx yarn build
+echo '[--- Editor ---]'
+cd ../editor && npx yarn build
 
 echo ''
 echo 'Сборка модулей для приложения "Admin"'
