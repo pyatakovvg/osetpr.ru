@@ -14,7 +14,7 @@ export default function(sequelize, DataType) {
       autoIncrement: true,
     },
     imageUuid: {
-      type: DataType.UUID,
+      type: DataType.STRING(40),
       allowNull: false,
     },
     productUuid: {
