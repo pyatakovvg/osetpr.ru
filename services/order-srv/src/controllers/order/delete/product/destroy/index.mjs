@@ -15,8 +15,6 @@ export default async function(orderUuid, products) {
 
   if (products && !! products.length) {
 
-    console.log(products)
-
     await OrderProduct.bulkCreate(products.map((item) => ({
       uuid: UUID(),
       orderUuid: orderUuid,
@@ -25,7 +23,7 @@ export default async function(orderUuid, products) {
       vendor: item['vendor'],
       value: item['value'],
       price: item['price'],
-      currencyCode: item['currencyCode'] || item['currency']['code'],
+      currencyCode: item['currencyCode'],
       number: Number(item['number']),
     })), {
       transaction,

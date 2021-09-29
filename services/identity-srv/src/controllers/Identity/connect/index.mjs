@@ -51,7 +51,7 @@ export default () => async (ctx) => {
   });
 
   await transaction.commit();
-
+  console.log(user)
   const result = await User.findOne({
     where: {
       uuid: user['uuid'],
@@ -65,6 +65,8 @@ export default () => async (ctx) => {
       }
     ]
   });
+
+  console.log(result)
 
   const userJSON = result.toJSON();
 

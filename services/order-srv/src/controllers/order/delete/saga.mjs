@@ -7,12 +7,14 @@ import { sendEvent } from '@sys.packages/rabbit';
 import Sagas from 'node-sagas';
 
 import getOrder from './order/get';
-import updateOrder from './order/update';
+import createOrder from './order/create';
+import destroyOrder from './order/destroy';
 
-import updateProducts from './product/update';
+import createProducts from './product/create';
+import destroyProducts from './product/destroy';
 
 
-export default class UpdateSaga {
+export default class Saga {
   ctx = null;
 
   constructor(ctx) {
@@ -20,7 +22,7 @@ export default class UpdateSaga {
   }
 
   async execute(params) {
-    const saga = await this.getUpdateProductSagaDefinition(this.ctx);
+    const saga = await this.sagaDefinition(this.ctx);
     try {
       return await saga.execute(params);
     }
@@ -35,11 +37,10 @@ export default class UpdateSaga {
     }
   }
 
-  async getUpdateProductSagaDefinition(ctx) {
+  async sagaDefinition(ctx) {
     const sagaBuilder = new Sagas.SagaBuilder();
 
-    const { uuid } = ctx['params'];
-    const body = ctx['request']['body'];
+    const { uuid } = ctx['request']['body'];
 
     return sagaBuilder
       .step('Get order')
@@ -49,39 +50,32 @@ export default class UpdateSaga {
         params.setOrder(order);
       })
 
-      .step('Update order')
-      .invoke(async () => {
-        logger.info('Update order');
-        await updateOrder(uuid, body);
-      })
-      .withCompensation(async (params) => {
-        logger.info('Restore update order');
-        const order = params.getOrder();
-        await updateOrder(uuid, order);
-      })
-
-      .step('Update products')
-      .invoke(async () => {
-        logger.info('Update products');
-        await updateProducts(uuid, body['products']);
-      })
-      .withCompensation(async (params) => {
-        logger.info('Restore update products');
-        const order = params.getOrder();
-        await updateProducts(uuid, order['products']);
-      })
-
-      .step('Get updated order')
+      .step('Destroy products')
       .invoke(async (params) => {
-        logger.info('Get updated order');
-        const order = await getOrder(uuid);
-        params.setOrder(order);
+        logger.info('Destroy products');
+        const order = params.getOrder();
+        await destroyProducts(order['products']);
+      })
+      .withCompensation(async (params) => {
+        logger.info('Restore destroy products');
+        const order = params.getOrder();
+        await createProducts(order['products']);
+      })
+
+      .step('Destroy order')
+      .invoke(async () => {
+        logger.info('Destroy order');
+        await destroyOrder(uuid);
+      })
+      .withCompensation(async (params) => {
+        logger.info('Restore destroy order');
+        const order = params.getOrder();
+        await createOrder(uuid, order);
       })
 
       .step('Send event')
-      .invoke(async (params) => {
-        const order = params.getOrder();
-        await sendEvent(process.env['EXCHANGE_ORDER_UPDATE'], JSON.stringify(order));
+      .invoke(async () => {
+        await sendEvent(process.env['EXCHANGE_ORDER_DELETE'], JSON.stringify(uuid));
       })
 
       .build();

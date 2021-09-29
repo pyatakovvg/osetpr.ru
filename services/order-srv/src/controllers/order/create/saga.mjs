@@ -41,7 +41,7 @@ export default class Saga {
     const sagaBuilder = new Sagas.SagaBuilder();
 
     const body = ctx['request']['body'];
-console.log(body)
+
     return sagaBuilder
       .step('Create order')
       .invoke(async (params) => {
@@ -77,8 +77,8 @@ console.log(body)
 
       .step('Send event')
       .invoke(async (params) => {
-        const product = params.getOrder();
-        await sendEvent(process.env['EXCHANGE_PRODUCT_UPDATE'], JSON.stringify(product));
+        const order = params.getOrder();
+        await sendEvent(process.env['EXCHANGE_ORDER_CREATE'], JSON.stringify(order));
       })
 
       .build();
