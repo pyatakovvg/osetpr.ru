@@ -1,34 +1,32 @@
 
-import { models } from '@sys.packages/db';
-import { sendEvent } from '@sys.packages/rabbit';
+import { BadRequestError } from "@packages/errors";
+
+import Ajv from "ajv";
+
+import UpdateSaga from './update-saga.mjs';
+import UpdateSagaParams from './update-saga-params.mjs';
+
+import orderScheme from "../../../_schemes/order.json";
 
 
 export default () => async (ctx) => {
-  const { Order, Status } = models;
+  // const body = ctx['request']['body'];
+  //
+  // const ajv = new Ajv();
+  // const validation = ajv.compile(orderScheme);
+  //
+  // if ( ! validation(body)) {
+  //   console.log(validation.errors)
+  //   throw new BadRequestError({ code: '9.9.9', message: 'Неверный формат запроса' });
+  // }
 
-  const { uuid } = ctx['params'];
-  const data = ctx['request']['body'];
+  const sagaParams = new UpdateSagaParams();
+  const saga = new UpdateSaga(ctx);
 
-  await Order.update(data, {
-    where: { uuid },
-  });
-
-  const result = await Order.findOne({
-    where: { uuid },
-    attributes: ['uuid', 'userUuid', 'title', 'description', 'dateTo', 'address', 'createdAt', 'updatedAt'],
-    include: [
-      {
-        model: Status,
-        required: true,
-        as: 'status',
-      },
-    ],
-  });
-
-  await sendEvent(process.env['EXCHANGE_UNIT_UPDATE'], JSON.stringify(result.toJSON()));
+  const params = await saga.execute(sagaParams);
 
   ctx.body = {
     success: true,
-    data: result.toJSON(),
+    data: params.getOrder(),
   };
 };

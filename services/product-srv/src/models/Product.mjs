@@ -50,7 +50,7 @@ export default function(sequelize, DataType) {
 
     Product.hasMany(ProductMode, {
       foreignKey: 'productUuid',
-      as: 'mode',
+      as: 'modes',
     });
   };
 

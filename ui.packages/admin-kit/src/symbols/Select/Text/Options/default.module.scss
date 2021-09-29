@@ -1,0 +1,39 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: block;
+  padding: 8px 0 0;
+  min-width: 300px;
+  z-index: 99999;
+}
+
+.options {
+
+  display: block;
+  background-color: $white;
+  border-radius: 3px;
+  padding: 8px 8px;
+  box-shadow: 0 4px 10px 0 $pale-lilac;
+  max-height: 300px;
+  overflow: auto;
+}
+
+.empty {
+
+  display: block;
+  padding: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 14px;
+  color: $black;
+  text-align: center;
+}

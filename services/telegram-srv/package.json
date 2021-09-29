@@ -1,0 +1,22 @@
+{
+  "name": "telegram-srv",
+  "license": "MIT",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node -r dotenv/config --experimental-modules --es-module-specifier-resolution=node src/index.mjs dotenv_config_path=./.env.production",
+    "start:dev": "nodemon --exec node -r dotenv/config --experimental-modules --es-module-specifier-resolution=node ./src/index.mjs dotenv_config_path=./.env.development"
+  },
+  "dependencies": {
+    "@packages/errors": "1.0.0",
+    "@packages/numeral": "1.0.0",
+    "@sys.packages/logger": "1.0.0",
+    "@sys.packages/rabbit": "1.0.0",
+    "@sys.packages/server": "1.0.0",
+    "dotenv": "10.0.0",
+    "telegram": "1.9.4",
+    "input": "1.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.12"
+  }
+}

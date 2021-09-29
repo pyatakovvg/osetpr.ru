@@ -1,0 +1,38 @@
+
+@import "~@ui.packages/theme";
+
+
+.status {
+
+  display: inline-block;
+  color: $blue-grey;
+}
+
+.text {
+
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  vertical-align: middle;
+  color: inherit;
+}
+
+.mode--success {
+
+  color: $success;
+}
+
+.mode--primary {
+
+  color: $primary;
+}
+
+.mode--warning {
+
+  color: $warning;
+}
+
+.mode--danger {
+
+  color: $danger;
+}

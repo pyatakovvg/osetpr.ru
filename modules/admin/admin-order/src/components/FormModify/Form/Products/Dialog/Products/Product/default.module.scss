@@ -1,0 +1,97 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+
+  & + & {
+
+    margin: 24px 0 0;
+    padding: 24px 0 0;
+    border-top: 1px solid $pale-lilac;
+  }
+}
+
+.image {
+
+  width: 140px;
+  height: 140px;
+}
+
+.not-image {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  width: 140px;
+  height: 140px;
+  font-size: 28px;
+  color: $pale-lilac;
+  background: $pale-grey;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid $pale-lilac;
+  border-radius: 4px;
+}
+
+.content {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  margin: 0 0 0 34px;
+}
+
+.common {
+
+  display: block;
+}
+
+.modes {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0;
+  margin: 24px 0 0;
+}
+
+.mode {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  align-items: center;
+
+  & + & {
+
+    margin: 8px 0 0;
+  }
+}
+
+.vendor {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.value {
+
+  display: block;
+}
+
+.price {
+
+  display: block;
+  margin: 0 0 0 24px;
+}
+
+.control {
+
+  display: block;
+  margin: 0 0 0 24px;
+}

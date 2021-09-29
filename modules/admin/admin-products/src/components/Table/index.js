@@ -8,17 +8,22 @@ import { Table, Column } from '@ui.packages/table';
 
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import styles from './default.module.scss';
 
 
 function ProductList() {
+  const navigate = useNavigate();
+
   const items = useSelector(selectItems);
   const inProcess = useSelector(selectInProcess);
 
   function handleCopyProduct() {}
 
-  function handleEdit() {}
+  function handleEdit(uuid) {
+    navigate(process.env['PUBLIC_URL'] + '/products/' + uuid);
+  }
 
   function handleRemoveProduct() {}
 
@@ -31,7 +36,7 @@ function ProductList() {
           width={140}
         >
           {(items) => items[0]
-            ? <Image className={styles['image']} src={`${process.env['REACT_APP_API_HOST']}/gallery/${items[0]['uuid']}.jpg`} />
+            ? <Image className={styles['image']} src={`${process.env['REACT_APP_API_HOST']}/gallery/${items[0]['uuid']}?size=small`} />
             : <span className={styles['not-image']}><i className="far fa-images" /></span>
           }
         </Column>
@@ -52,7 +57,7 @@ function ProductList() {
         </Column>
         <Column
           title={'Модификация'}
-          alias={'mode'}
+          alias={'modes'}
           align={'left'}
         >{(value) => value.map((mode) => {
           return (

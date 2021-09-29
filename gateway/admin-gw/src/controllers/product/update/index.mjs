@@ -1,6 +1,8 @@
 
 import request from "@sys.packages/request";
 
+import productBuilder from './builder/product.mjs';
+
 
 export default () => async (ctx) => {
   const { uuid } = ctx['params'];
@@ -9,21 +11,11 @@ export default () => async (ctx) => {
   const result = await request({
     url: process.env['PRODUCT_API_SRV'] + '/products/' + uuid,
     method: 'put',
-    data: {
-      statusCode: fields['statusCode'],
-      pay: fields['pay'],
-      name: fields['name'],
-      phone: fields['phone'],
-      email: fields['email'],
-      surname: fields['surname'],
-      address: fields['address'],
-      delivery: fields['delivery'],
-      amount: fields['amount'],
-    },
+    data: fields,
   });
 
   ctx.body = {
     success: true,
-    data: result['data'],
+    data: productBuilder(result['data']),
   };
 }

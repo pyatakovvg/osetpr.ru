@@ -27,6 +27,9 @@ export default function(sequelize, DataType) {
     price: {
       type: DataType.DECIMAL(10, 2),
       allowNull: false,
+      get(column) {
+        return Number(this.getDataValue(column));
+      },
     },
     currencyCode: {
       type: DataType.STRING(4),
@@ -52,7 +55,12 @@ export default function(sequelize, DataType) {
     timestamps: false,
   });
 
-  ProductMode.associate = ({ Currency }) => {
+  ProductMode.associate = ({ Product, Currency }) => {
+
+    ProductMode.belongsTo(Product, {
+      foreignKey: 'productUuid',
+      as: 'product',
+    });
 
     ProductMode.belongsTo(Currency, {
       foreignKey: 'currencyCode',

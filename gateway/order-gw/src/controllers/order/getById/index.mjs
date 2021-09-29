@@ -15,8 +15,6 @@ export default () => async (ctx) => {
     },
   });
 
-  console.log(result)
-
   if ( ! result['data'].length) {
     throw new NotfoundError({ code: '3.0.0', message: 'Операция не найдена' });
   }

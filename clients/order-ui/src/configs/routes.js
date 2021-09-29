@@ -20,8 +20,8 @@ const routes = [
     path: '/orders/create',
     wrapper: 'Navigate',
     module: import(
-      /* webpackChunkName: "order-modify" */
-      '@modules/order-order-modify'
+      /* webpackChunkName: "order-order" */
+      '@modules/order-order'
     ),
   },
   {
@@ -29,7 +29,7 @@ const routes = [
     wrapper: 'Navigate',
     module: import(
       /* webpackChunkName: "order-modify" */
-      '@modules/order-order-modify'
+      '@modules/order-order'
     ),
   },
   {

@@ -5,7 +5,6 @@ import fs from 'fs';
 import path from 'path';
 import Sq from 'sequelize';
 
-
 export let models = {};
 export let sequelize = null;
 

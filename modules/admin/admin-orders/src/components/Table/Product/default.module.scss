@@ -1,0 +1,63 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  overflow: hidden;
+
+  & + & {
+
+    margin: 16px 0 0;
+  }
+}
+
+.title {
+
+  display: block;
+  white-space: nowrap;
+}
+
+.vendor {
+
+  display: block;
+  white-space: nowrap;
+  margin: 0 0 0 8px;
+}
+
+.value {
+
+  display: block;
+  white-space: nowrap;
+  margin: 0 0 0 16px;
+  text-decoration: underline;
+}
+
+.price {
+
+  display: block;
+  white-space: nowrap;
+  margin: 0 0 0 16px;
+}
+
+.number {
+
+  display: block;
+  white-space: nowrap;
+  margin: 0 0 0 8px;
+}
+
+.delimiter {
+
+  display: inline-block;
+
+  &:before {
+
+    display: inline-block;
+    content: '-';
+    margin: 0 0 0 8px;
+  }
+}

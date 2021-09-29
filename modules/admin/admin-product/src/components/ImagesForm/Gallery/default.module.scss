@@ -1,0 +1,53 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  flex-wrap: wrap;
+  padding: 10px 10px 30px 30px;
+}
+
+.section {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0;
+  margin: 24px 32px 0 0;
+}
+
+.image {
+
+  position: relative;
+  display: flex;
+  width: 140px;
+  height: 140px;
+  border: 1px solid $pale-lilac;
+  border-radius: 5px;
+  cursor: pointer;
+  overflow: hidden;
+
+  &--selected {
+
+    box-shadow: 0 0 6px 0 $success;
+  }
+
+  & + & {
+
+    margin: 0 0 0 20px;
+  }
+}
+
+.name {
+
+  display: block;
+  text-align: center;
+  white-space: nowrap;
+  margin: 8px auto 0;
+  width: 120px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

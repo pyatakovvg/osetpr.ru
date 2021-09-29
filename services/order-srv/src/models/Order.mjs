@@ -38,10 +38,14 @@ export default function(sequelize, DataType) {
     },
   }, {
     sequelize,
-    modelName: 'Orders',
   });
 
-  Order.associate = ({ Status }) => {
+  Order.associate = ({ OrderProduct, Status }) => {
+
+    Order.hasMany(OrderProduct, {
+      foreignKey: 'orderUuid',
+      as: 'products',
+    });
 
     Order.belongsTo(Status, {
       foreignKey: 'statusCode',

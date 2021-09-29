@@ -46,15 +46,17 @@ export default () => async (ctx) => {
     where: { ...where },
     order: [
       ['createdAt', 'desc'],
+      ['modes', 'order', 'asc'],
       ['gallery', 'order', 'asc'],
     ],
-    attributes: ['uuid', 'externalId', 'title', 'description', 'isUse'],
+    attributes: ['uuid', 'externalId', 'title', 'description', 'isUse', 'updatedAt'],
     include: [
       {
         model: Category,
         required: true,
-        attributes: ['value', 'description'],
+        attributes: ['id', 'value', 'description'],
         as: 'category',
+        hierarchy: true,
       },
       {
         model: ProductGallery,
@@ -64,13 +66,13 @@ export default () => async (ctx) => {
       },
       {
         model: ProductMode,
-        required: true,
-        as: 'mode',
+        required: false,
+        as: 'modes',
         attributes: ['uuid', 'vendor', 'value', 'price', 'isUse', 'isTarget'],
         include: [
           {
             model: Currency,
-            attributes: ['value'],
+            attributes: ['code', 'value'],
             as: 'currency',
           }
         ]

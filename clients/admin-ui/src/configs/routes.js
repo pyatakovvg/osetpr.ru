@@ -17,6 +17,38 @@ const routes = [
     ),
   },
   {
+    path: '/orders/create',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "admin-order" */
+      '@modules/admin-order'
+    ),
+  },
+  {
+    path: '/orders/:uuid',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "admin-order" */
+      '@modules/admin-order'
+    ),
+  },
+  {
+    path: '/products/create',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "admin-product" */
+      '@modules/admin-product'
+    ),
+  },
+  {
+    path: '/products/:uuid',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "admin-product" */
+      '@modules/admin-product'
+    ),
+  },
+  {
     path: '/products',
     wrapper: 'Navigate',
     module: import(

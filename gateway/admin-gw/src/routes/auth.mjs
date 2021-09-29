@@ -1,11 +1,12 @@
 
 import { getImages, getImage, createImage, updateImage, deleteImages } from '../controllers/gallery';
-import { getAllProducts, createProduct, deleteProducts, updateProduct } from '../controllers/product';
+import { getAllProducts, createProduct, deleteProducts, updateProduct, getProductById } from '../controllers/product';
 import { getByOrderId, getAllOrders, updateByOrderId, createOrder } from '../controllers/order';
 import { getAllCustomers } from '../controllers/customers';
+import { getAllCategories } from '../controllers/category';
+import { getAllCurrencies } from '../controllers/currency';
 
 import { getProfile } from '../controllers/profile';
-import { signIn } from '../controllers/identity';
 
 
 export default (router) => {
@@ -22,13 +23,16 @@ export default (router) => {
   router.put('/orders/:uuid', updateByOrderId());
 
   router.get('/products', getAllProducts());
+  router.get('/products/:uuid', getProductById());
   router.delete('/products', deleteProducts());
   router.post('/products', createProduct());
   router.put('/products/:uuid', updateProduct());
 
   router.get('/customers', getAllCustomers());
 
-  router.get('/profile', getProfile());
+  router.get('/categories', getAllCategories());
 
-  router.post('/sign-in', signIn());
+  router.get('/currencies', getAllCurrencies());
+
+  router.get('/profile', getProfile());
 };

@@ -5,11 +5,11 @@ import request from "@sys.packages/request";
 
 
 export default () => async (ctx) => {
-  const { uuid } = ctx['user'];
+  const user = ctx['user'];
   const params = ctx['params'];
 
-  if ( ! uuid) {
-    throw new UnauthorizedError('UUID пользователя не найден');
+  if ( ! user['uuid']) {
+    throw new UnauthorizedError({ code: '6.7.9', message: 'UUID пользователя не найден' });
   }
 
   const result = await request({
@@ -17,7 +17,7 @@ export default () => async (ctx) => {
     method: 'get',
     params: {
       ...params,
-      userUuid: uuid,
+      userUuid: user['uuid'],
     },
   });
 

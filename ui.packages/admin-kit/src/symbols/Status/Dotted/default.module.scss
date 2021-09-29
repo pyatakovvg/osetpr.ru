@@ -1,0 +1,32 @@
+
+@import "~@ui.packages/theme";
+
+
+.status {
+
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: $blue-grey;
+}
+
+.mode--success {
+
+  background: $success;
+}
+
+.mode--primary {
+
+  background: $primary;
+}
+
+.mode--warning {
+
+  background: $warning;
+}
+
+.mode--danger {
+
+  background: $danger;
+}

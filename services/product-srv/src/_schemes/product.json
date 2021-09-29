@@ -7,45 +7,24 @@
     "uuid": {
       "type": "string",
       "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
-
     },
     "externalId": {
-      "type": "string"
-    },
-    "typeId": {
-      "type": "number"
+      "type": "string",
+      "pattern": "^[A-Z]{2}-[0-9]{6}$"
     },
     "categoryId": {
       "type": "number"
     },
-    "brandId": {
-      "type": "number"
-    },
-    "name": {
+    "title": {
       "type": "string"
     },
     "description": {
       "type": "string"
     },
-    "shops": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "uuid": {
-            "type": "string",
-            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
-          },
-          "quantity": {
-            "type": "number"
-          }
-        }
-      }
-    },
     "gallery": {
       "type": "array"
     },
-    "options": {
+    "modes": {
       "type": "array",
       "items": {
         "type": "object",
@@ -67,34 +46,6 @@
           },
           "vendor": {
             "type": "string"
-          }
-        }
-      }
-    },
-    "characteristics": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "string"
-          },
-          "attributes": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "number"
-                },
-                "value": {
-                  "type": "string"
-                },
-                "isUse": {
-                  "type": "boolean"
-                }
-              }
-            }
           }
         }
       }

@@ -1,6 +1,8 @@
 
 import request from "@sys.packages/request";
 
+import productBuilder from './builder/product.mjs';
+
 
 export default () => async (ctx) => {
   const formData = ctx['request']['body'];
@@ -13,6 +15,6 @@ export default () => async (ctx) => {
 
   ctx.body = {
     success: true,
-    data: result['data']
+    data: productBuilder(result['data']),
   };
 }

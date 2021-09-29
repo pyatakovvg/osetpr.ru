@@ -1,30 +1,31 @@
 
-import { models } from '@sys.packages/db';
-import { sendEvent } from "@sys.packages/rabbit";
+import { BadRequestError } from '@packages/errors';
+
+import Ajv from 'ajv';
+
+import CreateSaga from "./create-saga.mjs";
+import CreateSagaParams from "./create-saga-params.mjs";
+
+import productScheme from '../../../_schemes/product.json';
 
 
 export default () => async (ctx) => {
-  const { Product } = models;
-  const formData = ctx['request']['body'];
+  const body = ctx['request']['body'];
 
-  const { uuid } = await Order.create(formData);
+  const ajv = new Ajv();
+  const validation = ajv.compile(productScheme);
 
-  const result = await Product.findOne({
-    where: { uuid },
-    attributes: ['uuid', 'userUuid', 'title', 'description', 'dateTo', 'address', 'createdAt', 'updatedAt'],
-    include: [
-      {
-        model: Status,
-        required: true,
-        as: 'status',
-      },
-    ],
-  });
+  if ( ! validation(body)) {
+    throw new BadRequestError('Неверный формат запроса');
+  }
 
-  await sendEvent(process.env['EXCHANGE_UNIT_CREATE'], JSON.stringify(result.toJSON()));
+  const sagaParams = new CreateSagaParams();
+  const saga = new CreateSaga(ctx);
+
+  const params = await saga.execute(sagaParams);
 
   ctx.body = {
     success: true,
-    data: result.toJSON(),
+    data: params.getProduct(),
   };
 };

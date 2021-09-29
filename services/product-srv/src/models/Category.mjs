@@ -18,16 +18,13 @@ export default function(sequelize, DataType) {
       type: DataType.STRING(256),
       allowNull: false,
     },
-    parentId: {
-      type: DataType.INTEGER,
-      allowNull: true,
-    },
     description: {
       type: DataType.STRING(1024),
       allowNull: true,
     },
   }, {
     sequelize,
+    hierarchy: true,
     timestamps: false,
   });
 
@@ -37,6 +34,19 @@ export default function(sequelize, DataType) {
       foreignKey: 'parentId',
       as: 'parent',
     });
+
+    Category.hasMany(Category, {
+      foreignKey: 'parentId',
+      as: 'children',
+    });
+
+    Category.belongsToMany(Category, {
+      foreignKey: 'ancestorId',
+      through: 'FolderAncestor',
+      as: 'descendents',
+    });
+
+    // Folder.belongsToMany(Folder, {as: 'ancestors', foreignKey: 'folderId', through: FolderAncestor})
   };
 
   return Category;
