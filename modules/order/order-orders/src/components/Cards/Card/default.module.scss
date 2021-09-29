@@ -16,24 +16,49 @@
   }
 }
 
-.header {
+.common {
 
   display: flex;
   flex-direction: row;
   flex: 1 0;
-  align-items: flex-end;
 }
 
-.title {
+.information {
 
   display: flex;
   flex-direction: column;
   flex: 1 0;
 }
 
+.header {
+
+  display: block;
+}
+
+.title {
+
+  display: block;
+}
+
+.status {
+
+  display: block;
+  text-align: right;
+}
+
 .date {
 
   display: block;
+  text-align: right;
+  margin: 16px 0 0;
+  text-decoration: underline;
+}
+
+.created {
+
+  display: block;
+  margin: 16px 0 0;
+  text-align: right;
 }
 
 .content {
@@ -45,31 +70,18 @@
 .footer {
 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex: 1 0;
   border-top: 1px solid $pale-lilac;
   margin: 16px 0 0;
-  padding: 16px 0 0;
-  align-items: flex-end;
-}
-
-.created {
-
-  display: flex;
-  flex-direction: column;
-  flex: 1 0;
-}
-
-.status {
-
-  display: block;
+  padding: 24px 0 0;
 }
 
 .controls {
 
   display: block;
   border-top: 1px solid $pale-lilac;
-  margin: 16px 0 0;
+  margin: 24px 0 0;
   padding: 16px 0 0;
   text-align: right;
 }

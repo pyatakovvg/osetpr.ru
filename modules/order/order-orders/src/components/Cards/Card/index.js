@@ -9,6 +9,8 @@ import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import Product from './Product';
+
 import styles from './default.module.scss';
 
 
@@ -22,7 +24,7 @@ function getStatusMode(code) {
   }
 }
 
-function Card({ uuid, title, description, status, dateTo, createdAt }) {
+function Card({ uuid, title, description, status, dateTo, products, createdAt }) {
   const navigate = useNavigate();
 
   const statuses = useSelector(selectStatuses);
@@ -41,37 +43,46 @@ function Card({ uuid, title, description, status, dateTo, createdAt }) {
 
   return (
     <div className={styles['wrapper']}>
-      <div className={styles['header']}>
-        <div className={styles['title']}>
-          <Header level={4}>{ title }</Header>
-        </div>
-        <div className={styles['date']}>
-          <Text>Исполнить до: { moment(dateTo).format() }</Text>
-        </div>
-      </div>
-      <div className={styles['content']}>
-        <Text>{ description }</Text>
-      </div>
-      <div className={styles['footer']}>
-        <div className={styles['created']}>
-          <Text>Заведен: { moment(createdAt).format() }</Text>
+      <div className={styles['common']}>
+        <div className={styles['information']}>
+          <div className={styles['title']}>
+            <Header level={4}>{ title }</Header>
+          </div>
+          <div className={styles['content']}>
+            <Text>{ description }</Text>
+          </div>
         </div>
         <div className={styles['status']}>
-          <Status mode={statusMode}>{ statusName['displayName'] }</Status>
+          <div className={styles['status']}>
+            <Status mode={statusMode} type={Status.TYPE_LABEL}>{ statusName['displayName'] }</Status>
+          </div>
+          <div className={styles['date']}>
+            <Text type={Text.TYPE_BODY}>Исполнить до: { moment(dateTo).format() }</Text>
+          </div>
+          <div className={styles['created']}>
+            <Text>Создан: { moment(createdAt).format() }</Text>
+          </div>
         </div>
+      </div>
+      <div className={styles['footer']}>
+        {products.map((item) => (
+          <Product key={item['uuid']} {...item} />
+        ))}
       </div>
       {isEditable && (
         <div className={styles['controls']}>
           <Button
-            form={Button.FORM_OUTLINE}
-            mode={Button.MODE_PRIMARY}
-            onClick={() => handleEdit()}
-          >редактировать</Button>
-          <Button
-            form={Button.FORM_OUTLINE}
+            form={Button.FORM_CONTEXT}
             mode={Button.MODE_DANGER}
+            size={Button.SIZE_SMALL}
             onClick={() => handleCancel()}
-          >отменить</Button>
+          >Отменить</Button>
+          <Button
+            form={Button.FORM_CONTEXT}
+            mode={Button.MODE_PRIMARY}
+            size={Button.SIZE_SMALL}
+            onClick={() => handleEdit()}
+          >Редактировать</Button>
         </div>
       )}
     </div>

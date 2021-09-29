@@ -23,6 +23,10 @@ const typesSlice = createSlice({
       state['inProcess'] = false;
     },
 
+    setProcessAction(state, { payload }) {
+      state['inProcess'] = payload;
+    },
+
     getItemsRequestAction() {},
     getItemsRequestFailAction(state) {
       state['inProcess'] = false;
@@ -38,6 +42,8 @@ const typesSlice = createSlice({
 
 export const {
   resetStateAction,
+
+  setProcessAction,
 
   getItemsRequestAction,
   getItemsRequestFailAction,

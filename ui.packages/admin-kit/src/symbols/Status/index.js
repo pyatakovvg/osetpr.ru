@@ -9,9 +9,9 @@ import Dotted from './Dotted';
 
 function StatusFactory({ type, children, ...props }) {
   switch(type) {
-    case StatusFactory.TYPE_LABEL: return <Label {...props} />;
+    case StatusFactory.TYPE_LABEL: return <Label {...props}>{ children }</Label>;
     case StatusFactory.TYPE_TEXT: return <Text {...props}>{ children }</Text>;
-    case StatusFactory.TYPE_DOTTED: return <Dotted {...props}>{ children }</Dotted>;
+    case StatusFactory.TYPE_DOTTED: return <Dotted {...props} />;
   }
 }
 
