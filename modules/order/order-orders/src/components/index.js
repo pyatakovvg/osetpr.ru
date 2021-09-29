@@ -21,7 +21,9 @@ export default function HOC() {
   });
 
   useUpdate(async function() {
+    dispatch(setProcessAction(true));
     await dispatch(getItems());
+    dispatch(setProcessAction(false));
   });
 
   useUnmount(function() {
