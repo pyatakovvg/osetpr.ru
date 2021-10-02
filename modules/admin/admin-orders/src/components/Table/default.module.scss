@@ -9,6 +9,8 @@
   background: $white;
   border: 1px solid $pale-lilac;
   border-radius: 8px;
+
+  counter-reset: product;
 }
 
 .row {
@@ -33,6 +35,12 @@
 }
 
 .date {
+
+  display: block;
+  margin: 16px 0 0;
+}
+
+.controls {
 
   display: block;
   margin: 16px 0 0;

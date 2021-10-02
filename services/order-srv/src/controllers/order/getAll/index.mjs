@@ -15,6 +15,7 @@ export default () => async (ctx) => {
     take = null,
     uuid = null,
     userUuid = null,
+    isUse = null,
   } = ctx['request']['query'];
 
   if (uuid) {
@@ -23,6 +24,10 @@ export default () => async (ctx) => {
 
   if (userUuid) {
     where['userUuid'] = userUuid;
+  }
+
+  if (isUse !== null) {
+    where['isUse'] = isUse;
   }
 
   if (limit) {
@@ -39,7 +44,10 @@ export default () => async (ctx) => {
     ...offset,
     distinct: true,
     where: { ...where },
-    order: [['createdAt', 'desc']],
+    order: [
+      ['createdAt', 'desc'],
+      ['products', 'createdAt', 'desc'],
+    ],
     attributes: ['uuid', 'userUuid', 'title', 'description', 'dateTo', 'address', 'createdAt', 'updatedAt'],
     include: [
       {

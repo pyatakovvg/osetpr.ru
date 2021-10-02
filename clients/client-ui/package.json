@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@modules/client-main": "1.0.0",
+    "@modules/client-order": "1.0.0",
     "@ui.packages/admin-kit": "1.0.0",
     "@ui.packages/application": "1.0.0",
     "@ui.packages/dialog": "1.0.0",

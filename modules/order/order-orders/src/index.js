@@ -11,6 +11,8 @@ export {
   selectItems,
   selectStatuses,
   selectInProcess,
+
+  updateItemAction,
 } from './ducks/slice';
 
 export {

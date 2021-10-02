@@ -37,6 +37,18 @@ const typesSlice = createSlice({
       state['meta'] = payload['meta'];
       state['inProcess'] = false;
     },
+
+    updateItemAction(state, { payload }) {
+      state['items'] = state['items'].map((item) => {
+        if (item['uuid'] === payload['uuid']) {
+          return {
+            ...item,
+            ...payload,
+          }
+        }
+        return item;
+      });
+    },
   },
 });
 
@@ -48,6 +60,8 @@ export const {
   getItemsRequestAction,
   getItemsRequestFailAction,
   getItemsRequestSuccessAction,
+
+  updateItemAction,
 } = typesSlice['actions'];
 
 export const selectMeta = (state) => state[REDUCER_NAME]['meta'];

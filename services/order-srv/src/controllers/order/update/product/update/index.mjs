@@ -9,13 +9,13 @@ export default async function(orderUuid, products) {
   const transaction = await sequelize.transaction();
 
   await OrderProduct.destroy({
-    where: { orderUuid },
+    where: {
+      orderUuid,
+    },
     transaction,
   });
 
   if (products && !! products.length) {
-
-    console.log(products)
 
     await OrderProduct.bulkCreate(products.map((item) => ({
       uuid: UUID(),

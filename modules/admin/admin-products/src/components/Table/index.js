@@ -41,39 +41,32 @@ function ProductList() {
           }
         </Column>
         <Column
-          title={'Описание'}
+          title={'Данные'}
           align={'left'}
-        >
-          {(value) => (
-            <div className={styles['row']}>
-              <div className={styles['title']}>
-                <Header level={4}>{ value['title'] }</Header>
-              </div>
-              <div className={styles['description']}>
-                <Text>{ value['description'] }</Text>
-              </div>
+        >{(value) => (
+          <div className={styles['row']}>
+            <div className={styles['title']}>
+              <Header level={3}>{ value['title'] }</Header>
             </div>
-          )}
-        </Column>
-        <Column
-          title={'Модификация'}
-          alias={'modes'}
-          align={'left'}
-        >{(value) => value.map((mode) => {
-          return (
-            <div key={mode['uuid']} className={styles['mode']}>
-              <div className={styles['vendor']}>
-                <Text>{ mode['vendor'] }</Text>
-              </div>
-              <div className={styles['value']}>
-                <Text>{ mode['value'] }</Text>
-              </div>
-              <div className={styles['price']}>
-                <Text type={Text.TYPE_BODY}>{ numeral(Number(mode['price'])).format() } { mode['currency']['value'] }</Text>
-              </div>
+            <div className={styles['products']}>
+              {value['modes'].map((mode) => {
+                return (
+                  <div key={mode['uuid']} className={styles['mode']}>
+                    <div className={styles['vendor']}>
+                      <Text>{ mode['vendor'] }</Text>
+                    </div>
+                    <div className={styles['value']}>
+                      <Text>{ mode['value'] }</Text>
+                    </div>
+                    <div className={styles['price']}>
+                      <Text type={Text.TYPE_BODY}>{ numeral(Number(mode['price'])).format() } { mode['currency']['value'] }</Text>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-          );
-        })}</Column>
+          </div>
+        )}</Column>
         <Column
           align="right"
           width="70"

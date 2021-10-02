@@ -2,7 +2,7 @@
 import { selectInProcess, selectCurrencies } from '@modules/admin-product';
 
 import { UUID } from '@ui.packages/utils';
-import { Row, Col, InputField, SelectField, Button, Draggable, CheckBoxField, Header } from '@ui.packages/admin-kit';
+import { Row, Col, Text, InputField, SelectField, Button, Draggable, CheckBoxField, Header } from '@ui.packages/admin-kit';
 
 import React from 'react';
 import types from 'prop-types';
@@ -94,7 +94,6 @@ OptionField.defaultProps = {
 };
 
 function OptionsList({ fields, disabled }) {
-
   function handleRemoveAttr(index) {
     fields.remove(index)
   }
@@ -105,25 +104,26 @@ function OptionsList({ fields, disabled }) {
     }
   }
 
-  if ( ! fields.length) {
-    return null;
-  }
-
   return (
     <Row>
       <div className={styles['attrs']}>
-        <Draggable onChange={(from, to) => handleChangeOrder(from, to)}>
-          {fields.map((field, index) => {
-            return (
-              <OptionField
-                key={index}
-                field={field}
-                disabled={disabled}
-                onRemove={() => handleRemoveAttr(index)}
-              />
-            )
-          })}
-        </Draggable>
+        { ! fields.length && (
+          <Text type={Text.TYPE_BODY}>Добавите модификацию</Text>
+        )}
+        { !! fields.length && (
+          <Draggable onChange={(from, to) => handleChangeOrder(from, to)}>
+            {fields.map((field, index) => {
+              return (
+                <OptionField
+                  key={index}
+                  field={field}
+                  disabled={disabled}
+                  onRemove={() => handleRemoveAttr(index)}
+                />
+              )
+            })}
+          </Draggable>
+        )}
       </div>
     </Row>
   );

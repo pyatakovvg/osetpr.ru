@@ -28,17 +28,17 @@ services:
       - 50002:15672
 
 
-#  mail_srv:
-#    container_name: mail_srv
-#    build:
-#      context: ./
-#      dockerfile: Dockerfile.mail-srv
-#    restart: always
-#    logging:
-#      driver: "json-file"
-#      options:
-#        max-file: "5"
-#        max-size: 10m
+  mail_srv:
+    container_name: mail_srv
+    build:
+      context: ./
+      dockerfile: Dockerfile.mail-srv
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
 
 
   customer_srv:
@@ -74,6 +74,7 @@ services:
     depends_on:
       - db
       - rabbit
+      - mail_srv
       - customer_srv
     links:
       - db

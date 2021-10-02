@@ -10,7 +10,10 @@ export default () => async (ctx) => {
   const result = await request({
     url: process.env['PRODUCT_API_SRV'] + '/products',
     method: 'get',
-    params,
+    params: {
+      isUse: true,
+      ...params,
+    },
   });
 
   ctx.body = {

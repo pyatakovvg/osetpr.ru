@@ -1,14 +1,14 @@
 
-import { selectItems, selectInProcess } from '@modules/admin-orders';
+import {selectItems, selectInProcess, updateStatus, selectCustomers } from '@modules/admin-orders';
 
 import moment from '@packages/moment';
 
 import { Table, Column } from '@ui.packages/table';
-import { Text, Status, Actions } from '@ui.packages/admin-kit';
+import { Text, Status, Button, Actions } from '@ui.packages/admin-kit';
 
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Product from './Product';
 
@@ -21,19 +21,50 @@ function getStatusMode(code) {
     case 'done': return 'success';
     case 'canceled': return 'warning';
     case 'confirmed': return 'primary';
+    case 'process': return 'primary';
     default: return 'default';
   }
 }
 
+function useCustomers() {
+  const customers = useSelector(selectCustomers);
+  return useMemo(() => customers.reduce((prev, value) => {
+    prev[value['userUuid']] = value['name'];
+    return prev;
+  }, {}), [customers.length]);
+}
 
 function OrderList() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const items = useSelector(selectItems);
   const inProcess = useSelector(selectInProcess);
 
+  const customers = useCustomers();
+
   function handleEdit(uuid) {
     navigate(process.env['PUBLIC_URL'] + '/orders/' + uuid);
+  }
+
+  function handleCancel(uuid) {
+    dispatch(updateStatus(uuid, 'canceled'));
+  }
+
+  function handleConfirm(uuid) {
+    dispatch(updateStatus(uuid, 'confirmed'));
+  }
+
+  function handleInProcess(uuid) {
+    dispatch(updateStatus(uuid, 'process'));
+  }
+
+  function handleClose(uuid) {
+    dispatch(updateStatus(uuid, 'finished'));
+  }
+
+  function handleFinished(uuid) {
+    dispatch(updateStatus(uuid, 'done'));
   }
 
   return (
@@ -58,6 +89,9 @@ function OrderList() {
             <div className={styles['description']}>
               <Text>{ value['description'] }</Text>
             </div>
+            <div className={styles['description']}>
+              <Text>"{ customers[value['userUuid']] }"</Text>
+            </div>
           </div>
         )}</Column>
         <Column
@@ -69,7 +103,7 @@ function OrderList() {
         ))}</Column>
         <Column
           title={'На дату'}
-          width={120}
+          width={200}
           align={'right'}
         >{(value) => {
           return (
@@ -80,6 +114,52 @@ function OrderList() {
               <div className={styles['date']}>
                 <Text type={Text.TYPE_BODY}>{ moment(value['dateTo']).format() }</Text>
               </div>
+              {(value['status']['code'] === 'new') && (
+                <div className={styles['controls']}>
+                  <Button
+                    size={Button.SIZE_SMALL}
+                    mode={Button.MODE_PRIMARY}
+                    form={Button.FORM_CONTEXT}
+                    onClick={() => handleCancel(value['uuid'])}
+                  >Отменить</Button>
+                  <Button
+                    size={Button.SIZE_SMALL}
+                    mode={Button.MODE_SUCCESS}
+                    form={Button.FORM_OUTLINE}
+                    onClick={() => handleConfirm(value['uuid'])}
+                  >Подтвердить</Button>
+                </div>
+              )}
+              {(value['status']['code'] === 'confirmed') && (
+                <div className={styles['controls']}>
+                  <Button
+                    size={Button.SIZE_SMALL}
+                    mode={Button.MODE_PRIMARY}
+                    form={Button.FORM_OUTLINE}
+                    onClick={() => handleInProcess(value['uuid'])}
+                  >Взять в работу</Button>
+                </div>
+              )}
+              {(value['status']['code'] === 'process') && (
+                <div className={styles['controls']}>
+                  <Button
+                    size={Button.SIZE_SMALL}
+                    mode={Button.MODE_SUCCESS}
+                    form={Button.FORM_OUTLINE}
+                    onClick={() => handleFinished(value['uuid'])}
+                  >Готов</Button>
+                </div>
+              )}
+              {(value['status']['code'] === 'done') && (
+                <div className={styles['controls']}>
+                  <Button
+                    size={Button.SIZE_SMALL}
+                    mode={Button.MODE_SUCCESS}
+                    form={Button.FORM_OUTLINE}
+                    onClick={() => handleClose(value['uuid'])}
+                  >Завершить</Button>
+                </div>
+              )}
             </div>
           );
         }}</Column>
@@ -87,7 +167,7 @@ function OrderList() {
           align="right"
           width="30"
         >
-          {({ uuid }) => (
+          {({ uuid, status }) => (status['code'] === 'new') && (
             <Actions
               disabled={inProcess}
               onEdit={() => handleEdit(uuid)}

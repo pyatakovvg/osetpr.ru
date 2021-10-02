@@ -23,7 +23,7 @@ function Common() {
           <Col>
             <InputField name="externalId" label="Номер товара (генерируется автоматически)" disabled />
           </Col>
-          <Col>
+          <Col className={styles['is-use']}>
             <CheckBoxField name="isUse" label="отображать в каталоге" />
           </Col>
         </Row>

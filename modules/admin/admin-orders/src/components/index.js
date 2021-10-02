@@ -2,6 +2,7 @@
 import { resetStateAction, getItems, setProcessAction, updateItemAction } from '@modules/admin-orders';
 
 import { on, off } from '@ui.packages/socket';
+import { pushNotification } from '@ui.packages/notifications';
 import { useMount, useUnmount, useUpdate } from '@ui.packages/hoc';
 
 import React from 'react';
@@ -23,7 +24,12 @@ export default function HOC() {
 
   useMount(() => {
 
-    on(process.env['REACT_APP_SOCKET_ORDER_CREATE'], (data) => console.log(data));
+    on(process.env['REACT_APP_SOCKET_ORDER_CREATE'], () => {
+      dispatch(pushNotification({
+        title: 'Новый заказ',
+        mode: 'primary',
+      }));
+    });
     on(process.env['REACT_APP_SOCKET_ORDER_UPDATE'], (data) => dispatch(updateItemAction(data)));
   });
 

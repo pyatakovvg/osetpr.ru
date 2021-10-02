@@ -39,7 +39,7 @@ export default () => async (ctx) => {
     ...offset,
     distinct: true,
     order: [['uuid', 'desc']],
-    attributes: ['uuid', 'type', 'createdAt', 'updatedAt'],
+    attributes: ['uuid', 'userUuid', 'type', 'createdAt', 'updatedAt'],
     include: [
       {
         model: Legal,

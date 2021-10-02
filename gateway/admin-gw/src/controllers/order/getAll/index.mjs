@@ -1,6 +1,8 @@
 
 import request from "@sys.packages/request";
 
+import customerBuilder from './builder/customer.mjs';
+
 
 export default () => async (ctx) => {
   const params = ctx['params'];
@@ -17,8 +19,14 @@ export default () => async (ctx) => {
     params,
   });
 
+  const { data: customers } = await request({
+    url: process.env['CUSTOMER_API_SRV'] + '/customers',
+    method: 'get',
+  });
+
   ctx.body = {
     success: true,
+    customers: customers.map((customer) => customerBuilder(customer)),
     statuses,
     data: result['data'],
     meta: result['meta'],

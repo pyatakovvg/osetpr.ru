@@ -7,6 +7,10 @@ export default async function(orderUuid) {
 
   const result = await Order.findOne({
     where: { uuid: orderUuid },
+    order: [
+      ['createdAt', 'desc'],
+      ['products', 'createdAt', 'desc'],
+    ],
     attributes: ['uuid', 'userUuid', 'title', 'description', 'dateTo', 'address', 'createdAt', 'updatedAt'],
     include: [
       {

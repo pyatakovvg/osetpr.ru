@@ -10,11 +10,14 @@ export {
   selectMeta,
   selectItems,
   selectStatuses,
+  selectCustomers,
   selectInProcess,
+  selectItemsInProcess,
 
   updateItemAction
 } from './ducks/slice';
 
 export {
   getItems,
+  updateStatus,
 } from './ducks/commands';

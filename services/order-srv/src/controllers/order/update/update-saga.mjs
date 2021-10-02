@@ -41,6 +41,8 @@ export default class UpdateSaga {
     const { uuid } = ctx['params'];
     const body = ctx['request']['body'];
 
+    console.log(body)
+
     return sagaBuilder
       .step('Get order')
       .invoke(async (params) => {
@@ -62,6 +64,9 @@ export default class UpdateSaga {
 
       .step('Update products')
       .invoke(async () => {
+        if ( ! body['products']) {
+          return void 0;
+        }
         logger.info('Update products');
         await updateProducts(uuid, body['products']);
       })

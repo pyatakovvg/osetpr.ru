@@ -47,12 +47,18 @@ export default async (server, options = {}) => {
   }
 }
 
-export const emitToRoom = (room, type, payload) => {
-
-  io.sockets.in(room).emit('action', {
-    type,
-    payload,
-  })
+export const emitToRoom = (room, type, payload, isAction = false) => {
+  if (isAction) {
+    io.sockets.in(room).emit('action', {
+      type,
+      payload,
+    })
+    logger.info(`Socket: Отправлено сообщение в комнату "${room}" "${JSON.stringify(payload)}" в канал "action"`);
+  }
+  else {
+    io.sockets.in(room).emit(type, payload);
+    logger.info(`Socket: Отправлено сообщение в комнату "${room}" "${JSON.stringify(payload)}" в канал "${type}"`);
+  }
 };
 
 export const emit = (type, payload, isAction = false) => {

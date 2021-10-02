@@ -1,6 +1,7 @@
 
-import { resetStateAction, setProcessAction, getItems } from '@modules/order-orders';
+import { resetStateAction, setProcessAction, getItems, updateItemAction } from '@modules/order-orders';
 
+import { on, off } from '@ui.packages/socket';
 import { useMount, useUnmount, useUpdate } from '@ui.packages/hoc';
 
 import React from 'react';
@@ -20,7 +21,12 @@ export default function HOC() {
     dispatch(setProcessAction(false));
   });
 
+  useMount(() => {
+    on(process.env['REACT_APP_SOCKET_ORDER_UPDATE'], (data) => dispatch(updateItemAction(data)));
+  });
+
   useUpdate(async function() {
+
     dispatch(setProcessAction(true));
     await dispatch(getItems());
     dispatch(setProcessAction(false));
@@ -28,6 +34,8 @@ export default function HOC() {
 
   useUnmount(function() {
     dispatch(resetStateAction());
+
+    off(process.env['REACT_APP_SOCKET_ORDER_UPDATE']);
   });
 
   return <Component />;

@@ -57,6 +57,9 @@ const validate = (values) => {
       }
     });
   }
+  else {
+    errors['modes'] = 'Необходимо добавить модификацию';
+  }
 
   if ( !! modeErrors.length) {
     errors['modes'] = modeErrors;
