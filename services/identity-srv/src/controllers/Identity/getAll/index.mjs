@@ -6,16 +6,20 @@ import userBuilder from "./userBuilder.mjs";
 
 export default () => async (ctx) => {
   const where = {};
-  const { uuid } = ctx['request']['query'];
+  const { uuid, role } = ctx['request']['query'];
 
   if (uuid) {
     where['uuid'] = uuid;
   }
 
+  if (role) {
+    where['roleCode'] = role;
+  }
+
   const { User, Role } = models;
 
   const result = await User.findAll({
-    where: { ...where },
+    where,
     attributes: ['uuid', 'login', 'createdAt', 'updatedAt'],
     include: [
       {

@@ -47,16 +47,11 @@ function Profile() {
         <span className={cn(styles['icon'], "far fa-user-circle")} />
         <div className={styles['row']}>
           <span className={styles['name']}>{ userName }</span>
-          <span className={styles['role']}>{ profile['role']['name'] }</span>
+          <span className={styles['role']}>{ profile['role']['displayName'] }</span>
         </div>
       </div>
       <div className={styles['options']}>
         <div className={styles['list']}>
-          {/*<Link className={styles['option']} to={process.env['PUBLIC_URL'] + '/settings'}>*/}
-          {/*  <span className={cn(styles['icon'], "fas fa-user-cog")} />*/}
-          {/*  <span className={styles['label']}>Настройка</span>*/}
-          {/*</Link>*/}
-          {/*<span className={styles['delimiter']} />*/}
           <div className={cn(styles['option'], styles['sign-out'])} onClick={() => handleSignOut()}>
             <span className={cn(styles['icon'], "fas fa-sign-out-alt")} />
             <span className={styles['label']}>Выход</span>
