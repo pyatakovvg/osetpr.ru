@@ -23,23 +23,18 @@ export default function (sequelize, DataType) {
       type: DataType.STRING(255),
       allowNull: false,
     },
-    type: {
-      type: DataType.ENUM,
-      values: ['customer', 'admin'],
-      defaultValue: 'customer',
+    roleCode: {
+      type: DataType.STRING,
       allowNull: false,
     },
   }, {
     sequelize,
-    modelName: 'Users',
   });
 
-  User.associate = function({ Role, UserRole }) {
+  User.associate = function({ Role }) {
 
-    User.belongsToMany(Role, {
-      through: UserRole,
-      foreignKey: 'userUuid',
-      otherKey: 'roleId',
+    User.belongsTo(Role, {
+      foreignKey: 'roleCode',
       as: 'role',
     });
   };

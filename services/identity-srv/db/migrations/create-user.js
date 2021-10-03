@@ -19,10 +19,8 @@ module.exports = {
           type: DataType.STRING(255),
           allowNull: false,
         },
-        type: {
-          type: DataType.ENUM,
-          values: ['customer', 'admin'],
-          defaultValue: 'customer',
+        roleCode: {
+          type: DataType.STRING,
           allowNull: false,
         },
         createdAt: {

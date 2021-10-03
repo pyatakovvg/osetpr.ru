@@ -20,9 +20,8 @@ export default () => async (ctx) => {
     include: [
       {
         model: Role,
+        attributes: ['code', 'displayName'],
         as: 'role',
-        attributes: ['code', 'name'],
-        through: { attributes: [] },
       }
     ],
   });

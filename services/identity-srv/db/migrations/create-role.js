@@ -5,18 +5,13 @@ module.exports = {
     try {
 
       await queryInterface.createTable('Roles', {
-        id: {
-          type: DataType.INTEGER,
-          primaryKey: true,
-          autoIncrement: true,
-          index: true,
-        },
         code: {
-          type: DataType.STRING(16),
+          type: DataType.STRING,
+          primaryKey: true,
           allowNull: false,
         },
-        name: {
-          type: DataType.STRING(124),
+        displayName: {
+          type: DataType.STRING,
           allowNull: false,
         },
       });

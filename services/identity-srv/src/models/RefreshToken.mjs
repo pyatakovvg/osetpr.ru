@@ -33,7 +33,6 @@ export default function (sequelize, DataType) {
     },
   }, {
     sequelize,
-    modelName: 'RefreshTokens',
   });
 
   return RefreshToken;

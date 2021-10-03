@@ -14,16 +14,27 @@ export default () => async (ctx) => {
 
   const hashPassword = genHash256(password, process.env['PASSWORD_SALT']);
   const user = await User.findOne({
+    attributes: ['uuid', 'login', 'createdAt', 'updatedAt'],
     where: {
       login,
       password: hashPassword
     },
+    include: [
+      {
+        model: Role,
+        required: true,
+        attributes: ['code', 'displayName'],
+        as: 'role',
+      }
+    ],
     transaction,
   });
 
   if ( ! user) {
     throw new NotfoundError('Неверный логин или пароль');
   }
+
+  const foundUser = user.toJSON();
 
   // создаем токен для обновления
   const today = Date.now();
@@ -35,13 +46,13 @@ export default () => async (ctx) => {
 
   await RefreshToken.destroy({
     where: {
-      userUuid: user['uuid'],
+      userUuid: foundUser['uuid'],
     },
     transaction,
   });
 
   await RefreshToken.create({
-    userUuid: user['uuid'],
+    userUuid: foundUser['uuid'],
     refreshToken: refreshToken,
     userAgent: ctx['userAgent']['source'],
     ip: currentIP,
@@ -51,29 +62,28 @@ export default () => async (ctx) => {
   });
 
   await transaction.commit();
-  console.log(user)
+
   const result = await User.findOne({
+    attributes: ['uuid', 'login', 'createdAt', 'updatedAt'],
     where: {
-      uuid: user['uuid'],
+      uuid: foundUser['uuid'],
     },
     include: [
       {
         model: Role,
         required: true,
-        attributes: ['code', 'name'],
+        attributes: ['code', 'displayName'],
         as: 'role',
       }
     ]
   });
-
-  console.log(result)
 
   const userJSON = result.toJSON();
 
   // организуем авторизационный объект
   const payload = {
     uuid: userJSON['uuid'],
-    role: userJSON['role'][0]['code'],
+    role: userJSON['role']['code'],
     permissions: [],
     exp: parseInt(String(expirationTime / 1000), 10),
   };

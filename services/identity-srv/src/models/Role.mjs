@@ -8,35 +8,21 @@ export default function (sequelize, DataType) {
   class Role extends Model {}
 
   Role.init({
-    id: {
-      type: DataType.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-      index: true,
-    },
     code: {
-      type: DataType.STRING(16),
+      type: DataType.STRING,
+      primaryKey: true,
       allowNull: false,
     },
-    name: {
-      type: DataType.STRING(124),
+    displayName: {
+      type: DataType.STRING,
       allowNull: false,
     },
   }, {
     sequelize,
-    modelName: 'Roles',
     timestamps: false,
   });
 
-  Role.associate = ({ User, UserRole }) => {
-
-    Role.belongsToMany(User, {
-      through: UserRole,
-      foreignKey: 'roleId',
-      otherKey: 'userUuid',
-      as: 'user',
-    });
-  };
+  Role.associate = ({}) => {};
 
   return Role;
 };

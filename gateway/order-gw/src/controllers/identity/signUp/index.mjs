@@ -12,9 +12,9 @@ export default () => async (ctx) => {
     url: process.env['IDENTITY_API_SRV'] + '/create',
     headers: { 'User-Agent': ctx.headers['user-agent'] },
     data: {
-      type: 'customer',
       login: data['login'],
       password: data['password'],
+      roleCode: 'wholesale',
       customer: {
         type: 'legal',
         ...data['customer'],

@@ -6,8 +6,7 @@ import { genHash256, UUID } from "@sys.packages/utils";
 export default async (data) => {
   const { User } = models;
 
-  const hasUser = await User.findOne({
-    raw: true,
+  const hasUser = await User.count({
     where: {
       login: data['login'],
     },
@@ -23,7 +22,7 @@ export default async (data) => {
     uuid: UUID(),
     login: data['login'],
     password: hashPassword,
-    type: data['type'],
+    roleCode: data['roleCode'],
   });
 
   return user['uuid'];

@@ -5,6 +5,7 @@ import logger from '@sys.packages/logger';
 
 import Sagas from 'node-sagas';
 
+import getUser from './user/get';
 import createUser from './user/create';
 import deleteUser from './user/delete';
 import connectUser from './user/connect';
@@ -78,7 +79,8 @@ export default class CopySaga {
       .invoke(async (params) => {
         logger.info('Auth user');
         const userUuid = params.getUserUuid();
-        const authData = await connectUser(this.ctx, userUuid);
+        const user = await getUser(userUuid);
+        const authData = await connectUser(this.ctx, user);
         params.setAuthData(authData);
         logger.info('User has auth');
       })

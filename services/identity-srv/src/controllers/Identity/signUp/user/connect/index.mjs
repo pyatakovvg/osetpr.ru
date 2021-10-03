@@ -2,7 +2,7 @@ import {token} from "@sys.packages/utils";
 import {sign} from "@sys.packages/jwt";
 import {models} from "@sys.packages/db";
 
-export default async function(ctx, userUuid) {
+export default async function(ctx, data) {
   const { RefreshToken } = models;
 
   const today = Date.now();
@@ -13,7 +13,7 @@ export default async function(ctx, userUuid) {
   const currentIP = ctx['ips'].length > 0 ? ctx['ips'][ctx['ips'].length - 1] : ctx['ip'];
 
   await RefreshToken.create({
-    userUuid: userUuid,
+    userUuid: data['uuid'],
     refreshToken: refreshToken,
     userAgent: ctx['userAgent']['source'],
     ip: currentIP,
@@ -22,7 +22,9 @@ export default async function(ctx, userUuid) {
 
   // организуем авторизационный объект
   const payload = {
-    uuid: userUuid,
+    uuid: data['uuid'],
+    role: data['role']['code'],
+    permissions: [],
     exp: parseInt(String(expirationTime / 1000), 10),
   };
 
