@@ -13,6 +13,10 @@ const slice = createSlice({
   name: REDUCER_NAME,
   initialState,
   reducers: {
+    resetStateAction(state) {
+      state['step'] = 1;
+    },
+
     nextStepAction(state) {
       state['step'] += 1;
     },
@@ -20,6 +24,8 @@ const slice = createSlice({
 });
 
 export const {
+  resetStateAction,
+
   nextStepAction,
 } = slice['actions'];
 

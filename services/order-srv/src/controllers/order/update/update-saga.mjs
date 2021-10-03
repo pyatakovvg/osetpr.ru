@@ -2,7 +2,7 @@
 import { NetworkError } from "@packages/errors";
 
 import logger from '@sys.packages/logger';
-import { sendEvent } from '@sys.packages/rabbit';
+import { sendEvent, sendCommand } from '@sys.packages/rabbit';
 
 import Sagas from 'node-sagas';
 
@@ -25,7 +25,6 @@ export default class UpdateSaga {
       return await saga.execute(params);
     }
     catch (e) {
-      console.log(e)
       if (e instanceof Sagas.SagaExecutionFailed) {
         throw new NetworkError({ code: '2.0.0', message: e['message'] });
       }
@@ -87,6 +86,12 @@ export default class UpdateSaga {
       .invoke(async (params) => {
         const order = params.getOrder();
         await sendEvent(process.env['EXCHANGE_ORDER_UPDATE'], JSON.stringify(order));
+      })
+
+      .step('Send to mail')
+      .invoke(async (params) => {
+        const order = params.getOrder();
+        await sendCommand(process.env['QUEUE_MAIL_ORDER_UPDATE'], JSON.stringify(order));
       })
 
       .build();

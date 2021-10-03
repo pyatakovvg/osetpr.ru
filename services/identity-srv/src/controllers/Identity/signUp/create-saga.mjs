@@ -2,6 +2,7 @@
 import { NetworkError } from '@packages/errors';
 
 import logger from '@sys.packages/logger';
+import { sendEvent, sendCommand } from '@sys.packages/rabbit';
 
 import Sagas from 'node-sagas';
 
@@ -82,14 +83,21 @@ export default class CopySaga {
         const user = await getUser(userUuid);
         const authData = await connectUser(this.ctx, user);
         params.setAuthData(authData);
+        params.setUser(user);
         logger.info('User has auth');
       })
 
-      // .step('Send event')
-      // .invoke(async (params) => {
-      //   const product = params.getProduct();
-      //   await sendEvent(process.env['EXCHANGE_PRODUCT_CREATE'], JSON.stringify(product));
-      // })
+      .step('Send event')
+      .invoke(async (params) => {
+        const user = params.getUser();
+        await sendEvent(process.env['EXCHANGE_USER_CREATE'], JSON.stringify(user));
+      })
+
+      .step('Send to mail')
+      .invoke(async (params) => {
+        const user = params.getUser();
+        await sendCommand(process.env['QUEUE_MAIL_USER_CREATE'], JSON.stringify(user));
+      })
 
       .build();
   }
