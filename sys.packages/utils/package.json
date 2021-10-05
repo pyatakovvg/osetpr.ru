@@ -1,7 +1,7 @@
 {
+  "private": true,
   "name": "@sys.packages/utils",
   "version": "1.0.0",
-  "private": true,
   "main": "./src/index.mjs",
   "dependencies": {
     "busboy": "0.3.1"

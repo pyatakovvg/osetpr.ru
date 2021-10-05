@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "product-srv",
   "license": "MIT",
   "version": "1.0.0",

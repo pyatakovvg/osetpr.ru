@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "@sys.packages/rabbit",
   "version": "1.0.0",
   "main": "src/index.mjs",

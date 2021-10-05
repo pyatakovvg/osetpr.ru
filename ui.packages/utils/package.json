@@ -1,7 +1,7 @@
 {
+  "private": true,
   "name": "@ui.packages/utils",
   "version": "1.0.0",
-  "private": true,
   "main": "./src/index.js",
   "dependencies": {
     "busboy": "0.3.1"

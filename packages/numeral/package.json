@@ -1,7 +1,7 @@
 {
+  "private": true,
   "name": "@packages/numeral",
   "version": "1.0.0",
-  "private": true,
   "main": "./src/index.mjs",
   "dependencies": {
     "numeral": "2.0.6"

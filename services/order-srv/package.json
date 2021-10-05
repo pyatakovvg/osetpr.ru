@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "order-srv",
   "license": "MIT",
   "version": "1.0.0",

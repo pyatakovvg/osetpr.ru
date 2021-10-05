@@ -1,7 +1,7 @@
 {
+  "private": true,
   "name": "@ui.packages/socket",
   "version": "1.0.0",
-  "private": true,
   "main": "./src/index.js",
   "dependencies": {
     "socket.io-client": "4.2.0"

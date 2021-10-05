@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "order-gateway",
   "license": "MIT",
   "version": "1.0.0",

@@ -1,7 +1,7 @@
 {
+  "private": true,
   "name": "@packages/moment",
   "version": "1.0.0",
-  "private": true,
   "main": "./src/index.mjs",
   "dependencies": {
     "moment": "2.29.1"
