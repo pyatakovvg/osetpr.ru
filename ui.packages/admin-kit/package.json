@@ -20,15 +20,15 @@
     "classnames": "2.3.1",
     "prop-types": "15.7.2",
     "react": "17.0.2",
-    "react-dadata": "2.10.1",
+    "react-dadata": "2.12.0",
     "react-dom": "17.0.2",
     "react-input-mask": "2.0.4",
-    "react-router-dom": "6.0.0-beta.0",
+    "react-router-dom": "6.0.0-beta.5",
     "react-sortable-hoc": "2.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.14.8",
-    "@babel/core": "7.15.0",
+    "@babel/cli": "7.15.7",
+    "@babel/core": "7.15.5",
     "cross-env": "7.0.3",
     "resolve": "1.20.0"
   },

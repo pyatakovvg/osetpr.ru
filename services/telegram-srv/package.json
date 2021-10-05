@@ -13,10 +13,10 @@
     "@sys.packages/rabbit": "1.0.0",
     "@sys.packages/server": "1.0.0",
     "dotenv": "10.0.0",
-    "telegram": "1.9.4",
-    "input": "1.0.1"
+    "input": "1.0.1",
+    "telegram": "1.9.6"
   },
   "devDependencies": {
-    "nodemon": "2.0.12"
+    "nodemon": "2.0.13"
   }
 }

@@ -9,19 +9,19 @@
   "dependencies": {
     "@packages/errors": "1.0.0",
     "@sys.packages/db": "1.0.0",
+    "@sys.packages/jwt": "1.0.0",
     "@sys.packages/logger": "1.0.0",
     "@sys.packages/rabbit": "1.0.0",
     "@sys.packages/request": "1.0.0",
     "@sys.packages/server": "1.0.0",
     "@sys.packages/socket.io": "1.0.0",
     "@sys.packages/utils": "1.0.0",
-    "@sys.packages/jwt": "1.0.0",
     "axios": "0.21.1",
     "busboy": "0.3.1",
     "dotenv": "10.0.0",
     "koa-cookie": "1.0.0"
   },
   "devDependencies": {
-    "nodemon": "2.0.12"
+    "nodemon": "2.0.13"
   }
 }

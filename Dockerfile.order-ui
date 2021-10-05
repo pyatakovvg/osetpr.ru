@@ -1,6 +1,6 @@
 
 # BUILD APP
-FROM node:16-alpine3.11 as ui
+FROM node:16.10-alpine:3.11 as ui
 
 RUN apk update && apk add bash
 RUN npm install -g npm@latest

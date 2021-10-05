@@ -3,15 +3,15 @@
   "version": "1.0.0",
   "main": "src/index.mjs",
   "dependencies": {
-    "@sys.packages/logger": "1.0.0",
-    "@sys.packages/jwt": "1.0.0",
-    "@sys.packages/socket.io": "1.0.0",
     "@packages/errors": "1.0.0",
+    "@sys.packages/jwt": "1.0.0",
+    "@sys.packages/logger": "1.0.0",
+    "@sys.packages/socket.io": "1.0.0",
     "koa": "2.13.1",
     "koa-bodyparser": "4.3.0",
-    "koa-logger": "3.2.1",
-    "koa-router": "10.0.0",
     "koa-cookie": "1.0.0",
+    "koa-logger": "3.2.1",
+    "koa-router": "10.1.1",
     "koa2-useragent": "0.3.2"
   }
 }
