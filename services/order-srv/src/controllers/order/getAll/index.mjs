@@ -46,12 +46,13 @@ export default () => async (ctx) => {
     where: { ...where },
     order: [
       ['createdAt', 'desc'],
-      ['products', 'createdAt', 'desc'],
+      ['products', 'order', 'asc'],
     ],
-    attributes: ['uuid', 'userUuid', 'title', 'description', 'dateTo', 'address', 'createdAt', 'updatedAt'],
+    attributes: ['uuid', 'userUuid', 'title', 'description', 'dateTo', 'address', 'total', 'createdAt', 'updatedAt'],
     include: [
       {
         model: OrderProduct,
+        attributes: ['uuid', 'orderUuid', 'productUuid', 'title', 'vendor', 'value', 'price', 'total', 'number', 'createdAt', 'updatedAt'],
         as: 'products',
         include: [
           {
@@ -66,12 +67,21 @@ export default () => async (ctx) => {
         required: true,
         as: 'status',
       },
+      {
+        model: Currency,
+        attributes: ['code', 'value'],
+        as: 'currency',
+      },
     ],
   });
 
+  console.log(result['rows'].map((item) => item.toJSON()))
+
   ctx.body = {
     success: true,
-    data: result['rows'],
-    meta: result['meta'],
+    data: result['rows'].map((item) => item.toJSON()),
+    meta: {
+      totalRows: result['count'],
+    },
   };
 };

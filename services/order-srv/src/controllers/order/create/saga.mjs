@@ -7,9 +7,11 @@ import { sendEvent, sendCommand } from '@sys.packages/rabbit';
 import Sagas from 'node-sagas';
 
 import getOrder from './order/get';
+import updateOrder from './order/update';
 import createOrder from './order/create';
 import restoreOrder from './order/restore';
 
+import getProducts from './product/get';
 import createProducts from './product/create';
 import restoreProducts from './product/restore';
 
@@ -64,6 +66,21 @@ export default class Saga {
         logger.info('Restore update products');
         const orderUuid = params.getOrderUuid();
         await restoreProducts(orderUuid);
+      })
+
+      .step('Update order')
+      .invoke(async (params) => {
+        logger.info('Update order');
+        const orderUuid = params.getOrderUuid();
+        const products = await getProducts(orderUuid);
+
+        if (products.length) {
+          const total = products.reduce((prev, next) => prev + next['total'], 0);
+          await updateOrder(orderUuid, {
+            total,
+            currencyCode: products[0]['currencyCode'],
+          });
+        }
       })
 
       .step('Get created order')

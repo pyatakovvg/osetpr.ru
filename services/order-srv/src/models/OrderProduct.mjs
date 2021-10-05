@@ -40,6 +40,13 @@ export default function(sequelize, DataType) {
         return Number(this.getDataValue(column));
       },
     },
+    total: {
+      type: DataType.DECIMAL(10, 2),
+      allowNull: false,
+      get(column) {
+        return Number(this.getDataValue(column));
+      },
+    },
     currencyCode: {
       type: DataType.STRING(4),
       allowNull: false,
@@ -47,7 +54,14 @@ export default function(sequelize, DataType) {
     number: {
       type: DataType.INTEGER,
       allowNull: false,
-    }
+      get(column) {
+        return Number(this.getDataValue(column));
+      },
+    },
+    order: {
+      type: DataType.INTEGER,
+      allowNull: false,
+    },
   }, {
     sequelize,
     timestamp: false,

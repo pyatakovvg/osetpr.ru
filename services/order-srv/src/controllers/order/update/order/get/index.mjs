@@ -8,15 +8,14 @@ export default async function(orderUuid) {
   const result = await Order.findOne({
     where: { uuid: orderUuid },
     order: [
-      ['createdAt', 'desc'],
-      ['products', 'createdAt', 'desc'],
+      ['products', 'order', 'asc'],
     ],
-    attributes: ['uuid', 'userUuid', 'title', 'description', 'dateTo', 'address', 'createdAt', 'updatedAt'],
+    attributes: ['uuid', 'userUuid', 'title', 'description', 'dateTo', 'address', 'total', 'currencyCode', 'createdAt', 'updatedAt'],
     include: [
       {
         model: OrderProduct,
         as: 'products',
-        attributes: ['uuid', 'orderUuid', 'productUuid', 'title', 'vendor', 'value', 'price', 'number', 'createdAt', 'updatedAt'],
+        attributes: ['uuid', 'orderUuid', 'productUuid', 'title', 'vendor', 'value', 'price', 'total', 'number', 'createdAt', 'updatedAt'],
         include: [
           {
             model: Currency,
@@ -29,6 +28,11 @@ export default async function(orderUuid) {
         model: Status,
         required: true,
         as: 'status',
+      },
+      {
+        model: Currency,
+        attributes: ['code', 'value'],
+        as: 'currency',
       },
     ],
   });

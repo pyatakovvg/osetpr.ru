@@ -2,6 +2,7 @@
 import {selectItems, selectInProcess, updateStatus, selectCustomers } from '@modules/admin-orders';
 
 import moment from '@packages/moment';
+import numeral from '@packages/numeral';
 
 import { Table, Column } from '@ui.packages/table';
 import { Text, Status, Button, Actions } from '@ui.packages/admin-kit';
@@ -96,13 +97,15 @@ function OrderList() {
         )}</Column>
         <Column
           title={'Товары'}
-          alias={'products'}
           align={'left'}
-        >{(products) => (
+        >{({ products, total, currency }) => (
           <div className={styles['products']}>
             {products.map((item) => (
               <Product key={item['uuid']} {...item} />
             ))}
+            <span className={styles['total']}>
+              <Text type={Text.TYPE_BODY}>Итого: { numeral(total).format() } { currency['value'] }</Text>
+            </span>
           </div>
         )}</Column>
         <Column

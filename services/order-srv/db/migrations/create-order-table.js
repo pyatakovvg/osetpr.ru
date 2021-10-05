@@ -34,6 +34,14 @@ module.exports = {
           type: DataType.STRING(256),
           allowNull: false,
         },
+        total: {
+          type: DataType.DECIMAL(10, 2),
+          allowNull: false,
+        },
+        currencyCode: {
+          type: DataType.STRING(4),
+          allowNull: false,
+        },
         createdAt: {
           type: DataType.DATE,
           allowNull: false,

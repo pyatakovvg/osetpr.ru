@@ -10,6 +10,8 @@ export default async function(data) {
     uuid: UUID(),
     statusCode: 'new',
     ...data,
+    total: 0,
+    currencyCode: 'RUB',
   });
 
   return result['uuid'];

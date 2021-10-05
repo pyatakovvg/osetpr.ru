@@ -36,11 +36,27 @@ export default function(sequelize, DataType) {
       type: DataType.STRING(256),
       allowNull: false,
     },
+    total: {
+      type: DataType.DECIMAL(10, 2),
+      allowNull: false,
+      get(column) {
+        return Number(this.getDataValue(column));
+      },
+    },
+    currencyCode: {
+      type: DataType.STRING(4),
+      allowNull: false,
+    },
   }, {
     sequelize,
   });
 
-  Order.associate = ({ OrderProduct, Status }) => {
+  Order.associate = ({ OrderProduct, Status, Currency }) => {
+
+    Order.belongsTo(Currency, {
+      foreignKey: 'currencyCode',
+      as: 'currency',
+    });
 
     Order.hasMany(OrderProduct, {
       foreignKey: 'orderUuid',

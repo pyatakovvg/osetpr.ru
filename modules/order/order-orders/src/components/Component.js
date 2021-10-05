@@ -29,7 +29,7 @@ function Orders() {
             mode={Button.MODE_SUCCESS}
             disabled={inProcess}
             onClick={() => handleCreate()}
-          >Добавиьт заказ</Button>
+          >Добавить заказ</Button>
         </div>
       </PageControls>
       <PageContent>

@@ -1,5 +1,5 @@
 
-export default class UpdateSagaParams {
+export default class SagaParams {
   _order = null;
 
   getOrder() {

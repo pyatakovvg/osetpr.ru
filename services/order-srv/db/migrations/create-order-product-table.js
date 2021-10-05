@@ -35,6 +35,10 @@ module.exports = {
           type: DataType.DECIMAL(10, 2),
           allowNull: false,
         },
+        total: {
+          type: DataType.DECIMAL(10, 2),
+          allowNull: false,
+        },
         currencyCode: {
           type: DataType.STRING(4),
           allowNull: false,
@@ -42,7 +46,11 @@ module.exports = {
         number: {
           type: DataType.INTEGER,
           allowNull: false,
-        }
+        },
+        order: {
+          type: DataType.INTEGER,
+          allowNull: false,
+        },
       }, {
         transaction
       });

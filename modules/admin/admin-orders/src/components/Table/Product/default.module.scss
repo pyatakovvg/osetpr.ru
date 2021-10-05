@@ -25,17 +25,18 @@
   }
 }
 
-.title {
+.vendor {
 
   display: block;
   white-space: nowrap;
 }
 
-.vendor {
+.title {
 
-  display: block;
-  white-space: nowrap;
-  margin: 0 0 0 8px;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  margin: 0 0 0 16px;
 }
 
 .value {
@@ -57,17 +58,12 @@
 
   display: block;
   white-space: nowrap;
-  margin: 0 0 0 8px;
 }
 
 .delimiter {
 
   display: inline-block;
-
-  &:before {
-
-    display: inline-block;
-    content: '-';
-    margin: 0 0 0 8px;
-  }
+  font-size: 14px;
+  color: $coal-dark;
+  margin: 0 8px;
 }

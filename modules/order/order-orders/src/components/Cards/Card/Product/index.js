@@ -9,14 +9,14 @@ import types from 'prop-types';
 import styles from './default.module.scss';
 
 
-function Product({ title, vendor, value, number, price, currency }) {
+function Product({ title, vendor, value, number, price, currency, total }) {
   return (
     <div className={styles['wrapper']}>
-      <div className={styles['title']}>
-        <Text>{ title }</Text>
-      </div>
       <div className={styles['vendor']}>
         <Text>[{ vendor }]</Text>
+      </div>
+      <div className={styles['title']}>
+        <Text>{ title }</Text>
       </div>
       <div className={styles['value']}>
         <Text>{ value }</Text>
@@ -24,9 +24,13 @@ function Product({ title, vendor, value, number, price, currency }) {
       <div className={styles['price']}>
         <Text type={Text.TYPE_BODY}>{ numeral(Number(price)).format() } { currency['value'] }</Text>
       </div>
-      <span className={styles['delimiter']} />
+      <span className={styles['delimiter']}>x</span>
       <div className={styles['number']}>
-        <Text type={Text.TYPE_BODY}>{ number } шт.</Text>
+        <Text>{ number } шт.</Text>
+      </div>
+      <span className={styles['delimiter']}>=</span>
+      <div className={styles['full-price']}>
+        <Text type={Text.TYPE_BODY}>{ total } { currency['value'] }</Text>
       </div>
     </div>
   );
@@ -38,6 +42,7 @@ Product.propTypes = {
   value: types.string,
   number: types.number,
   price: types.number,
+  total: types.number,
   currency: types.object,
 };
 
@@ -47,7 +52,8 @@ Product.defaultProps = {
   value: '---',
   number: 0,
   price: 0,
-  currency: {},
+  total: 0,
+  currency: null,
 };
 
 export default Product;

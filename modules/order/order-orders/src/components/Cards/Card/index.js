@@ -5,6 +5,7 @@ import moment from '@packages/moment';
 
 import { Header, Text, Status, Button } from '@ui.packages/admin-kit';
 
+import types from 'prop-types';
 import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -24,7 +25,7 @@ function getStatusMode(code) {
   }
 }
 
-function Card({ uuid, title, description, status, dateTo, products, createdAt }) {
+function Card({ uuid, title, description, status, dateTo, products, total, currency, createdAt }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -69,6 +70,11 @@ function Card({ uuid, title, description, status, dateTo, products, createdAt })
         {products.map((item) => (
           <Product key={item['uuid']} {...item} />
         ))}
+        <div className={styles['total-price']}>
+          <div className={styles['total']}>
+            <Text type={Text.TYPE_BODY}>Итого: { total } { currency['value'] }</Text>
+          </div>
+        </div>
       </div>
       {isEditable && (
         <div className={styles['controls']}>
@@ -89,8 +95,28 @@ function Card({ uuid, title, description, status, dateTo, products, createdAt })
   );
 }
 
-Card.propTypes = {};
+Card.propTypes = {
+  uuid: types.string,
+  title: types.string,
+  description: types.string,
+  status: types.object,
+  dateTo: types.string,
+  products: types.array,
+  total: types.number,
+  currency: types.object,
+  createdAt: types.string,
+};
 
-Card.defaultProps = {};
+Card.defaultProps = {
+  uuid: '',
+  title: 'No title',
+  description: 'No description',
+  status: {},
+  dateTo: new Date(),
+  products: [],
+  total: 0,
+  currency: {},
+  createdAt: new Date(),
+};
 
 export default Card;

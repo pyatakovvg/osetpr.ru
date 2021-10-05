@@ -9,10 +9,11 @@ import Sagas from 'node-sagas';
 import getOrder from './order/get';
 import updateOrder from './order/update';
 
+import getProducts from './product/get';
 import updateProducts from './product/update';
 
 
-export default class UpdateSaga {
+export default class Saga {
   ctx = null;
 
   constructor(ctx) {
@@ -39,8 +40,6 @@ export default class UpdateSaga {
 
     const { uuid } = ctx['params'];
     const body = ctx['request']['body'];
-
-    console.log(body)
 
     return sagaBuilder
       .step('Get order')
@@ -73,6 +72,20 @@ export default class UpdateSaga {
         logger.info('Restore update products');
         const order = params.getOrder();
         await updateProducts(uuid, order['products']);
+      })
+
+      .step('Update order')
+      .invoke(async () => {
+        logger.info('Update order');
+        const products = await getProducts(uuid);
+
+        if (products.length) {
+          const total = products.reduce((prev, next) => prev + next['total'], 0);
+          await updateOrder(uuid, {
+            total,
+            currencyCode: products[0]['currencyCode'],
+          });
+        }
       })
 
       .step('Get updated order')
