@@ -16,7 +16,6 @@ COPY ./sys.packages                           ./sys.packages
 COPY ./packages                               ./packages
 COPY ./package.json                           ./
 COPY ./lerna.json                             ./
-COPY ./yarn.lock                              ./
 
 RUN yarn
 
