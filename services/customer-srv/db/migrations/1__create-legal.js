@@ -25,7 +25,7 @@ module.exports = {
           allowNull: true,
         },
         phone: {
-          type: DataType.STRING('11'),
+          type: DataType.STRING(12),
           allowNull: false,
         },
         createdAt: {

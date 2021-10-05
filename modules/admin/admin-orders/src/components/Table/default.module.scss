@@ -9,8 +9,6 @@
   background: $white;
   border: 1px solid $pale-lilac;
   border-radius: 8px;
-
-  counter-reset: product;
 }
 
 .row {
@@ -21,6 +19,7 @@
 .title {
 
   display: block;
+  text-decoration: underline;
 }
 
 .description {
@@ -44,4 +43,10 @@
 
   display: block;
   margin: 16px 0 0;
+}
+
+.products {
+
+  display: block;
+  counter-reset: product;
 }

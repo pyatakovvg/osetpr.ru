@@ -1,8 +1,11 @@
 
-import { Row, Col, InputField, TextareaField, DatePickerField } from '@ui.packages/admin-kit';
+import { selectCustomers } from '@modules/admin-order';
+
+import { Row, Col, InputField, SelectField, TextareaField, DatePickerField } from '@ui.packages/admin-kit';
 
 import React  from "react";
 import { FieldArray } from 'redux-form';
+import { useSelector } from 'react-redux';
 
 import Products from './Products';
 
@@ -10,9 +13,23 @@ import styles from './default.module.scss';
 
 
 function Form({ handleSubmit }) {
+  const customers = useSelector(selectCustomers);
+
   return (
     <form className={styles['wrapper']} onSubmit={handleSubmit}>
       <div className={styles['common']}>
+        <Row>
+          <Col>
+            <SelectField
+              require
+              name={'userUuid'}
+              label={'Клиент'}
+              options={customers}
+              optionKey={'uuid'}
+              optionValue={'login'}
+            />
+          </Col>
+        </Row>
         <Row>
           <Col>
             <InputField require name={'title'} label={'Название'} />

@@ -5,6 +5,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   item: null,
   products: [],
+  customers: [],
   inProcess: false,
   inProductsProcess: false,
 };
@@ -21,15 +22,20 @@ const slice = createSlice({
       state['inProcess'] = false;
     },
 
-    getItemRequestAction(state) {
-      state['inProcess'] = true;
+    setProcessAction(state, { payload }) {
+      state['inProcess'] = payload;
     },
-    getItemRequestFailAction(state) {
-      state['inProcess'] = false;
-    },
+
+    getItemRequestAction(state) {},
+    getItemRequestFailAction(state) {},
     getItemRequestSuccessAction(state, { payload }) {
       state['item'] = payload;
-      state['inProcess'] = false;
+    },
+
+    getCustomersRequestAction(state) {},
+    getCustomersRequestFailAction(state) {},
+    getCustomersRequestSuccessAction(state, { payload }) {
+      state['customers'] = payload;
     },
 
     getProductsRequestAction(state) {
@@ -68,9 +74,15 @@ const slice = createSlice({
 export const {
   resetStateAction,
 
+  setProcessAction,
+
   getItemRequestAction,
   getItemRequestFailAction,
   getItemRequestSuccessAction,
+
+  getCustomersRequestAction,
+  getCustomersRequestFailAction,
+  getCustomersRequestSuccessAction,
 
   getProductsRequestAction,
   getProductsRequestFailAction,
@@ -87,6 +99,7 @@ export const {
 
 export const selectItem = (state) => state[REDUCER_NAME]['item'];
 export const selectProducts = (state) => state[REDUCER_NAME]['products'];
+export const selectCustomers = (state) => state[REDUCER_NAME]['customers'];
 export const selectInProcess = (state) => state[REDUCER_NAME]['inProcess'];
 export const selectInProductsProcess = (state) => state[REDUCER_NAME]['inProductsProcess'];
 

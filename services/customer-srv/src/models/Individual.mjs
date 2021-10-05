@@ -41,6 +41,10 @@ export default function (sequelize, DataType) {
       type: DataType.DATE,
       allowNull: true,
     },
+    phone: {
+      type: DataType.STRING(12),
+      allowNull: true,
+    },
   }, {
     sequelize,
     modelName: 'Individual',

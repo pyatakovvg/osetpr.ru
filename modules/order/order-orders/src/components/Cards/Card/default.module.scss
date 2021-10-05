@@ -52,7 +52,6 @@
   display: block;
   text-align: right;
   margin: 16px 0 0;
-  text-decoration: underline;
 }
 
 .created {
@@ -66,6 +65,7 @@
 
   display: block;
   margin: 16px 0 0;
+  counter-reset: product;
 }
 
 .footer {

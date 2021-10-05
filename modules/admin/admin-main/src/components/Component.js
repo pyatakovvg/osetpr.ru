@@ -3,6 +3,8 @@ import { Header, Page, PageContent } from '@ui.packages/admin-kit';
 
 import React from 'react';
 
+import Cards from './Cards';
+
 import styles from './default.module.scss';
 
 
@@ -15,12 +17,15 @@ function Main() {
             <Header level={1}>Доступные разделы</Header>
           </div>
           <article className={styles['content']}>
+            <Cards />
           </article>
         </section>
       </PageContent>
     </Page>
   );
 }
+
+
 
 Main.propTypes = {};
 

@@ -1,11 +1,13 @@
 
+import { NotfoundError } from '@packages/errors';
+
 import logger from '@sys.packages/logger';
 import request from "@sys.packages/request";
 
 import nunjucks from 'nunjucks';
 import nodeMailer from 'nodemailer';
 
-import builderData from './builder/order.mjs';
+import userBuilder from './builder/user.mjs';
 
 
 export default async (data) => {
@@ -16,6 +18,12 @@ export default async (data) => {
       uuid: data['uuid'],
     },
   });
+
+  if ( ! user.length) {
+    throw new NotfoundError({ code: '5.6.7', message: 'Пользователь не найден' });
+  }
+
+  const userData = userBuilder(user[0]);
 
   const transporter = nodeMailer.createTransport({
     host: process.env['EMAIL_HOST'],
@@ -30,12 +38,12 @@ export default async (data) => {
 
   const html = nunjucks.render('user/create/index.html', {
     domain: process.env['DOMAIN'],
-    ...user[0],
+    ...userData,
   });
 
   const info = await transporter.sendMail({
     from: "osetpr.ru " + process.env['EMAIL_USER'],
-    to: user[0]['login'],
+    to: userData['login'],
     subject: `Успешная регистрация на osetpr.ru`,
     html,
     date: new Date(),

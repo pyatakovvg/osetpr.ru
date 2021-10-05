@@ -1,5 +1,5 @@
 
-import { resetStateAction, getItem } from '@modules/admin-order';
+import { resetStateAction, setProcessAction, getItem, getCustomers } from '@modules/admin-order';
 
 import { useMount, useUnmount, useUpdate } from '@ui.packages/hoc';
 
@@ -17,9 +17,14 @@ export default function HOC() {
   useMount(async function() {
     document.title = `${process.env['REACT_APP_WEBSITE_NAME']} - ` + params['uuid'] ? 'Оформление заказа' : 'Редактирование заказа';
 
+    dispatch(setProcessAction(true));
+
+    await dispatch(getCustomers());
+
     if (params['uuid']) {
       await dispatch(getItem(params['uuid']));
     }
+    dispatch(setProcessAction(false));
   });
 
   useUpdate(async function() {});

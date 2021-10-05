@@ -2,6 +2,7 @@
 import { getImages, getImage, createImage, updateImage, deleteImages } from '../controllers/gallery';
 import { getAllProducts, createProduct, deleteProducts, updateProduct, getProductById } from '../controllers/product';
 import { getByOrderId, getAllOrders, updateByOrderId, createOrder, updateOrderStatus } from '../controllers/order';
+import { getAllUsers } from '../controllers/users';
 import { getAllCustomers } from '../controllers/customers';
 import { getAllCategories } from '../controllers/category';
 import { getAllCurrencies } from '../controllers/currency';
@@ -29,6 +30,8 @@ export default (router) => {
   router.delete('/products', deleteProducts());
   router.post('/products', createProduct());
   router.put('/products/:uuid', updateProduct());
+
+  router.get('/users', getAllUsers());
 
   router.get('/customers', getAllCustomers());
 

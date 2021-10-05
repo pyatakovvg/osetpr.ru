@@ -23,6 +23,10 @@ function validate(values) {
     errors['address'] = 'Обязательно к заполнению';
   }
 
+  if ( ! values['products'] || ! values['products'].length) {
+    errors['products'] = 'Необходимо выбрать товар';
+  }
+
   const productErrors = [];
   if (values['products']) {
     values['products'].forEach((product, index) => {

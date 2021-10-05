@@ -9,6 +9,10 @@ import {
   getItemRequestFailAction,
   getItemRequestSuccessAction,
 
+  getCustomersRequestAction,
+  getCustomersRequestFailAction,
+  getCustomersRequestSuccessAction,
+
   getProductsRequestAction,
   getProductsRequestFailAction,
   getProductsRequestSuccessAction,
@@ -22,6 +26,33 @@ import {
   updateItemRequestSuccessAction,
 } from './slice';
 
+
+export const getCustomers = () => async (dispatch) => {
+  try {
+    dispatch(getCustomersRequestAction());
+
+    const result = await request({
+      url: '/users',
+      method: 'get',
+      params: {
+        roleCode: ['customer', 'wholesale'],
+      },
+    });
+
+    dispatch(getCustomersRequestSuccessAction(result['data']));
+  }
+  catch(error) {
+    dispatch(getCustomersRequestFailAction(error));
+
+    if (error instanceof UnauthorizedError) {
+      return void 0;
+    }
+    dispatch(pushNotification({
+      mode: 'danger',
+      title: 'Ошибка при выполнении операции',
+    }));
+  }
+};
 
 export const getProducts = () => async (dispatch) => {
   try {

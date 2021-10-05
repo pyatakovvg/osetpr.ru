@@ -1,5 +1,5 @@
 
-import { getByOrderId, getAllOrders, updateByOrderId, createOrder } from '../controllers/order';
+import { getByOrderId, getAllOrders, updateByOrderId, createOrder, updateOrderStatus } from '../controllers/order';
 import { getAllProducts } from '../controllers/product';
 
 import { getProfile } from '../controllers/profile';
@@ -12,6 +12,8 @@ export default (router) => {
   router.get('/gallery/:uuid', getImage());
 
   router.get('/products', getAllProducts());
+
+  router.put('/orders/:uuid/status', updateOrderStatus());
 
   router.get('/orders', getAllOrders());
   router.get('/orders/:uuid', getByOrderId());

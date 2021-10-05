@@ -6,14 +6,14 @@ import userBuilder from "./userBuilder.mjs";
 
 export default () => async (ctx) => {
   const where = {};
-  const { uuid, role } = ctx['request']['query'];
+  const { uuid, roleCode } = ctx['request']['query'];
 
   if (uuid) {
     where['uuid'] = uuid;
   }
 
-  if (role) {
-    where['roleCode'] = role;
+  if (roleCode) {
+    where['roleCode'] = roleCode;
   }
 
   const { User, Role } = models;

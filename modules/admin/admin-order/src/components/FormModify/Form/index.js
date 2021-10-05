@@ -7,6 +7,10 @@ import Component from './Component';
 function validate(values) {
   const errors = {};
 
+  if ( ! values['userUuid']) {
+    errors['userUuid'] = 'Обязательный выбор';
+  }
+
   if ( ! values['title']) {
     errors['title'] = 'Обязательно к заполнению';
   }
@@ -21,6 +25,10 @@ function validate(values) {
 
   if ( ! values['address']) {
     errors['address'] = 'Обязательно к заполнению';
+  }
+
+  if ( ! values['products'] || ! values['products'].length) {
+    errors['products'] = 'Необходимо выбрать товар';
   }
 
   const productErrors = [];

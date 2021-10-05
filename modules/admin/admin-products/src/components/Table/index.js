@@ -68,6 +68,12 @@ function ProductList() {
           </div>
         )}</Column>
         <Column
+          title={'Видим'}
+          width={70}
+        >{() => (
+          <Text>-</Text>
+        )}</Column>
+        <Column
           align="right"
           width="70"
         >

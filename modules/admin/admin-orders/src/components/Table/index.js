@@ -84,13 +84,13 @@ function OrderList() {
         >{(value) => (
           <div className={styles['row']}>
             <div className={styles['title']}>
+              <Text type={Text.TYPE_BODY}>"{ customers[value['userUuid']] }"</Text>
+            </div>
+            <div className={styles['description']}>
               <Text type={Text.TYPE_BODY}>{ value['title'] }</Text>
             </div>
             <div className={styles['description']}>
               <Text>{ value['description'] }</Text>
-            </div>
-            <div className={styles['description']}>
-              <Text>"{ customers[value['userUuid']] }"</Text>
             </div>
           </div>
         )}</Column>
@@ -98,9 +98,13 @@ function OrderList() {
           title={'Товары'}
           alias={'products'}
           align={'left'}
-        >{(products) => products.map((item) => (
-          <Product key={item['uuid']} {...item} />
-        ))}</Column>
+        >{(products) => (
+          <div className={styles['products']}>
+            {products.map((item) => (
+              <Product key={item['uuid']} {...item} />
+            ))}
+          </div>
+        )}</Column>
         <Column
           title={'На дату'}
           width={200}
@@ -109,10 +113,10 @@ function OrderList() {
           return (
             <div className={styles['row']}>
               <div className={styles['status']}>
-                <Status type={'text'} mode={getStatusMode(value['status']['code'])}>{ value['status']['displayName'] }</Status>
+                <Status type={'label'} mode={getStatusMode(value['status']['code'])}>{ value['status']['displayName'] }</Status>
               </div>
               <div className={styles['date']}>
-                <Text type={Text.TYPE_BODY}>{ moment(value['dateTo']).format() }</Text>
+                <Text type={Text.TYPE_BODY}>На: { moment(value['dateTo']).format('DD.MM.YYYY - HH:mm') }</Text>
               </div>
               {(value['status']['code'] === 'new') && (
                 <div className={styles['controls']}>
@@ -155,7 +159,6 @@ function OrderList() {
                   <Button
                     size={Button.SIZE_SMALL}
                     mode={Button.MODE_SUCCESS}
-                    form={Button.FORM_OUTLINE}
                     onClick={() => handleClose(value['uuid'])}
                   >Завершить</Button>
                 </div>

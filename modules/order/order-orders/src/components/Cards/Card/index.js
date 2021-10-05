@@ -1,13 +1,13 @@
 
-import { selectStatuses } from '@modules/order-orders';
+import { selectStatuses, updateStatus } from '@modules/order-orders';
 
 import moment from '@packages/moment';
 
 import { Header, Text, Status, Button } from '@ui.packages/admin-kit';
 
 import React, { useMemo } from 'react';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Product from './Product';
 
@@ -26,6 +26,7 @@ function getStatusMode(code) {
 
 function Card({ uuid, title, description, status, dateTo, products, createdAt }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const statuses = useSelector(selectStatuses);
 
@@ -33,12 +34,12 @@ function Card({ uuid, title, description, status, dateTo, products, createdAt })
   const statusMode = useMemo(() => getStatusMode(status['code']), [status['code']]);
   const isEditable = useMemo(() => status['code'] === 'new', [status['code']]);
 
-  function handleEdit() {
+  function handleEdit(uuid) {
     navigate(process.env['PUBLIC_URL'] + '/orders/' + uuid);
   }
 
-  function handleCancel() {
-
+  function handleCancel(uuid) {
+    dispatch(updateStatus(uuid, 'canceled'));
   }
 
   return (
@@ -57,7 +58,7 @@ function Card({ uuid, title, description, status, dateTo, products, createdAt })
             <Status mode={statusMode} type={Status.TYPE_LABEL}>{ statusName['displayName'] }</Status>
           </div>
           <div className={styles['date']}>
-            <Text type={Text.TYPE_BODY}>Исполнить до: { moment(dateTo).format() }</Text>
+            <Text type={Text.TYPE_BODY}>На: { moment(dateTo).format('DD.MM.YYYY - HH:mm') }</Text>
           </div>
           <div className={styles['created']}>
             <Text>Создан: { moment(createdAt).format() }</Text>
@@ -75,13 +76,12 @@ function Card({ uuid, title, description, status, dateTo, products, createdAt })
             form={Button.FORM_CONTEXT}
             mode={Button.MODE_DANGER}
             size={Button.SIZE_SMALL}
-            onClick={() => handleCancel()}
+            onClick={() => handleCancel(uuid)}
           >Отменить</Button>
           <Button
-            form={Button.FORM_CONTEXT}
             mode={Button.MODE_PRIMARY}
             size={Button.SIZE_SMALL}
-            onClick={() => handleEdit()}
+            onClick={() => handleEdit(uuid)}
           >Редактировать</Button>
         </div>
       )}

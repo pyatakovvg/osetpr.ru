@@ -38,6 +38,7 @@ function FormModify() {
     <div className={styles['wrapper']}>
       <Form
         initialValues={{
+          products: [],
           address: profile['customer'][profile['customer']['type']]['address'],
           ...item,
         }}
