@@ -2,7 +2,7 @@
 import { NetworkError } from '@packages/errors';
 
 import logger from '@sys.packages/logger';
-import { sendEvent } from '@sys.packages/rabbit';
+// import { sendEvent } from '@sys.packages/rabbit';
 
 import Sagas from 'node-sagas';
 
@@ -83,11 +83,11 @@ export default class CopySaga {
         params.setProduct(product)
       })
 
-      .step('Send event')
-      .invoke(async (params) => {
-        const product = params.getProduct();
-        await sendEvent(process.env['EXCHANGE_PRODUCT_CREATE'], JSON.stringify(product));
-      })
+      // .step('Send event')
+      // .invoke(async (params) => {
+      //   const product = params.getProduct();
+      //   await sendEvent(process.env['EXCHANGE_PRODUCT_CREATE'], JSON.stringify(product));
+      // })
 
       .build();
   }

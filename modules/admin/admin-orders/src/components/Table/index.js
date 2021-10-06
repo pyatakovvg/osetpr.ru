@@ -121,6 +121,9 @@ function OrderList() {
               <div className={styles['date']}>
                 <Text type={Text.TYPE_BODY}>На: { moment(value['dateTo']).format('DD.MM.YYYY - HH:mm') }</Text>
               </div>
+              <div className={styles['date']}>
+                <Text>Создан: { moment(value['createdAt']).format('DD.MM.YYYY - HH:mm') }</Text>
+              </div>
               {(value['status']['code'] === 'new') && (
                 <div className={styles['controls']}>
                   <Button

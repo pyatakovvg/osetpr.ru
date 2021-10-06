@@ -2,7 +2,7 @@
 import { NetworkError } from "@packages/errors";
 
 import logger from '@sys.packages/logger';
-import { sendEvent } from '@sys.packages/rabbit';
+// import { sendEvent } from '@sys.packages/rabbit';
 
 import Sagas from 'node-sagas';
 
@@ -45,7 +45,7 @@ export default class UpdateSaga {
 
     const { uuid } = ctx['params'];
     const body = ctx['request']['body'];
-console.log(body)
+
     return sagaBuilder
       .step('Update gallery')
       .invoke(async (params) => {
@@ -97,11 +97,11 @@ console.log(body)
         params.setProduct(product)
       })
 
-      .step('Send event')
-      .invoke(async (params) => {
-        const product = params.getProduct();
-        await sendEvent(process.env['EXCHANGE_PRODUCT_UPDATE'], JSON.stringify(product));
-      })
+      // .step('Send event')
+      // .invoke(async (params) => {
+      //   const product = params.getProduct();
+      //   await sendEvent(process.env['EXCHANGE_PRODUCT_UPDATE'], JSON.stringify(product));
+      // })
 
       .build();
   }
