@@ -22,7 +22,7 @@ function Product({ title, vendor, value, number, price, currency, total }) {
         <Text>{ value }</Text>
       </div>
       <div className={styles['price']}>
-        <Text type={Text.TYPE_BODY}>{ numeral(Number(price)).format() } { currency['value'] }</Text>
+        <Text type={Text.TYPE_BODY}>{ numeral(price).format() } { currency['value'] }</Text>
       </div>
       <span className={styles['delimiter']}>x</span>
       <div className={styles['number']}>
@@ -30,7 +30,7 @@ function Product({ title, vendor, value, number, price, currency, total }) {
       </div>
       <span className={styles['delimiter']}>=</span>
       <div className={styles['full-price']}>
-        <Text type={Text.TYPE_BODY}>{ total } { currency['value'] }</Text>
+        <Text type={Text.TYPE_BODY}>{ numeral(total).format() } { currency['value'] }</Text>
       </div>
     </div>
   );

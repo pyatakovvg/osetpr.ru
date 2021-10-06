@@ -25,5 +25,4 @@ export default async function() {
     emit(process.env['SOCKET_PRODUCT_DELETE'], result);
     cb(true);
   });
-
 }

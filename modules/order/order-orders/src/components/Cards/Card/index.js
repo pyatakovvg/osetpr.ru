@@ -2,6 +2,7 @@
 import { selectStatuses, updateStatus } from '@modules/order-orders';
 
 import moment from '@packages/moment';
+import numeral from '@packages/numeral';
 
 import { Header, Text, Status, Button } from '@ui.packages/admin-kit';
 
@@ -21,6 +22,7 @@ function getStatusMode(code) {
     case 'done': return 'success';
     case 'canceled': return 'warning';
     case 'confirmed': return 'primary';
+    case 'process': return 'primary';
     default: return 'default';
   }
 }
@@ -72,7 +74,7 @@ function Card({ uuid, title, description, status, dateTo, products, total, curre
         ))}
         <div className={styles['total-price']}>
           <div className={styles['total']}>
-            <Text type={Text.TYPE_BODY}>Итого: { total } { currency['value'] }</Text>
+            <Text type={Text.TYPE_BODY}>Итого: { numeral(total).format() } { currency['value'] }</Text>
           </div>
         </div>
       </div>
