@@ -29,6 +29,12 @@ function Dates({ useTime, date, month, year, hour, minute, onPrev, onNext, onCha
           onChangeYear={onYearModify}
         />
       </div>
+      {useTime && (
+        <div className={styles['controls']}>
+          <span className={styles['modify']} onClick={() => onTimeModify()}>Уточнить время</span>
+          <span className={styles['time']}>{ moment({ hour, minute }).format('HH:mm') }</span>
+        </div>
+      )}
       <div className={styles['content']}>
         <Days
           date={date}
@@ -38,12 +44,6 @@ function Dates({ useTime, date, month, year, hour, minute, onPrev, onNext, onCha
           onChange={handleChangeDay}
         />
       </div>
-      {useTime && (
-        <div className={styles['controls']}>
-          <span className={styles['modify']} onClick={() => onTimeModify()}>Уточнить время</span>
-          <span className={styles['time']}>{ moment({ hour, minute }).format('HH:mm') }</span>
-        </div>
-      )}
     </div>
   );
 }
