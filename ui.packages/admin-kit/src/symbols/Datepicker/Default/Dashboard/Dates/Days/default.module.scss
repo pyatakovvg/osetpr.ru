@@ -1,0 +1,105 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: block;
+  margin: 30px 0 0;
+}
+
+.days,
+.days-of-month {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  flex-wrap: wrap;
+  margin: 0 -11px;
+}
+
+.days {
+
+  margin-top: 15px;
+}
+
+.day {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  width: 42px;
+  height: 45px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.day:hover .container {
+
+  background-color: $primary;
+  color: $white;
+}
+
+.empty {
+
+  cursor: default;
+}
+
+.empty .container,
+.empty:hover .container {
+
+  background-color: transparent;
+}
+
+.today .container {
+
+  color: $primary;
+}
+
+.active .container,
+.active:hover .container {
+
+  background-color: $primary;
+  color: $white;
+}
+
+.container {
+
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  color: $coal-dark;
+  transition: background-color 200ms;
+}
+
+.number {
+
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: .7px;
+}
+
+.week {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  width: 42px;
+  justify-content: center;
+  align-items: center;
+}
+
+.name {
+
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+  color: $coal-dark;
+}

@@ -18,7 +18,7 @@ export { default as Textarea } from './symbols/Textarea';
 export { default as CheckBox } from './symbols/CheckBox';
 export { default as MaskInput } from './symbols/InputMask';
 export { default as FileInput } from './symbols/FileInput';
-export { default as DatePicker } from './symbols/DatePicker';
+export { default as Datepicker } from './symbols/Datepicker';
 export { default as Evaluation } from './symbols/Evaluation';
 export { default as RadioBox, Radio } from './symbols/RadioBox';
 

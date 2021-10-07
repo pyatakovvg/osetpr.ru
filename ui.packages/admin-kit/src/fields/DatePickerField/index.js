@@ -3,7 +3,7 @@ import React from 'react';
 import types from 'prop-types';
 
 import BaseField from '../BaseField';
-import DatePicker from '../../symbols/DatePicker';
+import DatePicker from '../../symbols/Datepicker';
 
 
 function DatePickerField(props) {

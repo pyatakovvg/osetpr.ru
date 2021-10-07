@@ -25,7 +25,12 @@ function Form({ handleSubmit }) {
         </Row>
         <Row>
           <Col>
-            <DatePickerField require name={'dateTo'} label={'Выполнить до'} />
+            <DatePickerField
+              require
+              useTime
+              name={'dateTo'}
+              label={'Выполнить до'}
+            />
           </Col>
         </Row>
         <Row>

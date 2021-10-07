@@ -64,7 +64,7 @@ function Card({ uuid, title, description, status, dateTo, products, total, curre
             <Text type={Text.TYPE_BODY}>На: { moment(dateTo).format('DD.MM.YYYY - HH:mm') }</Text>
           </div>
           <div className={styles['created']}>
-            <Text>Создан: { moment(createdAt).format() }</Text>
+            <Text>Создан: { moment(createdAt).format('DD.MM.YYYY - HH:mm') }</Text>
           </div>
         </div>
       </div>

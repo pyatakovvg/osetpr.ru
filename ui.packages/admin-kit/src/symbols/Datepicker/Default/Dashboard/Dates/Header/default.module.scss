@@ -1,0 +1,99 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+}
+
+.block {
+
+  display: inline-flex;
+  flex-direction: row;
+  flex: 0;
+  align-items: center;
+}
+
+.month {
+
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: .1px;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 200ms;
+
+  &:hover {
+    color: $primary;
+  }
+}
+
+.year {
+
+  display: inline-block;
+  margin: 0 0 0 4px;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: .1px;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 200ms;
+
+  &:hover {
+    color: $primary;
+  }
+}
+
+.delimiter {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+.line {
+
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 auto;
+  height: 1px;
+  background: $pale-lilac;
+}
+
+.button {
+
+  display: inline-flex;
+  flex-direction: column;
+  flex: 0 auto;
+  width: 32px;
+  height: 32px;
+  border-radius: 2px;
+  border: 1px solid $pale-lilac;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: border 200ms;
+
+  &:hover {
+
+    border-color: $coal-dark;
+  }
+
+  & + & {
+
+    margin: 0 0 0 10px;
+  }
+}
+
+.icon {
+
+  display: inline-block;
+  font-size: 12px;
+  color: $coal-dark;
+}
