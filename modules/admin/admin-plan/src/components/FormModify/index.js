@@ -32,6 +32,7 @@ function FormModify() {
     <div className={styles['wrapper']}>
       <Form
         initialValues={{
+          products: [],
           ...item,
         }}
         onSubmit={(data) => handleUpdate(data)}

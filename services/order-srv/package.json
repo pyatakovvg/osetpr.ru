@@ -20,7 +20,7 @@
     "@sys.packages/request": "1.0.0",
     "@sys.packages/server": "1.0.0",
     "@sys.packages/utils": "1.0.0",
-    "ajv": "8.6.2",
+    "ajv": "8.6.3",
     "busboy": "0.3.1",
     "dotenv": "10.0.0",
     "node-sagas": "0.0.6"
