@@ -1,5 +1,5 @@
 
-import { selectInProcess } from '@modules/admin-orders';
+import { selectInProcess } from '@modules/admin-plans';
 
 import { Header, Page, PageControls, PageContent, Button } from '@ui.packages/admin-kit';
 

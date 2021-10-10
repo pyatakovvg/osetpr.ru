@@ -2,16 +2,14 @@
 import { NetworkError } from "@packages/errors";
 
 import logger from '@sys.packages/logger';
-import { sendEvent, sendCommand } from '@sys.packages/rabbit';
+// import { sendEvent, sendCommand } from '@sys.packages/rabbit';
 
 import Sagas from 'node-sagas';
 
-import getOrder from './order/get';
-import updateOrder from './order/update';
-import createOrder from './order/create';
-import restoreOrder from './order/restore';
+import getPlan from './plan/get';
+import createPlan from './plan/create';
+import restorePlan from './plan/restore';
 
-import getProducts from './product/get';
 import createProducts from './product/create';
 import restoreProducts from './product/restore';
 
@@ -44,63 +42,36 @@ export default class Saga {
     const body = ctx['request']['body'];
 
     return sagaBuilder
-      .step('Create order')
+      .step('Create plan')
       .invoke(async (params) => {
-        logger.info('Create order');
-        const orderUuid = await createOrder(body);
-        params.setOrderUuid(orderUuid);
+        logger.info('Create plan');
+        const planUuid = await createPlan(body);
+        params.setPlanUuid(planUuid);
       })
       .withCompensation(async (params) => {
-        logger.info('Restore created order');
-        const orderUuid = params.getOrderUuid();
-        await restoreOrder(orderUuid);
+        logger.info('Restore created plan');
+        const planUuid = params.getPlanUuid();
+        await restorePlan(planUuid);
       })
 
       .step('Create products')
       .invoke(async (params) => {
         logger.info('Create products');
-        const orderUuid = params.getOrderUuid();
-        await createProducts(orderUuid, body['products']);
+        const planUuid = params.getPlanUuid();
+        await createProducts(planUuid, body['products']);
       })
       .withCompensation(async (params) => {
-        logger.info('Restore update products');
-        const orderUuid = params.getOrderUuid();
-        await restoreProducts(orderUuid);
+        logger.info('Restore created products');
+        const planUuid = params.getPlanUuid();
+        await restoreProducts(planUuid);
       })
 
-      .step('Update order')
+      .step('Get created plan')
       .invoke(async (params) => {
-        logger.info('Update order');
-        const orderUuid = params.getOrderUuid();
-        const products = await getProducts(orderUuid);
-
-        if (products.length) {
-          const total = products.reduce((prev, next) => prev + next['total'], 0);
-          await updateOrder(orderUuid, {
-            total,
-            currencyCode: products[0]['currencyCode'],
-          });
-        }
-      })
-
-      .step('Get created order')
-      .invoke(async (params) => {
-        logger.info('Get updated order');
-        const orderUuid = params.getOrderUuid();
-        const order = await getOrder(orderUuid);
-        params.setOrder(order);
-      })
-
-      .step('Send event')
-      .invoke(async (params) => {
-        const order = params.getOrder();
-        await sendEvent(process.env['EXCHANGE_ORDER_CREATE'], JSON.stringify(order));
-      })
-
-      .step('Send to mail')
-      .invoke(async (params) => {
-        const order = params.getOrder();
-        await sendCommand(process.env['QUEUE_MAIL_ORDER_CREATE'], JSON.stringify(order));
+        logger.info('Get created plan');
+        const planUuid = params.getPlanUuid();
+        const plan = await getPlan(planUuid);
+        params.setPlan(plan);
       })
 
       .build();

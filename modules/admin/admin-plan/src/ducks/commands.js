@@ -13,6 +13,10 @@ import {
   getProductsRequestFailAction,
   getProductsRequestSuccessAction,
 
+  createItemRequestAction,
+  createItemRequestFailAction,
+  createItemRequestSuccessAction,
+
   updateItemRequestAction,
   updateItemRequestFailAction,
   updateItemRequestSuccessAction,
@@ -64,6 +68,41 @@ export const getItem = (uuid) => async (dispatch) => {
       mode: 'danger',
       title: 'Ошибка при выполнении операции',
     }));
+  }
+};
+
+export const createItem = (data) => async (dispatch) => {
+  try {
+    dispatch(createItemRequestAction());
+
+    const result = await request({
+      url: '/plans',
+      method: 'post',
+      data: {
+        ...data,
+      },
+    });
+
+    dispatch(createItemRequestSuccessAction(result['data']));
+    dispatch(pushNotification({
+      mode: 'success',
+      title: 'Операция выполнена успешно',
+    }));
+
+    return result['data'];
+  }
+  catch(error) {
+    dispatch(createItemRequestFailAction(error));
+
+    if (error instanceof UnauthorizedError) {
+      return void 0;
+    }
+    dispatch(pushNotification({
+      mode: 'danger',
+      title: 'Ошибка при выполнении операции',
+    }));
+
+    return null;
   }
 };
 

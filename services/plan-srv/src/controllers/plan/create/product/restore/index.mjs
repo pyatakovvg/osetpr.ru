@@ -2,10 +2,14 @@
 import { models } from "@sys.packages/db";
 
 
-export default async function(orderUuid) {
-  const { OrderProduct } = models;
+export default async function(planUuid) {
+  const { PlanProduct } = models;
 
-  await OrderProduct.destroy({
-    where: { orderUuid }
+  const result = await PlanProduct.findAll({
+    where: {
+      planUuid,
+    },
   });
+
+  return result.map((item) => item.toJSON());
 };

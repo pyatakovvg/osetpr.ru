@@ -45,6 +45,17 @@ const typesSlice = createSlice({
       state['inProductsProcess'] = false;
     },
 
+    createItemRequestAction(state) {
+      state['inProcess'] = true;
+    },
+    createItemRequestFailAction(state) {
+      state['inProcess'] = false;
+    },
+    createItemRequestSuccessAction(state, { payload }) {
+      state['item'] = payload;
+      state['inProcess'] = false;
+    },
+
     updateItemRequestAction(state) {
       state['inProcess'] = true;
     },
@@ -68,6 +79,10 @@ export const {
   getProductsRequestAction,
   getProductsRequestFailAction,
   getProductsRequestSuccessAction,
+
+  createItemRequestAction,
+  createItemRequestFailAction,
+  createItemRequestSuccessAction,
 
   updateItemRequestAction,
   updateItemRequestFailAction,

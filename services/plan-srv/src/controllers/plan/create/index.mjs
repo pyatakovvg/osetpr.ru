@@ -6,6 +6,7 @@
 import Saga from './saga.mjs';
 import SagaParams from './saga-params.mjs';
 
+import planBuilder from './builder/product.mjs';
 // import orderScheme from "../../../_schemes/order.json";
 
 
@@ -27,6 +28,6 @@ export default () => async (ctx) => {
 
   ctx.body = {
     success: true,
-    data: params.getOrder(),
+    data: planBuilder(params.getPlan()),
   };
 };

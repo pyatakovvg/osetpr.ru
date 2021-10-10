@@ -1,21 +1,21 @@
 
 export default class SagaParams {
-  _orderUuid = null;
-  _order = null;
+  _planUuid = null;
+  _plan = null;
 
-  getOrderUuid() {
-    return this._orderUuid;
+  getPlanUuid() {
+    return this._planUuid;
   }
 
-  setOrderUuid(orderUuid) {
-    this._orderUuid = orderUuid;
+  setPlanUuid(planUuid) {
+    this._planUuid = planUuid;
   }
 
-  getOrder() {
-    return this._order;
+  getPlan() {
+    return this._plan;
   }
 
-  setOrder(order) {
-    this._order = order;
+  setPlan(plan) {
+    this._plan = plan;
   }
 }
