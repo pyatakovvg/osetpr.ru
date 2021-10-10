@@ -6,6 +6,7 @@ import { getAllUsers } from '../controllers/users';
 import { getAllCustomers } from '../controllers/customers';
 import { getAllCategories } from '../controllers/category';
 import { getAllCurrencies } from '../controllers/currency';
+import { getAllPlans, createPlan, updatePlan, getByIdPlan } from '../controllers/plan';
 
 import { getProfile } from '../controllers/profile';
 
@@ -19,6 +20,11 @@ export default (router) => {
   router.delete('/gallery', deleteImages());
 
   router.put('/orders/:uuid/status', updateOrderStatus());
+
+  router.get('/plans', getAllPlans());
+  router.post('/plans', createPlan());
+  router.put('/plans/:uuid', updatePlan());
+  router.get('/plans/:uuid', getByIdPlan());
 
   router.get('/orders', getAllOrders());
   router.get('/orders/:uuid', getByOrderId());

@@ -2,7 +2,7 @@
 import { NetworkError } from '@packages/errors';
 
 import logger from '@sys.packages/logger';
-// import { sendEvent } from '@sys.packages/rabbit';
+import { sendEvent } from '@sys.packages/rabbit';
 
 import Sagas from 'node-sagas';
 
@@ -25,7 +25,7 @@ export default class CopySaga {
   }
 
   async execute(params) {
-    const saga = await this.getCreateProductSagaDefinition(this.ctx);
+    const saga = await this.getSagaDefinition(this.ctx);
     try {
       return await saga.execute(params);
     }
@@ -39,7 +39,7 @@ export default class CopySaga {
     }
   }
 
-  async getCreateProductSagaDefinition() {
+  async getSagaDefinition() {
     const sagaBuilder = new Sagas.SagaBuilder();
     const body = this.ctx['request']['body'];
 
@@ -83,11 +83,11 @@ export default class CopySaga {
         params.setProduct(product)
       })
 
-      // .step('Send event')
-      // .invoke(async (params) => {
-      //   const product = params.getProduct();
-      //   await sendEvent(process.env['EXCHANGE_PRODUCT_CREATE'], JSON.stringify(product));
-      // })
+      .step('Send event')
+      .invoke(async (params) => {
+        const product = params.getProduct();
+        await sendEvent(process.env['EXCHANGE_PRODUCT_CREATE'], JSON.stringify(product));
+      })
 
       .build();
   }

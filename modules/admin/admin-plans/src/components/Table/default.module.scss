@@ -1,0 +1,60 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: block;
+  padding: 32px;
+  background: $white;
+  border: 1px solid $pale-lilac;
+  border-radius: 8px;
+  width: 900px;
+}
+
+.row {
+
+  display: block;
+}
+
+.title {
+
+  display: block;
+  text-decoration: underline;
+}
+
+.description {
+
+  display: block;
+  margin: 16px 0 0;
+}
+
+.status {
+
+  display: block;
+}
+
+.date {
+
+  display: block;
+  margin: 16px 0 0;
+}
+
+.controls {
+
+  display: block;
+  margin: 16px 0 0;
+}
+
+.products {
+
+  display: block;
+  counter-reset: product;
+}
+
+.total {
+
+  display: block;
+  text-align: right;
+  margin: 24px 0 0;
+}

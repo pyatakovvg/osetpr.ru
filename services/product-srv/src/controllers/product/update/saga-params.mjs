@@ -1,5 +1,5 @@
 
-export default class UpdateSagaParams {
+export default class SagaParams {
   _product = null;
   _gallery = null;
   _attributes = null;

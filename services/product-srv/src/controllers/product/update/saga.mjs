@@ -2,7 +2,7 @@
 import { NetworkError } from "@packages/errors";
 
 import logger from '@sys.packages/logger';
-// import { sendEvent } from '@sys.packages/rabbit';
+import { sendEvent } from '@sys.packages/rabbit';
 
 import Sagas from 'node-sagas';
 
@@ -17,7 +17,7 @@ import updateProduct from './product/update';
 import restoreProduct from './product/restore';
 
 
-export default class UpdateSaga {
+export default class Saga {
   ctx = null;
 
   constructor(ctx) {
@@ -25,7 +25,7 @@ export default class UpdateSaga {
   }
 
   async execute(params) {
-    const saga = await this.getUpdateProductSagaDefinition(this.ctx);
+    const saga = await this.getSagaDefinition(this.ctx);
     try {
       return await saga.execute(params);
     }
@@ -40,7 +40,7 @@ export default class UpdateSaga {
     }
   }
 
-  async getUpdateProductSagaDefinition(ctx) {
+  async getSagaDefinition(ctx) {
     const sagaBuilder = new Sagas.SagaBuilder();
 
     const { uuid } = ctx['params'];
@@ -97,11 +97,11 @@ export default class UpdateSaga {
         params.setProduct(product)
       })
 
-      // .step('Send event')
-      // .invoke(async (params) => {
-      //   const product = params.getProduct();
-      //   await sendEvent(process.env['EXCHANGE_PRODUCT_UPDATE'], JSON.stringify(product));
-      // })
+      .step('Send event')
+      .invoke(async (params) => {
+        const product = params.getProduct();
+        await sendEvent(process.env['EXCHANGE_PRODUCT_UPDATE'], JSON.stringify(product));
+      })
 
       .build();
   }

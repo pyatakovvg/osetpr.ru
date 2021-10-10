@@ -37,7 +37,7 @@ const Input = forwardRef(({ mode, className, disabled, onBlur, onFocus, ...props
     setFocus(false);
   }
 
-  const classNameInputContainer = cn(className, styles['container'], {
+  const classNameInputContainer = cn(styles['container'], {
     [styles['container--focus']]: isFocus,
   }, {
     [styles['mode--info']]: mode === Mode.INFO,
@@ -48,12 +48,13 @@ const Input = forwardRef(({ mode, className, disabled, onBlur, onFocus, ...props
   }, {
     [styles['disabled']]: disabled,
   });
+  const inputClassName = cn(styles['input'], className);
 
   return (
     <div className={classNameInputContainer}>
       <input
         ref={ref}
-        className={styles['input']}
+        className={inputClassName}
         disabled={disabled}
         {...props}
         onFocus={handleFocus}

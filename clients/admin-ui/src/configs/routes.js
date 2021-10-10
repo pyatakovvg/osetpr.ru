@@ -33,6 +33,30 @@ const routes = [
     ),
   },
   {
+    path: '/plans',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "admin-plans" */
+      '@modules/admin-plans'
+    ),
+  },
+  {
+    path: '/plans/create',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "admin-plan" */
+      '@modules/admin-plan'
+    ),
+  },
+  {
+    path: '/plans/:uuid',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "admin-plan" */
+      '@modules/admin-plan'
+    ),
+  },
+  {
     path: '/products/create',
     wrapper: 'Navigate',
     module: import(

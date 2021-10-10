@@ -3,10 +3,12 @@ import { Container, Row, Col, InputField } from '@ui.packages/admin-kit';
 
 import React from 'react';
 
+import styles from './default.module.scss';
+
 
 export default function Step1() {
   return (
-    <Container>
+    <Container className={styles['wrapper']}>
       <Row>
         <Col>
           <InputField name="login" label="Логин" />

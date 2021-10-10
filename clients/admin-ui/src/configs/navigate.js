@@ -16,6 +16,11 @@ const navigate = [
     icon: 'fas fa-images',
   },
   {
+    title: 'Планы',
+    path: '/plans',
+    icon: 'fas fa-percentage',
+  },
+  {
     title: 'Клиенты',
     path: '/customers',
     icon: 'fas fa-user-friends',

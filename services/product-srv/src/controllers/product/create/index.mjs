@@ -3,8 +3,8 @@ import { BadRequestError } from '@packages/errors';
 
 import Ajv from 'ajv';
 
-import CreateSaga from "./create-saga.mjs";
-import CreateSagaParams from "./create-saga-params.mjs";
+import Saga from "./saga.mjs";
+import SagaParams from "./saga-params.mjs";
 
 import productScheme from '../../../_schemes/product.json';
 
@@ -19,8 +19,8 @@ export default () => async (ctx) => {
     throw new BadRequestError('Неверный формат запроса');
   }
 
-  const sagaParams = new CreateSagaParams();
-  const saga = new CreateSaga(ctx);
+  const sagaParams = new SagaParams();
+  const saga = new Saga(ctx);
 
   const params = await saga.execute(sagaParams);
 

@@ -75,8 +75,6 @@ export default () => async (ctx) => {
     ],
   });
 
-  console.log(result['rows'].map((item) => item.toJSON()))
-
   ctx.body = {
     success: true,
     data: result['rows'].map((item) => item.toJSON()),

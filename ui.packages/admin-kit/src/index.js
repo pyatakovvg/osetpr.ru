@@ -41,7 +41,7 @@ export { default as SelectField } from './fields/SelectField';
 export { default as TextareaField } from './fields/TextareaField';
 export { default as CheckBoxField } from './fields/CheckBoxField';
 export { default as RadioBoxField } from './fields/RadioBoxField';
-export { default as MaskInputField } from './fields/InputMaskField';
+export { default as InputMaskField } from './fields/InputMaskField';
 export { default as EvaluationField } from './fields/EvaluationField';
 export { default as DatePickerField } from './fields/DatePickerField';
 

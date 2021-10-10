@@ -89,23 +89,23 @@ function DaData({ className, disabled, mode, value, onFocus, onChange, onBlur })
   }, [suggestions, isFocus]);
 
   useEffect(function clickEvents() {
-    function handleClick(event) {
-      event.stopPropagation();
-
-      if (isFocus) {
-        const { current: wrapperElement } = wrapperRef;
-        const portalElement = document.querySelector('#selectOptionsPortal');
-        const { current: optionsElement } = suggestionsRef;
-
-        if (optionsElement && ! optionsElement.contains(event['target'])) {
-          handleClose();
-        }
-
-        if (portalElement && ! portalElement.contains(event['target']) && ! portalElement.contains(wrapperElement)) {
-          handleClose();
-        }
-      }
-    }
+    // function handleClick(event) {
+    //   event.stopPropagation();
+    //
+    //   if (isFocus) {
+    //     const { current: wrapperElement } = wrapperRef;
+    //     const portalElement = document.querySelector('#selectOptionsPortal');
+    //     const { current: optionsElement } = suggestionsRef;
+    //
+    //     if (optionsElement && ! optionsElement.contains(event['target'])) {
+    //       handleClose();
+    //     }
+    //
+    //     if (portalElement && ! portalElement.contains(event['target']) && ! portalElement.contains(wrapperElement)) {
+    //       handleClose();
+    //     }
+    //   }
+    // }
 
     // document.addEventListener('click', handleClick);
     if (document.querySelector('#scroller')) {
@@ -119,9 +119,9 @@ function DaData({ className, disabled, mode, value, onFocus, onChange, onBlur })
     };
   });
 
-  function handleClose() {
-    setFocus(false);
-  }
+  // function handleClose() {
+  //   setFocus(false);
+  // }
 
   function calculatePositionOptions() {
     if ( ! isFocus) {
@@ -139,7 +139,6 @@ function DaData({ className, disabled, mode, value, onFocus, onChange, onBlur })
 
     optionsElement.style.left = wrapperRect['left'] + 'px';
     optionsElement.style.top = wrapperRect['bottom'] + 'px';
-    optionsElement.style.width = wrapperRect['width'] + 'px';
   }
 
   function handleInputChange(event) {
@@ -169,6 +168,7 @@ function DaData({ className, disabled, mode, value, onFocus, onChange, onBlur })
       <div className={styles['container']}>
         <Input
           ref={inputRef}
+          className={styles['input']}
           autoComplete="off"
           value={value}
           mode={mode}
@@ -176,6 +176,7 @@ function DaData({ className, disabled, mode, value, onFocus, onChange, onBlur })
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
         />
+        <span className={cn(styles['icon'], 'fas fa-search-location')} />
       </div>
       {isFocus && displaySuggestions && !! suggestions.length && (
         <Suggestions ref={suggestionsRef} items={suggestions} onSelect={handleSelect} />

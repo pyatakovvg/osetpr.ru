@@ -33,6 +33,14 @@ const routes = [
     ),
   },
   {
+    path: '/settings',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "order-settings" */
+      '@modules/order-settings'
+    ),
+  },
+  {
     path: '/sign-in',
     wrapper: 'Empty',
     module: import(

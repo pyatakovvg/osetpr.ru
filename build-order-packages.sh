@@ -31,8 +31,10 @@ echo '[--- Order main ---]'
 cd  ./order-main && npx yarn build
 echo '[--- Order orders ---]'
 cd  ../order-orders && npx yarn build
-echo '[--- Order order modify ---]'
+echo '[--- Order modify ---]'
 cd  ../order-order && npx yarn build
+echo '[--- Order settings ---]'
+cd  ../order-settings && npx yarn build
 echo '[--- Order sign in ---]'
 cd  ../order-sign-in && npx yarn build
 echo '[--- Order sign up ---]'

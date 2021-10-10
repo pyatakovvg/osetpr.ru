@@ -1,0 +1,25 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: block;
+  width: 600px;
+  padding: 0 34px;
+}
+
+.content {
+
+  display: block;
+  height: 500px;
+  overflow: auto;
+}
+
+.controls {
+
+  display: block;
+  text-align: right;
+  padding: 24px 0 0;
+  border-top: 1px solid $pale-lilac;
+}

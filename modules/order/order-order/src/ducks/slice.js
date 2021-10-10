@@ -18,7 +18,9 @@ const slice = createSlice({
   reducers: {
     resetStateAction(state) {
       state['item'] = null;
+      state['products'] = [];
       state['inProcess'] = false;
+      state['inProductsProcess'] = false;
     },
 
     getItemRequestAction(state) {

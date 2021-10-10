@@ -12,6 +12,8 @@
     "@modules/admin-main": "1.0.0",
     "@modules/admin-order": "1.0.0",
     "@modules/admin-orders": "1.0.0",
+    "@modules/admin-plan": "1.0.0",
+    "@modules/admin-plans": "1.0.0",
     "@modules/admin-product": "1.0.0",
     "@modules/admin-products": "1.0.0",
     "@modules/admin-sign-in": "1.0.0",

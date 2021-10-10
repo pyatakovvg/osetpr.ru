@@ -33,6 +33,10 @@ echo '[--- Admin order ---]'
 cd  ../admin-order && npx yarn build
 echo '[--- Admin orders ---]'
 cd  ../admin-orders && npx yarn build
+echo '[--- Admin plan ---]'
+cd  ../admin-plan && npx yarn build
+echo '[--- Admin plans ---]'
+cd  ../admin-plans && npx yarn build
 echo '[--- Admin customers ---]'
 cd  ../admin-customers && npx yarn build
 echo '[--- Admin product ---]'
