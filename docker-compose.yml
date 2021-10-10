@@ -122,6 +122,26 @@ services:
       - gallery_srv
 
 
+  plan_srv:
+    container_name: plan_srv
+    build:
+      context: ./
+      dockerfile: Dockerfile.plan-srv
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+    depends_on:
+      - db
+      - rabbit
+      - product_srv
+    links:
+      - db
+      - rabbit
+
+
   order_srv:
     container_name: order_srv
     build:
