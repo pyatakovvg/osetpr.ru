@@ -22,11 +22,16 @@ export default function(sequelize, DataType) {
     timestamps: true,
   });
 
-  Plan.associate = ({ PlanProduct }) => {
+  Plan.associate = ({ PlanProduct, PlanUser }) => {
 
     Plan.hasMany(PlanProduct, {
       foreignKey: 'planUuid',
       as: 'products',
+    });
+
+    Plan.hasMany(PlanUser, {
+      foreignKey: 'planUuid',
+      as: 'users',
     });
   };
 

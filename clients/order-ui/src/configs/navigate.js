@@ -8,7 +8,7 @@ const navigate = [
   {
     title: "Настройки",
     path: '/settings',
-    icon: 'fas fa-tag',
+    icon: 'fas fa-user-cog',
   },
 ];
 

@@ -6,10 +6,11 @@ import productBuilder from './builder/product.mjs';
 
 export default () => async (ctx) => {
   let where = {};
+  let userWhere = {};
   let offset = {};
   let options = {};
 
-  const { Plan, PlanProduct, Product, Currency } = models;
+  const { Plan, PlanProduct, PlanUser, Product, Currency } = models;
 
   const {
     limit = null,
@@ -25,7 +26,7 @@ export default () => async (ctx) => {
   }
 
   if (userUuid) {
-    where['userUuid'] = userUuid;
+    userWhere['userUuid'] = userUuid;
   }
 
   if (isUse !== null) {
@@ -51,6 +52,13 @@ export default () => async (ctx) => {
     ],
     attributes: ['uuid', 'name', 'createdAt', 'updatedAt'],
     include: [
+      {
+        model: PlanUser,
+        attributes: [],
+        required: !! Object.keys(userWhere).length,
+        where: userWhere,
+        as: 'users',
+      },
       {
         model: PlanProduct,
         as: 'products',

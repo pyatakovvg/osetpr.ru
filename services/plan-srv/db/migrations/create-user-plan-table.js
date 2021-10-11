@@ -6,7 +6,12 @@ module.exports = {
     try {
 
       await queryInterface.createTable('PlanUsers', {
-        uuid: {
+        id: {
+          type: DataType.INTEGER,
+          primaryKey: true,
+          autoIncrement: true,
+        },
+        userUuid: {
           type: DataType.UUID,
           allowNull: false,
         },

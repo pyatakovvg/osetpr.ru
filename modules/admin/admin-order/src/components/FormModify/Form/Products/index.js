@@ -1,9 +1,10 @@
 
-import { Dialog, openDialog, closeDialog } from '@ui.packages/dialog';
 import { Header, Button, Text } from '@ui.packages/admin-kit';
+import { Dialog, openDialog, closeDialog } from '@ui.packages/dialog';
 
 import React  from "react";
-import { useDispatch } from 'react-redux';
+import { getFormValues } from 'redux-form';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Product from './Product';
 import ProductsDialog from './Dialog';
@@ -14,10 +15,11 @@ import styles from './default.module.scss';
 
 function Products({ fields }) {
   const dispatch = useDispatch();
+  const form = useSelector(getFormValues('order-modify'));
 
   function handleAdd() {
     const products = fields.getAll();
-    dispatch(openDialog('products', products));
+    dispatch(openDialog('products', { userUuid: form['userUuid'], products }));
   }
 
   function handleRemoveProduct(index) {

@@ -5,17 +5,32 @@ import productBuilder from './builder/product.mjs';
 
 
 export default () => async (ctx) => {
-  const params = ctx['params'];
+  const { userUuid, ...params } = ctx['request']['query'];
 
-  const result = await request({
+  const { data: products, meta } = await request({
     url: process.env['PRODUCT_API_SRV'] + '/products',
     method: 'get',
-    params,
+    params: {
+      ...params,
+    },
   });
+
+  let userPlan = null;
+  if (userUuid) {
+    const { data: plans } = await request({
+      url: process.env['PLAN_API_SRV'] + '/plans',
+      method: 'get',
+      params: {
+        userUuid,
+      },
+    });
+    userPlan = plans.length ? plans[0]['products'] : null;
+  }
+
 
   ctx.body = {
     success: true,
-    data: result['data'].map((item) => productBuilder(item)),
-    meta: result['meta'],
+    data: products.map((item) => productBuilder(item, userPlan ? userPlan['products'] : [])),
+    meta: meta,
   };
 }

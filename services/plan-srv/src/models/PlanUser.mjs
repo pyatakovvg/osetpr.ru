@@ -8,7 +8,12 @@ export default function(sequelize, DataType) {
   class PlanUser extends Model {}
 
   PlanUser.init({
-    uuid: {
+    id: {
+      type: DataType.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    userUuid: {
       type: DataType.UUID,
       allowNull: false,
     },

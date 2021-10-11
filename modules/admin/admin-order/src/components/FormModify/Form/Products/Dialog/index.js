@@ -17,7 +17,7 @@ function Dialog({ data, onChange }) {
   const inProcess = useSelector(selectInProductsProcess);
 
   useMount(() => {
-    dispatch(getProducts());
+    dispatch(getProducts({ userUuid: data['userUuid'] }));
   });
 
   function handleChange(data) {
@@ -28,7 +28,7 @@ function Dialog({ data, onChange }) {
     <div className={styles['wrapper']}>
       {inProcess
         ? <Spinner />
-        : <Products data={data} onChange={(data) => handleChange(data)} />}
+        : <Products data={data['products']} onChange={(data) => handleChange(data)} />}
     </div>
   );
 }

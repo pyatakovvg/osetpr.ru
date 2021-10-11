@@ -13,7 +13,7 @@ function Cards() {
         <Card icon={'fas fa-tag'} title={'Заказы'} href={'/orders'} />
       </div>
       <div className={styles['line']}>
-        <Card icon={'fas fa-images'} title={'Настройки'} href={'/settings'} />
+        <Card icon={'fas fa-user-cog'} title={'Настройки'} href={'/settings'} />
       </div>
     </div>
   );

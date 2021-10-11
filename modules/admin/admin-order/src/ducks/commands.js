@@ -54,13 +54,16 @@ export const getCustomers = () => async (dispatch) => {
   }
 };
 
-export const getProducts = () => async (dispatch) => {
+export const getProducts = (params) => async (dispatch) => {
   try {
     dispatch(getProductsRequestAction());
 
     const result = await request({
       url: '/products',
       method: 'get',
+      params: {
+        ...params,
+      },
     });
 
     dispatch(getProductsRequestSuccessAction(result['data']));

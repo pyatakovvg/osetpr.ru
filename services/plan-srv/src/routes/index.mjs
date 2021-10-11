@@ -1,8 +1,11 @@
 
+import { getAllUsers } from "../controllers/user";
 import { getAllPlans, createPlan, updatePlan, deletePlans } from "../controllers/plan";
 
 
 export default (router) => {
+
+  router.get('/api/v1/users', getAllUsers());
 
   router.get('/api/v1/plans', getAllPlans());
   router.post('/api/v1/plans', createPlan());
