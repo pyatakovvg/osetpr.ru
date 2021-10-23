@@ -15,6 +15,7 @@ function Main() {
           <p className={styles['text']}>Магазин находится в разработке</p>
           <p className={styles['text-2']}>По вопросам сотрудничества, заказов и доставки, обращаться по номеру телефона</p>
           <p className={styles['phone']}>+ 7 (978) 590-60-60</p>
+          {/*<a className={styles['link']} href={'https://order.osetpr.ru'} rel={'noopener'} target="_blank">Кабинет партнера</a>*/}
         </div>
       </div>
     </section>

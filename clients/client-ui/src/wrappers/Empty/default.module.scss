@@ -23,3 +23,11 @@
   max-width: 1024px;
   z-index: 10;
 }
+
+@media screen and (max-width: 600px) {
+
+  .wrapper {
+
+    background-size: 50px, 50px, 60px;
+  }
+}
