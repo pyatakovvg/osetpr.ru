@@ -45,6 +45,8 @@ echo '[--- Admin products ---]'
 cd  ../admin-products && npx yarn build
 echo '[--- Admin gallery ---]'
 cd  ../admin-gallery && npx yarn build
+echo '[--- Admin customer ---]'
+cd  ../admin-customer && npx yarn build
 echo '[--- Admin customers ---]'
 cd  ../admin-customers && npx yarn build
 echo '[--- Admin sign in ---]'
