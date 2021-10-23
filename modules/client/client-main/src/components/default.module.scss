@@ -1,31 +1,59 @@
 
-@import "~@ui.packages/theme";
+@import "~@ui.packages/theme-2";
 
 
 .wrapper {
 
-  display: block;
-  width: 900px;
+  display: flex;
+  flex: 1 0;
+  justify-content: center;
+  align-items: center;
 }
-
-.header {
-
-  display: block;
-  font-family: inherit;
-  font-weight: 700;
-  font-size: 18px;
-  letter-spacing: .5px;
-  margin: 0 0 40px;
-}
-
 
 .content {
 
+  display: flex;
+  flex: 0 0;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logotype {
+
   display: block;
 }
 
-.controls {
+.description {
 
   display: block;
-  text-align: right;
+  margin: 40px 0 0;
+  width: 400px;
+  text-align: center;
+}
+
+.text {
+
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  color: $white;
+}
+
+.text-2 {
+
+  display: block;
+  font-size: 16px;
+  font-weight: 300;
+  color: $white;
+  margin: 40px 0 0;
+  line-height: 1.4;
+}
+
+.phone {
+
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  color: $white;
+  margin: 8px 0 0;
 }
