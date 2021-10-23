@@ -19,7 +19,7 @@ try {
   const app = new Application({
     routes,
     navigate,
-    useSignIn: true,
+    useSignIn: false,
     portal: document.getElementById('root'),
     reducers: {
       form: formReducer,

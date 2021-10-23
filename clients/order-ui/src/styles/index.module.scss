@@ -21,6 +21,8 @@
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    overflow: auto;
   }
 
   #root {
@@ -29,7 +31,6 @@
     flex: 1 0;
     flex-direction: column;
     height: 100%;
-    overflow: auto;
     z-index: 10;
   }
 }

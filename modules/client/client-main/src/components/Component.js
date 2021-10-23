@@ -6,24 +6,14 @@ import React from 'react';
 import styles from './default.module.scss';
 
 
-function Attributes() {
+function Main() {
   return (
-    <Page>
-      <PageContent>
-        <section className={styles['wrapper']}>
-          <div className={styles['header']}>
-            <Header level={1}>Тут будет витрина магазина</Header>
-          </div>
-        </section>
-      </PageContent>
-    </Page>
+    <section className={styles['wrapper']}>
+      <div className={styles['content']}>
+
+      </div>
+    </section>
   );
 }
 
-
-
-Attributes.propTypes = {};
-
-Attributes.defaultProps = {};
-
-export default Attributes;
+export default Main;
