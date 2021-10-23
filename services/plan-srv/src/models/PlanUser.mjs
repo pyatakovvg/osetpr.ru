@@ -23,10 +23,14 @@ export default function(sequelize, DataType) {
     },
   }, {
     sequelize,
-    timestamps: false,
   });
 
-  PlanUser.associate = () => {};
+  PlanUser.associate = ({ Plan }) => {
+
+    PlanUser.belongsTo(Plan, {
+      as: 'plan',
+    });
+  };
 
   return PlanUser;
 };

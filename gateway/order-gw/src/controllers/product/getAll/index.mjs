@@ -30,7 +30,7 @@ export default () => async (ctx) => {
     },
   });
 
-  const userPlan = plans.length ? plans[0] : null;
+  const userPlan = plans.length ? plans[plans.length - 1] : null;
 
   ctx.body = {
     success: true,

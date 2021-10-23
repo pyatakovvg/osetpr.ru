@@ -21,11 +21,11 @@
     "@sys.packages/utils": "1.0.0",
     "busboy": "0.3.1",
     "dotenv": "10.0.0",
-    "sharp": "0.29.1"
+    "sharp": "0.29.2"
   },
   "devDependencies": {
     "cross-env": "7.0.3",
-    "nodemon": "2.0.13",
+    "nodemon": "2.0.14",
     "sequelize-cli": "6.2.0"
   }
 }

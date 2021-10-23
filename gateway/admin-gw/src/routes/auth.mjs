@@ -3,7 +3,7 @@ import { getImages, getImage, createImage, updateImage, deleteImages } from '../
 import { getAllProducts, createProduct, deleteProducts, updateProduct, getProductById } from '../controllers/product';
 import { getByOrderId, getAllOrders, updateByOrderId, createOrder, updateOrderStatus } from '../controllers/order';
 import { getAllUsers } from '../controllers/users';
-import { getAllCustomers } from '../controllers/customers';
+import { getAllCustomers, getCustomerByUuid, updateCustomer } from '../controllers/customers';
 import { getAllCategories } from '../controllers/category';
 import { getAllCurrencies } from '../controllers/currency';
 import { getAllPlans, createPlan, updatePlan, getByIdPlan } from '../controllers/plan';
@@ -40,6 +40,8 @@ export default (router) => {
   router.get('/users', getAllUsers());
 
   router.get('/customers', getAllCustomers());
+  router.get('/customers/:uuid', getCustomerByUuid());
+  router.put('/customers/:uuid', updateCustomer());
 
   router.get('/categories', getAllCategories());
 

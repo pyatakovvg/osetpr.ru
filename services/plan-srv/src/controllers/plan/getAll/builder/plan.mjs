@@ -3,6 +3,7 @@ export default function(data) {
   return {
     uuid: data['uuid'],
     name: data['name'],
+    users: data['users'].map((item) => item['userUuid']),
     products: data['products'].map((item) => ({
       uuid: item['mode']['uuid'],
       productUuid: item['mode']['productUuid'],

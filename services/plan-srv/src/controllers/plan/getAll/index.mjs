@@ -1,7 +1,8 @@
 
-import { models } from '@sys.packages/db';
+import moment from '@packages/moment';
+import { models, Op } from '@sys.packages/db';
 
-import productBuilder from './builder/product.mjs';
+import planBuilder from './builder/plan.mjs';
 
 
 export default () => async (ctx) => {
@@ -18,6 +19,7 @@ export default () => async (ctx) => {
     take = null,
     uuid = null,
     userUuid = null,
+    isActual = false,
     isUse = null,
   } = ctx['request']['query'];
 
@@ -25,12 +27,18 @@ export default () => async (ctx) => {
     where['uuid'] = uuid;
   }
 
+  if (isUse !== null) {
+    where['isUse'] = isUse;
+  }
+
   if (userUuid) {
     userWhere['userUuid'] = userUuid;
   }
 
-  if (isUse !== null) {
-    where['isUse'] = isUse;
+  if (isActual) {
+    userWhere['createdAt'] = {
+      [Op.lte]: moment().format('YYYY-MM-DD 23:59:59.999999 +00:00'),
+    };
   }
 
   if (limit) {
@@ -48,13 +56,14 @@ export default () => async (ctx) => {
     distinct: true,
     where: { ...where },
     order: [
-      ['createdAt', 'desc'],
+      ['createdAt', 'asc'],
+      ['users', 'createdAt', 'desc'],
     ],
     attributes: ['uuid', 'name', 'createdAt', 'updatedAt'],
     include: [
       {
         model: PlanUser,
-        attributes: [],
+        attributes: ['userUuid', 'createdAt'],
         required: !! Object.keys(userWhere).length,
         where: userWhere,
         as: 'users',
@@ -79,9 +88,10 @@ export default () => async (ctx) => {
     ],
   });
 
+  console.log(result)
   ctx.body = {
     success: true,
-    data: result['rows'].map((item) => productBuilder(item.toJSON())),
+    data: result['rows'].map((item) => planBuilder(item.toJSON())),
     meta: {
       totalRows: result['count'],
     },

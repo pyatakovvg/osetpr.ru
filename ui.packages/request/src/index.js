@@ -11,7 +11,7 @@ import qs from 'qs';
 import axios from 'axios';
 
 
-const defaultOptions = {
+const defaultConfig = {
   method: 'get',
   url: '/',
   responseType: 'json',
@@ -29,17 +29,17 @@ export const middleware = (options) => (store) => (next) => (action) => {
   return next(action);
 };
 
-const request = async (options) => {
+const request = async (config, options = {}) => {
   try {
-    options = {
-      ...defaultOptions,
-      ...options,
+    config = {
+      ...defaultConfig,
+      ...config,
     };
 
     let headers = {};
 
-    if (options['headers']) {
-      headers = options['headers'];
+    if (config['headers']) {
+      headers = config['headers'];
     }
 
     const instance = axios.create({
@@ -47,6 +47,7 @@ const request = async (options) => {
       timeout: 24000,
       headers: headers,
       withCredentials: true,
+      ...options,
     });
 
     instance.interceptors.request.use(function (config) {
@@ -56,7 +57,7 @@ const request = async (options) => {
       return config;
     });
 
-    const { data } = await instance(options);
+    const { data } = await instance(config);
 
     return data;
   }

@@ -97,6 +97,14 @@ const routes = [
     ),
   },
   {
+    path: '/customers/:uuid',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "admin-customer" */
+      '@modules/admin-customer'
+    ),
+  },
+  {
     path: '/sign-in',
     wrapper: 'Empty',
     module: import(

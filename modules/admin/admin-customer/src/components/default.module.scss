@@ -1,0 +1,39 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: block;
+  width: 900px;
+}
+
+.header {
+
+  display: block;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: .5px;
+  margin: 0 0 40px;
+}
+
+
+.content {
+
+  display: block;
+}
+
+.controls {
+
+  display: block;
+  text-align: right;
+}
+
+.item {
+  display: block;
+
+  & + & {
+    background: red;
+  }
+}

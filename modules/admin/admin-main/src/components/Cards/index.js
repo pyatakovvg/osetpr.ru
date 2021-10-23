@@ -16,6 +16,7 @@ function Cards() {
       <div className={styles['line']}>
         <Card icon={'fas fa-user-cog'} title={'Галлерея'} href={'/gallery'} />
         <Card icon={'fas fa-percentage'} title={'Фин. план'} href={'/plans'} />
+        <Card icon={'fas fa-percentage'} title={'Пользователи'} href={'/customers'} />
       </div>
       <div className={styles['line']}>
         <Card icon={'fas fa-images'} title={'Настройки'} href={'/settings'} />

@@ -19,6 +19,14 @@ module.exports = {
           type: DataType.UUID,
           allowNull: false,
         },
+        createdAt: {
+          type: DataType.DATE,
+          allowNull: false,
+        },
+        updatedAt: {
+          type: DataType.DATE,
+          allowNull: false,
+        },
       }, {
         transaction
       });

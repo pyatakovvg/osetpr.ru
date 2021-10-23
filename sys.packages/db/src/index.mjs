@@ -7,6 +7,7 @@ import Sq from 'sequelize';
 
 export let models = {};
 export let sequelize = null;
+export const Op = Sq.Op;
 
 const __dirname = process.cwd();
 
