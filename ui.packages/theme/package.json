@@ -1,6 +1,7 @@
 {
-  "private": true,
+  "private": false,
   "name": "@ui.packages/theme",
   "version": "1.0.0",
+  "license": "MIT",
   "main": "./src/index.module.scss"
 }

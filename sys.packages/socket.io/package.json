@@ -1,7 +1,8 @@
 {
-  "private": true,
+  "private": false,
   "name": "@sys.packages/socket.io",
   "version": "1.0.0",
+  "license": "MIT",
   "main": "src/index.mjs",
   "dependencies": {
     "@sys.packages/logger": "1.0.0",

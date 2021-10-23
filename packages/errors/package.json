@@ -1,6 +1,7 @@
 {
-  "private": true,
+  "private": false,
   "name": "@packages/errors",
   "version": "1.0.0",
+  "license": "MIT",
   "main": "./src/index.mjs"
 }

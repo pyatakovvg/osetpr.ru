@@ -1,7 +1,8 @@
 {
-  "private": true,
+  "private": false,
   "name": "@sys.packages/jwt",
   "version": "1.0.0",
+  "license": "MIT",
   "main": "src/index.mjs",
   "dependencies": {
     "@packages/errors": "1.0.0",

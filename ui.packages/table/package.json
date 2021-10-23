@@ -1,7 +1,8 @@
 {
-  "private": true,
+  "private": false,
   "name": "@ui.packages/table",
   "version": "1.0.0",
+  "license": "MIT",
   "module": "./lib/index.js",
   "author": {
     "name": "Viktor Pyatakov",

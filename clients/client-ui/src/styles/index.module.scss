@@ -29,7 +29,9 @@
     display: flex;
     flex: 1 0;
     flex-direction: column;
+    max-width: 1024px;
     height: 100%;
+    margin: 0 auto;
     overflow: auto;
     z-index: 10;
   }
