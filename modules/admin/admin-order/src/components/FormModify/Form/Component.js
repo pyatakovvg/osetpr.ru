@@ -1,7 +1,7 @@
 
 import { selectCustomers } from '@modules/admin-order';
 
-import { Row, Col, InputField, SelectField, TextareaField, DatePickerField } from '@ui.packages/admin-kit';
+import { Row, Col, InputField, SelectField, TextareaField, DatePickerField, DaDataField } from '@ui.packages/admin-kit';
 
 import React  from "react";
 import { FieldArray } from 'redux-form';
@@ -52,7 +52,7 @@ function Form({ handleSubmit }) {
         </Row>
         <Row>
           <Col>
-            <InputField require name={'address'} label={'Адрес доставки'} />
+            <DaDataField require name={'address'} label={'Адрес доставки'} />
           </Col>
         </Row>
       </div>

@@ -16,7 +16,7 @@ import styles from './default.module.scss';
 function Products({ fields }) {
   const dispatch = useDispatch();
   const form = useSelector(getFormValues('order-modify'));
-
+console.log(123, form)
   function handleAdd() {
     const products = fields.getAll();
     dispatch(openDialog('products', { userUuid: form['userUuid'], products }));
@@ -66,6 +66,7 @@ function Products({ fields }) {
       <div className={styles['controls']}>
         <Button
           mode={Button.MODE_PRIMARY}
+          disabled={ ! form['userUuid']}
           onClick={() => handleAdd()}
         >Добавить</Button>
       </div>

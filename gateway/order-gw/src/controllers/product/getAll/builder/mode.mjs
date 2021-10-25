@@ -1,5 +1,5 @@
 
-export default function(data, products) {
+export default function(data, products = []) {
   const planProduct = products.find((item) => item['uuid'] === data['uuid']);
   return {
     isUse: data['isUse'],

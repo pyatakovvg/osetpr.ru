@@ -11,6 +11,7 @@ export default async ({
   isUse = null,
 }) => {
   let where = {};
+  let whereMode = {};
   let offset = {};
   let options = {};
 
@@ -26,6 +27,7 @@ export default async ({
 
   if (isUse) {
     where['isUse'] = isUse;
+    whereMode['isUse'] = isUse;
   }
 
   if (limit) {
@@ -65,6 +67,7 @@ export default async ({
       {
         model: ProductMode,
         required: false,
+        where: { ...whereMode },
         as: 'modes',
         attributes: ['uuid', 'vendor', 'value', 'price', 'isUse', 'isTarget'],
         include: [
