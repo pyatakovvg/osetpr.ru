@@ -21,7 +21,7 @@ const routes = [
     wrapper: 'Empty',
     module: import(
       /* webpackChunkName: "client-main" */
-      '@modules/client-main'
+      '@modules/mobile-order'
     ),
   },
 ];
