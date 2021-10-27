@@ -1,4 +1,5 @@
 
+import { getImage } from '../controllers/gallery';
 import { getByOrderId, getAllOrders, updateByOrderId, createOrder } from '../controllers/order';
 
 import { getProfile } from '../controllers/profile';
@@ -6,6 +7,8 @@ import { signOut } from '../controllers/identity';
 
 
 export default (router) => {
+
+  router.get('/gallery/:uuid', getImage());
 
   router.get('/orders', getAllOrders());
   router.get('/orders/:uuid', getByOrderId());

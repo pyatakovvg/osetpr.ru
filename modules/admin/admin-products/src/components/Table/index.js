@@ -10,6 +10,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import cn from 'classnames';
 import styles from './default.module.scss';
 
 
@@ -51,7 +52,7 @@ function ProductList() {
             <div className={styles['products']}>
               {value['modes'].map((mode) => {
                 return (
-                  <div key={mode['uuid']} className={styles['mode']}>
+                  <div key={mode['uuid']} className={cn(styles['mode'], { [styles['not-use']]: ! mode['isUse'] })}>
                     <div className={styles['vendor']}>
                       <Text>{ mode['vendor'] }</Text>
                     </div>

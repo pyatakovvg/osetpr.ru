@@ -1,0 +1,39 @@
+{
+  "private": false,
+  "name": "mobile-ui",
+  "license": "MIT",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production react-scripts build",
+    "start": "react-scripts start"
+  },
+  "dependencies": {
+    "@modules/mobile-main": "1.0.0",
+    "@modules/mobile-product": "1.0.0",
+    "@modules/mobile-order": "1.0.0",
+    "@ui.packages/mobile-kit": "1.0.0",
+    "@ui.packages/application": "1.0.0",
+    "@ui.packages/dialog": "1.0.0",
+    "@ui.packages/notifications": "1.0.0",
+    "@ui.packages/theme-2": "1.0.0",
+    "classnames": "2.3.1",
+    "prop-types": "15.7.2",
+    "react": "17.0.2",
+    "react-redux": "7.2.5",
+    "react-router-dom": "6.0.0-beta.0",
+    "redux": "4.1.1"
+  },
+  "devDependencies": {
+    "react-scripts": "4.0.3",
+    "sass": "1.43.3"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "eslintConfig": {
+    "extends": "react-app"
+  }
+}

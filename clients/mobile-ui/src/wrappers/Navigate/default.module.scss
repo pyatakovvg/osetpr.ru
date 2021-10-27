@@ -1,0 +1,34 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: flex;
+  flex: 1 0;
+  flex-direction: column;
+  background-image: url("./net.png");
+  background-position: top;
+  background-attachment: scroll;
+  background-repeat: repeat;
+  background-size: 40px;
+  overflow: auto;
+}
+
+.header {
+
+  position: sticky;
+  top: 0;
+  display: block;
+  z-index: 20;
+}
+
+.content {
+
+  position: relative;
+  display: flex;
+  flex: 1 0;
+  flex-direction: column;
+  padding: 0 0 128px;
+  z-index: 10;
+}

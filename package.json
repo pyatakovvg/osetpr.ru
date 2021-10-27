@@ -22,6 +22,7 @@
     "modules/order/*",
     "modules/client/*",
     "modules/admin/*",
+    "modules/mobile/*",
     "clients/*",
     "gateway/*",
     "services/*"

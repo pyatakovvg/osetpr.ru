@@ -1,5 +1,5 @@
 {
-  "private": false,
+  "private": true,
   "name": "@modules/client-main",
   "version": "1.0.0",
   "license": "MIT",

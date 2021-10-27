@@ -309,6 +309,27 @@ services:
       - NODE_ENV=production
 
 
+  mobile_ui:
+    container_name: mobile_ui
+    build:
+      context: ./
+      dockerfile: Dockerfile.mobile-ui
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+    depends_on:
+      - client_gw
+    links:
+      - client_gw
+    volumes:
+      - ./clients/mobile-ui/nginx/conf.d:/etc/nginx/conf.d:ro
+    environment:
+      - NODE_ENV=production
+
+
   certbot:
     user: root
     container_name: certbot

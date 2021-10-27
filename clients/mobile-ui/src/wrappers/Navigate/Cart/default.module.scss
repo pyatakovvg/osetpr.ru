@@ -1,0 +1,32 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  display: block;
+  width: 116px;
+  height: 105px;
+  border-radius: 105px 0 0 0;
+  z-index: 99999;
+}
+
+.cart {
+
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+}
+
+.background {
+
+  display: block;
+  width: 225px;
+  height: 225px;
+  border-radius: 50%;
+  background: $background;
+  box-shadow: -2px -2px 6px 0 rgba(black, 20%);
+}

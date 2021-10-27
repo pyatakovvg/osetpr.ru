@@ -1,5 +1,5 @@
 {
-  "private": false,
+  "private": true,
   "name": "@ui.packages/search",
   "version": "1.0.0",
   "license": "MIT",

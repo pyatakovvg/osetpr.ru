@@ -1,0 +1,21 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.icon {
+
+  display: block;
+  width: 64px;
+  height: 64px;
+  background: url("./not-src.svg") center/100% no-repeat;
+}

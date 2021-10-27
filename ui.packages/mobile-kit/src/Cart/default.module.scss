@@ -1,0 +1,29 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.cart {
+
+  display: inline-flex;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: $primary;
+  align-items: center;
+}
+
+.icon {
+
+  display: inline-block;
+  width: 46px;
+  height: 46px;
+  background: url("./cart.svg") center/100% no-repeat;
+  margin: 0 0 0 2px;
+}
+
+.mode {
+
+  &--success {
+    background: $success;
+  }
+}

@@ -1,0 +1,38 @@
+
+# BUILD APP
+FROM node:16.10-alpine3.11 as ui
+
+RUN apk update && apk add bash
+RUN npm install -g npm@latest
+RUN npm config set package-lock false
+
+WORKDIR /app
+
+COPY ./clients/mobile-ui/src              ./clients/mobile-ui/src
+COPY ./clients/mobile-ui/public           ./clients/mobile-ui/public
+COPY ./clients/mobile-ui/package.json     ./clients/mobile-ui
+COPY ./clients/mobile-ui/.env.production  ./clients/mobile-ui
+COPY ./modules/mobile                     ./modules/mobile
+COPY ./ui.packages                        ./ui.packages
+COPY ./packages                           ./packages
+COPY ./package.json                       ./
+COPY ./lerna.json                         ./
+COPY ./build-mobile-packages.sh           ./
+
+RUN yarn
+
+RUN chmod +x ./build-mobile-packages.sh
+RUN ./build-mobile-packages.sh
+
+# BUILD APPLICATION
+WORKDIR /app/clients/mobile-ui
+RUN ["yarn", "run", "build"]
+
+# START NGINX
+FROM nginx
+
+COPY --from=ui /app/clients/mobile-ui/build /app
+
+WORKDIR /etc/nginx
+
+CMD ["nginx", "-g", "daemon off;"]

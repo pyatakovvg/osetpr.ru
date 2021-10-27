@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+echo ''
+echo 'Сборка пакетов "UI" для "Order"'
+echo '-------------------'
+
+cd ./ui.packages || return
+
+echo '[--- Application ---]'
+cd  ./application && npx yarn build
+echo '[--- Kit ---]'
+cd ../mobile-kit && npx yarn build
+echo '[--- HOC ---]'
+cd ../hoc && npx yarn build
+
+echo ''
+echo 'Сборка модулей для приложения "Mobile"'
+echo '-----------------------------------------'
+
+cd ../../modules/mobile || return
+
+echo '[--- Client products ---]'
+cd  ./mobile-main && npx yarn build
+echo '[--- Client product ---]'
+cd  ./mobile-product && npx yarn build
+echo '[--- Client order ---]'
+cd  ./mobile-order && npx yarn build
+
+exit 0
