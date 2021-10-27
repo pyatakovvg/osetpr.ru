@@ -20,10 +20,10 @@ echo '-----------------------------------------'
 cd ../../modules/mobile || return
 
 echo '[--- Client products ---]'
-cd  ./mobile-main && npx yarn build
+cd  ./main && npx yarn build
 echo '[--- Client product ---]'
-cd  ./mobile-product && npx yarn build
+cd  ../product && npx yarn build
 echo '[--- Client order ---]'
-cd  ./mobile-order && npx yarn build
+cd  ../order && npx yarn build
 
 exit 0
