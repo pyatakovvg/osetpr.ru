@@ -12,6 +12,8 @@ echo '[--- Kit ---]'
 cd ../mobile-kit && npx yarn build
 echo '[--- HOC ---]'
 cd ../hoc && npx yarn build
+echo '[--- Notifications ---]'
+cd ../notifications && npx yarn build
 
 echo ''
 echo 'Сборка модулей для приложения "Mobile"'
