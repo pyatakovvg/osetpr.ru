@@ -6,6 +6,7 @@ import React, { useRef, useState, useEffect } from 'react';
 
 import Error from "./Error";
 import NotSrc from "./NotSrc";
+import Loading from "./Loading";
 
 import styles from './default.module.scss';
 
@@ -71,7 +72,7 @@ export default function Image({ src }) {
   return (
     <div className={styles['wrapper']}>
       {isNotSrc && <NotSrc />}
-      {isLoading && ! isNotSrc && <p>loading</p>}
+      {isLoading && ! isNotSrc && <Loading />}
       {isError && ! isNotSrc && <Error />}
       <span ref={imageRef} className={styles['image']} />
     </div>
