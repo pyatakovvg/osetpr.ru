@@ -1,4 +1,5 @@
 
+import { name as orderReducerName, reducer as orderReducer } from '@ui.packages/order';
 import Application from '@ui.packages/application';
 import { notificationReducer } from '@ui.packages/notifications';
 
@@ -23,6 +24,7 @@ try {
     reducers: {
       form: formReducer,
       notifications: notificationReducer,
+      [orderReducerName]: orderReducer,
     },
     wrappers: { Empty, Navigate, Composite },
   });

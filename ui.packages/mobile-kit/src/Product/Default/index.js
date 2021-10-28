@@ -1,20 +1,34 @@
 
+import { selectProducts } from '@ui.packages/order'
 import { Cart, Image } from '@ui.packages/mobile-kit';
 
 import types from 'prop-types';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import Mode from './Mode';
 
 import styles from './default.module.scss';
 
 
-export default function DefaultProduct({ externalId, title, modes, gallery }) {
+function useGetProduct(uuid) {
+  const products = useSelector(selectProducts);
+  const product = products.find((item) => item[0] === uuid);
+  return product ? product[1] : null;
+}
+
+
+export default function DefaultProduct({ uuid, externalId, title, modes, gallery, toCart }) {
+  const orderProduct = useGetProduct(uuid);
   const [mode, setMode] = useState(modes.find((item) => item['isTarget']));
 
   function handleClick(mode) {
     setMode(mode);
+  }
+
+  function handleCart(product) {
+    toCart && toCart(product);
   }
 
   return (
@@ -29,19 +43,23 @@ export default function DefaultProduct({ externalId, title, modes, gallery }) {
           </Link>
           <div className={styles['information']}>
             <div className={styles['modes']}>
-              {modes.map((item) => (
-                <Mode
-                  key={item['uuid']}
-                  {...item}
-                  isActive={item['uuid'] === mode['uuid']}
-                  onClick={() => handleClick(item)}
-                />
-              ))}
+              {modes.map((item) => {
+                const orderMode = orderProduct ? orderProduct.find((mode) => mode[0] === item['uuid']) : null;
+                return (
+                  <Mode
+                    key={item['uuid']}
+                    {...item}
+                    count={orderMode && orderMode[1]}
+                    isActive={item['uuid'] === mode['uuid']}
+                    onClick={() => handleClick(item)}
+                  />
+                );
+              })}
             </div>
           </div>
         </div>
         <div className={styles['cart']}>
-          <Cart mode={Cart.mode.success} />
+          <Cart mode={Cart.mode.success} onClick={() => handleCart({ uuid: uuid, modeUuid: mode['uuid'] })} />
         </div>
       </div>
     </div>
