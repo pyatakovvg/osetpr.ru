@@ -4,6 +4,7 @@
 
 .wrapper {
 
+  position: relative;
   display: flex;
   flex: 1 0;
 }
@@ -15,58 +16,83 @@
   flex-direction: column;
 }
 
-.logotype {
+.back {
+
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: $background;
+  justify-content: center;
+  align-items: center;
+  z-index: 90;
+}
+
+.icon {
 
   display: block;
+  width: 24px;
+  height: 24px;
+  background: url("./back.svg") center/100% no-repeat;
+}
+
+.gallery {
+
+  display: block;
+  width: 100vw;
+  height: 100vw;
+  background: $gray-darken;
+}
+
+.title {
+
+  display: block;
+  padding: 24px 16px;
+  background: $gray;
+}
+
+.modes {
+
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  background: $gray;
+  padding: 0 16px 48px;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.cart {
+
+  position: absolute;
+  right: 16px;
+  bottom: -30px;
 }
 
 .description {
 
   display: block;
+  padding: 0 24px;
   margin: 40px 0 0;
-  width: 400px;
-  text-align: center;
-}
 
-.text {
+  h1 {
 
-  display: block;
-  font-size: 18px;
-  font-weight: 600;
-  color: $white;
-}
+    font-size: 28px;
+    font-weight: 700;
+    color: $white;
+  }
 
-.text-2 {
+  p {
 
-  display: block;
-  font-size: 16px;
-  font-weight: 300;
-  color: $white;
-  margin: 40px 0 0;
-  line-height: 1.4;
-}
-
-.phone {
-
-  display: block;
-  font-size: 18px;
-  font-weight: 700;
-  color: $white;
-  margin: 8px 0 0;
-}
-
-.link {
-
-  display: inline-block;
-  color: $primary;
-  font-size: 13px;
-}
-
-@media screen and (max-width: 600px) {
-
-  .description {
-
-    padding: 0 60px;
-    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: 400;
+    color: $white;
+    letter-spacing: .5px;
   }
 }

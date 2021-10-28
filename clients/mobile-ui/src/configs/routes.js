@@ -18,9 +18,9 @@ const routes = [
   },
   {
     path: '/order',
-    wrapper: 'Empty',
+    wrapper: 'Navigate',
     module: import(
-      /* webpackChunkName: "client-main" */
+      /* webpackChunkName: "mobile-order" */
       '@modules/mobile-order'
     ),
   },

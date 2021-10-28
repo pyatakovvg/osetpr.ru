@@ -1,16 +1,20 @@
 
-$background:     #333333  !default;
+$background:       #333333  !default;
 
-$white:          #ffffff  !default;
+$white:            #ffffff  !default;
 
-$primary:        #3859AF  !default;
+$primary-lighten:  #5678CD  !default;
+$primary:          #3859AF  !default;
+$primary-darken:   #2E4785  !default;
 
-$success:        #38AF4B  !default;
+$success-lighten:  #64C974  !default;
+$success:          #38AF4B  !default;
+$success-darken:   #339C44  !default;
 
-$gray-lighten:   #787878  !default;
-$gray:           #636363  !default;
-$gray-darken:    #525252  !default;
+$gray-lighten:     #787878  !default;
+$gray:             #636363  !default;
+$gray-darken:      #525252  !default;
 
-$info-lighten:   #DED04E  !default;
-$info:           #C7B82F  !default;
-$info-darken:    #B4A631  !default;
+$info-lighten:     #DED04E  !default;
+$info:             #C7B82F  !default;
+$info-darken:      #B4A631  !default;

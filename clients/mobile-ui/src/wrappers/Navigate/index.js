@@ -8,6 +8,7 @@ import styles from './default.module.scss';
 
 
 export default function NavigateModule({ children }) {
+
   return (
     <section className={styles['wrapper']}>
       <header className={styles['header']}>
