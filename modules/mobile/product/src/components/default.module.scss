@@ -16,31 +16,6 @@
   flex-direction: column;
 }
 
-.back {
-
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  display: flex;
-  flex-direction: column;
-  flex: 1 0;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: $background;
-  justify-content: center;
-  align-items: center;
-  z-index: 90;
-}
-
-.icon {
-
-  display: block;
-  width: 24px;
-  height: 24px;
-  background: url("./back.svg") center/100% no-repeat;
-}
-
 .gallery {
 
   display: block;
@@ -86,6 +61,11 @@
     font-size: 28px;
     font-weight: 700;
     color: $white;
+
+    * {
+
+      margin: 0 0 16px;
+    }
   }
 
   p {
@@ -94,5 +74,9 @@
     font-weight: 400;
     color: $white;
     letter-spacing: .5px;
+
+    & + * {
+      margin: 8px 0 0;
+    }
   }
 }

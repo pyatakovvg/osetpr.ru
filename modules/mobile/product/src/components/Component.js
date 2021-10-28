@@ -32,9 +32,6 @@ function Product() {
   return (
     <section className={styles['wrapper']}>
       <div className={styles['content']}>
-        <div className={styles['back']}>
-          <span className={styles['icon']} />
-        </div>
         <div className={styles['gallery']}>
           <Image src={product['gallery'][0] ? process.env['PUBLIC_URL'] + '/gallery/' + product['gallery'][0]['uuid'] : null} />
         </div>
