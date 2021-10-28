@@ -20,7 +20,7 @@ function Product() {
     <section className={styles['wrapper']}>
       <div className={styles['content']}>
         <div className={styles['gallery']}>
-          <Image src={'http://localhost:4000/gallery/' + product['gallery'][0]['uuid']} />
+          <Image src={product['gallery'][0] ? 'http://localhost:4000/gallery/' + product['gallery'][0]['uuid'] : null} />
         </div>
         <div className={styles['title']}>
           <p>{ product['title'] }</p>

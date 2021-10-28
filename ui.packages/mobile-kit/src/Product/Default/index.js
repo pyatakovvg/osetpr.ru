@@ -25,7 +25,7 @@ export default function DefaultProduct({ externalId, title, modes, gallery }) {
         </div>
         <div className={styles['content']}>
           <Link className={styles['gallery']} to={process.env['PUBLIC_URL'] + '/products/' + externalId}>
-            <Image src={'http://localhost:4000/gallery/' + gallery[0]['uuid']} />
+            <Image src={gallery[0] ? 'http://localhost:4000/gallery/' + gallery[0]['uuid'] : null} />
           </Link>
           <div className={styles['information']}>
             <div className={styles['modes']}>
