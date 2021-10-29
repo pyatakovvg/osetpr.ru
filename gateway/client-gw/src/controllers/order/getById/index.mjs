@@ -1,16 +1,22 @@
 
-import request from 'axios';
+import request from '@sys.packages/request';
+
+import orderBuilder from './builder/order.mjs';
 
 
 export default () => async (ctx) => {
-  const {operationId} = ctx['params'];
+  const { userUuid } = ctx['request']['query'];
 
-  const {data} = await request({
-    url: process.env['OPERATION_API_SRV'] + '/operations/' + operationId,
+  const { data } = await request({
+    url: process.env['ORDER_API_SRV'] + '/orders',
+    params: {
+      userUuid,
+      status: 'bucket',
+    },
   });
 
   ctx.body = {
     success: true,
-    data,
+    data: data[0] ? orderBuilder(data[0]) : null,
   };
 }

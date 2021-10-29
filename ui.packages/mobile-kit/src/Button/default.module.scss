@@ -1,0 +1,33 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.button {
+
+  display: block;
+  width: 100%;
+  padding: 12px 16px 10px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: $white;
+  background: $primary;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 200ms;
+
+  &:active {
+    background: $primary-darken;
+  }
+}
+
+.mode {
+
+  &--success {
+    background: $success;
+
+    &:active {
+      background: $success-darken;
+    }
+  }
+}

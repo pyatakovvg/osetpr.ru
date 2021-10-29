@@ -1,5 +1,9 @@
 
-import React from 'react';
+import { getOrder } from '@ui.packages/order';
+
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 import Cart from './Cart';
 import Header from './Header';
@@ -8,6 +12,12 @@ import styles from './default.module.scss';
 
 
 export default function NavigateModule({ children }) {
+  const location = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getOrder(window.localStorage.getItem('userUuid')));
+  }, []);
 
   return (
     <section className={styles['wrapper']}>
@@ -17,7 +27,7 @@ export default function NavigateModule({ children }) {
       <section className={styles['content']}>
         { children }
       </section>
-      <Cart />
+      { ! /order/.test(location['pathname']) && <Cart />}
     </section>
   );
 }

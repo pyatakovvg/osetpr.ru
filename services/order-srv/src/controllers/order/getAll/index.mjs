@@ -16,10 +16,15 @@ export default () => async (ctx) => {
     uuid = null,
     userUuid = null,
     isUse = null,
+    status = null,
   } = ctx['request']['query'];
 
   if (uuid) {
     where['uuid'] = uuid;
+  }
+
+  if (status) {
+    where['statusCode'] = status;
   }
 
   if (userUuid) {

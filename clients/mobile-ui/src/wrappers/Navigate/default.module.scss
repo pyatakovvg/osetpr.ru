@@ -29,6 +29,6 @@
   display: flex;
   flex: 1 0;
   flex-direction: column;
-  padding: 0 0 128px;
+  overflow: auto;
   z-index: 10;
 }

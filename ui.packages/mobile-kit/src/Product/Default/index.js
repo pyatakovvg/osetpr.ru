@@ -1,5 +1,5 @@
 
-import { selectProducts } from '@ui.packages/order'
+import { selectOrder } from '@ui.packages/order'
 import { Cart, Image } from '@ui.packages/mobile-kit';
 
 import types from 'prop-types';
@@ -12,15 +12,14 @@ import Mode from './Mode';
 import styles from './default.module.scss';
 
 
-function useGetProduct(uuid) {
-  const products = useSelector(selectProducts);
-  const product = products.find((item) => item[0] === uuid);
-  return product ? product[1] : null;
+function useGetProduct() {
+  const order = useSelector(selectOrder);
+  return order ? order['products'] : [];
 }
 
 
 export default function DefaultProduct({ uuid, externalId, title, modes, gallery, toCart }) {
-  const orderProduct = useGetProduct(uuid);
+  const orderProducts = useGetProduct();
   const [mode, setMode] = useState(modes.find((item) => item['isTarget']));
 
   function handleClick(mode) {
@@ -39,17 +38,18 @@ export default function DefaultProduct({ uuid, externalId, title, modes, gallery
         </div>
         <div className={styles['content']}>
           <Link className={styles['gallery']} to={process.env['PUBLIC_URL'] + '/products/' + externalId}>
-            <Image src={gallery[0] ? process.env['PUBLIC_URL'] + '/gallery/' + gallery[0]['uuid'] : null} />
+            <Image src={gallery[0] ? process.env['PUBLIC_URL'] + '/gallery/' + gallery[0]['uuid'] + '?size=small' : null} />
           </Link>
           <div className={styles['information']}>
             <div className={styles['modes']}>
               {modes.map((item) => {
-                const orderMode = orderProduct ? orderProduct.find((mode) => mode[0] === item['uuid']) : null;
+                const product = orderProducts.find((product) => product['vendor'] === item['vendor']);
+                const count = product ? product['number'] : null;
                 return (
                   <Mode
                     key={item['uuid']}
                     {...item}
-                    count={orderMode && orderMode[1]}
+                    count={count}
                     isActive={item['uuid'] === mode['uuid']}
                     onClick={() => handleClick(item)}
                   />
@@ -59,7 +59,7 @@ export default function DefaultProduct({ uuid, externalId, title, modes, gallery
           </div>
         </div>
         <div className={styles['cart']}>
-          <Cart mode={Cart.mode.success} onClick={() => handleCart({ uuid: uuid, modeUuid: mode['uuid'] })} />
+          <Cart mode={Cart.mode.success} onClick={() => handleCart({ productUuid: uuid, title, ...mode })} />
         </div>
       </div>
     </div>

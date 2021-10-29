@@ -3,22 +3,15 @@ import request from "@sys.packages/request";
 
 
 export default () => async (ctx) => {
-  const {externalId} = ctx['params'];
-  const fields = ctx['request']['body'];
-
+  const data = ctx['request']['body'];
+console.log(data)
   const result = await request({
-    url: process.env['OPERATION_API_SRV'] + '/operations/' + externalId,
+    url: process.env['ORDER_API_SRV'] + '/orders/' + data['uuid'],
     method: 'put',
     data: {
-      statusCode: fields['statusCode'],
-      pay: fields['pay'],
-      name: fields['name'],
-      phone: fields['phone'],
-      email: fields['email'],
-      surname: fields['surname'],
-      address: fields['address'],
-      delivery: fields['delivery'],
-      amount: fields['amount'],
+      uuid: data['uuid'],
+      userUuid: data['userUuid'],
+      products: data['products'],
     },
   });
 

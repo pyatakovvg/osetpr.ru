@@ -6,9 +6,12 @@ export default () => async (ctx) => {
   const formData = ctx['request']['body'];
 
   const result = await request({
-    url: process.env['OPERATION_API_SRV'] + '/operations',
+    url: process.env['ORDER_API_SRV'] + '/orders',
     method: 'post',
-    data: formData,
+    data: {
+      ...formData,
+      statusCode: 'bucket'
+    },
   });
 
   ctx.body = {

@@ -1,13 +1,14 @@
 
+export {
+  getOrder,
+  updateOrder,
+} from './ducks/command';
+
+export {} from './ducks/slice';
 
 export {
-  addProductAction,
-  removeProductAction,
-  removeAllProductsAction,
-} from './ducks/slice';
-
-export {
-  selectProducts,
+  selectOrder,
+  selectInProcess,
 } from './ducks/slice';
 
 export { name, reducer } from './ducks/slice';

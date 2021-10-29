@@ -1,8 +1,8 @@
 
 import { selectProducts } from '@modules/mobile-main';
 
-import { addProductAction } from '@ui.packages/order';
 import { Product } from '@ui.packages/mobile-kit';
+import { selectOrder, updateOrder } from '@ui.packages/order';
 
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -12,17 +12,48 @@ import styles from './default.module.scss';
 
 function Main() {
   const dispatch = useDispatch();
+
+  const order = useSelector(selectOrder);
   const products = useSelector(selectProducts);
 
   function handleToCart(product) {
-    dispatch(addProductAction(product));
+    const orderProducts = order ? order['products'] : [];
+    let products = [...orderProducts];
+    const productIndex = products.findIndex((item) => item['vendor'] === product['vendor']);
+
+    if (productIndex > -1) {
+      products = [
+        ...products.slice(0, productIndex),
+        {
+          ...products[productIndex],
+          number: ++products[productIndex]['number']
+        },
+        ...products.slice(productIndex + 1),
+      ];
+    }
+    else {
+      products.push({
+        price: product['price'],
+        title: product['title'],
+        productUuid: product['productUuid'],
+        value: product['value'],
+        vendor: product['vendor'],
+        number: 1,
+        currencyCode: product['currency']['code'],
+      });
+    }
+
+    dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
+      uuid: order ? order['uuid'] : null,
+      products,
+    }));
   }
 
   return (
     <section className={styles['wrapper']}>
       <div className={styles['content']}>
         {products.map((item) => (
-          <Product key={item['uuid']} {...item} toCart={(uuid) => handleToCart(uuid)} />
+          <Product key={item['uuid']} {...item} toCart={(data) => handleToCart(data)} />
         ))}
       </div>
     </section>

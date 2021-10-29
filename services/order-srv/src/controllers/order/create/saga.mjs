@@ -48,6 +48,7 @@ export default class Saga {
       .invoke(async (params) => {
         logger.info('Create order');
         const orderUuid = await createOrder(body);
+        console.log(123, orderUuid)
         params.setOrderUuid(orderUuid);
       })
       .withCompensation(async (params) => {

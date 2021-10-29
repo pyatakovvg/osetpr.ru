@@ -1,6 +1,7 @@
 
 import { selectProduct } from '@modules/mobile-product';
 
+import { selectOrder } from '@ui.packages/order';
 import { Image, Header, Cart } from '@ui.packages/mobile-kit';
 
 import React, { useState, useEffect } from 'react';
@@ -11,8 +12,16 @@ import Mode from './Mode';
 import styles from './default.module.scss';
 
 
+function useGetProduct(uuid) {
+  const order = useSelector(selectOrder);
+  return order ? order['products'].find((item) => item['uuid'] === uuid) : null;
+}
+
+
 function Product() {
   const product = useSelector(selectProduct);
+  const orderProduct = useGetProduct(product ? product['uuid'] : null);
+
   const [mode, setMode] = useState(null);
 
   useEffect(() => {
@@ -29,6 +38,10 @@ function Product() {
     return null;
   }
 
+  function handleCart(product) {
+
+  }
+
   return (
     <section className={styles['wrapper']}>
       <div className={styles['content']}>
@@ -39,16 +52,20 @@ function Product() {
           <Header>{ product['title'] }</Header>
         </div>
         <div className={styles['modes']}>
-          {product['modes'].map((item) => (
-            <Mode
-              key={item['uuid']}
-              isActive={item['uuid'] === mode['uuid']}
-              value={item['value']} price={item['price']} currency={item['currency']}
-              onClick={() => handleClick(item)}
-            />
-          ))}
+          {product['modes'].map((item) => {
+            const count = orderProduct && (orderProduct['vendor'] === item['vendor']) ? orderProduct['number'] : null;
+            return (
+              <Mode
+                key={item['uuid']}
+                count={count}
+                isActive={item['uuid'] === mode['uuid']}
+                value={item['value']} price={item['price']} currency={item['currency']}
+                onClick={() => handleClick(item)}
+              />
+            )
+          })}
           <div className={styles['cart']}>
-            <Cart mode={Cart.mode.success} />
+            <Cart mode={Cart.mode.success} onClick={() => handleCart({ uuid: product['uuid'], modeUuid: mode['uuid'] })} />
           </div>
         </div>
         <div className={styles['description']}>

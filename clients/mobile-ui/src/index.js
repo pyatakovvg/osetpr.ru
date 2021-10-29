@@ -1,7 +1,8 @@
 
-import { name as orderReducerName, reducer as orderReducer } from '@ui.packages/order';
+import { UUID } from '@ui.packages/utils';
 import Application from '@ui.packages/application';
 import { notificationReducer } from '@ui.packages/notifications';
+import { name as orderReducerName, reducer as orderReducer } from '@ui.packages/order';
 
 import { reducer as formReducer } from 'redux-form';
 
@@ -28,6 +29,10 @@ try {
     },
     wrappers: { Empty, Navigate, Composite },
   });
+
+  if ( ! window.localStorage.getItem('userUuid')) {
+    window.localStorage.setItem('userUuid', UUID());
+  }
 
   app.start();
 }

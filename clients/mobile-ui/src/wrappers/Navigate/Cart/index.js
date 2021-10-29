@@ -1,5 +1,5 @@
 
-import { selectProducts } from '@ui.packages/order';
+import { selectOrder } from '@ui.packages/order';
 
 import { Cart } from '@ui.packages/mobile-kit';
 
@@ -11,20 +11,8 @@ import styles from './default.module.scss';
 
 
 function useCountOrderProducts() {
-  let count = 0;
-  const productsInOrder = useSelector(selectProducts);
-  for (let i in productsInOrder) {
-    if (productsInOrder.hasOwnProperty(i)) {
-      const product = productsInOrder[i];
-      for (let k in product[1]) {
-        if (product[1].hasOwnProperty(k)) {
-          const mode = product[1][k];
-          count += mode[1];
-        }
-      }
-    }
-  }
-  return count;
+  const order = useSelector(selectOrder);
+  return order ? order['products'].reduce((acc, cur) => acc + cur['number'], 0) : 0;
 }
 
 export default function CartButton() {

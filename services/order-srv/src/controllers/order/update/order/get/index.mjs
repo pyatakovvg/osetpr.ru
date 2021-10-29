@@ -5,6 +5,10 @@ import { models } from '@sys.packages/db';
 export default async function(orderUuid) {
   const { Order, Currency, OrderProduct, Status } = models;
 
+  if (orderUuid === 'null') {
+    return null;
+  }
+
   const result = await Order.findOne({
     where: { uuid: orderUuid },
     order: [
