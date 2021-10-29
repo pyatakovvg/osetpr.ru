@@ -1,28 +1,57 @@
 
 import { selectProduct } from '@modules/mobile-product';
 
-import { selectOrder } from '@ui.packages/order';
+import { selectOrder, updateOrder } from '@ui.packages/order';
 import { Image, Header, Cart } from '@ui.packages/mobile-kit';
 
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Mode from './Mode';
 
 import styles from './default.module.scss';
 
 
-function useGetProduct(uuid) {
-  const order = useSelector(selectOrder);
-  return order ? order['products'].find((item) => item['uuid'] === uuid) : null;
-}
-
-
 function Product() {
+  const dispatch = useDispatch();
+
+  const order = useSelector(selectOrder);
   const product = useSelector(selectProduct);
-  const orderProduct = useGetProduct(product ? product['uuid'] : null);
 
   const [mode, setMode] = useState(null);
+
+  function handleToCart(product) {
+    const orderProducts = order ? order['products'] : [];
+    let products = [...orderProducts];
+    const productIndex = products.findIndex((item) => item['vendor'] === product['vendor']);
+
+    if (productIndex > -1) {
+      products = [
+        ...products.slice(0, productIndex),
+        {
+          ...products[productIndex],
+          number: products[productIndex]['number'] + 1,
+        },
+        ...products.slice(productIndex + 1),
+      ];
+    }
+    else {
+      products.push({
+        price: product['price'],
+        title: product['title'],
+        productUuid: product['productUuid'],
+        value: product['value'],
+        vendor: product['vendor'],
+        number: 1,
+        currencyCode: product['currency']['code'],
+      });
+    }
+
+    dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
+      uuid: order ? order['uuid'] : null,
+      products,
+    }));
+  }
 
   useEffect(() => {
     if (product) {
@@ -38,10 +67,6 @@ function Product() {
     return null;
   }
 
-  function handleCart(product) {
-
-  }
-
   return (
     <section className={styles['wrapper']}>
       <div className={styles['content']}>
@@ -53,11 +78,11 @@ function Product() {
         </div>
         <div className={styles['modes']}>
           {product['modes'].map((item) => {
-            const count = orderProduct && (orderProduct['vendor'] === item['vendor']) ? orderProduct['number'] : null;
+            const product = order ? order['products'].find((product) => item['vendor'] === product['vendor']) : null;
             return (
               <Mode
                 key={item['uuid']}
-                count={count}
+                count={product ? product['number'] : null}
                 isActive={item['uuid'] === mode['uuid']}
                 value={item['value']} price={item['price']} currency={item['currency']}
                 onClick={() => handleClick(item)}
@@ -65,7 +90,7 @@ function Product() {
             )
           })}
           <div className={styles['cart']}>
-            <Cart mode={Cart.mode.success} onClick={() => handleCart({ uuid: product['uuid'], modeUuid: mode['uuid'] })} />
+            <Cart mode={Cart.mode.success} onClick={() => handleToCart({ productUuid: product['uuid'], title: product['title'], ...mode })} />
           </div>
         </div>
         <div className={styles['description']}>

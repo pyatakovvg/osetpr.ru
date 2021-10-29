@@ -26,7 +26,7 @@ function Main() {
         ...products.slice(0, productIndex),
         {
           ...products[productIndex],
-          number: ++products[productIndex]['number']
+          number: products[productIndex]['number'] + 1,
         },
         ...products.slice(productIndex + 1),
       ];
