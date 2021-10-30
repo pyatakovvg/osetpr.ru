@@ -6,11 +6,12 @@ import productBuilder from './builder/product.mjs';
 
 export default () => async (ctx) => {
   const { userUuid, ...params } = ctx['request']['query'];
-console.log(123123, params)
+
   const { data: products, meta } = await request({
     url: process.env['PRODUCT_API_SRV'] + '/products',
     method: 'get',
     params: {
+      isUse: true,
       ...params,
     },
   });
