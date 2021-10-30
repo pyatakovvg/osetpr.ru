@@ -17,6 +17,7 @@ export default function NavigateModule({ children }) {
 
   useEffect(() => {
     dispatch(getOrder(window.localStorage.getItem('userUuid')));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

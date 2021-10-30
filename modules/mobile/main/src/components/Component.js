@@ -1,11 +1,12 @@
 
 import { selectProducts } from '@modules/mobile-main';
 
-import { Product } from '@ui.packages/mobile-kit';
 import { selectOrder, updateOrder } from '@ui.packages/order';
 
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+
+import Product from './Product';
 
 import styles from './default.module.scss';
 
