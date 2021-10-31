@@ -23,11 +23,15 @@ echo '-----------------------------------------'
 
 cd ../../modules/mobile || return
 
-echo '[--- Client products ---]'
+echo '[--- mobile products ---]'
 cd  ./main && npx yarn build
-echo '[--- Client product ---]'
+echo '[--- mobile product ---]'
 cd  ../product && npx yarn build
-echo '[--- Client order ---]'
+echo '[--- mobile order ---]'
 cd  ../order && npx yarn build
+echo '[--- mobile about ---]'
+cd  ../about && npx yarn build
+echo '[--- mobile comments ---]'
+cd  ../comments && npx yarn build
 
 exit 0

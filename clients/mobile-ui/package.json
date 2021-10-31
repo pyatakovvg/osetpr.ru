@@ -11,6 +11,8 @@
     "@modules/mobile-main": "1.0.0",
     "@modules/mobile-product": "1.0.0",
     "@modules/mobile-order": "1.0.0",
+    "@modules/mobile-about": "1.0.0",
+    "@modules/mobile-comments": "1.0.0",
     "@ui.packages/mobile-kit": "1.0.0",
     "@ui.packages/application": "1.0.0",
     "@ui.packages/notifications": "1.0.0",

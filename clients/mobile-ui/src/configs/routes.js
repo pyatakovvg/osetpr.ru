@@ -24,6 +24,22 @@ const routes = [
       '@modules/mobile-order'
     ),
   },
+  {
+    path: '/about',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "mobile-about" */
+      '@modules/mobile-about'
+    ),
+  },
+  {
+    path: '/comments',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "mobile-comments" */
+      '@modules/mobile-comments'
+    ),
+  },
 ];
 
 export default routes;
