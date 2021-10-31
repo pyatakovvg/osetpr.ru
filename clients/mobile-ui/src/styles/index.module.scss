@@ -2,6 +2,7 @@
 @import "~@ui.packages/theme-2";
 
 @import "./_base/reset.css";
+
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap');
 
 
@@ -26,11 +27,20 @@
 
   #root {
 
+    position: relative;
     display: flex;
     flex: 1 0;
     flex-direction: column;
     height: 100%;
     overflow: auto;
     z-index: 10;
+  }
+
+  #menu,
+  #dialog,
+  #notification {
+
+    position: relative;
+    z-index: 20;
   }
 }

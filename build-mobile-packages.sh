@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo ''
-echo 'Сборка пакетов "UI" для "Order"'
+echo 'Сборка пакетов "UI" для "Mobile"'
 echo '-------------------'
 
 cd ./ui.packages || return
@@ -14,6 +14,8 @@ echo '[--- HOC ---]'
 cd ../hoc && npx yarn build
 echo '[--- Notifications ---]'
 cd ../notifications && npx yarn build
+echo '[--- Menu ---]'
+cd ../menu && npx yarn build
 
 echo ''
 echo 'Сборка модулей для приложения "Mobile"'

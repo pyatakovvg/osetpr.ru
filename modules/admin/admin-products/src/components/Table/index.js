@@ -3,7 +3,7 @@ import { selectItems, selectInProcess } from '@modules/admin-products';
 
 import numeral from '@packages/numeral';
 
-import { Text, Header, Image, Actions } from '@ui.packages/admin-kit';
+import { Text, Header, Image, Actions, CheckBox } from '@ui.packages/admin-kit';
 import { Table, Column } from '@ui.packages/table';
 
 import React from 'react';
@@ -71,8 +71,8 @@ function ProductList() {
         <Column
           title={'Видим'}
           width={70}
-        >{() => (
-          <Text>-</Text>
+        >{({ isUse }) => (
+          <CheckBox value={isUse} onChange={(a) => console.log(a)}/>
         )}</Column>
         <Column
           align="right"

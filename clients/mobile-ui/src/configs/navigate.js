@@ -1,11 +1,11 @@
 
 const navigate = [
   {
-    title: "Магазин",
+    title: "Витрина",
     path: '/',
   },
   {
-    title: "Отзывы",
+    title: "Оставить отзыв",
     path: '/comments',
   },
   {

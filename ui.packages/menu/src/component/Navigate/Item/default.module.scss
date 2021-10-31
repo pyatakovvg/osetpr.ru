@@ -1,0 +1,31 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.link {
+
+  display: block;
+  text-decoration: none;
+  color: $white;
+
+  & + & {
+
+    margin: 24px 0 0;
+  }
+}
+
+.active {
+
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.title {
+
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: inherit;
+}

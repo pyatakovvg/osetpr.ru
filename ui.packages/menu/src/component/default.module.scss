@@ -1,0 +1,51 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex: 1 0;
+  flex-direction: column;
+  align-items: flex-end;
+  background: rgba($background, .4);
+}
+
+.menu {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  width: 296px;
+  padding: 24px;
+  box-sizing: border-box;
+  background: rgba($background, .95);
+  backdrop-filter: blur(6px);
+  border-left: 4px solid $background;
+  box-shadow: 0 -4px 6px 0 rgba(0, 0, 0, 20%);
+}
+
+.control {
+
+  display: block;
+  text-align: right;
+}
+
+.close {
+
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background: url("./close.svg") center/100% no-repeat;
+}
+
+.content {
+
+  display: block;
+  margin: 64px 0 0;
+}

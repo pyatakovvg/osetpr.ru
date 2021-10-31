@@ -10,9 +10,17 @@
   background: $gray-darken;
   padding: 8px 16px;
   box-shadow: 0 2px 6px 0 rgba(black, 20%);
+  align-items: center;
 }
 
 .logotype {
 
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.menu {
+
+  display: block;
 }

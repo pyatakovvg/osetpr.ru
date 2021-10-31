@@ -17,6 +17,9 @@ export default function Mode({ isActive, count, value, price, currency, onClick 
         <span className={styles['value']}>{ value }</span>
         <Price price={price} currency={currency['value']} />
       </div>
+      {isActive && (
+        <span className={styles['marker']} />
+      )}
     </div>
   );
 }
