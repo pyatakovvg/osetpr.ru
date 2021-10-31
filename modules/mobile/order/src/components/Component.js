@@ -1,11 +1,13 @@
 
 import numeral from '@packages/numeral';
 
-import { Header, Product, Button } from '@ui.packages/mobile-kit';
+import { Header, Button } from '@ui.packages/mobile-kit';
 import { selectOrder, updateOrder } from '@ui.packages/order';
 
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+
+import Product from './Product';
 
 import styles from './default.module.scss';
 

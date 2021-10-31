@@ -14,12 +14,12 @@
 
   display: flex;
   flex-direction: column;
-  flex: 0 0 32px;
+  flex: 0 0 24px;
   justify-content: center;
   align-items: center;
   border: 1px solid $info;
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   color: $info;
   font-size: 22px;
@@ -33,7 +33,7 @@
 .number {
 
   display: block;
-  width: 32px;
+  width: 24px;
   color: $white;
   text-align: center;
   font-size: 18px;

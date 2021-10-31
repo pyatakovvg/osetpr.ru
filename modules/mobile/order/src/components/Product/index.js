@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import styles from './default.module.scss';
 
 
-export default function OrderProduct({ productUuid, title, gallery, number, vendor, value, price, total, currency, onChange, onRemove }) {
+export default function Product({ productUuid, title, gallery, number, vendor, value, price, total, currency, onChange, onRemove }) {
   function handleChange(number) {
     onChange({
       productUuid,
@@ -46,7 +46,7 @@ export default function OrderProduct({ productUuid, title, gallery, number, vend
   );
 }
 
-OrderProduct.propTypes = {
+Product.propTypes = {
   gallery: types.array,
   title: types.string,
   value: types.string,
@@ -56,7 +56,7 @@ OrderProduct.propTypes = {
   currency: types.object,
 };
 
-OrderProduct.defaultProps = {
+Product.defaultProps = {
   externalId: null,
   gallery: [],
   title: 'Нет названия',

@@ -7,6 +7,9 @@
   display: block;
   text-decoration: none;
   color: $white;
+  border: 1px solid $gray-lighten;
+  border-radius: 4px;
+  padding: 12px 12px 10px;
 
   & + & {
 
@@ -16,14 +19,14 @@
 
 .active {
 
-  font-weight: 700;
-  text-decoration: underline;
+  background: $primary;
+  border-color: $primary;
 }
 
 .title {
 
   display: block;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .5px;

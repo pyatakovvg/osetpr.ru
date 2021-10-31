@@ -21,11 +21,16 @@
 
 .name {
 
-  display: inline-block;
+  display: block;
+  //flex-direction: column;
+  //flex: 1 0;
   font-family: inherit;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 700;
   color: $white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .value {
@@ -51,7 +56,8 @@
   display: flex;
   flex-direction: column;
   flex: 1 0;
-  padding: 16px;
+  padding: 16px 24px 16px 16px;
+  overflow: auto;
 }
 
 .control {
@@ -72,6 +78,7 @@
 .amount {
 
   display: block;
+  white-space: nowrap;
 }
 
 .details {
@@ -84,7 +91,7 @@
 
   display: inline-block;
   color: $white;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
 }
 
@@ -92,7 +99,7 @@
 
   display: inline-block;
   color: $white;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 600;
   margin: 0 0 0 4px;
 }

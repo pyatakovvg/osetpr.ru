@@ -13,9 +13,9 @@ export default function Item({ path, title }) {
   const location = useLocation();
   const dispatch = useDispatch();
 
-  const pathRegExp = new RegExp(path.replace('/', ''), 'i');
+  const pathRegExp = new RegExp(path + '$');
   const linkClassName = cn(styles['link'], {
-    [styles['active']]: pathRegExp.test(location['path'])
+    [styles['active']]: pathRegExp.test(location['pathname'])
   });
 
   function handleClick() {
