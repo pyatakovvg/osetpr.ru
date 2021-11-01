@@ -2,7 +2,7 @@
 import numeral from '@packages/numeral';
 
 import { Header, Button } from '@ui.packages/mobile-kit';
-import { selectOrder, updateOrder } from '@ui.packages/order';
+import { selectOrder, updateOrder, nextStepAction } from '@ui.packages/order';
 
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -53,6 +53,10 @@ function Order() {
     }));
   }
 
+  function handleNextStep() {
+    dispatch(nextStepAction(1));
+  }
+
   return (
     <div className={styles['wrapper']}>
       <div className={styles['content']}>
@@ -63,10 +67,6 @@ function Order() {
           )}
         </div>
         <div className={styles['products']}>
-          {( ! order || ! order['products'].length) && (
-            <p>В корзине пока ничего нет
-              Начните с главной страницы или воспользуйтесь поиском, чтобы найти что-то конкретное</p>
-          )}
           {order && order['products'].map((product) => (
             <Product
               key={product['vendor']}
@@ -80,7 +80,7 @@ function Order() {
       </div>
       {order && !! order['products'].length && (
         <div className={styles['control']}>
-          <Button>Оформить заказ на {numeral(order['total']).format()} {order['currency']['value']}</Button>
+          <Button onClick={() => handleNextStep()}>Оформить заказ на {numeral(order['total']).format()} {order['currency']['value']}</Button>
         </div>
       )}
     </div>

@@ -1,0 +1,55 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  padding: 16px;
+  border: 1px solid $gray-darken;
+  border-radius: 4px;
+  background: rgba($background, .8);
+  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 20%);
+  align-items: center;
+  backdrop-filter: blur(4px);
+  transition: transform 150ms;
+
+  &:active {
+    transform: scale(.98);
+  }
+}
+
+.content {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.arrow {
+
+  display: block;
+  width: 16px;
+  height: 16px;
+  background: url("./arrow.svg") center/100% no-repeat;
+}
+
+.title {
+
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: $gray-lighten;
+}
+
+.value,
+.default {
+
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  color: $white;
+  margin: 16px 0 0;
+}

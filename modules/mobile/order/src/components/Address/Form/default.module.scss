@@ -1,0 +1,67 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  overflow: hidden;
+}
+
+.content {
+
+  display: flex;
+  flex: 1 0;
+  flex-direction: column;
+  padding: 32px 16px 128px;
+  overflow: auto;
+  z-index: 10;
+}
+
+.control {
+
+  display: block;
+  background: $background;
+  padding: 16px;
+  box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.25);
+  z-index: 20;
+}
+
+.header {
+
+  display: flex;
+  flex-direction: row;
+  flex: 0 0;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.products {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0;
+  margin: 32px 0 0;
+}
+
+.clean {
+
+  display: block;
+  color: $danger;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.row {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+
+  & + & {
+
+    margin: 16px 0 0;
+  }
+}

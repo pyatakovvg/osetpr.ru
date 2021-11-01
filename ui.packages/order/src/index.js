@@ -4,9 +4,12 @@ export {
   updateOrder,
 } from './ducks/command';
 
-export {} from './ducks/slice';
+export {
+  nextStepAction,
+} from './ducks/slice';
 
 export {
+  selectStep,
   selectOrder,
   selectInProcess,
 } from './ducks/slice';

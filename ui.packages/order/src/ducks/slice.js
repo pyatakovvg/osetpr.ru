@@ -5,6 +5,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const REDUCER_NAME = 'widget-order';
 
 const initialState = {
+  step: 0,
   order: null,
   inProcess: false,
 };
@@ -14,6 +15,10 @@ const slice = createSlice({
   name: REDUCER_NAME,
   initialState,
   reducers: {
+    nextStepAction(state, { payload }) {
+      state['step'] = payload;
+    },
+
     getOrderRequestAction(state) {
       state['inProcess'] = true;
     },
@@ -39,6 +44,8 @@ const slice = createSlice({
 });
 
 export const {
+  nextStepAction,
+
   getOrderRequestAction,
   getOrderRequestFailAction,
   getOrderRequestSuccessAction,
@@ -48,6 +55,7 @@ export const {
   updateOrderRequestSuccessAction,
 } = slice['actions'];
 
+export const selectStep = (state) => state[REDUCER_NAME]['step'];
 export const selectOrder = (state) => state[REDUCER_NAME]['order'];
 export const selectInProcess = (state) => state[REDUCER_NAME]['inProcess'];
 
