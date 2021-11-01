@@ -11,5 +11,4 @@ export {
 } from './ducks/commands';
 
 export { default as Dialog } from './Dialog';
-export { default as Confirm } from './Confirm';
 export { name, reducer } from './ducks/slice';
