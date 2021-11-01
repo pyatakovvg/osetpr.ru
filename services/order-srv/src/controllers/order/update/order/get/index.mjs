@@ -3,7 +3,7 @@ import { models } from '@sys.packages/db';
 
 
 export default async function(orderUuid) {
-  const { Order, Currency, OrderProduct, Status } = models;
+  const { Order, Currency, OrderProduct, ProductGallery, Status } = models;
 
   if (orderUuid === 'null') {
     return null;
@@ -19,8 +19,13 @@ export default async function(orderUuid) {
       {
         model: OrderProduct,
         as: 'products',
-        attributes: ['uuid', 'orderUuid', 'productUuid', 'title', 'vendor', 'value', 'price', 'total', 'number', 'createdAt', 'updatedAt'],
+        attributes: ['uuid', 'orderUuid', 'productUuid', 'modeUuid', 'title', 'vendor', 'value', 'price', 'total', 'number', 'createdAt', 'updatedAt'],
         include: [
+          {
+            model: ProductGallery,
+            attributes: [['imageUuid', 'uuid']],
+            as: 'gallery',
+          },
           {
             model: Currency,
             attributes: ['code', 'value'],

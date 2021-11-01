@@ -6,6 +6,8 @@ import { sendEvent, sendCommand } from '@sys.packages/rabbit';
 
 import Sagas from 'node-sagas';
 
+import createGallery from "./gallery/create";
+
 import getOrder from './order/get';
 import updateOrder from './order/update';
 import createOrder from './order/create';
@@ -48,7 +50,6 @@ export default class Saga {
       .invoke(async (params) => {
         logger.info('Create order');
         const orderUuid = await createOrder(body);
-        console.log(123, orderUuid)
         params.setOrderUuid(orderUuid);
       })
       .withCompensation(async (params) => {
@@ -67,6 +68,29 @@ export default class Saga {
         logger.info('Restore update products');
         const orderUuid = params.getOrderUuid();
         await restoreProducts(orderUuid);
+      })
+
+      .step('Get order')
+      .invoke(async (params) => {
+        logger.info('Get order');
+        const orderUuid = params.getOrderUuid();
+        const order = await getOrder(orderUuid);
+        params.setOrder(order);
+      })
+
+      .step('Update gallery')
+      .invoke(async (params) => {
+        logger.info('Update gallery');
+        const order = params.getOrder();
+
+        const products = body['products'].map((product) => {
+          const orderProduct = order['products'].find((item) => item['modeUuid'] === product['modeUuid']);
+          return {
+            ...product,
+            uuid: orderProduct['uuid'],
+          }
+        });
+        await createGallery(order['uuid'], products);
       })
 
       .step('Update order')

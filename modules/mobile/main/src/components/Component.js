@@ -20,7 +20,7 @@ function Main() {
   function handleToCart(product) {
     const orderProducts = order ? order['products'] : [];
     let products = [...orderProducts];
-    const productIndex = products.findIndex((item) => item['vendor'] === product['vendor']);
+    const productIndex = products.findIndex((item) => item['modeUuid'] === product['uuid']);
 
     if (productIndex > -1) {
       products = [
@@ -37,8 +37,10 @@ function Main() {
         price: product['price'],
         title: product['title'],
         productUuid: product['productUuid'],
+        modeUuid: product['modeUuid'],
         value: product['value'],
         vendor: product['vendor'],
+        gallery: product['gallery'],
         number: 1,
         currencyCode: product['currency']['code'],
       });

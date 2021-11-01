@@ -17,9 +17,11 @@ function Order() {
 
   const order = useSelector(selectOrder);
 
+  console.log(123, order);
+
   function handleChange(product) {
     let products = [...order['products']];
-    const productIndex = products.findIndex((item) => item['vendor'] === product['vendor']);
+    const productIndex = products.findIndex((item) => item['uuid'] === product['uuid']);
 
     if (productIndex > -1) {
       products = [
@@ -38,8 +40,8 @@ function Order() {
     }));
   }
 
-  function handleRemove(vendor) {
-    let products = order['products'].filter((item) => item['vendor'] !== vendor);
+  function handleRemove(uuid) {
+    let products = order['products'].filter((item) => item['uuid'] !== uuid);
     dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
       uuid: order['uuid'],
       products,

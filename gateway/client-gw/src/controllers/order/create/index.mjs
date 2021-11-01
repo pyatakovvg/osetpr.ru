@@ -1,6 +1,8 @@
 
 import request from "@sys.packages/request";
 
+import orderBuilder from './builder/order.mjs';
+
 
 export default () => async (ctx) => {
   const formData = ctx['request']['body'];
@@ -10,12 +12,12 @@ export default () => async (ctx) => {
     method: 'post',
     data: {
       ...formData,
-      statusCode: 'bucket'
+      statusCode: 'basket'
     },
   });
 
   ctx.body = {
     success: true,
-    data: result['data']
+    data: orderBuilder(result['data']),
   };
 }

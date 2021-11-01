@@ -43,7 +43,7 @@ export default function DefaultProduct({ uuid, externalId, title, modes, gallery
           <div className={styles['information']}>
             <div className={styles['modes']}>
               {modes.map((item) => {
-                const product = orderProducts.find((product) => product['vendor'] === item['vendor']);
+                const product = orderProducts.find((product) => product['modeUuid'] === item['uuid']);
                 const count = product ? product['number'] : null;
                 return (
                   <Mode
@@ -59,7 +59,16 @@ export default function DefaultProduct({ uuid, externalId, title, modes, gallery
           </div>
         </div>
         <div className={styles['cart']}>
-          <Cart mode={Cart.mode.success} onClick={() => handleCart({ productUuid: uuid, title, ...mode })} />
+          <Cart mode={Cart.mode.success} onClick={() => handleCart({
+            productUuid: uuid,
+            modeUuid: mode['uuid'],
+            title,
+            gallery,
+            value: mode['value'],
+            vendor: mode['vendor'],
+            price: mode['price'],
+            currency: mode['currency'],
+          })} />
         </div>
       </div>
     </div>

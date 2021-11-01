@@ -10,18 +10,18 @@ import { Link } from 'react-router-dom';
 import styles from './default.module.scss';
 
 
-export default function Product({ productUuid, title, gallery, number, vendor, value, price, total, currency, onChange, onRemove }) {
+export default function Product({ uuid, productUuid, title, gallery, number, value, price, total, currency, onChange, onRemove }) {
   function handleChange(number) {
     onChange({
-      productUuid,
-      vendor,
+      uuid,
       number,
+      productUuid,
     });
   }
 
   return (
     <div className={styles['wrapper']}>
-      <span className={styles['remove']} onClick={() => onRemove(vendor)} />
+      <span className={styles['remove']} onClick={() => onRemove(uuid)} />
       <Link className={styles['gallery']} to={process.env['PUBLIC_URL'] + '/products/' + productUuid}>
         <Image src={gallery[0] ? process.env['PUBLIC_URL'] + '/gallery/' + gallery[0]['uuid'] : null} />
       </Link>

@@ -2,10 +2,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 
-const REDUCER_NAME = 'order-widget';
+const REDUCER_NAME = 'widget-order';
 
 const initialState = {
-  products: [],
   order: null,
   inProcess: false,
 };
@@ -33,7 +32,6 @@ const slice = createSlice({
       state['inProcess'] = false;
     },
     updateOrderRequestSuccessAction(state, { payload }) {
-      console.log(payload)
       state['inProcess'] = false;
       state['order'] = payload;
     },

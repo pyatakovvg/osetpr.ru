@@ -11,7 +11,7 @@ export default () => async (ctx) => {
     url: process.env['ORDER_API_SRV'] + '/orders',
     params: {
       userUuid,
-      status: 'bucket',
+      status: 'basket',
     },
   });
 

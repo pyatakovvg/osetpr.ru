@@ -12,6 +12,7 @@ export default async function(orderUuid, products) {
       uuid: UUID(),
       orderUuid: orderUuid,
       productUuid: item['productUuid'],
+      modeUuid: item['modeUuid'],
       title: item['title'],
       vendor: item['vendor'],
       value: item['value'],

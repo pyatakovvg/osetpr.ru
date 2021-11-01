@@ -6,6 +6,8 @@ import { sendEvent, sendCommand } from '@sys.packages/rabbit';
 
 import Sagas from 'node-sagas';
 
+import createGallery from './gallery/create';
+
 import getOrder from './order/get';
 import updateOrder from './order/update';
 
@@ -74,18 +76,40 @@ export default class Saga {
         await updateProducts(uuid, order['products']);
       })
 
+      .step('Get order')
+      .invoke(async (params) => {
+        logger.info('Get order');
+        const order = await getOrder(uuid);
+        params.setOrder(order);
+      })
+
+      .step('Update gallery')
+      .invoke(async (params) => {
+        logger.info('Update gallery');
+        const order = params.getOrder();
+
+        const products = body['products'].map((product) => {
+          const orderProduct = order['products'].find((item) => item['modeUuid'] === product['modeUuid']);
+          return {
+            ...product,
+            uuid: orderProduct['uuid'],
+          }
+        });
+        await createGallery(uuid, products);
+      })
+
       .step('Update order')
       .invoke(async () => {
         logger.info('Update order');
         const products = await getProducts(uuid);
+        const total = !! products.length
+          ? products.reduce((prev, next) => prev + next['total'], 0)
+          : 0;
 
-        if (products.length) {
-          const total = products.reduce((prev, next) => prev + next['total'], 0);
-          await updateOrder(uuid, {
-            total,
-            currencyCode: products[0]['currencyCode'],
-          });
-        }
+        await updateOrder(uuid, {
+          total,
+          currencyCode: 'RUB',
+        });
       })
 
       .step('Get updated order')
@@ -104,6 +128,9 @@ export default class Saga {
       .step('Send to mail')
       .invoke(async (params) => {
         const order = params.getOrder();
+        if (order['']) {
+
+        }
         await sendCommand(process.env['QUEUE_MAIL_ORDER_UPDATE'], JSON.stringify(order));
       })
 
