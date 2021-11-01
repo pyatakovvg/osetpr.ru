@@ -1,5 +1,6 @@
 
 import React from 'react';
+import types from 'prop-types';
 
 import Price from './Price';
 
@@ -15,14 +16,16 @@ export default function Mode({ isActive, count, value, price, currency, onClick 
       )}
       <div className={styles['content']}>
         <span className={styles['value']}>{ value }</span>
-        <Price price={price} currency={currency} />
+        <Price price={price} currency={currency['value']} />
       </div>
     </div>
   );
 }
 
-Mode.propTypes = {};
+Mode.propTypes = {
+  value: types.string,
+};
 
 Mode.defaultProps = {
-  value: '1,200 гр.',
+  value: '',
 };

@@ -17,8 +17,6 @@ function Order() {
 
   const order = useSelector(selectOrder);
 
-  console.log(123, order);
-
   function handleChange(product) {
     let products = [...order['products']];
     const productIndex = products.findIndex((item) => item['uuid'] === product['uuid']);

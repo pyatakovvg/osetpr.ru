@@ -8,6 +8,6 @@ export default function(data) {
     vendor: data['vendor'],
     value: data['value'],
     price: Number(data['price']),
-    currency: data['currency']['value'],
+    currency: data['currency'],
   };
 }

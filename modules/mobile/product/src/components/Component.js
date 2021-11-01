@@ -23,7 +23,8 @@ function Product() {
   function handleToCart(product) {
     const orderProducts = order ? order['products'] : [];
     let products = [...orderProducts];
-    const productIndex = products.findIndex((item) => item['vendor'] === product['vendor']);
+    console.log(product, products)
+    const productIndex = products.findIndex((item) => item['modeUuid'] === product['modeUuid']);
 
     if (productIndex > -1) {
       products = [
@@ -40,8 +41,10 @@ function Product() {
         price: product['price'],
         title: product['title'],
         productUuid: product['productUuid'],
+        modeUuid: product['modeUuid'],
         value: product['value'],
         vendor: product['vendor'],
+        gallery: product['gallery'],
         number: 1,
         currencyCode: product['currency']['code'],
       });
@@ -90,7 +93,16 @@ function Product() {
             )
           })}
           <div className={styles['cart']}>
-            <Cart mode={Cart.mode.success} onClick={() => handleToCart({ productUuid: product['uuid'], title: product['title'], ...mode })} />
+            <Cart mode={Cart.mode.success}  onClick={() => handleToCart({
+              productUuid: product['uuid'],
+              modeUuid: mode['uuid'],
+              title: product['title'],
+              gallery: product['gallery'],
+              value: mode['value'],
+              vendor: mode['vendor'],
+              price: mode['price'],
+              currency: mode['currency'],
+            })} />
           </div>
         </div>
         <div className={styles['description']}>

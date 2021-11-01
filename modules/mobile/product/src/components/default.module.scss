@@ -61,11 +61,15 @@
     font-size: 28px;
     font-weight: 700;
     color: $white;
+    margin: 0 0 16px;
+  }
 
-    * {
+  h3 {
 
-      margin: 0 0 16px;
-    }
+    font-size: 20px;
+    font-weight: 700;
+    color: $white;
+    margin: 0 0 16px;
   }
 
   p {
@@ -75,8 +79,12 @@
     color: $white;
     letter-spacing: .5px;
 
-    & + * {
+    & + p {
       margin: 8px 0 0;
+    }
+
+    & + h3 {
+      margin-top: 24px;
     }
   }
 }
