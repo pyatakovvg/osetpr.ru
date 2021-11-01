@@ -13,7 +13,7 @@
 .content {
 
   display: block;
-  border-bottom: 2px solid $gray-darken;
+  border-bottom: 1px solid $gray-darken;
   margin: 12px 0 0;
 }
 
@@ -41,6 +41,7 @@
   font-size: 14px;
   color: $white;
   background: transparent;
+  box-sizing: border-box;
 }
 
 .is-focus {

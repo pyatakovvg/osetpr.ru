@@ -16,6 +16,7 @@
     "@ui.packages/mobile-kit": "1.0.0",
     "@ui.packages/application": "1.0.0",
     "@ui.packages/notifications": "1.0.0",
+    "@ui.packages/mobile-dialog": "1.0.0",
     "@ui.packages/theme": "1.0.0",
     "@ui.packages/theme-2": "1.0.0",
     "@ui.packages/order": "1.0.0",

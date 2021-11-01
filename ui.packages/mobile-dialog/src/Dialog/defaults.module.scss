@@ -1,0 +1,64 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex: 1 0;
+  flex-direction: column;
+  z-index: 99999;
+  overflow: hidden;
+}
+
+.dialog {
+
+  position: relative;
+  display: flex;
+  flex: 1 0;
+  flex-direction: column;
+  background: rgba($background, .9);
+  backdrop-filter: blur(4px);
+  border-radius: 4px 4px 0 0;
+  border-top: 3px solid $background;
+  margin-top: 32px;
+  box-sizing: border-box;
+  box-shadow: 0 -2px 6px 0 rgba(0, 0, 0, 20%);
+  overflow: hidden;
+  animation-name: showDialog;
+  animation-timing-function: ease-in-out;
+  animation-duration: 50ms;
+}
+
+@keyframes showDialog {
+  from {
+    top: 100%;
+  }
+  to {
+    top: 32px;
+  }
+}
+
+.close {
+
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: block;
+  width: 16px;
+  height: 16px;
+  background: url("./close.svg") center/100% no-repeat;
+}
+
+.content {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  overflow: hidden;
+}

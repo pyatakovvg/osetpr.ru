@@ -2,6 +2,7 @@
 import { UUID } from '@ui.packages/utils';
 import Application from '@ui.packages/application';
 import { reducer as menuReducer, name as menuNameReducer } from '@ui.packages/menu';
+import { reducer as dialogReducer, name as dialogNameReducer } from '@ui.packages/mobile-dialog';
 import { notificationReducer } from '@ui.packages/notifications';
 import { name as orderReducerName, reducer as orderReducer } from '@ui.packages/order';
 
@@ -26,8 +27,9 @@ try {
     reducers: {
       form: formReducer,
       notifications: notificationReducer,
-      [orderReducerName]: orderReducer,
       [menuNameReducer]: menuReducer,
+      [orderReducerName]: orderReducer,
+      [dialogNameReducer]: dialogReducer,
     },
     wrappers: { Empty, Navigate, Composite },
   });
