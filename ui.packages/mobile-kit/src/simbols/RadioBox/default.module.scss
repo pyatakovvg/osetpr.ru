@@ -1,0 +1,72 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.container {
+
+  display: block;
+}
+
+.wrapper {
+
+  display: block;
+  border: 1px solid $gray-darken;
+  border-radius: 4px;
+  background: rgba($background, .8);
+  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 20%);
+  padding: 16px;
+}
+
+.label {
+
+  display: inline-block;
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 14px;
+  margin: 0 0 0 16px;
+  vertical-align: middle;
+  color: $white;
+  cursor: pointer;
+}
+
+.radio {
+
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: $gray-lighten;
+  font-size: 0;
+  outline: none;
+  justify-content: center;
+  align-items: center;
+  transition: background 200ms;
+  vertical-align: middle;
+
+  & + & {
+    margin: 0 0 0 16px;
+  }
+
+  &__marker {
+
+    display: block;
+    width: 8px;
+    height: 8px;
+    background: $background;
+    border-radius: 50%;
+  }
+
+  &--checked &__marker {
+
+    display: inline-flex;
+  }
+
+  &--disabled {
+
+    background: $gray-lighten;
+    border-color: $gray;
+    color: $gray;
+    cursor: default;
+  }
+}

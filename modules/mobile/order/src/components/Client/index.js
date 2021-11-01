@@ -1,6 +1,6 @@
 
 import numeral from '@packages/numeral';
-import { Dialog, openDialog } from '@ui.packages/mobile-dialog';
+import { Dialog, openDialog, closeDialog } from '@ui.packages/mobile-dialog';
 
 import { Header, Button } from '@ui.packages/mobile-kit';
 import { selectOrder, nextStepAction } from '@ui.packages/order';
@@ -9,12 +9,13 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Item from "./Item";
-import Form from "./Form";
+import Address from "./Address";
+import Payment from "./Payment";
 
 import styles from './default.module.scss';
 
 
-function Address() {
+function Client() {
   const dispatch = useDispatch();
 
   const order = useSelector(selectOrder);
@@ -23,8 +24,12 @@ function Address() {
     dispatch(nextStepAction(0));
   }
 
-  function handleNextStep() {
+  function handleAddressUpdate() {
+    dispatch(closeDialog('address'));
+  }
 
+  function handlePaymentUpdate() {
+    dispatch(closeDialog('payment'));
   }
 
   return (
@@ -36,27 +41,36 @@ function Address() {
         </div>
         <div className={styles['products']}>
           <div className={styles['row']}>
-            <Item title={'Адрес доставки'} value={null} defaultValue={'Не указан'} onClick={() => dispatch(openDialog('address'))}/>
+            <Item title={'Адрес доставки'} value={order['address']} defaultValue={'Не указан'} onClick={() => dispatch(openDialog('address'))}/>
           </div>
           <div className={styles['row']}>
-            <Item title={'Способ оплаты'} value={null} defaultValue={'Не указан'} onClick={() => console.log(4676)}/>
+            <Item title={'Способ оплаты'} value={order['paymentCode']} defaultValue={'Не указан'} onClick={() => dispatch(openDialog('payment'))}/>
           </div>
           <div className={styles['row']}>
             <Item title={'Доставка ко времени'} value={null} defaultValue={'Как можно скорее'} onClick={() => console.log(4676)}/>
           </div>
         </div>
       </div>
-      {order && !! order['products'].length && (
-        <div className={styles['control']}>
-          <Button onClick={() => handleNextStep()}>Подтвердить заказ на {numeral(order['total']).format()} {order['currency']['value']}</Button>
-        </div>
-      )}
+      <div className={styles['control']}>
+        <Button>Подтвердить заказ на { numeral(order['total']).format()} {order['currency']['value'] }</Button>
+      </div>
 
       <Dialog name={'address'}>
-        <Form onSubmit={(data) => console.log(data) }/>
+        <Address
+          onSubmit={(data) => handleAddressUpdate(data) }
+        />
+      </Dialog>
+
+      <Dialog name={'payment'}>
+        <Payment
+          initialValues={{
+            payment: 'cash-to-courier'
+          }}
+          onSubmit={(data) => handlePaymentUpdate(data) }
+        />
       </Dialog>
     </div>
   );
 }
 
-export default Address;
+export default Client;
