@@ -46,6 +46,7 @@ export const updateOrder = (userUuid, order) => async (dispatch) => {
           userUuid,
           uuid: order['uuid'],
           products: order['products'],
+          address: order['address'],
         }
       });
     }

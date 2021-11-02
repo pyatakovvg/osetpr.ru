@@ -9,6 +9,8 @@ import Sagas from 'node-sagas';
 import createGallery from './gallery/create';
 import removeGallery from './gallery/remove';
 
+import createAddress from './address/create';
+
 import getOrder from './order/get';
 import updateOrder from './order/update';
 
@@ -70,6 +72,17 @@ export default class Saga {
         }
         logger.info('Remove gallery');
         await removeGallery(body['products']);
+      })
+
+      .step('Update address')
+      .invoke(async () => {
+        logger.info('Update address');
+        await createAddress(uuid, body['address']);
+      })
+      .withCompensation(async (params) => {
+        logger.info('Restore update address');
+        const order = params.getOrder();
+        await updateProducts(uuid, order['address']);
       })
 
       .step('Update products')

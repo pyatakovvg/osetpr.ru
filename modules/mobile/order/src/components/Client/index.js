@@ -3,7 +3,7 @@ import numeral from '@packages/numeral';
 import { Dialog, openDialog, closeDialog } from '@ui.packages/mobile-dialog';
 
 import { Header, Button } from '@ui.packages/mobile-kit';
-import { selectOrder, nextStepAction } from '@ui.packages/order';
+import { selectOrder, nextStepAction, updateOrder } from '@ui.packages/order';
 
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -15,6 +15,32 @@ import Payment from "./Payment";
 import styles from './default.module.scss';
 
 
+function addressToString(data) {
+  let address = '';
+  if (data && data instanceof Object) {
+    if (data['city']) {
+      address += data['city'];
+    }
+    if (data['street']) {
+      address += ', ' + data['street'];
+    }
+    if (data['house']) {
+      address += ', ' + data['house'];
+    }
+    if (data['building']) {
+      address += ', ' + data['building'];
+    }
+    if (data['apartment']) {
+      address += ', ' + data['apartment'];
+    }
+    if (data['front']) {
+      address += ', ' + data['front'];
+    }
+  }
+  return address;
+}
+
+
 function Client() {
   const dispatch = useDispatch();
 
@@ -24,8 +50,13 @@ function Client() {
     dispatch(nextStepAction(0));
   }
 
-  function handleAddressUpdate() {
+  function handleAddressUpdate(data) {
+    console.log(data)
     dispatch(closeDialog('address'));
+    dispatch(updateOrder(order['uuid'], {
+      ...order,
+      address: data,
+    }));
   }
 
   function handlePaymentUpdate() {
@@ -41,7 +72,7 @@ function Client() {
         </div>
         <div className={styles['products']}>
           <div className={styles['row']}>
-            <Item title={'Адрес доставки'} value={order['address']} defaultValue={'Не указан'} onClick={() => dispatch(openDialog('address'))}/>
+            <Item title={'Адрес доставки'} value={addressToString(order['address'])} defaultValue={'Не указан'} onClick={() => dispatch(openDialog('address'))}/>
           </div>
           <div className={styles['row']}>
             <Item title={'Способ оплаты'} value={order['paymentCode']} defaultValue={'Не указан'} onClick={() => dispatch(openDialog('payment'))}/>
@@ -58,8 +89,8 @@ function Client() {
       <Dialog name={'address'}>
         <Address
           initialValues={{
-            ...order['address'],
             city: 'Симферополь',
+            ...order['address'],
           }}
           onSubmit={(data) => handleAddressUpdate(data) }
         />

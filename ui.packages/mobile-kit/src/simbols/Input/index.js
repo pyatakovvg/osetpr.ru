@@ -6,7 +6,7 @@ import cn from 'classnames';
 import styles from './default.module.scss';
 
 
-function Input({ mode, label, name, value, require, onChange, onFocus, onBlur, ...props }) {
+function Input({ mode, label, name, value, readOnly, require, onChange, onFocus, onBlur, ...props }) {
   const [isFocus, setFocus] = useState(false);
 
   const titleClassName = useMemo(() => cn(styles['title'], {
@@ -44,6 +44,7 @@ function Input({ mode, label, name, value, require, onChange, onFocus, onBlur, .
           name={name}
           value={value}
           {...props}
+          readOnly={readOnly}
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
@@ -55,11 +56,13 @@ function Input({ mode, label, name, value, require, onChange, onFocus, onBlur, .
 
 Input.propTypes = {
   require: types.bool,
+  readOnly: types.bool,
   mode: types.oneOf(['danger', 'default']),
 };
 
 Input.defaultType = {
   require: false,
+  readOnly: false,
   mode: 'default',
 };
 

@@ -8,6 +8,8 @@ import Sagas from 'node-sagas';
 
 import createGallery from "./gallery/create";
 
+import createAddress from "./address/create";
+
 import getOrder from './order/get';
 import updateOrder from './order/update';
 import createOrder from './order/create';
@@ -56,6 +58,18 @@ export default class Saga {
         logger.info('Restore created order');
         const orderUuid = params.getOrderUuid();
         await restoreOrder(orderUuid);
+      })
+
+      .step('Create address')
+      .invoke(async (params) => {
+        logger.info('Create address');
+        const orderUuid = params.getOrderUuid();
+        await createAddress(orderUuid, body['address']);
+      })
+      .withCompensation(async (params) => {
+        logger.info('Restore address');
+        const orderUuid = params.getOrderUuid();
+        await createAddress(orderUuid, null);
       })
 
       .step('Create products')

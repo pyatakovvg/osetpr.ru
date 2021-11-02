@@ -14,6 +14,7 @@ export default () => async (ctx) => {
       uuid: data['uuid'],
       userUuid: data['userUuid'],
       products: data['products'],
+      address: data['address'],
     },
   });
 

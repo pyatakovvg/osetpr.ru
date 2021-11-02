@@ -8,8 +8,11 @@ export default async function(data) {
 
   const result = await Order.create({
     uuid: UUID(),
-    statusCode: 'new',
-    ...data,
+    statusCode: data['statusCode'] || 'new',
+    userUuid: data['userUuid'],
+    title: data['title'],
+    description: data['description'],
+    dateTo: data['dateTo'],
     total: 0,
     currencyCode: 'RUB',
   });

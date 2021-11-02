@@ -7,7 +7,7 @@ export default () => async (ctx) => {
   let offset = {};
   let options = {};
 
-  const { Order, OrderProduct, ProductGallery, Status, Currency } = models;
+  const { Order, OrderProduct, OrderAddress, ProductGallery, Status, Currency } = models;
 
   const {
     limit = null,
@@ -53,8 +53,13 @@ export default () => async (ctx) => {
       ['createdAt', 'desc'],
       ['products', 'order', 'asc'],
     ],
-    attributes: ['uuid', 'userUuid', 'title', 'description', 'dateTo', 'address', 'total', 'createdAt', 'updatedAt'],
+    attributes: ['uuid', 'userUuid', 'title', 'description', 'dateTo', 'total', 'createdAt', 'updatedAt'],
     include: [
+      {
+        model: OrderAddress,
+        attributes: ['city', 'street', 'house', 'building', 'apartment', 'front'],
+        as: 'address',
+      },
       {
         model: OrderProduct,
         attributes: ['uuid', 'orderUuid', 'productUuid', 'modeUuid', 'title', 'vendor', 'value', 'price', 'total', 'number', 'createdAt', 'updatedAt'],

@@ -14,7 +14,7 @@ function AddressForm({ handleSubmit, valid, pristine }) {
           <Header level={2}>Адрес доставки</Header>
         </div>
         <div className={styles['row']}>
-          <InputField label={'Город'} name={'city'} tabIndex={1} require />
+          <InputField label={'Город'} name={'city'} tabIndex={1} require readOnly />
         </div>
         <div className={styles['row']}>
           <InputField label={'Улица'} name={'street'} tabIndex={2} autoFocus={true} require />

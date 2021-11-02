@@ -32,10 +32,6 @@ export default function(sequelize, DataType) {
       type: DataType.STRING(2024),
       allowNull: true,
     },
-    address: {
-      type: DataType.STRING(256),
-      allowNull: false,
-    },
     total: {
       type: DataType.DECIMAL(10, 2),
       allowNull: false,
@@ -51,11 +47,17 @@ export default function(sequelize, DataType) {
     sequelize,
   });
 
-  Order.associate = ({ OrderProduct, Status, Currency }) => {
+  Order.associate = ({ OrderProduct, OrderAddress, Status, Currency }) => {
 
     Order.belongsTo(Currency, {
       foreignKey: 'currencyCode',
       as: 'currency',
+    });
+
+    Order.belongsTo(OrderAddress, {
+      foreignKey: 'uuid',
+      sourceKey: 'orderUuid',
+      as: 'address',
     });
 
     Order.hasMany(OrderProduct, {

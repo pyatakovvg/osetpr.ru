@@ -5,13 +5,42 @@ module.exports = {
 
     try {
 
-      await queryInterface.createTable('Currencies', {
+      await queryInterface.createTable('OrderAddresses', {
         orderUuid: {
-          type: DataType.STRING,
+          type: DataType.UUID,
+          allowNull: false,
+          primaryKey: true,
         },
-
+        city: {
+          type: DataType.STRING,
+          allowNull: false,
+        },
+        street: {
+          type: DataType.STRING,
+          allowNull: false,
+        },
+        house: {
+          type: DataType.STRING,
+          allowNull: false,
+        },
+        building: {
+          type: DataType.STRING,
+          allowNull: true,
+        },
+        apartment: {
+          type: DataType.STRING,
+          allowNull: true,
+        },
+        front: {
+          type: DataType.STRING,
+          allowNull: true,
+        },
       }, {
         transaction
+      });
+
+      await queryInterface.removeColumn('orders', 'address', {
+        transaction,
       });
 
       await transaction.commit();
