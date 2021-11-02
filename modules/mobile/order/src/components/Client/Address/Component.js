@@ -6,7 +6,7 @@ import React from 'react';
 import styles from './default.module.scss';
 
 
-function AddressForm({ handleSubmit }) {
+function AddressForm({ handleSubmit, valid, pristine }) {
   return (
     <form className={styles['wrapper']} onSubmit={handleSubmit}>
       <div className={styles['content']}>
@@ -14,13 +14,13 @@ function AddressForm({ handleSubmit }) {
           <Header level={2}>Адрес доставки</Header>
         </div>
         <div className={styles['row']}>
-          <InputField label={'Город'} name={'city'} tabIndex={1} autoFocus={true} />
+          <InputField label={'Город'} name={'city'} tabIndex={1} require />
         </div>
         <div className={styles['row']}>
-          <InputField label={'Улица'} name={'street'} tabIndex={2} />
+          <InputField label={'Улица'} name={'street'} tabIndex={2} autoFocus={true} require />
         </div>
         <div className={styles['row']}>
-          <InputField label={'№ Дома'} name={'house'} tabIndex={3} />
+          <InputField label={'№ Дома'} name={'house'} tabIndex={3} require />
         </div>
         <div className={styles['row']}>
           <InputField label={'Корпус'} name={'building'} tabIndex={4} />
@@ -33,7 +33,10 @@ function AddressForm({ handleSubmit }) {
         </div>
       </div>
       <div className={styles['controls']}>
-        <Button mode={'success'}>Выполнить</Button>
+        <Button
+          mode={'success'}
+          disabled={ ! valid || pristine}
+        >Выполнить</Button>
       </div>
     </form>
   );

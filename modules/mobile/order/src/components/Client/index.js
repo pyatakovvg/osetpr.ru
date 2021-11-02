@@ -57,6 +57,10 @@ function Client() {
 
       <Dialog name={'address'}>
         <Address
+          initialValues={{
+            ...order['address'],
+            city: 'Симферополь',
+          }}
           onSubmit={(data) => handleAddressUpdate(data) }
         />
       </Dialog>

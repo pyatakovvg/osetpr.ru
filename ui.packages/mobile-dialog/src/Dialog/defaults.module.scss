@@ -32,7 +32,14 @@
   overflow: hidden;
   animation-name: showDialog;
   animation-timing-function: ease-in-out;
-  animation-duration: 50ms;
+  animation-duration: 150ms;
+}
+
+.hide {
+
+  animation-name: hideDialog;
+  animation-timing-function: ease-in-out;
+  animation-duration: 150ms;
 }
 
 @keyframes showDialog {
@@ -41,6 +48,15 @@
   }
   to {
     top: 32px;
+  }
+}
+
+@keyframes hideDialog {
+  from {
+    top: 32px;
+  }
+  to {
+    top: 100%;
   }
 }
 

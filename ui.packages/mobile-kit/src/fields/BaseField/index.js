@@ -6,7 +6,7 @@ import { Field } from 'redux-form';
 import styles from "./default.module.scss";
 
 
-function FieldComponent({ input, require, message, meta: { touched, error }, children, onChange, ...props }) {
+function FieldComponent({ input, message, meta: { touched, error }, children, onChange, ...props }) {
   function handleChange(value) {
     if ('onChange' in input) {
       input.onChange(value);
@@ -21,6 +21,9 @@ function FieldComponent({ input, require, message, meta: { touched, error }, chi
         ...input,
         onChange: handleChange,
       })}
+      {touched && error && (
+        <span className={styles['error']}>{ error }</span>
+      )}
     </div>
   );
 }

@@ -19,6 +19,12 @@
   &:active {
     background: $primary-darken;
   }
+
+  &:disabled {
+
+    background: $gray-darken;
+    color: $gray-lighten;
+  }
 }
 
 .mode {

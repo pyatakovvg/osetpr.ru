@@ -18,6 +18,12 @@ function PaymentForm({ handleSubmit }) {
             <div className={styles['row']}>
               <Radio name={'cash-to-courier'} label={'наличными курьеру'} />
             </div>
+            <div className={styles['row']}>
+              <Radio name={'card-to-courier'} label={'картой курьеру'} disabled temp={'Временно недоступно'} />
+            </div>
+            <div className={styles['row']}>
+              <Radio name={'online'} label={'оплата онлайн'} disabled temp={'Временно недоступно'} />
+            </div>
           </RadioContainerField>
         </div>
       </div>

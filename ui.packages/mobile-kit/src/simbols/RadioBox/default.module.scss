@@ -17,6 +17,13 @@
   padding: 16px;
 }
 
+.disabled {
+
+  background: rgba($gray-darken, .4);
+  color: $gray-darken;
+  box-shadow: none;
+}
+
 .label {
 
   display: inline-block;
@@ -29,6 +36,10 @@
   cursor: pointer;
 }
 
+.disabled .label {
+  color: $gray-lighten;
+}
+
 .radio {
 
   display: inline-flex;
@@ -37,7 +48,6 @@
   height: 16px;
   border-radius: 50%;
   background: $gray-lighten;
-  font-size: 0;
   outline: none;
   justify-content: center;
   align-items: center;
@@ -65,8 +75,16 @@
   &--disabled {
 
     background: $gray-lighten;
-    border-color: $gray;
-    color: $gray;
+    border-color: $gray-lighten;
+    color: $gray-darken;
     cursor: default;
   }
+}
+
+.temp {
+
+  display: inline-block;
+  font-size: 9px;
+  color: $danger-lighten;
+  margin: 0 0 0 16px;
 }

@@ -25,10 +25,20 @@
   display: block;
   font-size: 14px;
   font-weight: 600;
-  color: $white;
+  color: $gray-lighten;
   margin-left: 8px;
   transition: color 150ms, top 150ms, font-size 150ms;
   transition-timing-function: ease-in-out;
+}
+
+.require {
+  &:after {
+
+    display: inline-block;
+    margin-left: 4px;
+    content: '*';
+    color: $danger;
+  }
 }
 
 .element {
@@ -48,5 +58,4 @@
 
   top: 0;
   font-size: 11px;
-  color: $gray-lighten;
 }

@@ -13,7 +13,7 @@ import styles from './defaults.module.scss';
 function Dialog({ className, name, children, onClose }) {
   const dispatch = useDispatch();
 
-  const wrapperRef = useRef(null);
+  const dialogRef = useRef(null);
 
   const isOpen = useSelector(selectIsOpen);
   const activeName = useSelector(selectName);
@@ -25,26 +25,49 @@ function Dialog({ className, name, children, onClose }) {
     }
   }, [])
 
+  useEffect(() => {
+    const elementDialog = dialogRef['current'];
+
+    if ( ! elementDialog) {
+      return void 0;
+    }
+
+    function handleCloseDialog() {
+      if (elementDialog.classList.contains(styles['hide'])) {
+        dispatch(closeDialog());
+        onClose && onClose(name);
+      }
+    }
+
+    elementDialog.addEventListener('animationend', handleCloseDialog);
+    return () => {
+      if ( ! elementDialog) {
+        return void 0;
+      }
+
+      elementDialog.removeEventListener('animationend', handleCloseDialog);
+    }
+  }, [isOpen]);
+
   function handleCloseDialog() {
-    dispatch(closeDialog());
-    onClose && onClose(name);
+    const elementDialog = dialogRef['current'];
+
+    elementDialog.classList.add(styles['hide']);
   }
 
-  function handleOutClick(event) {
-    const { current: wrapperElement } = wrapperRef;
+  if ( ! isOpen) {
+    return null;
+  }
 
-    const target = event.target;
-
-    if (wrapperElement === target) {
-      handleCloseDialog();
-    }
+  if (name !== activeName) {
+    return null;
   }
 
   const classNameDialog = cn(styles['dialog'], className);
 
-  return isOpen && (name === activeName) && ReactDOM.createPortal((
-    <div ref={wrapperRef} className={styles['wrapper']} onClick={handleOutClick}>
-      <div className={classNameDialog}>
+  return ReactDOM.createPortal((
+    <div className={styles['wrapper']}>
+      <div ref={dialogRef} className={classNameDialog}>
         <span className={styles['close']} onClick={handleCloseDialog} />
         <div className={styles['content']}>
           { React.cloneElement(children, { data }) }

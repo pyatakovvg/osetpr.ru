@@ -4,7 +4,20 @@
 
 .wrapper {
 
+  position: relative;
   display: flex;
   flex: 1 0;
   flex-direction: column;
+}
+
+.error {
+
+  position: absolute;
+  top: 100%;
+  left: 8px;
+  display: block;
+  padding: 2px 0 0;
+  color: $danger;
+  font-size: 9px;
+  font-weight: 400;
 }

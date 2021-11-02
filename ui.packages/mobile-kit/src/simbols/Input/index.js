@@ -6,11 +6,12 @@ import cn from 'classnames';
 import styles from './default.module.scss';
 
 
-function Input({ mode, label, name, value, onChange, onFocus, onBlur, ...props }) {
+function Input({ mode, label, name, value, require, onChange, onFocus, onBlur, ...props }) {
   const [isFocus, setFocus] = useState(false);
 
   const titleClassName = useMemo(() => cn(styles['title'], {
     [styles['is-focus']]: value || isFocus,
+    [styles['require']]: require,
   }), [mode, isFocus]);
   const contentClassName = useMemo(() => cn(styles['content'], {
     [styles['mode--success']]: mode === 'success',
@@ -53,10 +54,12 @@ function Input({ mode, label, name, value, onChange, onFocus, onBlur, ...props }
 }
 
 Input.propTypes = {
+  require: types.bool,
   mode: types.oneOf(['danger', 'default']),
 };
 
 Input.defaultType = {
+  require: false,
   mode: 'default',
 };
 

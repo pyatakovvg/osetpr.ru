@@ -8,27 +8,20 @@ import cn from "classnames";
 import styles from "./default.module.scss";
 
 
-const INFO_MODE = 'info';
-const DANGER_MODE = 'danger';
-const PRIMARY_MODE = 'primary';
-const WARNING_MODE = 'warning';
-const SUCCESS_MODE = 'success';
-
-
-function RadioOption({ className, label, name, mode, disabled, children }) {
+function RadioOption({ className, label, name, temp, disabled, children }) {
   const { value, onChange } = useContext(Context);
 
   function handleChange() {
-    onChange(name);
+    if (disabled) {
+      return void 0;
+    }
+    onChange && onChange(name);
   }
 
-  const classNameWrapper = cn(className, styles['wrapper']);
+  const classNameWrapper = cn(className, styles['wrapper'], {
+    [styles['disabled']]: disabled,
+  });
   const classNameRadio = cn(styles['radio'], {
-    [styles['radio--primary']]: mode === PRIMARY_MODE,
-    [styles['radio--success']]: mode === SUCCESS_MODE,
-    [styles['radio--info']]: mode === INFO_MODE,
-    [styles['radio--danger']]: mode === DANGER_MODE,
-    [styles['radio--warning']]: mode === WARNING_MODE,
     [styles['radio--disabled']]: disabled,
   });
   const isSelected = (name === value);
@@ -47,6 +40,7 @@ function RadioOption({ className, label, name, mode, disabled, children }) {
             {isSelected && <span className={cn(styles['radio__marker'])} />}
           </span>
           {label && <label className={styles['label']}>{ label }</label>}
+          {temp && <span className={styles['temp']}>{ temp }</span>}
         </span>
       );
 }
