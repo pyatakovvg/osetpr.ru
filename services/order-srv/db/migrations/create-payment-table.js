@@ -5,29 +5,27 @@ module.exports = {
 
     try {
 
-      await queryInterface.createTable('Customers', {
-        uuid: {
-          type: DataType.UUID,
+      await queryInterface.createTable('Payments', {
+        code: {
+          type: DataType.STRING,
           primaryKey: true,
+        },
+        displayName: {
+          type: DataType.STRING,
           allowNull: false,
         },
-        userUuid: {
-          type: DataType.UUID,
-          allowNull: true,
-        },
-        type: {
-          type: DataType.ENUM,
-          values: ['individual', 'legal'],
+        isUse: {
+          type: DataType.BOOLEAN,
           allowNull: false,
-        },
-        createdAt: {
-          type: DataType.DATE,
-          allowNull: false,
-        },
-        updatedAt: {
-          type: DataType.DATE,
-          allowNull: false,
-        },
+          defaultValue: true,
+        }
+      }, {
+        transaction
+      });
+
+      await queryInterface.addColumn('Orders', 'paymentCode', {
+        type: DataType.STRING,
+        allowNull: true,
       }, {
         transaction,
       });

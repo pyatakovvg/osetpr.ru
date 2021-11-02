@@ -31,6 +31,10 @@ module.exports = {
           type: DataType.STRING,
           allowNull: true,
         },
+        floor: {
+          type: DataType.STRING,
+          allowNull: true,
+        },
         front: {
           type: DataType.STRING,
           allowNull: true,
@@ -39,7 +43,7 @@ module.exports = {
         transaction
       });
 
-      await queryInterface.removeColumn('orders', 'address', {
+      await queryInterface.removeColumn('Orders', 'address', {
         transaction,
       });
 

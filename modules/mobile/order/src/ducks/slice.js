@@ -2,18 +2,38 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 
-const initialState = {};
+const initialState = {
+  payments: [],
+};
 
-const REDUCER_NAME = 'main';
+const REDUCER_NAME = 'order';
 
 
 const slice = createSlice({
   name: REDUCER_NAME,
   initialState,
-  reducers: {},
+  reducers: {
+    resetStateAction(state) {
+      state['payments'] = [];
+    },
+
+    getPaymentsRequestAction() {},
+    getPaymentsRequestFailAction(state) {},
+    getPaymentsRequestSuccessAction(state, { payload }) {
+      state['payments'] = payload;
+    },
+  },
 });
 
-export const {} = slice['actions'];
+export const {
+  resetStateAction,
+
+  getPaymentsRequestAction,
+  getPaymentsRequestFailAction,
+  getPaymentsRequestSuccessAction,
+} = slice['actions'];
+
+export const selectPayments = (state) => state[REDUCER_NAME]['payments'];
 
 export const name = slice['name'];
 export const reducer = slice['reducer'];

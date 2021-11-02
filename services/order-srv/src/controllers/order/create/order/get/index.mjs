@@ -3,7 +3,7 @@ import { models } from '@sys.packages/db';
 
 
 export default async function(orderUuid) {
-  const { Order, Currency, OrderProduct, OrderAddress, ProductGallery, Status } = models;
+  const { Order, Currency, OrderProduct, OrderAddress, ProductGallery, Status, Payment } = models;
 
   const result = await Order.findOne({
     where: { uuid: orderUuid },
@@ -14,7 +14,7 @@ export default async function(orderUuid) {
     include: [
       {
         model: OrderAddress,
-        attributes: ['city', 'street', 'house', 'building', 'apartment', 'front'],
+        attributes: ['city', 'street', 'house', 'building', 'apartment', 'front', 'floor'],
         as: 'address',
       },
       {
@@ -43,6 +43,11 @@ export default async function(orderUuid) {
         model: Currency,
         attributes: ['code', 'value'],
         as: 'currency',
+      },
+      {
+        model: Payment,
+        attributes: ['code', 'displayName'],
+        as: 'payment',
       },
     ],
   });

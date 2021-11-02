@@ -5,6 +5,7 @@ export default function(data) {
     total: data['total'],
     currency: data['currency'],
     address: data['address'],
+    payment: data['payment'],
     products: data['products'].map((product) => ({
       uuid: product['uuid'],
       productUuid: product['productUuid'],

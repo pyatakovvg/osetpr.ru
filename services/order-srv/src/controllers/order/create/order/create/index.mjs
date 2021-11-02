@@ -13,6 +13,7 @@ export default async function(data) {
     title: data['title'],
     description: data['description'],
     dateTo: data['dateTo'],
+    paymentCode: data['paymentCode'],
     total: 0,
     currencyCode: 'RUB',
   });

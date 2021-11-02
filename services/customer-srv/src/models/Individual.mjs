@@ -7,15 +7,11 @@ export default function (sequelize, DataType) {
   class Individual extends Model {}
 
   Individual.init({
-    id: {
-      type: DataType.INTEGER,
-      primaryKey: true,
-      allowNull: false,
-      autoIncrement: true,
-    },
     customerUuid: {
       type: DataType.UUID,
       allowNull: false,
+      primaryKey: true,
+      unique: true,
     },
     name: {
       type: DataType.STRING(32),
@@ -27,11 +23,13 @@ export default function (sequelize, DataType) {
     },
     surname: {
       type: DataType.STRING(32),
-      allowNull: false,
+      allowNull: true,
     },
     gender: {
       type: DataType.ENUM,
       values: ['male', 'female'],
+      defaultValue: null,
+      allowNull: true,
     },
     age: {
       type: DataType.INTEGER,
@@ -43,7 +41,7 @@ export default function (sequelize, DataType) {
     },
     phone: {
       type: DataType.STRING(12),
-      allowNull: true,
+      allowNull: false,
     },
   }, {
     sequelize,

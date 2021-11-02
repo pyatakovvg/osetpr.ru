@@ -43,15 +43,24 @@ export default function(sequelize, DataType) {
       type: DataType.STRING(4),
       allowNull: false,
     },
+    paymentCode: {
+      type: DataType.STRING,
+      allowNull: true,
+    },
   }, {
     sequelize,
   });
 
-  Order.associate = ({ OrderProduct, OrderAddress, Status, Currency }) => {
+  Order.associate = ({ OrderProduct, OrderAddress, Status, Currency, Payment }) => {
 
     Order.belongsTo(Currency, {
       foreignKey: 'currencyCode',
       as: 'currency',
+    });
+
+    Order.belongsTo(Payment, {
+      foreignKey: 'paymentCode',
+      as: 'payment',
     });
 
     Order.belongsTo(OrderAddress, {

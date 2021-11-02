@@ -26,10 +26,13 @@ function AddressForm({ handleSubmit, valid, pristine }) {
           <InputField label={'Корпус'} name={'building'} tabIndex={4} />
         </div>
         <div className={styles['row']}>
-          <InputField label={'Квартира'} name={'apartment'} tabIndex={5} />
+          <InputField label={'Подъезд'} name={'front'} tabIndex={5} />
         </div>
         <div className={styles['row']}>
-          <InputField label={'Подъезд'} name={'front'} tabIndex={6} />
+          <InputField label={'Квартира'} name={'apartment'} tabIndex={6} />
+        </div>
+        <div className={styles['row']}>
+          <InputField label={'Этаж'} name={'floor'} tabIndex={7} />
         </div>
       </div>
       <div className={styles['controls']}>

@@ -40,7 +40,7 @@ function RadioOption({ className, label, name, temp, disabled, children }) {
             {isSelected && <span className={cn(styles['radio__marker'])} />}
           </span>
           {label && <label className={styles['label']}>{ label }</label>}
-          {temp && <span className={styles['temp']}>{ temp }</span>}
+          {temp && disabled && <span className={styles['temp']}>{ temp }</span>}
         </span>
       );
 }

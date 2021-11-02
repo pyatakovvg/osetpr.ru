@@ -33,6 +33,10 @@ export default function(sequelize, DataType) {
       type: DataType.STRING,
       allowNull: true,
     },
+    floor: {
+      type: DataType.STRING,
+      allowNull: true,
+    },
     front: {
       type: DataType.STRING,
       allowNull: true,

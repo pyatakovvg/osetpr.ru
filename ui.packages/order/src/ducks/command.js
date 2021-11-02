@@ -27,7 +27,7 @@ export const getOrder = (userUuid) => async (dispatch) => {
     dispatch(getOrderRequestSuccessAction(result['data']));
   }
   catch(error) {
-    console.log(error)
+
     dispatch(getOrderRequestFailAction());
   }
 };
@@ -47,6 +47,7 @@ export const updateOrder = (userUuid, order) => async (dispatch) => {
           uuid: order['uuid'],
           products: order['products'],
           address: order['address'],
+          paymentCode: order['paymentCode'],
         }
       });
     }
@@ -67,7 +68,7 @@ export const updateOrder = (userUuid, order) => async (dispatch) => {
     dispatch(updateOrderRequestSuccessAction(result['data']));
   }
   catch(error) {
-    console.log(error)
+
     dispatch(updateOrderRequestFailAction());
   }
 };

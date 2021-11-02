@@ -14,7 +14,7 @@ export default function (sequelize, DataType) {
     },
     userUuid: {
       type: DataType.UUID,
-      allowNull: false,
+      allowNull: true,
     },
     type: {
       type: DataType.ENUM,

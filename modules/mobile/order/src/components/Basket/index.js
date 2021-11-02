@@ -50,6 +50,8 @@ function Order() {
     dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
       uuid: order['uuid'],
       products: [],
+      address: null,
+      paymentCode: null,
     }));
   }
 

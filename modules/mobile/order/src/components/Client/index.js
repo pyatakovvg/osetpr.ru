@@ -1,4 +1,6 @@
 
+import { selectPayments } from '@modules/mobile-order';
+
 import numeral from '@packages/numeral';
 import { Dialog, openDialog, closeDialog } from '@ui.packages/mobile-dialog';
 
@@ -11,6 +13,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Item from "./Item";
 import Address from "./Address";
 import Payment from "./Payment";
+import Details from "./Details";
 
 import styles from './default.module.scss';
 
@@ -18,49 +21,69 @@ import styles from './default.module.scss';
 function addressToString(data) {
   let address = '';
   if (data && data instanceof Object) {
-    if (data['city']) {
-      address += data['city'];
-    }
     if (data['street']) {
-      address += ', ' + data['street'];
+      address += 'ул.' + data['street'];
     }
     if (data['house']) {
-      address += ', ' + data['house'];
+      address += ', д.' + data['house'];
     }
     if (data['building']) {
-      address += ', ' + data['building'];
-    }
-    if (data['apartment']) {
-      address += ', ' + data['apartment'];
+      address += ', к.' + data['building'];
     }
     if (data['front']) {
-      address += ', ' + data['front'];
+      address += ', п.' + data['front'];
+    }
+    if (data['apartment']) {
+      address += ', кв.' + data['apartment'];
+    }
+    if (data['floor']) {
+      address += ', эт.' + data['floor'];
     }
   }
   return address;
 }
 
+function customerData(data) {
+  let customer = null;
+  if (data && data instanceof Object) {
+    customer = data['name'] + ' (' + data['phone'] + ')';
+  }
+  return customer;
+}
 
 function Client() {
   const dispatch = useDispatch();
 
   const order = useSelector(selectOrder);
+  const payments = useSelector(selectPayments);
 
   function handleBack() {
     dispatch(nextStepAction(0));
   }
 
-  function handleAddressUpdate(data) {
-    console.log(data)
-    dispatch(closeDialog('address'));
-    dispatch(updateOrder(order['uuid'], {
+  async function handleAddressUpdate(address) {
+    await dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
       ...order,
-      address: data,
+      address,
     }));
+    dispatch(closeDialog('address'));
   }
 
-  function handlePaymentUpdate() {
+  async function handlePaymentUpdate(data) {
+    await dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
+      ...order,
+      paymentCode: data['paymentCode'],
+    }));
     dispatch(closeDialog('payment'));
+  }
+
+  async function handleDetailsUpdate(data) {
+    await dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
+      ...order,
+      customer: { name: data['name'], phone: data['phone'] },
+      description: data['description'],
+    }));
+    dispatch(closeDialog('details'));
   }
 
   return (
@@ -75,10 +98,18 @@ function Client() {
             <Item title={'Адрес доставки'} value={addressToString(order['address'])} defaultValue={'Не указан'} onClick={() => dispatch(openDialog('address'))}/>
           </div>
           <div className={styles['row']}>
-            <Item title={'Способ оплаты'} value={order['paymentCode']} defaultValue={'Не указан'} onClick={() => dispatch(openDialog('payment'))}/>
+            <Item title={'Способ оплаты'} value={order['payment'] && order['payment']['displayName']} defaultValue={'Не указан'} onClick={() => dispatch(openDialog('payment'))}/>
           </div>
           <div className={styles['row']}>
             <Item title={'Доставка ко времени'} value={null} defaultValue={'Как можно скорее'} onClick={() => console.log(4676)}/>
+          </div>
+          <div className={styles['row']}>
+            <Item
+              title={'Ваши данные'}
+              value={customerData(order['customer'])}
+              defaultValue={'Не указан'}
+              onClick={() => dispatch(openDialog('details'))}
+            />
           </div>
         </div>
       </div>
@@ -99,9 +130,19 @@ function Client() {
       <Dialog name={'payment'}>
         <Payment
           initialValues={{
-            payment: 'cash-to-courier'
+            paymentCode: order['payment'] ? order['payment']['code'] : payments[0]['code'],
           }}
           onSubmit={(data) => handlePaymentUpdate(data) }
+        />
+      </Dialog>
+
+      <Dialog name={'details'}>
+        <Details
+          initialValues={{
+            ...order['customer'],
+            description: order['description'],
+          }}
+          onSubmit={(data) => handleDetailsUpdate(data)}
         />
       </Dialog>
     </div>

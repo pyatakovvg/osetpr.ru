@@ -7,7 +7,7 @@ export default () => async (ctx) => {
   let offset = {};
   let options = {};
 
-  const { Order, OrderProduct, OrderAddress, ProductGallery, Status, Currency } = models;
+  const { Order, OrderProduct, OrderAddress, ProductGallery, Status, Currency, Payment } = models;
 
   const {
     limit = null,
@@ -57,7 +57,8 @@ export default () => async (ctx) => {
     include: [
       {
         model: OrderAddress,
-        attributes: ['city', 'street', 'house', 'building', 'apartment', 'front'],
+        required: false,
+        attributes: ['city', 'street', 'house', 'building', 'apartment', 'front', 'floor'],
         as: 'address',
       },
       {
@@ -86,6 +87,11 @@ export default () => async (ctx) => {
         model: Currency,
         attributes: ['code', 'value'],
         as: 'currency',
+      },
+      {
+        model: Payment,
+        attributes: ['code', 'displayName'],
+        as: 'payment',
       },
     ],
   });

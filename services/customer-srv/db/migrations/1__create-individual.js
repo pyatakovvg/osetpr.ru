@@ -6,15 +6,11 @@ module.exports = {
     try {
 
       await queryInterface.createTable('Individuals', {
-        id: {
-          type: DataType.INTEGER,
-          primaryKey: true,
-          allowNull: false,
-          autoIncrement: true,
-        },
         customerUuid: {
           type: DataType.UUID,
           allowNull: false,
+          primaryKey: true,
+          unique: true,
         },
         name: {
           type: DataType.STRING(32),
@@ -26,11 +22,13 @@ module.exports = {
         },
         surname: {
           type: DataType.STRING(32),
-          allowNull: false,
+          allowNull: true,
         },
         gender: {
           type: DataType.ENUM,
           values: ['male', 'female'],
+          defaultValue: null,
+          allowNull: true,
         },
         age: {
           type: DataType.INTEGER,
@@ -42,14 +40,6 @@ module.exports = {
         },
         phone: {
           type: DataType.STRING(12),
-          allowNull: true,
-        },
-        createdAt: {
-          type: DataType.DATE,
-          allowNull: false,
-        },
-        updatedAt: {
-          type: DataType.DATE,
           allowNull: false,
         },
       }, {

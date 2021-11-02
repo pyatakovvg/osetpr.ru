@@ -82,7 +82,7 @@ export default class Saga {
       .withCompensation(async (params) => {
         logger.info('Restore update address');
         const order = params.getOrder();
-        await updateProducts(uuid, order['address']);
+        await createAddress(uuid, order['address']);
       })
 
       .step('Update products')
