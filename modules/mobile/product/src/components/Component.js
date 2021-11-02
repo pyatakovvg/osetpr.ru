@@ -23,7 +23,6 @@ function Product() {
   function handleToCart(product) {
     const orderProducts = order ? order['products'] : [];
     let products = [...orderProducts];
-    console.log(product, products)
     const productIndex = products.findIndex((item) => item['modeUuid'] === product['modeUuid']);
 
     if (productIndex > -1) {
