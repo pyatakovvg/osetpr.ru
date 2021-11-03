@@ -361,9 +361,13 @@ services:
     depends_on:
       - order_ui
       - admin_ui
+      - client_ui
+      - mobile_ui
     links:
       - order_ui
       - admin_ui
+      - client_ui
+      - mobile_ui
     ports:
       - 80:80
       - 443:443
