@@ -7,13 +7,13 @@ RUN npm config set package-lock false
 
 WORKDIR /app
 
-COPY ./services/mail-srv/src               ./services/mail-srv/src
-COPY ./services/mail-srv/.env.production   ./services/mail-srv
-COPY ./services/mail-srv/package.json      ./services/mail-srv
-COPY ./sys.packages                        ./sys.packages
-COPY ./packages                            ./packages
-COPY ./package.json                        ./
-COPY ./lerna.json                          ./
+COPY ../../services/mail-srv/src               ./services/mail-srv/src
+COPY ../../services/mail-srv/.env.stage        ./services/mail-srv/.env
+COPY ../../services/mail-srv/package.json      ./services/mail-srv
+COPY ../../sys.packages                        ./sys.packages
+COPY ../../packages                            ./packages
+COPY ../../package.json                        ./
+COPY ../../lerna.json                          ./
 
 RUN yarn
 

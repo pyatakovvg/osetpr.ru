@@ -8,16 +8,16 @@ RUN npm config set package-lock false
 
 WORKDIR /app
 
-COPY ./clients/admin-ui/src             ./clients/admin-ui/src
-COPY ./clients/admin-ui/public          ./clients/admin-ui/public
-COPY ./clients/admin-ui/package.json    ./clients/admin-ui
-COPY ./clients/admin-ui/.env.production ./clients/admin-ui
-COPY ./modules                          ./modules
-COPY ./ui.packages                      ./ui.packages
-COPY ./packages                         ./packages
-COPY ./package.json                     ./
-COPY ./lerna.json                       ./
-COPY ./build-admin-packages.sh          ./
+COPY ../../clients/admin-ui/src             ./clients/admin-ui/src
+COPY ../../clients/admin-ui/public          ./clients/admin-ui/public
+COPY ../../clients/admin-ui/package.json    ./clients/admin-ui
+COPY ../../clients/admin-ui/.env.stage      ./clients/admin-ui/.env
+COPY ../../modules                          ./modules
+COPY ../../ui.packages                      ./ui.packages
+COPY ../../packages                         ./packages
+COPY ../../package.json                     ./
+COPY ../../lerna.json                       ./
+COPY ../build-admin-packages.sh             ./
 
 RUN yarn
 
