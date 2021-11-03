@@ -7,13 +7,13 @@ RUN npm config set package-lock false
 
 WORKDIR /app
 
-COPY ../../gateway/order-gw/src              ./gateway/order-gw/src
-COPY ../../gateway/order-gw/.env.stage       ./gateway/order-gw/.env
-COPY ../../gateway/order-gw/package.json     ./gateway/order-gw
-COPY ../../sys.packages                      ./sys.packages
-COPY ../../packages                          ./packages
-COPY ../../package.json                      ./
-COPY ../../lerna.json                        ./
+COPY ./gateway/order-gw/src              ./gateway/order-gw/src
+COPY ./gateway/order-gw/.env.stage       ./gateway/order-gw/.env
+COPY ./gateway/order-gw/package.json     ./gateway/order-gw
+COPY ./sys.packages                      ./sys.packages
+COPY ./packages                          ./packages
+COPY ./package.json                      ./
+COPY ./lerna.json                        ./
 
 RUN yarn
 
