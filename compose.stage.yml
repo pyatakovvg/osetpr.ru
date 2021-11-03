@@ -371,13 +371,9 @@ services:
     ports:
       - 80:80
       - 443:443
-    environment:
-      NG_CLIENT_HOST: stage.osetpr.ru
-      NGINX_ADMIN_HOST: stage.admin.osetpr.ru
-      NG_ORDER_HOST: stage.order.osetpr.ru
     volumes:
-      - ./nginx/init-letsencrypt.sh:/etc/nginx/init-letsencrypt.sh
-      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/init-letsencrypt.stage.sh:/etc/nginx/init-letsencrypt.sh
+      - ./nginx/stage.conf.d:/etc/nginx/conf.d
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
