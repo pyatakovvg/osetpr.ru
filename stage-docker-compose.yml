@@ -369,7 +369,7 @@ services:
       - 443:443
     environment:
       NG_CLIENT_HOST: 'stage.osetpr.ru'
-      dc_admin_host: 'stage.admin.osetpr.ru'
+      NG_ADMIN_HOST: 'stage.admin.osetpr.ru'
       NG_ORDER_HOST: 'stage.order.osetpr.ru'
     volumes:
       - ./nginx/init-letsencrypt.sh:/etc/nginx/init-letsencrypt.sh
