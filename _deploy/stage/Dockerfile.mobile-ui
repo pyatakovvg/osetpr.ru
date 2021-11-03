@@ -11,13 +11,13 @@ WORKDIR /app
 COPY ./clients/mobile-ui/src              ./clients/mobile-ui/src
 COPY ./clients/mobile-ui/public           ./clients/mobile-ui/public
 COPY ./clients/mobile-ui/package.json     ./clients/mobile-ui
-COPY ./clients/mobile-ui/.env.production  ./clients/mobile-ui
+COPY ./clients/mobile-ui/.env.stage       ./clients/mobile-ui
 COPY ./modules/mobile                     ./modules/mobile
 COPY ./ui.packages                        ./ui.packages
 COPY ./packages                           ./packages
 COPY ./package.json                       ./
 COPY ./lerna.json                         ./
-COPY ./build-mobile-packages.sh           ./
+COPY ../build-mobile-packages.sh           ./
 
 RUN yarn
 

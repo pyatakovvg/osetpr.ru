@@ -11,7 +11,7 @@ WORKDIR /app
 COPY ./clients/order-ui/src             ./clients/order-ui/src
 COPY ./clients/order-ui/public          ./clients/order-ui/public
 COPY ./clients/order-ui/package.json    ./clients/order-ui
-COPY ./clients/order-ui/.env.production ./clients/order-ui
+COPY ./clients/order-ui/.env.prod       ./clients/order-ui
 COPY ./modules/order                    ./modules/order
 COPY ./ui.packages                      ./ui.packages
 COPY ./packages                         ./packages

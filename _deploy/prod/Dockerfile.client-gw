@@ -1,0 +1,22 @@
+
+# BUILD APP
+FROM node:16.10-alpine3.11
+
+RUN npm install -g npm@latest
+RUN npm config set package-lock false
+
+WORKDIR /app
+
+COPY ../../gateway/client-gw/src              ./gateway/client-gw/src
+COPY ../../gateway/client-gw/.env.prod        ./gateway/client-gw/.env
+COPY ../../gateway/client-gw/package.json     ./gateway/client-gw
+COPY ../../sys.packages                       ./sys.packages
+COPY ../../packages                           ./packages
+COPY ../../package.json                       ./
+COPY ../../lerna.json                         ./
+
+RUN yarn
+
+WORKDIR /app/gateway/client-gw
+
+ENTRYPOINT ["yarn", "run", "start"]
