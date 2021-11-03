@@ -43,10 +43,6 @@ module.exports = {
         transaction
       });
 
-      await queryInterface.removeColumn('Orders', 'address', {
-        transaction,
-      });
-
       await transaction.commit();
     }
     catch (err) {

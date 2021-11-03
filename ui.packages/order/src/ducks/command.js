@@ -45,13 +45,15 @@ export const updateOrder = (userUuid, order) => async (dispatch) => {
         data: {
           userUuid,
           uuid: order['uuid'],
-          products: order['products'],
           address: order['address'],
+          products: order['products'],
+          customer: order['customer'],
           paymentCode: order['paymentCode'],
         }
       });
     }
     else {
+
       result = await request({
         url: '/orders',
         method: 'post',
@@ -59,8 +61,10 @@ export const updateOrder = (userUuid, order) => async (dispatch) => {
           userUuid,
           dateTo: Date.now(),
           title: 'Клиентский',
+          address: order['address'],
           products: order['products'],
-          address: '',
+          customer: order['customer'],
+          paymentCode: order['paymentCode'],
         }
       });
     }

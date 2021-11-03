@@ -6,6 +6,10 @@ import { sendEvent, sendCommand } from '@sys.packages/rabbit';
 
 import Sagas from 'node-sagas';
 
+import getCustomer from './customer/get';
+import createCustomer from './customer/create';
+import updateCustomer from './customer/update';
+
 import createGallery from './gallery/create';
 import removeGallery from './gallery/remove';
 
@@ -121,6 +125,23 @@ export default class Saga {
         await createGallery(uuid, products);
       })
 
+      .step('Update customer')
+      .invoke(async (params) => {
+        logger.info('Update customer');
+        const order = params.getOrder();
+        const customer = await getCustomer(order['userUuid']);
+        if (customer) {
+          const result = await updateCustomer(customer['uuid'], {
+            ...body['customer'],
+          });
+          params.setCustomer(result);
+        }
+        else {
+          const result = await createCustomer(order['userUuid'], body['customer']);
+          params.setCustomer(result);
+        }
+      })
+
       .step('Update order')
       .invoke(async () => {
         logger.info('Update order');
@@ -145,14 +166,27 @@ export default class Saga {
       .step('Send event')
       .invoke(async (params) => {
         const order = params.getOrder();
+        const customer = params.getCustomer();
+        if (customer) {
+          order['customer']['name'] = customer['name'];
+          order['customer']['phone'] = customer['phone'];
+        }
+        else {
+          order['customer'] = null;
+        }
         await sendEvent(process.env['EXCHANGE_ORDER_UPDATE'], JSON.stringify(order));
       })
 
       .step('Send to mail')
       .invoke(async (params) => {
         const order = params.getOrder();
-        if (order['']) {
-
+        const customer = params.getCustomer();
+        if (customer) {
+          order['customer']['name'] = customer['name'];
+          order['customer']['phone'] = customer['phone'];
+        }
+        else {
+          order['customer'] = null;
         }
         await sendCommand(process.env['QUEUE_MAIL_ORDER_UPDATE'], JSON.stringify(order));
       })

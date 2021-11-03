@@ -6,6 +6,9 @@ import { sendEvent, sendCommand } from '@sys.packages/rabbit';
 
 import Sagas from 'node-sagas';
 
+import getCustomer from "./customer/get";
+import createCustomer from "./customer/create";
+
 import createGallery from "./gallery/create";
 
 import createAddress from "./address/create";
@@ -92,6 +95,24 @@ export default class Saga {
         params.setOrder(order);
       })
 
+      .step('Create customer')
+      .invoke(async (params) => {
+        logger.info('Create customer');
+        const customer = await getCustomer(body['userUuid']);
+        if ( ! customer) {
+          const newCustomer = await createCustomer(body['userUuid'], body['customer']);
+          params.setCustomer(newCustomer);
+        }
+        else {
+          params.setCustomer(customer);
+        }
+      })
+      .withCompensation(async () => {
+        logger.info('Restore customer');
+        // const orderUuid = params.getOrderUuid();
+        // await createAddress(orderUuid, null);
+      })
+
       .step('Update gallery')
       .invoke(async (params) => {
         logger.info('Update gallery');
@@ -133,12 +154,28 @@ export default class Saga {
       .step('Send event')
       .invoke(async (params) => {
         const order = params.getOrder();
+        const customer = params.getCustomer();
+        if (customer) {
+          order['customer']['name'] = customer['name'];
+          order['customer']['phone'] = customer['phone'];
+        }
+        else {
+          order['customer'] = null;
+        }
         await sendEvent(process.env['EXCHANGE_ORDER_CREATE'], JSON.stringify(order));
       })
 
       .step('Send to mail')
       .invoke(async (params) => {
         const order = params.getOrder();
+        const customer = params.getCustomer();
+        if (customer) {
+          order['customer']['name'] = customer['name'];
+          order['customer']['phone'] = customer['phone'];
+        }
+        else {
+          order['customer'] = null;
+        }
         await sendCommand(process.env['QUEUE_MAIL_ORDER_CREATE'], JSON.stringify(order));
       })
 

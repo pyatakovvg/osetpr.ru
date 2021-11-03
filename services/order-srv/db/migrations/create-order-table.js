@@ -24,15 +24,11 @@ module.exports = {
         },
         dateTo: {
           type: DataType.DATE,
-          allowNull: false,
+          allowNull: true,
         },
         description: {
           type: DataType.STRING(2024),
           allowNull: true,
-        },
-        address: {
-          type: DataType.STRING(256),
-          allowNull: false,
         },
         total: {
           type: DataType.DECIMAL(10, 2),

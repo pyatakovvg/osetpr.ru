@@ -26,7 +26,7 @@ export default function(sequelize, DataType) {
     },
     dateTo: {
       type: DataType.DATE,
-      allowNull: false,
+      allowNull: true,
     },
     description: {
       type: DataType.STRING(2024),

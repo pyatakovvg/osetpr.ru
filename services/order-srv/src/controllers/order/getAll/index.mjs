@@ -1,5 +1,6 @@
 
 import { models } from '@sys.packages/db';
+import request from '@sys.packages/request';
 
 
 export default () => async (ctx) => {
@@ -96,9 +97,27 @@ export default () => async (ctx) => {
     ],
   });
 
+  const orders = result['rows'].map((item) => item.toJSON());
+
+  const { data: customers } = await request({
+    url: process.env['CUSTOMER_API_SRV'] + '/customers',
+    method: 'get',
+    params: {
+      userUuid: orders.map((item) => item['userUuid']),
+    },
+  });
+
+  const resultOrders = orders.map((order) => {
+    const customer = customers.find((customer) => customer['userUuid'] === order['userUuid']);
+    if (customer) {
+      return { ...order, customer };
+    }
+    return { ...order, customer: null };
+  });
+
   ctx.body = {
     success: true,
-    data: result['rows'].map((item) => item.toJSON()),
+    data: resultOrders,
     meta: {
       totalRows: result['count'],
     },

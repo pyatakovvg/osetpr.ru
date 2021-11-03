@@ -2,6 +2,7 @@
 export default class SagaParams {
   _orderUuid = null;
   _order = null;
+  _customer = null;
 
   getOrderUuid() {
     return this._orderUuid;
@@ -17,5 +18,13 @@ export default class SagaParams {
 
   setOrder(order) {
     this._order = order;
+  }
+
+  getCustomer() {
+    return this._customer;
+  }
+
+  setCustomer(customer) {
+    this._customer = customer;
   }
 }

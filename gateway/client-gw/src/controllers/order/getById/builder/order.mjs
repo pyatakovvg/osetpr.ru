@@ -1,4 +1,7 @@
 
+import customerBuilder from './customer.mjs';
+
+
 export default function(data) {
   return {
     uuid: data['uuid'],
@@ -6,6 +9,9 @@ export default function(data) {
     currency: data['currency'],
     address: data['address'],
     payment: data['payment'],
+    customer: data['customer']
+      ? customerBuilder(data['customer'])
+      : null,
     products: data['products'].map((product) => ({
       uuid: product['uuid'],
       productUuid: product['productUuid'],

@@ -18,7 +18,6 @@ export default function(sequelize, DataType) {
     },
   }, {
     sequelize,
-    modelName: 'Statuses',
     timestamps: false,
   });
 

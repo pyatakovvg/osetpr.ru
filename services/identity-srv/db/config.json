@@ -3,7 +3,7 @@
   "development": {
     "port": 5432,
     "host": "localhost",
-    "database": "identity_srv",
+    "database": "osetpr-identity_srv",
     "username": "admin",
     "password": "1Ctdfcnjgjkm",
     "dialect": "postgres"

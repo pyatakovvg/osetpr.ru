@@ -19,6 +19,10 @@ module.exports = {
           type: DataType.UUID,
           allowNull: false,
         },
+        modeUuid: {
+          type: DataType.UUID,
+          allowNull: false,
+        },
         title: {
           type: DataType.STRING(255),
           allowNull: false,

@@ -1,47 +1,57 @@
 
-import { sendEvent } from '@sys.packages/rabbit';
-import { models } from '@sys.packages/db';
+import {models, sequelize} from '@sys.packages/db';
 
 
 export default () => async (ctx) => {
-  const { id } = ctx['params'];
+  const { uuid } = ctx['params'];
   const data = ctx['request']['body'];
+  const { Customer, Legal, Individual } = models;
 
-  const { Client, Address, Meta } = models;
+  const transaction = await sequelize.transaction();
 
-  await Client.update({
-    name: data['name'],
-    patronymic: data['patronymic'],
-    surname: data['surname'],
-    gender: data['gender'],
-    age: data['age'],
-    birthday: data['birthday'],
-  }, {
-    where: { id },
-  });
+  if (data['type'] === 'individual') {
+    await Individual.update({
+      ...data,
+    }, {
+      where: {
+        customerUuid: uuid,
+      },
+      transaction,
+    });
+  }
 
-  const result = await Client.findOne({
-    where: { id },
-    distinct: true,
-    order: [['id', 'desc']],
-    attributes: ['id', 'name', 'patronymic', 'surname', 'gender', 'age', 'birthday'],
+  if (data['type'] === 'legal') {
+    await Legal.update({
+      ...data,
+    }, {
+      where: {
+        customerUuid: uuid,
+      },
+      transaction,
+    });
+  }
+
+  await transaction.commit();
+
+  const result = await Customer.findOne({
+    where: { uuid },
+    attributes: ['uuid', 'type', 'createdAt', 'updatedAt'],
     include: [
       {
-        model: Address,
+        model: Legal,
         required: false,
-        as: 'address',
-        attributes: ['postalCode', 'country', 'province', 'locality', 'street', 'house', 'entrance', 'floor', 'flat']
+        as: 'legal',
+        attributes: ['name', 'address', 'phone'],
       },
       {
-        model: Meta,
+        model: Individual,
         required: false,
-        as: 'meta',
-        attributes: ['email', 'phone']
+        as: 'individual',
+        attributes: ['name', 'surname', 'patronymic', 'gender', 'age', 'birthday'],
+
       },
     ]
   });
-
-  await sendEvent(process.env['EXCHANGE_CUSTOMER_UPDATE'], JSON.stringify(result.toJSON()))
 
   ctx.body = {
     success: true,

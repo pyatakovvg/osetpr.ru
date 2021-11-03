@@ -157,10 +157,12 @@ services:
       - db
       - rabbit
       - product_srv
+      - customer_srv
     links:
       - db
       - rabbit
       - product_srv
+      - customer_srv
 
 
   order_gw:

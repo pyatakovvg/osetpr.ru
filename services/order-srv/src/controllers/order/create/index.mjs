@@ -1,12 +1,12 @@
 
-import { BadRequestError } from "@packages/errors";
+// import { BadRequestError } from "@packages/errors";
 
-import Ajv from "ajv";
+// import Ajv from "ajv";
 
 import Saga from './saga.mjs';
 import SagaParams from './saga-params.mjs';
 
-import orderScheme from "../../../_schemes/order.json";
+// import orderScheme from "../../../_schemes/order.json";
 
 
 export default () => async (ctx) => {
@@ -25,8 +25,16 @@ export default () => async (ctx) => {
 
   const params = await saga.execute(sagaParams);
 
+  const order = params.getOrder();
+  const customer = params.getCustomer();
+
+  if (customer) {
+    order['customer']['name'] = customer['name'];
+    order['customer']['phone'] = customer['phone'];
+  }
+
   ctx.body = {
     success: true,
-    data: params.getOrder(),
+    data: order,
   };
 };

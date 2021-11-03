@@ -68,7 +68,7 @@ export default function(sequelize, DataType) {
     },
   }, {
     sequelize,
-    timestamp: false,
+    timestamps: false,
   });
 
   OrderProduct.associate = ({ ProductGallery, Currency }) => {
