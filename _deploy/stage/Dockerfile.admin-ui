@@ -17,7 +17,7 @@ COPY ./ui.packages                      ./ui.packages
 COPY ./packages                         ./packages
 COPY ./package.json                     ./
 COPY ./lerna.json                       ./
-COPY ./build-admin-packages.sh             ./
+COPY ./_deploy/build-admin-packages.sh  ./_deploy/
 
 RUN yarn
 

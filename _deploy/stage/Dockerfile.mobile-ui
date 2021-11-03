@@ -17,7 +17,7 @@ COPY ./ui.packages                        ./ui.packages
 COPY ./packages                           ./packages
 COPY ./package.json                       ./
 COPY ./lerna.json                         ./
-COPY ./build-mobile-packages.sh              ./
+COPY ./_deploy/build-mobile-packages.sh   ./_deploy/
 
 RUN yarn
 
