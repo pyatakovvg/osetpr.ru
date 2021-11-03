@@ -21,8 +21,8 @@ COPY ./_deploy/build-admin-packages.sh  ./_deploy/
 
 RUN yarn
 
-RUN chmod +x ./build-admin-packages.sh
-RUN ./build-admin-packages.sh
+RUN chmod +x ./_deploy/build-admin-packages.sh
+RUN ./_deploy/build-admin-packages.sh
 
 # BUILD APPLICATION
 WORKDIR /app/clients/admin-ui

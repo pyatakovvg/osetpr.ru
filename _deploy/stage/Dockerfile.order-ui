@@ -21,8 +21,8 @@ COPY ./_deploy/build-order-packages.sh  ./_deploy
 
 RUN yarn
 
-RUN chmod +x ./build-order-packages.sh
-RUN ./build-order-packages.sh
+RUN chmod +x ./_deploy/build-order-packages.sh
+RUN ./_deploy/build-order-packages.sh
 
 # BUILD APPLICATION
 WORKDIR /app/clients/order-ui

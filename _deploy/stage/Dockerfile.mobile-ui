@@ -21,8 +21,8 @@ COPY ./_deploy/build-mobile-packages.sh   ./_deploy/
 
 RUN yarn
 
-RUN chmod +x ./build-mobile-packages.sh
-RUN ./build-mobile-packages.sh
+RUN chmod +x ./_deploy/build-mobile-packages.sh
+RUN ./_deploy/build-mobile-packages.sh
 
 # BUILD APPLICATION
 WORKDIR /app/clients/mobile-ui

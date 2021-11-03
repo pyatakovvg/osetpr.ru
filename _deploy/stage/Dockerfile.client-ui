@@ -21,8 +21,8 @@ COPY ./_deploy/build-client-packages.sh   ./_deploy/
 
 RUN yarn
 
-RUN chmod +x ./build-client-packages.sh
-RUN ./build-client-packages.sh
+RUN chmod +x ./_deploy/build-client-packages.sh
+RUN ./_deploy/build-client-packages.sh
 
 # BUILD APPLICATION
 WORKDIR /app/clients/client-ui
