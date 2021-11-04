@@ -3,7 +3,7 @@
   "private": true,
   "devDependencies": {
     "lerna": "4.0.0",
-    "lerna-update-wizard": "0.17.8"
+    "lerna-update-wizard": "1.1.0"
   },
   "license": "MIT",
   "homepage": "https://osetpr.ru",
