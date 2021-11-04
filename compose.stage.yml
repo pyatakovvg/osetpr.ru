@@ -359,10 +359,7 @@ services:
         max-file: "5"
         max-size: 10m
     depends_on:
-      - order_ui
-      - admin_ui
-      - client_ui
-      - mobile_ui
+      - certbot
     links:
       - order_ui
       - admin_ui
