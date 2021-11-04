@@ -7,15 +7,15 @@ RUN npm config set package-lock false
 
 WORKDIR /app
 
-COPY ../../services/product-srv/db                ./services/product-srv/db
-COPY ../../services/product-srv/src               ./services/product-srv/src
-COPY ../../services/product-srv/.env.prod         ./services/product-srv/.env
-COPY ../../services/product-srv/package.json      ./services/product-srv
-COPY ../../services/product-srv/.sequelizerc      ./services/product-srv
-COPY ../../sys.packages                           ./sys.packages
-COPY ../../packages                               ./packages
-COPY ../../package.json                           ./
-COPY ../../lerna.json                             ./
+COPY ./services/product-srv/db                ./services/product-srv/db
+COPY ./services/product-srv/src               ./services/product-srv/src
+COPY ./services/product-srv/.env.prod         ./services/product-srv/.env
+COPY ./services/product-srv/package.json      ./services/product-srv
+COPY ./services/product-srv/.sequelizerc      ./services/product-srv
+COPY ./sys.packages                           ./sys.packages
+COPY ./packages                               ./packages
+COPY ./package.json                           ./
+COPY ./lerna.json                             ./
 
 RUN yarn
 

@@ -8,21 +8,21 @@ RUN npm config set package-lock false
 
 WORKDIR /app
 
-COPY ../../clients/admin-ui/src             ./clients/admin-ui/src
-COPY ../../clients/admin-ui/public          ./clients/admin-ui/public
-COPY ../../clients/admin-ui/package.json    ./clients/admin-ui
-COPY ../../clients/admin-ui/.env.prod       ./clients/admin-ui/.env
-COPY ../../modules                          ./modules
-COPY ../../ui.packages                      ./ui.packages
-COPY ../../packages                         ./packages
-COPY ../../package.json                     ./
-COPY ../../lerna.json                       ./
-COPY ../build-admin-packages.sh             ./
+COPY ./clients/admin-ui/src             ./clients/admin-ui/src
+COPY ./clients/admin-ui/public          ./clients/admin-ui/public
+COPY ./clients/admin-ui/package.json    ./clients/admin-ui
+COPY ./clients/admin-ui/.env.prod       ./clients/admin-ui/.env
+COPY ./modules                          ./modules
+COPY ./ui.packages                      ./ui.packages
+COPY ./packages                         ./packages
+COPY ./package.json                     ./
+COPY ./lerna.json                       ./
+COPY ./_deploy/build-admin-packages.sh  ./_deploy/
 
 RUN yarn
 
-RUN chmod +x ./build-admin-packages.sh
-RUN ./build-admin-packages.sh
+RUN chmod +x ./_deploy/build-admin-packages.sh
+RUN ./_deploy/build-admin-packages.sh
 
 # BUILD APPLICATION
 WORKDIR /app/clients/admin-ui

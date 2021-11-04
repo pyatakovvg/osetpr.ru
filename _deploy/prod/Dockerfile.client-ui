@@ -8,21 +8,21 @@ RUN npm config set package-lock false
 
 WORKDIR /app
 
-COPY ../../clients/client-ui/src              ./clients/client-ui/src
-COPY ../../clients/client-ui/public           ./clients/client-ui/public
-COPY ../../clients/client-ui/package.json     ./clients/client-ui
-COPY ../../clients/client-ui/.env.prod        ./clients/client-ui/.env
-COPY ../../modules/client                     ./modules/client
-COPY ../../ui.packages                        ./ui.packages
-COPY ../../packages                           ./packages
-COPY ../../package.json                       ./
-COPY ../../lerna.json                         ./
-COPY ../build-client-packages.sh              ./
+COPY ./clients/client-ui/src              ./clients/client-ui/src
+COPY ./clients/client-ui/public           ./clients/client-ui/public
+COPY ./clients/client-ui/package.json     ./clients/client-ui
+COPY ./clients/client-ui/.env.prod        ./clients/client-ui/.env
+COPY ./modules/client                     ./modules/client
+COPY ./ui.packages                        ./ui.packages
+COPY ./packages                           ./packages
+COPY ./package.json                       ./
+COPY ./lerna.json                         ./
+COPY ./_deploy/build-client-packages.sh   ./_deploy/
 
 RUN yarn
 
-RUN chmod +x ./build-client-packages.sh
-RUN ./build-client-packages.sh
+RUN chmod +x ./_deploy/build-client-packages.sh
+RUN ./_deploy/build-client-packages.sh
 
 # BUILD APPLICATION
 WORKDIR /app/clients/client-ui
