@@ -2,16 +2,22 @@
 import types from 'prop-types';
 import React, { useMemo } from 'react';
 
+import Loading from './Loading';
+
 import cn from 'classnames';
 import styles from './default.module.scss';
 
 
-export default function Button({ mode, children, disabled, onClick }) {
+export default function Button({ mode, children, disabled, inProcess, onClick }) {
   const buttonClassName = useMemo(() => cn(styles['button'], {
     [styles['mode--success']]: mode === 'success',
-  }), [mode]);
+    [styles['in-process']]: inProcess,
+  }), [mode, inProcess]);
 
   function handleClick() {
+    if (inProcess || disabled) {
+      return void 0;
+    }
     if (onClick) {
       onClick();
     }
@@ -20,16 +26,21 @@ export default function Button({ mode, children, disabled, onClick }) {
   return (
     <button className={buttonClassName} disabled={disabled} onClick={() => handleClick()}>
       { children }
+      {inProcess && (
+        <Loading />
+      )}
     </button>
   );
 }
 
 Button.propTypes = {
+  inProcess: types.bool,
   disabled: types.bool,
   mode: types.oneOf(['success', 'default']),
 };
 
-Button.defaultType = {
+Button.defaultProps = {
+  inProcess: false,
   disabled: false,
   mode: 'default',
 };

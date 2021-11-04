@@ -2,6 +2,7 @@
 import { selectPayments } from '@modules/mobile-order';
 
 import numeral from '@packages/numeral';
+import { selectInProcess } from '@ui.packages/order';
 import { Dialog, openDialog, closeDialog } from '@ui.packages/mobile-dialog';
 
 import { Header, Button } from '@ui.packages/mobile-kit';
@@ -51,39 +52,50 @@ function customerData(data) {
   return customer;
 }
 
+
 function Client() {
   const dispatch = useDispatch();
 
   const order = useSelector(selectOrder);
   const payments = useSelector(selectPayments);
+  const inProcess = useSelector(selectInProcess);
 
   function handleBack() {
     dispatch(nextStepAction(0));
   }
 
   async function handleAddressUpdate(address) {
-    await dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
+    const isUpdated = await dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
       ...order,
       address,
     }));
-    dispatch(closeDialog('address'));
+
+    if (isUpdated) {
+      dispatch(closeDialog('address'));
+    }
   }
 
   async function handlePaymentUpdate(data) {
-    await dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
+    const isUpdated = await dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
       ...order,
       payment: { code: data['code'] },
     }));
-    dispatch(closeDialog('payment'));
+
+    if (isUpdated) {
+      dispatch(closeDialog('payment'));
+    }
   }
 
   async function handleDetailsUpdate(data) {
-    await dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
+    const isUpdated = await dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
       ...order,
       customer: { name: data['name'], phone: data['phone'] },
       description: data['description'],
     }));
-    dispatch(closeDialog('details'));
+
+    if (isUpdated) {
+      dispatch(closeDialog('details'));
+    }
   }
 
   return (
@@ -114,7 +126,9 @@ function Client() {
         </div>
       </div>
       <div className={styles['control']}>
-        <Button>Подтвердить заказ на { numeral(order['total']).format()} {order['currency']['value'] }</Button>
+        <Button
+          inProcess={inProcess}
+        >Подтвердить заказ на { numeral(order['total']).format()} {order['currency']['value'] }</Button>
       </div>
 
       <Dialog name={'address'}>

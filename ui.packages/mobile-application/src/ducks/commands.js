@@ -1,7 +1,7 @@
 
 import { Mode } from "@ui.packages/types";
 import request from "@ui.packages/request";
-import { pushNotification } from "@ui.packages/notifications";
+import { pushNotification } from "@ui.packages/mobile-notifications";
 import { joinToRoom, leaveFromRoom } from '@ui.packages/socket';
 
 import {

@@ -13,7 +13,6 @@ import navigate from './configs/navigate';
 
 import Empty from './wrappers/Empty';
 import Navigate from './wrappers/Navigate';
-import Composite from './wrappers/Composite';
 
 import './styles/index.module.scss';
 
@@ -31,7 +30,7 @@ try {
       [dialogNameReducer]: dialogReducer,
       [notificationNameReducer]: notificationReducer,
     },
-    wrappers: { Empty, Navigate, Composite },
+    wrappers: { Empty, Navigate },
   });
 
   if ( ! window.localStorage.getItem('userUuid')) {

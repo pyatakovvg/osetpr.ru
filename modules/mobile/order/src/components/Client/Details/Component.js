@@ -1,12 +1,16 @@
 
+import { selectInProcess } from '@ui.packages/order';
 import { Button, Header, InputField, InputPhoneField } from '@ui.packages/mobile-kit';
 
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import styles from './default.module.scss';
 
 
 function DetailsForm({ handleSubmit, valid }) {
+  const inProcess = useSelector(selectInProcess);
+
   return (
     <form className={styles['wrapper']} onSubmit={handleSubmit}>
       <div className={styles['content']}>
@@ -26,6 +30,7 @@ function DetailsForm({ handleSubmit, valid }) {
       <div className={styles['controls']}>
         <Button
           mode={'success'}
+          inProcess={inProcess}
           disabled={ ! valid}
         >Выполнить</Button>
       </div>

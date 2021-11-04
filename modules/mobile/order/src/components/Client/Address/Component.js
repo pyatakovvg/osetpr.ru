@@ -1,12 +1,16 @@
 
+import { selectInProcess } from '@ui.packages/order';
 import { Header, Button, InputField } from '@ui.packages/mobile-kit';
 
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import styles from './default.module.scss';
 
 
 function AddressForm({ handleSubmit, valid, pristine }) {
+  const inProcess = useSelector(selectInProcess);
+
   return (
     <form className={styles['wrapper']} onSubmit={handleSubmit}>
       <div className={styles['content']}>
@@ -38,6 +42,7 @@ function AddressForm({ handleSubmit, valid, pristine }) {
       <div className={styles['controls']}>
         <Button
           mode={'success'}
+          inProcess={inProcess}
           disabled={ ! valid || pristine}
         >Выполнить</Button>
       </div>

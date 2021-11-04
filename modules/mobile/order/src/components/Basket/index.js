@@ -1,6 +1,7 @@
 
 import numeral from '@packages/numeral';
 
+import { selectInProcess } from '@ui.packages/order';
 import { Header, Button } from '@ui.packages/mobile-kit';
 import { selectOrder, updateOrder, nextStepAction } from '@ui.packages/order';
 
@@ -16,6 +17,7 @@ function Order() {
   const dispatch = useDispatch();
 
   const order = useSelector(selectOrder);
+  const inProcess = useSelector(selectInProcess);
 
   function handleChange(product) {
     let products = [...order['products']];
@@ -82,7 +84,10 @@ function Order() {
       </div>
       {order && !! order['products'].length && (
         <div className={styles['control']}>
-          <Button onClick={() => handleNextStep()}>Оформить заказ на {numeral(order['total']).format()} {order['currency']['value']}</Button>
+          <Button
+            inProcess={inProcess}
+            onClick={() => handleNextStep()}
+          >Оформить заказ на { numeral(order['total']).format() } { order['currency']['value'] }</Button>
         </div>
       )}
     </div>

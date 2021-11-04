@@ -1,6 +1,7 @@
 
 import { selectPayments } from '@modules/mobile-order';
 
+import { selectInProcess } from '@ui.packages/order';
 import { Button, Header, RadioContainerField, Radio } from '@ui.packages/mobile-kit';
 
 import React from 'react';
@@ -11,6 +12,7 @@ import styles from './default.module.scss';
 
 function PaymentForm({ handleSubmit }) {
   const payments = useSelector(selectPayments);
+  const inProcess = useSelector(selectInProcess);
 
   return (
     <form className={styles['wrapper']} onSubmit={handleSubmit}>
@@ -29,7 +31,10 @@ function PaymentForm({ handleSubmit }) {
         </div>
       </div>
       <div className={styles['controls']}>
-        <Button mode={'success'}>Выполнить</Button>
+        <Button
+          mode={'success'}
+          inProcess={inProcess}
+        >Выполнить</Button>
       </div>
     </form>
   );
