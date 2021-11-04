@@ -64,7 +64,7 @@ export default () => async (ctx) => {
       },
       {
         model: OrderProduct,
-        attributes: ['uuid', 'orderUuid', 'productUuid', 'modeUuid', 'title', 'vendor', 'value', 'price', 'total', 'number', 'createdAt', 'updatedAt'],
+        attributes: ['uuid', 'orderUuid', 'productUuid', 'modeUuid', 'title', 'vendor', 'value', 'price', 'total', 'number'],
         as: 'products',
         include: [
           {

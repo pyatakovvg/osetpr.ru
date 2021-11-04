@@ -18,6 +18,7 @@ COPY ./packages                         ./packages
 COPY ./package.json                     ./
 COPY ./lerna.json                       ./
 COPY ./_deploy/build-admin-packages.sh  ./_deploy/
+COPY ./yarn.lock                        ./
 
 RUN yarn
 
