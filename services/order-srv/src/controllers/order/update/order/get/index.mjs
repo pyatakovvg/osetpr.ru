@@ -24,7 +24,7 @@ export default async function(orderUuid) {
       {
         model: OrderProduct,
         as: 'products',
-        attributes: ['uuid', 'orderUuid', 'productUuid', 'modeUuid', 'title', 'vendor', 'value', 'price', 'total', 'number', 'createdAt', 'updatedAt'],
+        attributes: ['uuid', 'orderUuid', 'productUuid', 'modeUuid', 'title', 'vendor', 'value', 'price', 'total', 'number'],
         include: [
           {
             model: ProductGallery,

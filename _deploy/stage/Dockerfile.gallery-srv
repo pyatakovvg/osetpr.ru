@@ -9,7 +9,7 @@ WORKDIR /app
 
 COPY ./services/gallery-srv/db                ./services/gallery-srv/db
 COPY ./services/gallery-srv/src               ./services/gallery-srv/src
-COPY ./services/gallery-srv/.env.stage        ./services/gallery-srv
+COPY ./services/gallery-srv/.env.stage        ./services/gallery-srv/.env
 COPY ./services/gallery-srv/package.json      ./services/gallery-srv
 COPY ./services/gallery-srv/.sequelizerc      ./services/gallery-srv
 COPY ./sys.packages                           ./sys.packages

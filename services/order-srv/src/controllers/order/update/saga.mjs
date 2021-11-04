@@ -6,9 +6,9 @@ import { sendEvent, sendCommand } from '@sys.packages/rabbit';
 
 import Sagas from 'node-sagas';
 
-import getCustomer from './customer/get';
-import createCustomer from './customer/create';
-import updateCustomer from './customer/update';
+// import getCustomer from './customer/get';
+// import createCustomer from './customer/create';
+// import updateCustomer from './customer/update';
 
 import createGallery from './gallery/create';
 import removeGallery from './gallery/remove';
@@ -125,22 +125,22 @@ export default class Saga {
         await createGallery(uuid, products);
       })
 
-      .step('Update customer')
-      .invoke(async (params) => {
-        logger.info('Update customer');
-        const order = params.getOrder();
-        const customer = await getCustomer(order['userUuid']);
-        if (customer) {
-          const result = await updateCustomer(customer['uuid'], {
-            ...body['customer'],
-          });
-          params.setCustomer(result);
-        }
-        else {
-          const result = await createCustomer(order['userUuid'], body['customer']);
-          params.setCustomer(result);
-        }
-      })
+      // .step('Update customer')
+      // .invoke(async (params) => {
+      //   logger.info('Update customer');
+      //   const order = params.getOrder();
+      //   const customer = await getCustomer(order['userUuid']);
+      //   if (customer) {
+      //     const result = await updateCustomer(customer['uuid'], {
+      //       ...body['customer'],
+      //     });
+      //     params.setCustomer(result);
+      //   }
+      //   else {
+      //     const result = await createCustomer(order['userUuid'], body['customer']);
+      //     params.setCustomer(result);
+      //   }
+      // })
 
       .step('Update order')
       .invoke(async () => {
