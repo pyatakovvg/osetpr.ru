@@ -17,10 +17,21 @@ function useGetProduct() {
   return order ? order['products'] : [];
 }
 
+function useGetMaxModeCount(mode) {
+  const products = useGetProduct();
+  const product = products.find((product) => product['modeUuid'] === mode['uuid']);
+  if ( ! product) {
+    return false;
+  }
+  return product['number'] >= 10;
+}
+
 
 export default function DefaultProduct({ uuid, externalId, title, modes, gallery, toCart }) {
   const orderProducts = useGetProduct();
   const [mode, setMode] = useState(modes.find((item) => item['isTarget']));
+
+  const isDisabled = useGetMaxModeCount(mode);
 
   function handleClick(mode) {
     setMode(mode);
@@ -61,6 +72,7 @@ export default function DefaultProduct({ uuid, externalId, title, modes, gallery
         <div className={styles['cart']}>
           <Cart
             mode={Cart.mode.success}
+            disabled={isDisabled}
             onClick={() => handleCart({
               productUuid: uuid,
               modeUuid: mode['uuid'],

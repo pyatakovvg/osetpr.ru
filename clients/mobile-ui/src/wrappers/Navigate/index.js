@@ -29,7 +29,9 @@ export default function NavigateModule({ children }) {
       <section className={styles['content']}>
         { children }
       </section>
-      { ! /order/.test(location['pathname']) && <Cart />}
+      { ! /order/.test(location['pathname']) && (
+        <Cart />
+      )}
       <Notifications />
     </section>
   );

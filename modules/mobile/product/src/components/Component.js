@@ -3,6 +3,8 @@ import { selectProduct } from '@modules/mobile-product';
 
 import { selectOrder, updateOrder } from '@ui.packages/order';
 import { Image, Header, Cart } from '@ui.packages/mobile-kit';
+import { pushNotification } from '@ui.packages/mobile-notifications';
+
 
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,6 +14,18 @@ import Mode from './Mode';
 import styles from './default.module.scss';
 
 
+function useGetMaxModeCount(mode) {
+  const order = useSelector(selectOrder);console.log(order)
+  if ( ! order) {
+    return false;
+  }
+  const product = order['products'].find((product) => product['modeUuid'] === mode['uuid']);
+  if ( ! product) {
+    return false;
+  }
+  return product['number'] >= 10;
+}
+
 function Product() {
   const dispatch = useDispatch();
 
@@ -20,7 +34,9 @@ function Product() {
 
   const [mode, setMode] = useState(null);
 
-  function handleToCart(product) {
+  const isDisabled = useGetMaxModeCount(mode);
+
+  async function handleToCart(product) {
     const orderProducts = order ? order['products'] : [];
     let products = [...orderProducts];
     const productIndex = products.findIndex((item) => item['modeUuid'] === product['modeUuid']);
@@ -49,10 +65,18 @@ function Product() {
       });
     }
 
-    dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
+    const isUpdated = await dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
       uuid: order ? order['uuid'] : null,
       products,
     }));
+
+    if (isUpdated) {
+      dispatch(pushNotification({
+        mode: 'success',
+        title: 'Товар добавлен в корзину',
+        content: `"${product['title']}" - ${product['price']} ${product['currency']['value']}`,
+      }));
+    }
   }
 
   useEffect(() => {
@@ -92,16 +116,20 @@ function Product() {
             )
           })}
           <div className={styles['cart']}>
-            <Cart mode={Cart.mode.success}  onClick={() => handleToCart({
-              productUuid: product['uuid'],
-              modeUuid: mode['uuid'],
-              title: product['title'],
-              gallery: product['gallery'],
-              value: mode['value'],
-              vendor: mode['vendor'],
-              price: mode['price'],
-              currency: mode['currency'],
-            })} />
+            <Cart
+              mode={Cart.mode.success}
+              disabled={isDisabled}
+              onClick={() => handleToCart({
+                productUuid: product['uuid'],
+                modeUuid: mode['uuid'],
+                title: product['title'],
+                gallery: product['gallery'],
+                value: mode['value'],
+                vendor: mode['vendor'],
+                price: mode['price'],
+                currency: mode['currency'],
+              })}
+            />
           </div>
         </div>
         <div className={styles['description']}>

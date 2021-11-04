@@ -17,6 +17,13 @@
     background: $primary-darken;
     transform: scale(.95);
   }
+
+  &.disabled,
+  &.disabled:active {
+
+    background: $gray-lighten;
+    transform: none;
+  }
 }
 
 .icon {
@@ -47,13 +54,6 @@
   font-weight: 600;
   padding: 2px 0 0;
   box-sizing: border-box;
-}
-
-.in-process {
-
-  .icon {
-    display: none;
-  }
 }
 
 .mode {

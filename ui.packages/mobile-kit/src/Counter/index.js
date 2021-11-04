@@ -2,6 +2,7 @@
 import types from 'prop-types';
 import React, { useState } from 'react';
 
+import cn from 'classnames';
 import styles from './default.module.scss';
 
 
@@ -28,11 +29,11 @@ export default function Button({ number, onClick }) {
 
   return (
     <div className={styles['wrapper']}>
-      <div className={styles['button']} onClick={() => handleMinus()}>-</div>
+      <div className={cn(styles['button'], { [styles['disabled']]: count === 1 })} onClick={() => handleMinus()}>-</div>
       <div className={styles['number']}>
         <span>{ count }</span>
       </div>
-      <div className={styles['button']} onClick={() => handlePlus()}>+</div>
+      <div className={cn(styles['button'], { [styles['disabled']]: count === 10 })} onClick={() => handlePlus()}>+</div>
     </div>
   );
 }

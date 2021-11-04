@@ -23,10 +23,18 @@
   border-radius: 50%;
   color: $info;
   font-size: 22px;
-  transition: transform 150ms;
+  transition: transform 150ms, color 150ms;
 
   &:active {
     transform: scale(.95);
+  }
+
+  &.disabled,
+  &.disabled:active {
+
+    color: $gray-lighten;
+    border-color: $gray-lighten;
+    transform: none;
   }
 }
 
