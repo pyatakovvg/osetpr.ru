@@ -16,6 +16,11 @@ export default () => async (ctx) => {
     },
   });
 
+  const { data: categories } = await request({
+    url: process.env['PRODUCT_API_SRV'] + '/categories',
+    method: 'get',
+  });
+
   let userPlan = null;
   if (userUuid) {
     const { data: plans } = await request({
@@ -31,6 +36,9 @@ export default () => async (ctx) => {
 
   ctx.body = {
     success: true,
+    filter: {
+      categories,
+    },
     data: products.map((item) => productBuilder(item, userPlan ? userPlan['products'] : [])),
     meta: meta,
   };

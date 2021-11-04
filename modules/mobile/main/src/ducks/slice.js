@@ -4,6 +4,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   products: [],
+  filter: [],
+  meta: {},
   inProcess: false,
 };
 
@@ -26,7 +28,9 @@ const slice = createSlice({
       state['inProcess'] = false;
     },
     getProductsRequestSuccessAction(state, { payload }) {
-      state['products'] = payload;
+      state['products'] = payload['data'];
+      state['filter'] = payload['filter'];
+      state['meta'] = payload['meta'];
       state['inProcess'] = true;
     },
   },

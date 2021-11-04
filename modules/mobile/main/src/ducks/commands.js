@@ -21,7 +21,7 @@ export const getProducts = (params) => async (dispatch) => {
       },
     });
 
-    dispatch(getProductsRequestSuccessAction(result['data']));
+    dispatch(getProductsRequestSuccessAction(result));
   }
   catch(error) {
 
@@ -30,6 +30,7 @@ export const getProducts = (params) => async (dispatch) => {
       mode: 'danger',
       title: 'Упс! Что-то пошло не так',
       content: error['data']['message'],
+      autoClose: false,
     }));
   }
 };

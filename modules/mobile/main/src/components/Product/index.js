@@ -1,7 +1,6 @@
 
 import React from 'react';
 
-import Single from './Single';
 import Several from './Several';
 
 
@@ -11,5 +10,5 @@ export default function HOC(props) {
     return <Several {...props} />
   }
 
-  return <Single {...props} />;
+  return <Several {...props} />;
 }
