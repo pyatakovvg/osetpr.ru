@@ -11,7 +11,7 @@ export default function Cart({ count, mode, inProcess, onClick }) {
     [styles['mode--success']]: mode === Cart.mode.success,
     [styles['in-process']]: inProcess,
   }), [mode]);
-console.log(inProcess)
+
   function handleClick() {
     onClick();
   }
@@ -31,7 +31,7 @@ Cart.propTypes = {
   mode: types.oneOf(['success', 'default']),
 };
 
-Cart.defaultType = {
+Cart.defaultProps = {
   inProcess: false,
   mode: 'default',
 };
