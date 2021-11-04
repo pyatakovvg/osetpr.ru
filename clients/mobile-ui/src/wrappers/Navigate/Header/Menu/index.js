@@ -13,7 +13,6 @@ export default function Header() {
   const { navigate } = useContext(Context);
 
   function handleClick() {
-    console.log(123)
     dispatch(openMenuAction());
   }
 
