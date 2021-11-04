@@ -7,7 +7,7 @@ echo '-------------------'
 cd ./ui.packages || return
 
 echo '[--- Application ---]'
-cd  ./application && npx yarn build
+cd  ./mobile-application && npx yarn build
 echo '[--- Kit ---]'
 cd ../mobile-kit && npx yarn build
 echo '[--- HOC ---]'
@@ -16,7 +16,7 @@ echo '[--- Menu ---]'
 cd ../menu && npx yarn build
 echo '[--- Dialog ---]'
 cd ../mobile-dialog && npx yarn build
-echo '[--- Dialog ---]'
+echo '[--- Notifications ---]'
 cd ../mobile-notifications && npx yarn build
 
 echo ''
