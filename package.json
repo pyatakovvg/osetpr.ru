@@ -26,8 +26,5 @@
     "clients/*",
     "gateway/*",
     "services/*"
-  ],
-  "scripts": {
-    "build:packages": "sh ./build-client-packages.sh && sh build-order-packages.sh"
-  }
+  ]
 }
