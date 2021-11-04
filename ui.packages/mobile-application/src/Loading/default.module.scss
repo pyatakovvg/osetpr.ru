@@ -1,0 +1,19 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  background: $black;
+  justify-content: center;
+  align-items: center;
+}
+
+.message {
+
+  display: block;
+  color: $white;
+}

@@ -35,7 +35,7 @@ export const getOrder = (userUuid) => async (dispatch) => {
 
 export const updateOrder = (userUuid, order) => async (dispatch) => {
   try {
-    dispatch(updateOrderRequestAction());
+    dispatch(updateOrderRequestAction(order['uuid']));
 
     let result;
 
@@ -76,7 +76,7 @@ export const updateOrder = (userUuid, order) => async (dispatch) => {
   }
   catch(error) {
 
-    dispatch(updateOrderRequestFailAction());
+    dispatch(updateOrderRequestFailAction(order['uuid']));
     dispatch(pushNotification({
       mode: 'danger',
       title: 'Упс! Что-то пошло не так',

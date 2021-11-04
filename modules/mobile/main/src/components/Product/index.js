@@ -1,6 +1,6 @@
 
-import { selectOrder } from '@ui.packages/order'
 import { Cart, Image } from '@ui.packages/mobile-kit';
+import { selectOrder, selectModesInProcess } from '@ui.packages/order';
 
 import types from 'prop-types';
 import React, { useState } from 'react';
@@ -22,6 +22,8 @@ export default function DefaultProduct({ uuid, externalId, title, modes, gallery
   const orderProducts = useGetProduct();
   const [mode, setMode] = useState(modes.find((item) => item['isTarget']));
 
+  const modesInProcess = useSelector(selectModesInProcess);
+
   function handleClick(mode) {
     setMode(mode);
   }
@@ -30,6 +32,7 @@ export default function DefaultProduct({ uuid, externalId, title, modes, gallery
     toCart && toCart(product);
   }
 
+console.log(modesInProcess)
   return (
     <div className={styles['wrapper']}>
       <div className={styles['container']}>

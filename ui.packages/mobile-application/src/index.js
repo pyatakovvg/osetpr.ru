@@ -1,7 +1,7 @@
 
+import { Notifications } from '@ui.packages/mobile-notifications';
 import { middleware as requestMiddleware } from '@ui.packages/request';
 import Socket, { middleware as socketMiddleware} from '@ui.packages/socket';
-import { Notifications, notificationReducer } from '@ui.packages/notifications';
 
 import React from 'react';
 import thunk from 'redux-thunk';
@@ -70,7 +70,6 @@ class App {
       ...options,
       reducers: {
         application: applicationReducer,
-        notifications: notificationReducer,
         ...options['reducers'] || {},
       },
       middleware: [

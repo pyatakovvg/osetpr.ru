@@ -12,6 +12,7 @@ export {
   selectStep,
   selectOrder,
   selectInProcess,
+  selectModesInProcess,
 } from './ducks/slice';
 
 export { name, reducer } from './ducks/slice';
