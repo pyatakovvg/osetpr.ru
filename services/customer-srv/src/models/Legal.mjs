@@ -31,7 +31,7 @@ export default function (sequelize, DataType) {
     },
   }, {
     sequelize,
-    modelName: 'Legal',
+    timestamps: false,
   });
 
   return Legal;

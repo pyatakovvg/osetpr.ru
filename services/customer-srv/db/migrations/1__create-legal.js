@@ -28,14 +28,6 @@ module.exports = {
           type: DataType.STRING(12),
           allowNull: false,
         },
-        createdAt: {
-          type: DataType.DATE,
-          allowNull: false,
-        },
-        updatedAt: {
-          type: DataType.DATE,
-          allowNull: false,
-        },
       }, {
         transaction,
       });

@@ -23,7 +23,6 @@ export default function (sequelize, DataType) {
     },
   }, {
     sequelize,
-    modelName: 'Customer',
   });
 
   Customer.associate = ({ Legal, Individual }) => {
