@@ -17,7 +17,7 @@
     "@sys.packages/server": "1.0.0",
     "@sys.packages/socket.io": "1.0.0",
     "@sys.packages/utils": "1.0.0",
-    "axios": "0.23.0",
+    "axios": "0.24.0",
     "busboy": "0.3.1",
     "dotenv": "10.0.0",
     "koa-cookie": "1.0.0"
