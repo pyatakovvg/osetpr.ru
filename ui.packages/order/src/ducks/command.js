@@ -35,11 +35,12 @@ export const getOrder = (userUuid) => async (dispatch) => {
 
 export const updateOrder = (userUuid, order) => async (dispatch) => {
   try {
-    dispatch(updateOrderRequestAction(order['uuid']));
+    dispatch(updateOrderRequestAction());
 
     let result;
 
     if (order['uuid']) {
+
       result = await request({
         url: '/orders',
         method: 'put',
@@ -76,7 +77,7 @@ export const updateOrder = (userUuid, order) => async (dispatch) => {
   }
   catch(error) {
 
-    dispatch(updateOrderRequestFailAction(order['uuid']));
+    dispatch(updateOrderRequestFailAction());
     dispatch(pushNotification({
       mode: 'danger',
       title: 'Упс! Что-то пошло не так',
