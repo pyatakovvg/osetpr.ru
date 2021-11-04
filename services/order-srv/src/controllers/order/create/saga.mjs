@@ -98,6 +98,9 @@ export default class Saga {
       .step('Create customer')
       .invoke(async (params) => {
         logger.info('Create customer');
+        if ( ! body['customer']) {
+          return void 0;
+        }
         const customer = await getCustomer(body['userUuid']);
         if ( ! customer) {
           const newCustomer = await createCustomer(body['userUuid'], body['customer']);

@@ -19,21 +19,12 @@ function PaymentForm({ handleSubmit }) {
           <Header level={2}>Способ оплаты</Header>
         </div>
         <div className={styles['row']}>
-          <RadioContainerField name={'paymentCode'}>
+          <RadioContainerField name={'code'}>
             {payments.map((payment) => (
               <div key={payment['code']} className={styles['row']}>
                 <Radio name={payment['code']} label={payment['displayName']} disabled={ ! payment['isUse']} temp={'Временно недоступно'} />
               </div>
             ))}
-            {/*<div className={styles['row']}>*/}
-            {/*  <Radio name={'cash-to-courier'} label={'наличными курьеру'} />*/}
-            {/*</div>*/}
-            {/*<div className={styles['row']}>*/}
-            {/*  <Radio name={'card-to-courier'} label={'картой курьеру'} disabled temp={'Временно недоступно'} />*/}
-            {/*</div>*/}
-            {/*<div className={styles['row']}>*/}
-            {/*  <Radio name={'online'} label={'оплата онлайн'} disabled temp={'Временно недоступно'} />*/}
-            {/*</div>*/}
           </RadioContainerField>
         </div>
       </div>

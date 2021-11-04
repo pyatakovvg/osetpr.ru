@@ -45,10 +45,10 @@ export const updateOrder = (userUuid, order) => async (dispatch) => {
         data: {
           userUuid,
           uuid: order['uuid'],
-          address: order['address'],
+          address: order['address'] || null,
           products: order['products'],
-          customer: order['customer'],
-          paymentCode: order['paymentCode'],
+          customer: order['customer'] || null,
+          paymentCode: order['payment'] ? order['payment']['code'] : null,
         }
       });
     }

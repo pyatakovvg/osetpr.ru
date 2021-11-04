@@ -72,7 +72,7 @@ function Client() {
   async function handlePaymentUpdate(data) {
     await dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
       ...order,
-      paymentCode: data['paymentCode'],
+      payment: { code: data['code'] },
     }));
     dispatch(closeDialog('payment'));
   }
@@ -130,7 +130,7 @@ function Client() {
       <Dialog name={'payment'}>
         <Payment
           initialValues={{
-            paymentCode: order['payment'] ? order['payment']['code'] : payments[0]['code'],
+            code: order['payment'] ? order['payment']['code'] : payments[0]['code'],
           }}
           onSubmit={(data) => handlePaymentUpdate(data) }
         />

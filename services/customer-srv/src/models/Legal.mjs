@@ -1,6 +1,7 @@
 
 import { Sequelize } from '@sys.packages/db';
 
+
 export default function (sequelize, DataType) {
   const { Model } = Sequelize;
 

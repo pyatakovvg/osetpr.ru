@@ -51,6 +51,7 @@ export default () => async (ctx) => {
         model: Individual,
         required: false,
         as: 'individual',
+        attributes: ['name', 'surname', 'patronymic', 'gender', 'age', 'birthday', 'phone'],
       },
     ]
   });

@@ -6,7 +6,7 @@ import orderBuilder from './builder/order.mjs';
 
 export default () => async (ctx) => {
   const formData = ctx['request']['body'];
-
+console.log(formData)
   const result = await request({
     url: process.env['ORDER_API_SRV'] + '/orders',
     method: 'post',
