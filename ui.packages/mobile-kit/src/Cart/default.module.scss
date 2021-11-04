@@ -49,6 +49,13 @@
   box-sizing: border-box;
 }
 
+.in-process {
+
+  .icon {
+    display: none;
+  }
+}
+
 .mode {
 
   &--success {
