@@ -2,6 +2,7 @@
 import { selectProducts } from '@modules/mobile-main';
 
 import { selectOrder, updateOrder } from '@ui.packages/order';
+import { pushNotification } from '@ui.packages/mobile-notifications';
 
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -17,7 +18,7 @@ function Main() {
   const order = useSelector(selectOrder);
   const products = useSelector(selectProducts);
 
-  function handleToCart(product) {
+  async function handleToCart(product) {
     const orderProducts = order ? order['products'] : [];
     let products = [...orderProducts];
     const productIndex = products.findIndex((item) => item['modeUuid'] === product['modeUuid']);
@@ -46,10 +47,18 @@ function Main() {
       });
     }
 
-    dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
+    const isUpdated = await dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
       uuid: order ? order['uuid'] : null,
       products,
     }));
+
+    if (isUpdated) {
+      dispatch(pushNotification({
+        mode: 'success',
+        title: 'Товар добавлен в корзину',
+        content: `"${product['title']}" - ${product['price']} ${product['currency']['value']}`,
+      }));
+    }
   }
 
   return (

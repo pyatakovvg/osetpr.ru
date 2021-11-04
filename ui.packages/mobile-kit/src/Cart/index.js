@@ -2,16 +2,22 @@
 import types from 'prop-types';
 import React, { useMemo } from 'react';
 
+import Loading from './Loading';
+
 import cn from 'classnames';
 import styles from './default.module.scss';
 
 
-export default function Cart({ count, mode, onClick }) {
+export default function Cart({ count, mode, inProcess, disabled, onClick }) {
   const cartClassName = useMemo(() => cn(styles['cart'], {
     [styles['mode--success']]: mode === Cart.mode.success,
-  }), [mode]);
+    [styles['disabled']]: disabled,
+  }), [mode, disabled]);
 
   function handleClick() {
+    if (disabled) {
+      return void 0;
+    }
     onClick();
   }
 
@@ -20,16 +26,25 @@ export default function Cart({ count, mode, onClick }) {
       {count > 0 && (
         <span className={styles['count']}>{ count }</span>
       )}
-      <span className={styles['icon']} />
+      { ! inProcess && (
+        <span className={styles['icon']} />
+      )}
+      {inProcess && (
+        <Loading />
+      )}
     </div>
   );
 }
 
 Cart.propTypes = {
+  disabled: types.bool,
+  inProcess: types.bool,
   mode: types.oneOf(['success', 'default']),
 };
 
-Cart.defaultType = {
+Cart.defaultProps = {
+  disabled: false,
+  inProcess: false,
   mode: 'default',
 };
 

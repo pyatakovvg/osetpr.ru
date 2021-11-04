@@ -102,7 +102,6 @@ class App {
             routes
           }} />
         </BrowserRouter>
-        <Notifications />
       </Provider>
     , this.options['portal']);
 

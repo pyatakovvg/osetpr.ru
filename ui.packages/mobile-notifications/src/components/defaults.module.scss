@@ -1,0 +1,22 @@
+
+@import "~@ui.packages/theme";
+
+
+.notifications {
+
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  left: 16px;
+  display: flex;
+  flex: 1 0;
+  flex-direction: column;
+  z-index: 900000;
+
+  &__content {
+
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+  }
+}

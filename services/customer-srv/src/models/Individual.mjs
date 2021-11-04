@@ -45,7 +45,7 @@ export default function (sequelize, DataType) {
     },
   }, {
     sequelize,
-    modelName: 'Individual',
+    timestamps: false,
   });
 
   return Individual;

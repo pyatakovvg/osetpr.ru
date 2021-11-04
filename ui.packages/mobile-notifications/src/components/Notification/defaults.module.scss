@@ -1,0 +1,78 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.notification {
+
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  padding: 16px;
+  border-radius: 4px;
+  color: $gray-darken;
+  background: $white;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 20%);
+
+  &__block {
+
+    display: flex;
+    flex: 1 0;
+    flex-direction: column;
+  }
+
+  &__title {
+
+    display: block;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 13px;
+    margin: 0 8px 0 0;
+    color: inherit;
+  }
+
+  &__title + &__content {
+
+    margin: 8px 0 0;
+  }
+
+  &__content {
+
+    display: block;
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 13px;
+    color: inherit;
+  }
+
+  &__close {
+
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: url("./close.svg") center/100% no-repeat;
+  }
+
+  & + & {
+
+    margin: 16px 0 0;
+  }
+}
+
+.mode {
+
+  &--success {
+    border-color: $success-darken;
+    background: $success-darken;
+    color: $white;
+  }
+
+  &--danger {
+    border-color: $danger;
+    background: $danger;
+    color: $white;
+  }
+}

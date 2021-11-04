@@ -35,6 +35,7 @@ export default class Saga {
       return await saga.execute(params);
     }
     catch (e) {
+      console.log(e)
       if (e instanceof Sagas.SagaExecutionFailed) {
         throw new NetworkError({ code: '2.0.0', message: e['message'] });
       }
@@ -168,6 +169,7 @@ export default class Saga {
         const order = params.getOrder();
         const customer = params.getCustomer();
         if (customer) {
+          order['customer'] = {};
           order['customer']['name'] = customer['name'];
           order['customer']['phone'] = customer['phone'];
         }
@@ -182,6 +184,7 @@ export default class Saga {
         const order = params.getOrder();
         const customer = params.getCustomer();
         if (customer) {
+          order['customer'] = {};
           order['customer']['name'] = customer['name'];
           order['customer']['phone'] = customer['phone'];
         }

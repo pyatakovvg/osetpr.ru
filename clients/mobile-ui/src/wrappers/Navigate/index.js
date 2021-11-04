@@ -1,5 +1,6 @@
 
 import { getOrder } from '@ui.packages/order';
+import { Notifications } from '@ui.packages/mobile-notifications';
 
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -28,7 +29,10 @@ export default function NavigateModule({ children }) {
       <section className={styles['content']}>
         { children }
       </section>
-      { ! /order/.test(location['pathname']) && <Cart />}
+      { ! /order/.test(location['pathname']) && (
+        <Cart />
+      )}
+      <Notifications />
     </section>
   );
 }

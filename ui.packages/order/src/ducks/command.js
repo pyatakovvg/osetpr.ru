@@ -1,5 +1,6 @@
 
 import request from '@ui.packages/request';
+import { pushNotification } from '@ui.packages/mobile-notifications';
 
 import {
   getOrderRequestAction,
@@ -39,16 +40,17 @@ export const updateOrder = (userUuid, order) => async (dispatch) => {
     let result;
 
     if (order['uuid']) {
+
       result = await request({
         url: '/orders',
         method: 'put',
         data: {
           userUuid,
           uuid: order['uuid'],
-          address: order['address'],
+          address: order['address'] || null,
           products: order['products'],
-          customer: order['customer'],
-          paymentCode: order['paymentCode'],
+          customer: order['customer'] || null,
+          paymentCode: order['payment'] ? order['payment']['code'] : null,
         }
       });
     }
@@ -70,9 +72,18 @@ export const updateOrder = (userUuid, order) => async (dispatch) => {
     }
 
     dispatch(updateOrderRequestSuccessAction(result['data']));
+
+    return true;
   }
   catch(error) {
 
     dispatch(updateOrderRequestFailAction());
+    dispatch(pushNotification({
+      mode: 'danger',
+      title: 'Упс! Что-то пошло не так',
+      content: error['data']['message'],
+    }));
+
+    return false;
   }
 };

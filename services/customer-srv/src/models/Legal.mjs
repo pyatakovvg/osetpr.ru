@@ -1,6 +1,7 @@
 
 import { Sequelize } from '@sys.packages/db';
 
+
 export default function (sequelize, DataType) {
   const { Model } = Sequelize;
 
@@ -31,7 +32,7 @@ export default function (sequelize, DataType) {
     },
   }, {
     sequelize,
-    modelName: 'Legal',
+    timestamps: false,
   });
 
   return Legal;

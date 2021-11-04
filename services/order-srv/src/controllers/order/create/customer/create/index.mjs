@@ -7,7 +7,7 @@ export default async function(userUuid, customer) {
     return null;
   }
 
-  const result = await request({
+  const { data } = await request({
     url: process.env['CUSTOMER_API_SRV'] + '/customers',
     method: 'post',
     data: {
@@ -16,5 +16,12 @@ export default async function(userUuid, customer) {
     },
   });
 
-  return result['data'];
+  if ( ! data) {
+    return null;
+  }
+
+  return {
+    name: data[data['type']]['name'],
+    phone: data[data['type']]['phone'],
+  };
 };

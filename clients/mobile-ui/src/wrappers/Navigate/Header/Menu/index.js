@@ -1,5 +1,5 @@
 
-import { Context } from '@ui.packages/application';
+import { Context } from '@ui.packages/mobile-application';
 import { openMenuAction, Widget } from '@ui.packages/menu';
 
 import React, { useContext } from 'react';
@@ -13,7 +13,6 @@ export default function Header() {
   const { navigate } = useContext(Context);
 
   function handleClick() {
-    console.log(123)
     dispatch(openMenuAction());
   }
 

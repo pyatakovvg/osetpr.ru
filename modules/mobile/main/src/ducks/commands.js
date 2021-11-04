@@ -1,5 +1,6 @@
 
 import request from '@ui.packages/request';
+import { pushNotification } from '@ui.packages/mobile-notifications';
 
 import {
   getProductsRequestAction,
@@ -20,10 +21,16 @@ export const getProducts = (params) => async (dispatch) => {
       },
     });
 
-    dispatch(getProductsRequestSuccessAction(result['data']));
+    dispatch(getProductsRequestSuccessAction(result));
   }
   catch(error) {
 
     dispatch(getProductsRequestFailAction());
+    dispatch(pushNotification({
+      mode: 'danger',
+      title: 'Упс! Что-то пошло не так',
+      content: error['data']['message'],
+      autoClose: false,
+    }));
   }
 };

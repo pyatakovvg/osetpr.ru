@@ -4,7 +4,7 @@ services:
 
   db:
     container_name: postgre_sql
-    build: postgresql
+    build: ./postgresql
     restart: always
     logging:
       driver: "json-file"
@@ -17,7 +17,7 @@ services:
 
   rabbit:
     container_name: rabbit_mq
-    build: rabbit
+    build: ./rabbit
     restart: always
     logging:
       driver: "json-file"
@@ -32,7 +32,7 @@ services:
     container_name: mail_srv
     build:
       context: ./
-      dockerfile: _deploy/stage/Dockerfile.mail-srv
+      dockerfile: ./_deploy/stage/Dockerfile.mail-srv
     restart: always
     logging:
       driver: "json-file"
@@ -45,7 +45,7 @@ services:
     container_name: customer_srv
     build:
       context: ./
-      dockerfile: _deploy/stage/Dockerfile.customer-srv
+      dockerfile: ./_deploy/stage/Dockerfile.customer-srv
     restart: always
     logging:
       driver: "json-file"
@@ -64,7 +64,7 @@ services:
     container_name: identity_srv
     build:
       context: ./
-      dockerfile: _deploy/stage/Dockerfile.identity-srv
+      dockerfile: ./_deploy/stage/Dockerfile.identity-srv
     restart: always
     logging:
       driver: "json-file"
@@ -86,7 +86,7 @@ services:
     container_name: gallery_srv
     build:
       context: ./
-      dockerfile: _deploy/stage/Dockerfile.gallery-srv
+      dockerfile: ./_deploy/stage/Dockerfile.gallery-srv
     restart: always
     logging:
       driver: "json-file"
@@ -105,7 +105,7 @@ services:
     container_name: product_srv
     build:
       context: ./
-      dockerfile: _deploy/stage/Dockerfile.product-srv
+      dockerfile: ./_deploy/stage/Dockerfile.product-srv
     restart: always
     logging:
       driver: "json-file"
@@ -126,7 +126,7 @@ services:
     container_name: plan_srv
     build:
       context: ./
-      dockerfile: _deploy/stage/Dockerfile.plan-srv
+      dockerfile: ./_deploy/stage/Dockerfile.plan-srv
     restart: always
     logging:
       driver: "json-file"
@@ -146,7 +146,7 @@ services:
     container_name: order_srv
     build:
       context: ./
-      dockerfile: _deploy/stage/Dockerfile.order-srv
+      dockerfile: ./_deploy/stage/Dockerfile.order-srv
     restart: always
     logging:
       driver: "json-file"
@@ -169,7 +169,7 @@ services:
     container_name: order_gw
     build:
       context: ./
-      dockerfile: _deploy/stage/Dockerfile.order-gw
+      dockerfile: ./_deploy/stage/Dockerfile.order-gw
     restart: always
     logging:
       driver: "json-file"
@@ -196,7 +196,7 @@ services:
     container_name: admin_gw
     build:
       context: ./
-      dockerfile: _deploy/stage/Dockerfile.admin-gw
+      dockerfile: ./_deploy/stage/Dockerfile.admin-gw
     restart: always
     logging:
       driver: "json-file"
@@ -225,7 +225,7 @@ services:
     container_name: client_gw
     build:
       context: ./
-      dockerfile: _deploy/stage/Dockerfile.client-gw
+      dockerfile: ./_deploy/stage/Dockerfile.client-gw
     restart: always
     logging:
       driver: "json-file"
@@ -252,7 +252,7 @@ services:
     container_name: order_ui
     build:
       context: ./
-      dockerfile: _deploy/stage/Dockerfile.order-ui
+      dockerfile: ./_deploy/stage/Dockerfile.order-ui
     restart: always
     logging:
       driver: "json-file"
@@ -273,7 +273,7 @@ services:
     container_name: admin_ui
     build:
       context: ./
-      dockerfile: _deploy/stage/Dockerfile.admin-ui
+      dockerfile: ./_deploy/stage/Dockerfile.admin-ui
     restart: always
     logging:
       driver: "json-file"
@@ -294,7 +294,7 @@ services:
     container_name: client_ui
     build:
       context: ./
-      dockerfile: _deploy/stage/Dockerfile.client-ui
+      dockerfile: ./_deploy/stage/Dockerfile.client-ui
     restart: always
     logging:
       driver: "json-file"
@@ -315,7 +315,7 @@ services:
     container_name: mobile_ui
     build:
       context: ./
-      dockerfile: _deploy/stage/Dockerfile.mobile-ui
+      dockerfile: ./_deploy/stage/Dockerfile.mobile-ui
     restart: always
     logging:
       driver: "json-file"
