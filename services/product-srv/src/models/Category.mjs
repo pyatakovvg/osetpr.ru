@@ -28,26 +28,7 @@ export default function(sequelize, DataType) {
     timestamps: false,
   });
 
-  Category.associate = () => {
-
-    Category.belongsTo(Category, {
-      foreignKey: 'parentId',
-      as: 'parent',
-    });
-
-    Category.hasMany(Category, {
-      foreignKey: 'parentId',
-      as: 'children',
-    });
-
-    Category.belongsToMany(Category, {
-      foreignKey: 'ancestorId',
-      through: 'FolderAncestor',
-      as: 'descendents',
-    });
-
-    // Folder.belongsToMany(Folder, {as: 'ancestors', foreignKey: 'folderId', through: FolderAncestor})
-  };
+  Category.associate = () => {};
 
   return Category;
 };

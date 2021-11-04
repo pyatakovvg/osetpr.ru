@@ -47,11 +47,6 @@ export default () => async (ctx) => {
       model: Category,
       as: 'children',
       required: false,
-      nested : true,
-      // include: {
-      //   all : true,
-      //
-      // }
     },
   });
 
