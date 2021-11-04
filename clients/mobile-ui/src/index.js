@@ -2,9 +2,9 @@
 import { UUID } from '@ui.packages/utils';
 import Application from '@ui.packages/application';
 import { reducer as menuReducer, name as menuNameReducer } from '@ui.packages/menu';
-import { reducer as dialogReducer, name as dialogNameReducer } from '@ui.packages/mobile-dialog';
-import { notificationReducer } from '@ui.packages/notifications';
 import { name as orderReducerName, reducer as orderReducer } from '@ui.packages/order';
+import { reducer as dialogReducer, name as dialogNameReducer } from '@ui.packages/mobile-dialog';
+import { reducer as notificationReducer, name as notificationNameReducer } from '@ui.packages/mobile-notifications';
 
 import { reducer as formReducer } from 'redux-form';
 
@@ -26,10 +26,10 @@ try {
     portal: document.getElementById('root'),
     reducers: {
       form: formReducer,
-      notifications: notificationReducer,
       [menuNameReducer]: menuReducer,
       [orderReducerName]: orderReducer,
       [dialogNameReducer]: dialogReducer,
+      [notificationNameReducer]: notificationReducer,
     },
     wrappers: { Empty, Navigate, Composite },
   });

@@ -12,12 +12,12 @@ echo '[--- Kit ---]'
 cd ../mobile-kit && npx yarn build
 echo '[--- HOC ---]'
 cd ../hoc && npx yarn build
-echo '[--- Notifications ---]'
-cd ../notifications && npx yarn build
 echo '[--- Menu ---]'
 cd ../menu && npx yarn build
 echo '[--- Dialog ---]'
 cd ../mobile-dialog && npx yarn build
+echo '[--- Dialog ---]'
+cd ../mobile-notifications && npx yarn build
 
 echo ''
 echo 'Сборка модулей для приложения "Mobile"'
