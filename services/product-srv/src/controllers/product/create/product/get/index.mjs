@@ -16,7 +16,7 @@ export default async function updateProperties(uuid) {
       {
         model: Category,
         required: true,
-        attributes: ['id', 'value', 'description'],
+        attributes: ['id', 'value'],
         as: 'category',
         hierarchy: true,
       },
@@ -34,7 +34,7 @@ export default async function updateProperties(uuid) {
         include: [
           {
             model: Currency,
-            attributes: ['code', 'value'],
+            attributes: ['code', 'displayName'],
             as: 'currency',
           }
         ]

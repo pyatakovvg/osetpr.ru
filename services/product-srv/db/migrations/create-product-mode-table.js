@@ -8,7 +8,9 @@ module.exports = {
       await queryInterface.createTable('ProductModes', {
         uuid: {
           type: DataType.UUID,
+          unique: true,
           primaryKey: true,
+          defaultValue: DataType.UUIDV4,
         },
         productUuid: {
           type: DataType.UUID,

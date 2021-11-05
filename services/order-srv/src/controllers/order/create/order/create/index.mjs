@@ -1,21 +1,19 @@
 
 import { models } from "@sys.packages/db";
-import { UUID } from "@sys.packages/utils";
 
 
 export default async function(data) {
   const { Order } = models;
 
   const result = await Order.create({
-    uuid: UUID(),
-    statusCode: data['statusCode'] || 'new',
     userUuid: data['userUuid'],
-    title: data['title'],
-    description: data['description'],
-    dateTo: data['dateTo'],
+    statusCode: data['statusCode'],
     paymentCode: data['paymentCode'],
-    total: 0,
-    currencyCode: 'RUB',
+    title: data['title'],
+    dateTo: data['dateTo'],
+    description: data['description'],
+    total: data['total'],
+    currencyCode: data['currencyCode'],
   });
 
   return result['uuid'];

@@ -37,6 +37,7 @@ function Main() {
       products.push({
         price: product['price'],
         title: product['title'],
+        externalId: product['externalId'],
         productUuid: product['productUuid'],
         modeUuid: product['modeUuid'],
         value: product['value'],
@@ -56,7 +57,7 @@ function Main() {
       dispatch(pushNotification({
         mode: 'success',
         title: 'Товар добавлен в корзину',
-        content: `"${product['title']}" - ${product['price']} ${product['currency']['value']}`,
+        content: `"${product['title']}" - ${product['price']} ${product['currency']['displayName']}`,
       }));
     }
   }

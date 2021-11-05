@@ -14,10 +14,9 @@ export const getOrder = (uuid, userUuid) => async (dispatch) => {
     dispatch(getOrderRequestAction());
 
     const result = await request({
-      url: '/orders',
+      url: '/orders/' + uuid,
       method: 'get',
       params: {
-        uuid,
         userUuid,
       },
     });

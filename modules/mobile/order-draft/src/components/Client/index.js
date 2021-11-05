@@ -169,7 +169,7 @@ function Client() {
         <Button
           inProcess={inProcess}
           onClick={() => handleSubmit()}
-        >Подтвердить заказ на { numeral(order['total']).format()} {order['currency']['value'] }</Button>
+        >Подтвердить заказ на { numeral(order['total']).format()} {order['currency']['displayName'] }</Button>
       </div>
 
       <Dialog name={'address'}>

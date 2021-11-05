@@ -1,5 +1,5 @@
 
-import customerBuilder from "./customer.mjs";
+import customerBuilder from './customer.mjs';
 
 
 export default function(data) {
@@ -14,6 +14,7 @@ export default function(data) {
       : null,
     products: data['products'].map((product) => ({
       uuid: product['uuid'],
+      externalId: product['externalId'],
       productUuid: product['productUuid'],
       modeUuid: product['modeUuid'],
       gallery: product['gallery'],

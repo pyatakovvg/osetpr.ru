@@ -51,35 +51,6 @@ export default () => async (ctx) => {
         as: 'product',
       }
     ],
-    // attributes: ['uuid', 'externalId', 'title', 'description', 'isUse'],
-    // include: [
-    //   {
-    //     model: Category,
-    //     required: true,
-    //     attributes: ['value', 'description'],
-    //     as: 'category',
-    //     hierarchy: true,
-    //   },
-    //   {
-    //     model: ProductGallery,
-    //     required: false,
-    //     attributes: [['imageUuid', 'uuid']],
-    //     as: 'gallery',
-    //   },
-    //   {
-    //     model: ProductMode,
-    //     required: true,
-    //     as: 'mode',
-    //     attributes: ['uuid', 'vendor', 'value', 'price', 'isUse', 'isTarget'],
-    //     include: [
-    //       {
-    //         model: Currency,
-    //         attributes: ['value'],
-    //         as: 'currency',
-    //       }
-    //     ]
-    //   },
-    // ],
   });
 
   ctx.body = {

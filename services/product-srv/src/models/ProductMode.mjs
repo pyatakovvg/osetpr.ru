@@ -10,7 +10,9 @@ export default function(sequelize, DataType) {
   ProductMode.init({
     uuid: {
       type: DataType.UUID,
+      unique: true,
       primaryKey: true,
+      defaultValue: DataType.UUIDV4,
     },
     productUuid: {
       type: DataType.UUID,

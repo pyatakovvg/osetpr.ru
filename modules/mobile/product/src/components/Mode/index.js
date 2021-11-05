@@ -16,7 +16,7 @@ export default function Mode({ isActive, count, value, price, currency, onClick 
       )}
       <div className={styles['content']}>
         <span className={styles['value']}>{ value }</span>
-        <Price price={price} currency={currency['value']} />
+        <Price price={price} currency={currency['displayName']} />
       </div>
     </div>
   );

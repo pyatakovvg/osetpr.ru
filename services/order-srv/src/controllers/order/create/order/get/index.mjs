@@ -10,7 +10,7 @@ export default async function(orderUuid) {
     order: [
       ['products', 'order', 'asc'],
     ],
-    attributes: ['uuid', 'userUuid', 'title', 'description', 'dateTo', 'total', 'currencyCode', 'createdAt', 'updatedAt'],
+    attributes: ['uuid', 'externalId', 'userUuid', 'title', 'description', 'dateTo', 'total', 'currencyCode', 'createdAt', 'updatedAt'],
     include: [
       {
         model: OrderAddress,
@@ -19,7 +19,7 @@ export default async function(orderUuid) {
       },
       {
         model: OrderProduct,
-        attributes: ['uuid', 'orderUuid', 'productUuid', 'modeUuid', 'title', 'vendor', 'value', 'price', 'total', 'number'],
+        attributes: ['uuid', 'externalId', 'orderUuid', 'productUuid', 'modeUuid', 'title', 'vendor', 'value', 'price', 'total', 'number'],
         as: 'products',
         include: [
           {
@@ -29,19 +29,19 @@ export default async function(orderUuid) {
           },
           {
             model: Currency,
-            attributes: ['code', 'value'],
+            attributes: ['code', 'displayName'],
             as: 'currency',
           }
         ],
       },
       {
         model: Status,
-        required: true,
+        attributes: ['code', 'displayName'],
         as: 'status',
       },
       {
         model: Currency,
-        attributes: ['code', 'value'],
+        attributes: ['code', 'displayName'],
         as: 'currency',
       },
       {

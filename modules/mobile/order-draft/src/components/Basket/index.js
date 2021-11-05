@@ -87,7 +87,7 @@ function Order() {
           <Button
             inProcess={inProcess}
             onClick={() => handleNextStep()}
-          >Оформить заказ на { numeral(order['total']).format() } { order['currency']['value'] }</Button>
+          >Оформить заказ на { numeral(order['total']).format() } { order['currency']['displayName'] }</Button>
         </div>
       )}
     </div>

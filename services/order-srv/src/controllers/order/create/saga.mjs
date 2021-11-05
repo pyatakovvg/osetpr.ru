@@ -36,6 +36,7 @@ export default class Saga {
       return await saga.execute(params);
     }
     catch (e) {
+      console.log(e)
       if (e instanceof Sagas.SagaExecutionFailed) {
         throw new NetworkError({ code: '2.0.0', message: e['message'] });
       }

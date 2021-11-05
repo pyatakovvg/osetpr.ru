@@ -13,13 +13,9 @@ export default function(sequelize, DataType) {
       primaryKey: true,
       allowNull: false,
     },
-    value: {
-      type: DataType.STRING(8),
+    displayName: {
+      type: DataType.STRING(16),
       allowNull: false,
-    },
-    description: {
-      type: DataType.STRING(1024),
-      allowNull: true,
     },
   }, {
     sequelize,

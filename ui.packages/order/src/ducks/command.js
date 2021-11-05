@@ -18,11 +18,10 @@ export const getOrder = (userUuid) => async (dispatch) => {
     dispatch(getOrderRequestAction());
 
     const result = await request({
-      url: '/orders',
+      url: '/basket',
       method: 'get',
       params: {
         userUuid,
-        status: 'basket',
       }
     });
 
@@ -38,40 +37,22 @@ export const updateOrder = (userUuid, order) => async (dispatch) => {
   try {
     dispatch(updateOrderRequestAction());
 
-    let result;
-
-    if (order['uuid']) {
-
-      result = await request({
-        url: '/orders',
-        method: 'put',
-        data: {
-          userUuid,
-          uuid: order['uuid'],
-          statusCode: order['statusCode'] || 'basket',
-          address: order['address'] || null,
-          products: order['products'],
-          customer: order['customer'] || null,
-          paymentCode: order['payment'] ? order['payment']['code'] : null,
-        }
-      });
-    }
-    else {
-
-      result = await request({
-        url: '/orders',
-        method: 'post',
-        data: {
-          userUuid,
-          dateTo: Date.now(),
-          title: 'Клиентский',
-          address: order['address'],
-          products: order['products'],
-          customer: order['customer'],
-          paymentCode: order['paymentCode'],
-        }
-      });
-    }
+    const result = await request({
+      url: '/basket',
+      method: 'post',
+      data: {
+        userUuid,
+        title: 'Клиентский заказ',
+        uuid: order['uuid'] || null,
+        dateTo: order['dateTo'] || null,
+        description: order['description'] || null,
+        statusCode: order['statusCode'] || 'basket',
+        address: order['address'] || null,
+        products: order['products'],
+        customer: order['customer'] || null,
+        paymentCode: order['payment'] ? order['payment']['code'] : null,
+      }
+    });
 
     dispatch(updateOrderRequestSuccessAction(result['data']));
 

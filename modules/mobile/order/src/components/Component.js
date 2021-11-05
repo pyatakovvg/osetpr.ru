@@ -1,6 +1,7 @@
 
 import { selectOrder } from '@modules/mobile-order';
 
+import numeral from "@packages/numeral";
 import { Header, Text } from "@ui.packages/mobile-kit";
 
 import React from 'react';
@@ -18,7 +19,7 @@ function addressToString(data) {
       address += 'г.' + data['city'];
     }
     if (data['street']) {
-      address += 'ул.' + data['street'];
+      address += ', ул.' + data['street'];
     }
     if (data['house']) {
       address += ', д.' + data['house'];
@@ -56,7 +57,10 @@ function Order() {
         </div>
         <div className={styles['products']}>
           <div className={styles['number']}>
-            <Text>Номер заказа: { order['uuid'] }</Text>
+            <Text>Номер: { order['externalId'] }</Text>
+          </div>
+          <div className={styles['status']}>
+            <Text>Статус: { order['status'] }</Text>
           </div>
           <div className={styles['address']}>
             <Text>По адресу { address }</Text>
@@ -65,7 +69,7 @@ function Order() {
             <Text>Способ оплаты "{ order['payment']['displayName'] }"</Text>
           </div>
           <div className={styles['amount']}>
-            <Text>На сумму { order['total'] } { order['currency']['value'] }</Text>
+            <Text>На сумму { numeral(order['total']).format() } { order['currency']['displayName'] }</Text>
           </div>
           <div className={styles['products']}>
             {order['products'].map((product) => (

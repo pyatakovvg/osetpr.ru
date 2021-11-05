@@ -53,6 +53,7 @@ function Product() {
     }
     else {
       products.push({
+        externalId: product['externalId'],
         price: product['price'],
         title: product['title'],
         productUuid: product['productUuid'],
@@ -74,7 +75,7 @@ function Product() {
       dispatch(pushNotification({
         mode: 'success',
         title: 'Товар добавлен в корзину',
-        content: `"${product['title']}" - ${product['price']} ${product['currency']['value']}`,
+        content: `"${product['title']}" - ${product['price']} ${product['currency']['displayName']}`,
       }));
     }
   }
@@ -120,6 +121,7 @@ function Product() {
               mode={Cart.mode.success}
               disabled={isDisabled}
               onClick={() => handleToCart({
+                externalId: product['externalId'],
                 productUuid: product['uuid'],
                 modeUuid: mode['uuid'],
                 title: product['title'],

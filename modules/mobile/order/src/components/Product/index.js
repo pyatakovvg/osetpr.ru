@@ -10,10 +10,10 @@ import { Link } from 'react-router-dom';
 import styles from './default.module.scss';
 
 
-export default function Product({ productUuid, title, gallery, number, value, price, total, currency }) {
+export default function Product({ externalId, title, gallery, number, value, price, total, currency }) {
   return (
     <div className={styles['wrapper']}>
-      <Link className={styles['gallery']} to={process.env['PUBLIC_URL'] + '/products/' + productUuid}>
+      <Link className={styles['gallery']} to={process.env['PUBLIC_URL'] + '/products/' + externalId}>
         <Image src={gallery[0] ? process.env['PUBLIC_URL'] + '/gallery/' + gallery[0]['uuid'] : null} />
       </Link>
       <div className={styles['content']}>
@@ -22,9 +22,9 @@ export default function Product({ productUuid, title, gallery, number, value, pr
         <div className={styles['details']}>
           <span className={styles['number']}>{ number }</span>
           <span className={styles['price']}>х { numeral(price).format() }</span>
-          <span className={styles['currency']}>{ currency['value'] }</span>
+          <span className={styles['currency']}>{ currency['displayName'] }</span>
           <span className={styles['total-price']}>= { numeral(total).format() }</span>
-          <span className={styles['total-currency']}>{ currency['value'] }</span>
+          <span className={styles['total-currency']}>{ currency['displayName'] }</span>
         </div>
       </div>
     </div>

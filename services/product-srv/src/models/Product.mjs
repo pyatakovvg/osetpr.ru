@@ -10,11 +10,15 @@ export default function(sequelize, DataType) {
   Product.init({
     uuid: {
       type: DataType.UUID,
+      unique: true,
       primaryKey: true,
+      defaultValue: DataType.UUIDV4,
     },
     externalId: {
       type: DataType.STRING(9),
       allowNull: false,
+      unique: true,
+      defaultValue: Date.now().toString(32),
     },
     categoryId: {
       type: DataType.INTEGER,
@@ -26,10 +30,11 @@ export default function(sequelize, DataType) {
     },
     description: {
       type: DataType.STRING(2024),
-      allowNull: true,
+      allowNull: false,
     },
     isUse: {
       type: DataType.BOOLEAN,
+      allowNull: false,
       defaultValue: false,
     },
   }, {

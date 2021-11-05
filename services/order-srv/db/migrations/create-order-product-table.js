@@ -10,6 +10,8 @@ module.exports = {
           type: DataType.UUID,
           primaryKey: true,
           unique: true,
+          allowNull: false,
+          defaultValue: DataType.UUIDv4,
         },
         orderUuid: {
           type: DataType.UUID,
@@ -21,6 +23,10 @@ module.exports = {
         },
         modeUuid: {
           type: DataType.UUID,
+          allowNull: false,
+        },
+        externalId: {
+          type: DataType.STRING(9),
           allowNull: false,
         },
         title: {
@@ -38,22 +44,27 @@ module.exports = {
         price: {
           type: DataType.DECIMAL(10, 2),
           allowNull: false,
+          defaultValue: 0,
         },
         total: {
           type: DataType.DECIMAL(10, 2),
           allowNull: false,
+          defaultValue: 0,
         },
         currencyCode: {
           type: DataType.STRING(4),
           allowNull: false,
+          defaultValue: 'RUB',
         },
         number: {
           type: DataType.INTEGER,
           allowNull: false,
+          defaultValue: 1,
         },
         order: {
           type: DataType.INTEGER,
           allowNull: false,
+          defaultValue: 0,
         },
       }, {
         transaction
