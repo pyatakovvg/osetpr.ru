@@ -1,8 +1,8 @@
 
-import { selectPayments, resetStateAction } from '@modules/mobile-order-draft';
+import { selectPayments } from '@modules/mobile-order-draft';
 
 import numeral from '@packages/numeral';
-import { selectInProcess } from '@ui.packages/order';
+import { selectInProcess, resetStateAction } from '@ui.packages/order';
 import { pushNotification } from '@ui.packages/mobile-notifications';
 import { Dialog, openDialog, closeDialog } from '@ui.packages/mobile-dialog';
 
