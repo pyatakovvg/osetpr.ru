@@ -2,8 +2,8 @@
 import { selectPayments } from '@modules/mobile-order-draft';
 
 import numeral from '@packages/numeral';
-import { selectInProcess, resetStateAction } from '@ui.packages/order';
 import { pushNotification } from '@ui.packages/mobile-notifications';
+import { selectInProcess, resetStateAction } from '@ui.packages/order';
 import { Dialog, openDialog, closeDialog } from '@ui.packages/mobile-dialog';
 
 import { Header, Button } from '@ui.packages/mobile-kit';
@@ -133,7 +133,7 @@ function Client() {
     }));
 
     if (isUpdated) {
-      dispatch(resetStateAction());
+      await dispatch(resetStateAction());
       navigate(process.env['PUBLIC_URL'] + '/order/' + order['uuid']);
     }
   }
