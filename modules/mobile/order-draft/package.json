@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@modules/mobile-order",
+  "name": "@modules/mobile-order-draft",
   "version": "1.0.0",
   "license": "MIT",
   "main": "lib/index.js",

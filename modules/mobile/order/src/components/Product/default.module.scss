@@ -1,0 +1,112 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  margin: 8px 0 0;
+  background: rgba($gray-darken, .8);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(3px);
+  border-radius: 8px;
+  overflow: hidden;
+
+  & + & {
+    margin: 16px 0 0;
+  }
+}
+
+.name {
+
+  display: block;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  color: $white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.value {
+
+  display: block;
+  margin: 8px 0 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: $white;
+}
+
+.gallery {
+
+  display: block;
+  width: 108px;
+  height: 108px;
+  background: $gray;
+  text-decoration: none;
+}
+
+.content {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  padding: 16px 24px 16px 16px;
+  overflow: auto;
+}
+
+.number {
+
+  display: inline-block;
+  color: $white;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.details {
+
+  display: flex;
+  flex: 1 0;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.price {
+
+  display: inline-block;
+  color: $white;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 0 4px;
+}
+
+.currency {
+
+  display: inline-block;
+  color: $white;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 8px 0 4px;
+}
+
+.total-price {
+
+  display: inline-block;
+  color: $white;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.total-currency {
+
+  display: inline-block;
+  color: $white;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 0 4px;
+}

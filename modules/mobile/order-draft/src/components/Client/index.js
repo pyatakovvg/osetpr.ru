@@ -1,14 +1,16 @@
 
-import { selectPayments } from '@modules/mobile-order';
+import { selectPayments, resetStateAction } from '@modules/mobile-order-draft';
 
 import numeral from '@packages/numeral';
 import { selectInProcess } from '@ui.packages/order';
+import { pushNotification } from '@ui.packages/mobile-notifications';
 import { Dialog, openDialog, closeDialog } from '@ui.packages/mobile-dialog';
 
 import { Header, Button } from '@ui.packages/mobile-kit';
 import { selectOrder, nextStepAction, updateOrder } from '@ui.packages/order';
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Item from "./Item";
@@ -55,6 +57,7 @@ function customerData(data) {
 
 function Client() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const order = useSelector(selectOrder);
   const payments = useSelector(selectPayments);
@@ -98,6 +101,43 @@ function Client() {
     }
   }
 
+  async function handleSubmit() {
+    const isAddress = !! order['address'];
+    const isPayment = !! order['payment'];
+    const isCustomer = !! order['customer'];
+
+    if ( ! isAddress) {
+      return dispatch(pushNotification({
+        title: 'Вы не указали адрес доставки',
+        autoClose: false,
+      }));
+    }
+
+    if ( ! isPayment) {
+      return dispatch(pushNotification({
+        title: 'Вы не указали способ оплаты',
+        autoClose: false,
+      }));
+    }
+
+    if ( ! isCustomer) {
+      return dispatch(pushNotification({
+        title: 'Вы не указали контактные данные',
+        autoClose: false,
+      }));
+    }
+
+    const isUpdated = await dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
+      ...order,
+      statusCode: 'new',
+    }));
+
+    if (isUpdated) {
+      dispatch(resetStateAction());
+      navigate(process.env['PUBLIC_URL'] + '/order/' + order['uuid']);
+    }
+  }
+
   return (
     <div className={styles['wrapper']}>
       <div className={styles['content']}>
@@ -128,6 +168,7 @@ function Client() {
       <div className={styles['control']}>
         <Button
           inProcess={inProcess}
+          onClick={() => handleSubmit()}
         >Подтвердить заказ на { numeral(order['total']).format()} {order['currency']['value'] }</Button>
       </div>
 

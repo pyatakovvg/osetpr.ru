@@ -11,6 +11,7 @@ export default () => async (ctx) => {
     url: process.env['ORDER_API_SRV'] + '/orders/' + data['uuid'],
     method: 'put',
     data: {
+      statusCode: data['statusCode'],
       address: data['address'],
       userUuid: data['userUuid'],
       products: data['products'],

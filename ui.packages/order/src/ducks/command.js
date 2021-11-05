@@ -22,6 +22,7 @@ export const getOrder = (userUuid) => async (dispatch) => {
       method: 'get',
       params: {
         userUuid,
+        status: 'basket',
       }
     });
 
@@ -47,6 +48,7 @@ export const updateOrder = (userUuid, order) => async (dispatch) => {
         data: {
           userUuid,
           uuid: order['uuid'],
+          statusCode: order['statusCode'] || 'basket',
           address: order['address'] || null,
           products: order['products'],
           customer: order['customer'] || null,

@@ -5,13 +5,14 @@ import orderBuilder from './builder/order.mjs';
 
 
 export default () => async (ctx) => {
-  const { userUuid } = ctx['request']['query'];
+  const { userUuid, status, uuid } = ctx['request']['query'];
 
   const { data: orders } = await request({
     url: process.env['ORDER_API_SRV'] + '/orders',
     params: {
+      uuid,
       userUuid,
-      status: 'basket',
+      status,
     },
   });
 

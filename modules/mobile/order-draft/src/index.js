@@ -5,9 +5,9 @@ export { name, reducer } from './ducks/slice';
 export {
   resetStateAction,
 
-  selectOrder,
+  selectPayments,
 } from './ducks/slice';
 
 export {
-  getOrder,
+  getPayments,
 } from './ducks/commands';

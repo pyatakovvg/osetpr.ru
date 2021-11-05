@@ -171,6 +171,11 @@ export default class Saga {
       .step('Send to mail')
       .invoke(async (params) => {
         const order = params.getOrder();
+
+        if (order['statusCode'] === 'basket') {
+          return void 0;
+        }
+
         const customer = params.getCustomer();
         if (customer) {
           order['customer']['name'] = customer['name'];

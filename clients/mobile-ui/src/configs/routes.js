@@ -20,6 +20,14 @@ const routes = [
     path: '/order',
     wrapper: 'Navigate',
     module: import(
+      /* webpackChunkName: "mobile-order-draft" */
+      '@modules/mobile-order-draft'
+    ),
+  },
+  {
+    path: '/order/:uuid',
+    wrapper: 'Navigate',
+    module: import(
       /* webpackChunkName: "mobile-order" */
       '@modules/mobile-order'
     ),

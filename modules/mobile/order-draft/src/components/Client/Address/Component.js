@@ -44,7 +44,7 @@ function AddressForm({ handleSubmit, valid, pristine }) {
           mode={'success'}
           inProcess={inProcess}
           disabled={ ! valid || pristine}
-        >Выполнить</Button>
+        >Указать</Button>
       </div>
     </form>
   );

@@ -32,7 +32,7 @@ function DetailsForm({ handleSubmit, valid }) {
           mode={'success'}
           inProcess={inProcess}
           disabled={ ! valid}
-        >Выполнить</Button>
+        >Указать</Button>
       </div>
     </form>
   );

@@ -1,5 +1,5 @@
 
-import { selectPayments } from '@modules/mobile-order';
+import { selectPayments } from '@modules/mobile-order-draft';
 
 import { selectInProcess } from '@ui.packages/order';
 import { Button, Header, RadioContainerField, Radio } from '@ui.packages/mobile-kit';
@@ -34,7 +34,7 @@ function PaymentForm({ handleSubmit }) {
         <Button
           mode={'success'}
           inProcess={inProcess}
-        >Выполнить</Button>
+        >Выбрать</Button>
       </div>
     </form>
   );
