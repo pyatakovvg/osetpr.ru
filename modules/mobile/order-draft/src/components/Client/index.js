@@ -120,21 +120,21 @@ function Client() {
     if ( ! isAddress) {
       return dispatch(pushNotification({
         title: 'Вы не указали адрес доставки',
-        autoClose: false,
+        mode: 'danger',
       }));
     }
 
     if ( ! isPayment) {
       return dispatch(pushNotification({
         title: 'Вы не указали способ оплаты',
-        autoClose: false,
+        mode: 'danger',
       }));
     }
 
     if ( ! isCustomer) {
       return dispatch(pushNotification({
         title: 'Вы не указали контактные данные',
-        autoClose: false,
+        mode: 'danger',
       }));
     }
 
