@@ -23,21 +23,23 @@ function useGetCategories() {
   const query = queryToObject(location['search']);
   const filter = useSelector(selectFilter);
   let search = '';
-  if (query['categoryId']) {
-    if (query['categoryId'] instanceof Array) {
-      for (let i in filter['categories']) {
-        if (filter['categories'].hasOwnProperty(i)) {
-          const item = filter['categories'][i];
-          if (query['categoryId'].some((id) => id === item['id'])) {
-            search += search ? ', ' + item['value'] : item['value'];
+  if (filter['categories']) {
+    if (query['categoryId']) {
+      if (query['categoryId'] instanceof Array) {
+        for (let i in filter['categories']) {
+          if (filter['categories'].hasOwnProperty(i)) {
+            const item = filter['categories'][i];
+            if (query['categoryId'].some((id) => id === item['id'])) {
+              search += search ? ', ' + item['value'] : item['value'];
+            }
           }
         }
       }
-    }
-    else {
-      const item = filter['categories'].find((item) => query['categoryId'] === item['id']);
-      if (item) {
-        search = item['value'];
+      else {
+        const item = filter['categories'].find((item) => query['categoryId'] === item['id']);
+        if (item) {
+          search = item['value'];
+        }
       }
     }
   }
