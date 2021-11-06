@@ -17,6 +17,7 @@ import Item from "./Item";
 import Address from "./Address";
 import Payment from "./Payment";
 import Details from "./Details";
+import Description from "./Description";
 
 import styles from './default.module.scss';
 
@@ -93,11 +94,21 @@ function Client() {
     const isUpdated = await dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
       ...order,
       customer: { name: data['name'], phone: data['phone'] },
-      description: data['description'],
     }));
 
     if (isUpdated) {
       dispatch(closeDialog('details'));
+    }
+  }
+
+  async function handleDescriptionUpdate(data) {
+    const isUpdated = await dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
+      ...order,
+      description: data['description'],
+    }));
+
+    if (isUpdated) {
+      dispatch(closeDialog('description'));
     }
   }
 
@@ -163,6 +174,9 @@ function Client() {
               onClick={() => dispatch(openDialog('details'))}
             />
           </div>
+          <div className={styles['row']}>
+            <Item title={'Информация к заказу (не обязательно)'} value={null} defaultValue={order['description'] || 'Не указано'} onClick={() => dispatch(openDialog('description'))}/>
+          </div>
         </div>
       </div>
       <div className={styles['control']}>
@@ -195,9 +209,17 @@ function Client() {
         <Details
           initialValues={{
             ...order['customer'],
-            description: order['description'],
           }}
           onSubmit={(data) => handleDetailsUpdate(data)}
+        />
+      </Dialog>
+
+      <Dialog name={'description'}>
+        <Description
+          initialValues={{
+            description: order['description'],
+          }}
+          onSubmit={(data) => handleDescriptionUpdate(data)}
         />
       </Dialog>
     </div>

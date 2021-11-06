@@ -47,6 +47,8 @@ export default async ({
     order: [
       ['category', 'order', 'asc'],
       ['createdAt', 'asc'],
+      ['modes', 'order', 'asc'],
+      ['gallery', 'order', 'asc'],
     ],
     attributes: ['uuid', 'externalId', 'title', 'description', 'isUse', 'updatedAt'],
     include: [
@@ -60,13 +62,11 @@ export default async ({
       {
         model: ProductGallery,
         required: false,
-        order: ['order', 'desc'],
         attributes: [['imageUuid', 'uuid']],
         as: 'gallery',
       },
       {
         model: ProductMode,
-        order: ['order', 'desc'],
         required: false,
         where: { ...whereMode },
         as: 'modes',

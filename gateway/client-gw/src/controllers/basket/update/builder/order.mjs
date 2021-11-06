@@ -9,6 +9,7 @@ export default function(data) {
     currency: data['currency'],
     address: data['address'],
     payment: data['payment'],
+    description: data['description'],
     customer: data['customer']
       ? customerBuilder(data['customer'])
       : null,

@@ -38,6 +38,7 @@ export default function Image({ src }) {
 
     setLoading(true);
 
+    imageElement.addEventListener('progress', (e) => console.log(e));
     imageElement.addEventListener('load', handleLoaded);
     imageElement.addEventListener('error', handleError);
   }, [src]);

@@ -2,13 +2,14 @@
 import { selectOrder } from '@modules/mobile-order';
 
 import numeral from "@packages/numeral";
-import { Header, Text } from "@ui.packages/mobile-kit";
+import { Header } from "@ui.packages/mobile-kit";
 
 import React from 'react';
 import { useSelector } from 'react-redux';
 
 import Product from './Product';
 
+import cn from 'classnames';
 import styles from "./default.module.scss";
 
 
@@ -55,21 +56,30 @@ function Order() {
         <div className={styles['header']}>
           <Header>Ваш заказ</Header>
         </div>
-        <div className={styles['products']}>
-          <div className={styles['number']}>
-            <Text>Номер: { order['externalId'] }</Text>
+        <div className={styles['information']}>
+          <div className={styles['row']}>
+            <div className={styles['number']}>
+              <span className={styles['title']}>Номер:</span>
+              <span className={cn(styles['value'], styles['uppercase'])}>{ order['externalId'] }</span>
+            </div>
+            <div className={styles['status']}>
+              <span className={styles['title']}>Статус:</span>
+              <span className={styles['value']}>{ order['status'] }</span>
+            </div>
           </div>
-          <div className={styles['status']}>
-            <Text>Статус: { order['status'] }</Text>
+          <div className={styles['row']}>
+            <div className={styles['payment']}>
+              <span className={styles['title']}>Способ оплаты:</span>
+              <span className={styles['value']}>{ order['payment']['displayName'] }</span>
+            </div>
+            <div className={styles['amount']}>
+              <span className={styles['title']}>Сумма к оплате:</span>
+              <span className={styles['value']}>{ numeral(order['total']).format() } { order['currency']['displayName'] }</span>
+            </div>
           </div>
           <div className={styles['address']}>
-            <Text>По адресу { address }</Text>
-          </div>
-          <div className={styles['payment']}>
-            <Text>Способ оплаты "{ order['payment']['displayName'] }"</Text>
-          </div>
-          <div className={styles['amount']}>
-            <Text>На сумму { numeral(order['total']).format() } { order['currency']['displayName'] }</Text>
+            <span className={styles['title']}>По адресу:</span>
+            <span className={styles['value']}>{ address }</span>
           </div>
           <div className={styles['products']}>
             {order['products'].map((product) => (

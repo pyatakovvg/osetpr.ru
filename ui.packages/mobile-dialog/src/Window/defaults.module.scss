@@ -1,0 +1,121 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex: 1 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 24px;
+  background: rgba($background, .2);
+  backdrop-filter: blur(2px);
+  z-index: 99999;
+  overflow: hidden;
+  animation-name: showBackgroundDialog;
+  animation-timing-function: ease-in-out;
+  animation-duration: 150ms;
+}
+
+.dialog {
+
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  background: $background;
+  border-radius: 4px;
+  border: 1px solid $gray-darken;
+  padding: 40px 16px 24px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 40%);
+  overflow: hidden;
+  width: 100%;
+  animation-name: showDialog;
+  animation-timing-function: ease-in-out;
+  animation-duration: 150ms;
+}
+
+.hide {
+
+  animation-name: hideDialog;
+  animation-timing-function: ease-in-out;
+  animation-duration: 150ms;
+}
+
+.hide-background {
+
+  animation-name: hideBackgroundDialog;
+  animation-timing-function: ease-in-out;
+  animation-duration: 150ms;
+}
+
+.close {
+
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: block;
+  width: 16px;
+  height: 16px;
+  background: url("./close.svg") center/100% no-repeat;
+}
+
+.content {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  overflow: hidden;
+}
+
+@keyframes showDialog {
+  from {
+    transform: scale(.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes hideDialog {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(.8);
+    opacity: 0;
+  }
+}
+
+@keyframes showBackgroundDialog {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(2px);
+  }
+}
+
+@keyframes hideBackgroundDialog {
+  from {
+    opacity: 1;
+    backdrop-filter: blur(2px);
+  }
+  to {
+    opacity: 0;
+    backdrop-filter: blur(0);
+  }
+}

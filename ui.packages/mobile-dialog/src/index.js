@@ -1,4 +1,8 @@
 
+export { default as Dialog } from './Dialog';
+export { default as Window } from './Window';
+export { default as Confirm } from './Confirm';
+
 export {
   selectIsOpen,
   selectName,
@@ -10,5 +14,4 @@ export {
   closeDialog
 } from './ducks/commands';
 
-export { default as Dialog } from './Dialog';
 export { name, reducer } from './ducks/slice';
