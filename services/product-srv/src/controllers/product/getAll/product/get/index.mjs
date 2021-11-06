@@ -45,27 +45,28 @@ export default async ({
     distinct: true,
     where: { ...where },
     order: [
-      ['createdAt', 'desc'],
-      ['modes', 'order', 'asc'],
-      ['gallery', 'order', 'asc'],
+      ['category', 'order', 'asc'],
+      ['createdAt', 'asc'],
     ],
     attributes: ['uuid', 'externalId', 'title', 'description', 'isUse', 'updatedAt'],
     include: [
       {
         model: Category,
         required: true,
-        attributes: ['id', 'value', 'description'],
+        attributes: ['id', 'value'],
         as: 'category',
         hierarchy: true,
       },
       {
         model: ProductGallery,
         required: false,
+        order: ['order', 'desc'],
         attributes: [['imageUuid', 'uuid']],
         as: 'gallery',
       },
       {
         model: ProductMode,
+        order: ['order', 'desc'],
         required: false,
         where: { ...whereMode },
         as: 'modes',
