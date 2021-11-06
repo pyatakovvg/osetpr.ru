@@ -16,7 +16,7 @@ import styles from './default.module.scss';
 function Products({ fields }) {
   const dispatch = useDispatch();
   const form = useSelector(getFormValues('order-modify'));
-console.log(123, form)
+
   function handleAdd() {
     const products = fields.getAll();
     dispatch(openDialog('products', { userUuid: form['userUuid'], products }));
@@ -31,6 +31,7 @@ console.log(123, form)
     fields.removeAll();
     data.forEach((item) => {
       fields.push({
+        uuid: item['uuid'],
         currency: item['currency'],
         number: item['number'],
         price: item['price'],

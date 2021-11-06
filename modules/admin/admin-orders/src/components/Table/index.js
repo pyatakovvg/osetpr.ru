@@ -104,7 +104,7 @@ function OrderList() {
               <Product key={item['uuid']} {...item} />
             ))}
             <span className={styles['total']}>
-              <Text type={Text.TYPE_BODY}>Итого: { numeral(total).format() } { currency['value'] }</Text>
+              <Text type={Text.TYPE_BODY}>Итого: { numeral(total).format() } { currency['displayName'] }</Text>
             </span>
           </div>
         )}</Column>
@@ -119,7 +119,7 @@ function OrderList() {
                 <Status type={'label'} mode={getStatusMode(value['status']['code'])}>{ value['status']['displayName'] }</Status>
               </div>
               <div className={styles['date']}>
-                <Text type={Text.TYPE_BODY}>На: { moment(value['dateTo']).format('DD.MM.YYYY - HH:mm') }</Text>
+                <Text type={Text.TYPE_BODY}>На: { value['dateTo'] ? moment(value['dateTo']).format('DD.MM.YYYY - HH:mm') : 'Как можно быстрее' }</Text>
               </div>
               <div className={styles['date']}>
                 <Text>Создан: { moment(value['createdAt']).format('DD.MM.YYYY - HH:mm') }</Text>

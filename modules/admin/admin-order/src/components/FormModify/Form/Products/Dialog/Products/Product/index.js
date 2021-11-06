@@ -27,7 +27,7 @@ function Product({ items, uuid, title, gallery, modes, onChange }) {
         </div>
         <div className={styles['modes']}>
           {modes.map((mode) => {
-            const isSelect = items.some((item) => item['vendor'] === mode['vendor']);
+            const isSelect = items.some((item) => item['uuid'] === mode['uuid']);
             return (
               <div key={mode['uuid']} className={styles['mode']}>
                 <div className={styles['vendor']}>
@@ -37,7 +37,7 @@ function Product({ items, uuid, title, gallery, modes, onChange }) {
                   <Text>{ mode['value'] }</Text>
                 </div>
                 <div className={styles['price']}>
-                  <Text type={Text.TYPE_BODY}>{ numeral(Number(mode['price'])).format() } { mode['currency']['value'] }</Text>
+                  <Text type={Text.TYPE_BODY}>{ numeral(Number(mode['price'])).format() } { mode['currency']['displayName'] }</Text>
                 </div>
                 <div className={styles['control']}>
                   <CheckBox onChange={(value) => handleChange(mode, value)} value={isSelect} />

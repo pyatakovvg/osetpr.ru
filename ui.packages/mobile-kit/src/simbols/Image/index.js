@@ -1,6 +1,4 @@
 
-import request from '@ui.packages/request';
-
 import types from 'prop-types';
 import React, { useRef, useState, useEffect } from 'react';
 
@@ -18,63 +16,52 @@ export default function Image({ src }) {
   const [isNotSrc, setNotSrc] = useState(false);
   const [isLoading, setLoading] = useState(false);
 
-  function createImage(root) {
-    if ( ! createImage.instance) {
-      createImage.instance = document.createElement("img");
-      root.appendChild(createImage.instance);
-      return createImage.instance;
-    }
-    return createImage.instance;
+  function handleLoaded() {
+    setLoading(false);
+  }
+
+  function handleError() {
+    setError(true);
+    setLoading(false);
   }
 
   useEffect(async function() {
+    const imageElement = imageRef['current'];
+
     if ( ! src) {
       return setNotSrc(true);
     }
 
-    try {
-      setLoading(true);
+    if ( ! imageElement) {
+      return void 0;
+    }
 
-      const result = await request({
-        url: src,
-        method: 'get',
-        responseType: 'blob',
-      });
+    setLoading(true);
 
-      if (result.size === 0) {
-        setLoading(false);
-        return setError(true);
+    imageElement.addEventListener('load', handleLoaded);
+    imageElement.addEventListener('error', handleError);
+  }, [src]);
+
+  useEffect(() => {
+    const imageElement = imageRef['current'];
+    return () => {
+      if ( ! imageElement) {
+        return void 0;
       }
 
-      const reader = new FileReader();
-
-      reader.onload = function(event) {
-        const image = createImage(imageRef['current']);
-        image.src =  event['target']['result'];
-
-        setLoading(false);
-      };
-
-      reader.onerror = function(event){
-        setLoading(false);
-        setError(true);
-        console.log("File could not be read: " + event.target.error.code);
-      };
-
-      reader.readAsDataURL(result);
-    }
-    catch(error) {
-      setLoading(false);
-      setError(true);
-    }
-  }, [src]);
+      imageElement.removeEventListener('load', handleLoaded);
+      imageElement.removeEventListener('error', handleError);
+    };
+  }, []);
 
   return (
     <div className={styles['wrapper']}>
       {isNotSrc && <NotSrc />}
       {isLoading && ! isNotSrc && <Loading />}
       {isError && ! isNotSrc && <Error />}
-      <span ref={imageRef} className={styles['image']} />
+      <span className={styles['image']}>
+        <img src={src} ref={imageRef} alt={""} loading={'lazy'} />
+      </span>
     </div>
   );
 }

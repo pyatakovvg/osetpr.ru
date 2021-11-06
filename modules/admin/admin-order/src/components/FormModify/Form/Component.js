@@ -32,18 +32,17 @@ function Form({ handleSubmit }) {
         </Row>
         <Row>
           <Col>
-            <InputField require name={'title'} label={'Название'} />
+            <InputField name={'title'} label={'Название'} />
           </Col>
         </Row>
         <Row>
           <Col>
-            <TextareaField require name={'description'} label={'Описание'} />
+            <TextareaField name={'description'} label={'Описание'} />
           </Col>
         </Row>
         <Row>
           <Col>
             <DatePickerField
-              require
               useTime
               name={'dateTo'}
               label={'Выполнить до'}

@@ -11,18 +11,6 @@ function validate(values) {
     errors['userUuid'] = 'Обязательный выбор';
   }
 
-  if ( ! values['title']) {
-    errors['title'] = 'Обязательно к заполнению';
-  }
-
-  if ( ! values['description']) {
-    errors['description'] = 'Обязательно к заполнению';
-  }
-
-  if ( ! values['dateTo']) {
-    errors['dateTo'] = 'Обязательный выбор';
-  }
-
   if ( ! values['address']) {
     errors['address'] = 'Обязательно к заполнению';
   }

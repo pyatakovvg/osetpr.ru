@@ -14,7 +14,10 @@ export default () => async (ctx) => {
   }
 
   const result = await Category.findAll({
-    attributes: ['id', 'value'],
+    order: [
+      ['order', 'desc']
+    ],
+    attributes: ['id', 'value', 'order'],
     where: { ...where },
   });
 

@@ -16,6 +16,11 @@ module.exports = {
           type: DataType.STRING(256),
           allowNull: false,
         },
+        order: {
+          type: DataType.INTEGER,
+          allowNull: false,
+          defaultValue: 0,
+        },
       }, {
         transaction
       });
