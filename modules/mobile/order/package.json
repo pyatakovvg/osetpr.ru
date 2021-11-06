@@ -15,6 +15,7 @@
     "@ui.packages/hoc": "1.0.0",
     "@ui.packages/mobile-dialog": "1.0.0",
     "@ui.packages/mobile-kit": "1.0.0",
+    "@ui.packages/mobile-notifications": "1.0.0",
     "@ui.packages/order": "1.0.0",
     "@ui.packages/request": "1.0.0",
     "@ui.packages/socket": "1.0.0",

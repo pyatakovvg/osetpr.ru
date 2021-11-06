@@ -1,5 +1,4 @@
 
-import { UUID } from "@sys.packages/utils";
 import { sequelize, models } from "@sys.packages/db";
 
 
@@ -18,15 +17,15 @@ export default async function(orderUuid, products) {
   if (products && !! products.length) {
 
     await OrderProduct.bulkCreate(products.map((item, index) => ({
-      uuid: UUID(),
       orderUuid: orderUuid,
+      externalId: item['externalId'],
       productUuid: item['productUuid'],
       modeUuid: item['modeUuid'],
       title: item['title'],
       vendor: item['vendor'],
       value: item['value'],
       price: item['price'],
-      total: item['price'] * item['number'],
+      total: Number(item['price']) * Number(item['number']),
       currencyCode: item['currencyCode'] || item['currency']['code'],
       number: Number(item['number']),
       order: index,

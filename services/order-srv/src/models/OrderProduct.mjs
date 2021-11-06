@@ -12,6 +12,8 @@ export default function(sequelize, DataType) {
       type: DataType.UUID,
       primaryKey: true,
       unique: true,
+      allowNull: false,
+      defaultValue: DataType.UUIDV4,
     },
     orderUuid: {
       type: DataType.UUID,
@@ -23,6 +25,10 @@ export default function(sequelize, DataType) {
     },
     modeUuid: {
       type: DataType.UUID,
+      allowNull: false,
+    },
+    externalId: {
+      type: DataType.STRING(9),
       allowNull: false,
     },
     title: {
@@ -40,6 +46,7 @@ export default function(sequelize, DataType) {
     price: {
       type: DataType.DECIMAL(10, 2),
       allowNull: false,
+      defaultValue: 0,
       get(column) {
         return Number(this.getDataValue(column));
       },
@@ -47,6 +54,7 @@ export default function(sequelize, DataType) {
     total: {
       type: DataType.DECIMAL(10, 2),
       allowNull: false,
+      defaultValue: 0,
       get(column) {
         return Number(this.getDataValue(column));
       },
@@ -54,17 +62,17 @@ export default function(sequelize, DataType) {
     currencyCode: {
       type: DataType.STRING(4),
       allowNull: false,
+      defaultValue: 'RUB',
     },
     number: {
       type: DataType.INTEGER,
       allowNull: false,
-      get(column) {
-        return Number(this.getDataValue(column));
-      },
+      defaultValue: 1,
     },
     order: {
       type: DataType.INTEGER,
       allowNull: false,
+      defaultValue: 0,
     },
   }, {
     sequelize,

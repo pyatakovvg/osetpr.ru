@@ -1,26 +1,36 @@
 
 import request from '@ui.packages/request';
+import { pushNotification } from '@ui.packages/mobile-notifications';
 
 import {
-  getPaymentsRequestAction,
-  getPaymentsRequestFailAction,
-  getPaymentsRequestSuccessAction,
+  getOrderRequestAction,
+  getOrderRequestFailAction,
+  getOrderRequestSuccessAction,
 } from './slice';
 
 
-export const getPayments = () => async (dispatch) => {
+export const getOrder = (uuid, userUuid) => async (dispatch) => {
   try {
-    dispatch(getPaymentsRequestAction());
+    dispatch(getOrderRequestAction());
 
     const result = await request({
-      url: '/payments',
+      url: '/orders/' + uuid,
       method: 'get',
+      params: {
+        userUuid,
+      },
     });
 
-    dispatch(getPaymentsRequestSuccessAction(result['data']));
+    dispatch(getOrderRequestSuccessAction(result['data']));
   }
   catch(error) {
 
-    dispatch(getPaymentsRequestFailAction());
+    dispatch(getOrderRequestFailAction());
+    dispatch(pushNotification({
+      title: 'Упс! Что-то пошло не так',
+      content: error['data']['message'],
+      mode: 'danger',
+      autoClose: false,
+    }));
   }
 };

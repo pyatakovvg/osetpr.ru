@@ -6,6 +6,7 @@ export {
 
 export {
   nextStepAction,
+  resetStateAction,
 } from './ducks/slice';
 
 export {

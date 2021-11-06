@@ -23,13 +23,6 @@ module.exports = {
         transaction
       });
 
-      await queryInterface.addColumn('Orders', 'paymentCode', {
-        type: DataType.STRING,
-        allowNull: true,
-      }, {
-        transaction,
-      });
-
       await transaction.commit();
     }
     catch (err) {

@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 
 const initialState = {
-  payments: [],
+  order: null,
+  inProcess: false,
 };
 
 const REDUCER_NAME = 'order';
@@ -14,13 +15,19 @@ const slice = createSlice({
   initialState,
   reducers: {
     resetStateAction(state) {
-      state['payments'] = [];
+      state['order'] = null;
+      state['inProcess'] = false;
     },
 
-    getPaymentsRequestAction() {},
-    getPaymentsRequestFailAction(state) {},
-    getPaymentsRequestSuccessAction(state, { payload }) {
-      state['payments'] = payload;
+    getOrderRequestAction(state) {
+      state['inProcess'] = true;
+    },
+    getOrderRequestFailAction(state) {
+      state['inProcess'] = false;
+    },
+    getOrderRequestSuccessAction(state, { payload }) {
+      state['order'] = payload;
+      state['inProcess'] = false;
     },
   },
 });
@@ -28,12 +35,12 @@ const slice = createSlice({
 export const {
   resetStateAction,
 
-  getPaymentsRequestAction,
-  getPaymentsRequestFailAction,
-  getPaymentsRequestSuccessAction,
+  getOrderRequestAction,
+  getOrderRequestFailAction,
+  getOrderRequestSuccessAction,
 } = slice['actions'];
 
-export const selectPayments = (state) => state[REDUCER_NAME]['payments'];
+export const selectOrder = (state) => state[REDUCER_NAME]['order'];
 
 export const name = slice['name'];
 export const reducer = slice['reducer'];

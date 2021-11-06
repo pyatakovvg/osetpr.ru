@@ -19,6 +19,12 @@ const slice = createSlice({
       state['step'] = payload;
     },
 
+    resetStateAction(state) {
+      state['step'] = 0;
+      state['order'] = null;
+      state['inProcess'] = false;
+    },
+
     getOrderRequestAction(state) {
       state['inProcess'] = true;
     },
@@ -45,6 +51,8 @@ const slice = createSlice({
 
 export const {
   nextStepAction,
+
+  resetStateAction,
 
   getOrderRequestAction,
   getOrderRequestFailAction,

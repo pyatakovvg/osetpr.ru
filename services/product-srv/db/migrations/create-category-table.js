@@ -16,14 +16,6 @@ module.exports = {
           type: DataType.STRING(256),
           allowNull: false,
         },
-        parentId: {
-          type: DataType.INTEGER,
-          allowNull: true,
-        },
-        description: {
-          type: DataType.STRING(1024),
-          allowNull: true,
-        },
       }, {
         transaction
       });

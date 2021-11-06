@@ -4,16 +4,14 @@ module.exports = {
     const transaction = await queryInterface.sequelize.transaction();
 
     try {
-      await queryInterface.bulkInsert('Currencies', [
-          {
-            value: 'руб.',
-            code: 'RUB',
-            description: '',
-          },
-        ],
-        {
-          transaction
-        });
+      // await queryInterface.bulkUpdate('Orders', [
+      //     {
+      //       externalId: Date.now().toString(32),
+      //     },
+      //   ],
+      //   {
+      //     transaction
+      //   });
 
       await transaction.commit();
     }

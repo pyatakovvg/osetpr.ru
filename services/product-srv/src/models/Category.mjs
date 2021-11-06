@@ -18,10 +18,6 @@ export default function(sequelize, DataType) {
       type: DataType.STRING(256),
       allowNull: false,
     },
-    description: {
-      type: DataType.STRING(1024),
-      allowNull: true,
-    },
   }, {
     sequelize,
     hierarchy: true,

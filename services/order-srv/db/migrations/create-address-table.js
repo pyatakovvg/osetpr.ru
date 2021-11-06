@@ -10,6 +10,7 @@ module.exports = {
           type: DataType.UUID,
           allowNull: false,
           primaryKey: true,
+          unique: true,
         },
         city: {
           type: DataType.STRING,

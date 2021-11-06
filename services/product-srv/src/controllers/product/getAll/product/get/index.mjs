@@ -73,7 +73,7 @@ export default async ({
         include: [
           {
             model: Currency,
-            attributes: ['code', 'value'],
+            attributes: ['code', 'displayName'],
             as: 'currency',
           }
         ]
