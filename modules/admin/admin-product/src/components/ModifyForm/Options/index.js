@@ -73,7 +73,7 @@ function OptionField({ field, disabled, onRemove }) {
           label="Валюта"
           options={currencies}
           optionKey="code"
-          optionValue="value"
+          optionValue="displayName"
           disabled={disabled}
         />
       </div>

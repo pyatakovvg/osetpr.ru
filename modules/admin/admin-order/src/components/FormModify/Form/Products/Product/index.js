@@ -21,7 +21,7 @@ function Product({ field, ...product }) {
         <Text>{ product['value'] }</Text>
       </div>
       <div className={styles['price']}>
-        <Text type={Text.TYPE_BODY}>{ numeral(product['price']).format() } { product['currency']['value'] }</Text>
+        <Text type={Text.TYPE_BODY}>{ numeral(product['price']).format() } { product['currency']['displayName'] }</Text>
       </div>
       <div className={styles['number']}>
         <InputField name={`${field}.number`} />

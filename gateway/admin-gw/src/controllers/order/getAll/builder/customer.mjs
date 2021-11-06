@@ -3,12 +3,18 @@ function factory(type, data) {
   switch(type) {
     case 'individual': {
       const customer = data[data['type']];
+      if ( ! customer) {
+        return null;
+      }
       return {
         name: (`${customer['surname']} ${customer['name']} ${customer['patronymic']}`).trim(),
       };
     }
     case 'legal': {
       const customer = data[data['type']];
+      if ( ! customer) {
+        return null;
+      }
       return {
         name: customer['name'],
       };

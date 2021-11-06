@@ -2,7 +2,6 @@
 import { selectProduct, selectInProcess } from '@modules/admin-product';
 import { updateProductsById, createProduct } from '@modules/admin-product';
 
-import { uniqName } from '@ui.packages/utils';
 import { Dialog, closeDialog } from '@ui.packages/dialog';
 import { Button, Header, Page, PageContent, PageControls } from '@ui.packages/admin-kit';
 
@@ -24,7 +23,6 @@ const FORM_NAME = 'product-modify';
 const defaultProduct = {
   isUse: true,
   gallery: [],
-  externalId: uniqName(),
 };
 
 
