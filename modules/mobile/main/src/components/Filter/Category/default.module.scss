@@ -1,0 +1,47 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  overflow: hidden;
+}
+
+.header {
+
+  display: flex;
+  flex-direction: row;
+  flex: 0 0;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content {
+
+  display: flex;
+  flex: 1 0;
+  flex-direction: row;
+  margin: 16px 0 0;
+  flex-wrap: wrap;
+  overflow: auto;
+  z-index: 10;
+}
+
+.row {
+
+  display: flex;
+  flex: 1 0 50%;
+  box-sizing: border-box;
+  margin: 0 0 8px;
+
+  &:nth-child(odd) {
+    padding: 0 4px 0 0;
+  }
+
+  &:nth-child(even) {
+    padding: 0 0 0 4px;
+  }
+}

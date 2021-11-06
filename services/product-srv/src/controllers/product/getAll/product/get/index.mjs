@@ -9,9 +9,11 @@ export default async ({
   uuid = null,
   externalId = null,
   isUse = null,
+  categoryId = null,
 }) => {
   let where = {};
   let whereMode = {};
+  let whereCategory = {};
   let offset = {};
   let options = {};
 
@@ -23,6 +25,10 @@ export default async ({
 
   if (externalId) {
     where['externalId'] = externalId;
+  }
+
+  if (categoryId) {
+    whereCategory['id'] = categoryId;
   }
 
   if (isUse) {
@@ -55,9 +61,9 @@ export default async ({
       {
         model: Category,
         required: true,
+        where: { ...whereCategory },
         attributes: ['id', 'value'],
         as: 'category',
-        hierarchy: true,
       },
       {
         model: ProductGallery,

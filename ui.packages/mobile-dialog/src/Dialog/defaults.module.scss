@@ -69,6 +69,7 @@
   width: 16px;
   height: 16px;
   background: url("./close.svg") center/100% no-repeat;
+  z-index: 20;
 }
 
 .content {
@@ -77,4 +78,5 @@
   flex-direction: column;
   flex: 1 0;
   overflow: hidden;
+  z-index: 10;
 }

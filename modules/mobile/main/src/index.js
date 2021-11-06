@@ -5,6 +5,7 @@ export { name, reducer } from './ducks/slice';
 export {
   resetStateAction,
 
+  selectFilter,
   selectProducts,
 } from './ducks/slice';
 

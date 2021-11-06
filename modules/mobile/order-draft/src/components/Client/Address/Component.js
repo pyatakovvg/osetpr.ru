@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import styles from './default.module.scss';
 
 
-function AddressForm({ handleSubmit, valid, pristine }) {
+function AddressForm({ handleSubmit }) {
   const inProcess = useSelector(selectInProcess);
 
   return (
@@ -43,7 +43,6 @@ function AddressForm({ handleSubmit, valid, pristine }) {
         <Button
           mode={'success'}
           inProcess={inProcess}
-          disabled={ ! valid || pristine}
         >Указать</Button>
       </div>
     </form>

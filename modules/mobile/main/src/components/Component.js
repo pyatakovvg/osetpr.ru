@@ -1,19 +1,25 @@
 
 import { selectProducts } from '@modules/mobile-main';
 
+import { objectToQuery } from '@ui.packages/utils';
 import { selectOrder, updateOrder } from '@ui.packages/order';
 import { pushNotification } from '@ui.packages/mobile-notifications';
+import { Dialog, openDialog, closeDialog } from '@ui.packages/mobile-dialog';
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
+import Filter from './Filter';
 import Product from './Product';
 
+import cn from 'classnames';
 import styles from './default.module.scss';
 
 
 function Main() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const order = useSelector(selectOrder);
   const products = useSelector(selectProducts);
@@ -62,13 +68,29 @@ function Main() {
     }
   }
 
+  function handleSetFilter(data) {
+    dispatch(closeDialog('filter'));
+    navigate(process.env['PUBLIC_URL'] + objectToQuery(data));
+  }
+
   return (
     <section className={styles['wrapper']}>
       <div className={styles['content']}>
-        {products.map((item) => (
-          <Product key={item['uuid']} {...item} toCart={(data) => handleToCart(data)} />
-        ))}
+        <div className={styles['filter']} onClick={() => dispatch(openDialog('filter'))}>
+          <span className={cn(styles['icon'], 'fas fa-filter')} />
+          <div className={styles['text']}>Все</div>
+          <span className={cn(styles['icon'], 'fas fa-chevron-right')} />
+        </div>
+        <div className={styles['products']}>
+          {products.map((item) => (
+            <Product key={item['uuid']} {...item} toCart={(data) => handleToCart(data)} />
+          ))}
+        </div>
       </div>
+
+      <Dialog name={'filter'}>
+        <Filter onChange={(data) => handleSetFilter(data)} />
+      </Dialog>
     </section>
   );
 }
