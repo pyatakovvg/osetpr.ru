@@ -14,7 +14,7 @@ export default function Product({ externalId, title, gallery, number, value, pri
   return (
     <div className={styles['wrapper']}>
       <Link className={styles['gallery']} to={process.env['PUBLIC_URL'] + '/products/' + externalId}>
-        <Image src={gallery[0] ? process.env['PUBLIC_URL'] + '/gallery/' + gallery[0]['uuid'] : null} />
+        <Image src={gallery[0] ? process.env['REACT_APP_API_HOST'] + '/gallery/' + gallery[0]['uuid'] : null} />
       </Link>
       <div className={styles['content']}>
         <span className={styles['name']}>{ title }</span>

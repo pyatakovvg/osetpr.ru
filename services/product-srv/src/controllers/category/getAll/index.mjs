@@ -17,7 +17,7 @@ export default () => async (ctx) => {
     order: [
       ['order', 'desc']
     ],
-    attributes: ['id', 'value'],
+    attributes: ['id', 'value', 'order'],
     where: { ...where },
   });
 

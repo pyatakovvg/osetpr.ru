@@ -98,7 +98,7 @@ function Product() {
     <section className={styles['wrapper']}>
       <div className={styles['content']}>
         <div className={styles['gallery']}>
-          <Image src={product['gallery'][0] ? process.env['PUBLIC_URL'] + '/gallery/' + product['gallery'][0]['uuid'] : null} />
+          <Image src={product['gallery'][0] ? process.env['REACT_APP_API_HOST'] + '/gallery/' + product['gallery'][0]['uuid'] : null} />
         </div>
         <div className={styles['title']}>
           <Header>{ product['title'] }</Header>
