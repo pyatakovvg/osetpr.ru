@@ -10,6 +10,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+import Empty from './Empty';
 import Filter from './Filter';
 import Product from './Product';
 
@@ -113,6 +114,9 @@ function Main() {
           <span className={cn(styles['icon'], 'fas fa-chevron-right')} />
         </div>
         <div className={styles['products']}>
+          { ! products.length && (
+            <Empty />
+          )}
           {products.map((item) => (
             <Product key={item['uuid']} {...item} toCart={(data) => handleToCart(data)} />
           ))}
