@@ -154,7 +154,7 @@ function Client() {
       <div className={styles['content']}>
         <div className={styles['header']}>
           <Header>Корзина</Header>
-          <span className={styles['clean']} onClick={() => handleBack()}>Оформиление заказа</span>
+          <span className={styles['clean']} onClick={() => handleBack()}>{'<'} Оформиление заказа</span>
         </div>
         <div className={styles['products']}>
           <div className={styles['row']}>
