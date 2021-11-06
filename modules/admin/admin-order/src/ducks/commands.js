@@ -57,7 +57,7 @@ export const getCustomers = () => async (dispatch) => {
 export const getProducts = (params) => async (dispatch) => {
   try {
     dispatch(getProductsRequestAction());
-console.log(123123, params)
+
     const result = await request({
       url: '/products',
       method: 'get',
@@ -115,6 +115,7 @@ export const createItem = (data) => async (dispatch) => {
       method: 'post',
       data: {
         ...data,
+        statusCode: 'new',
         products: data['products'].map((item) => ({
           productUuid: item['productUuid'],
           title: item['title'],

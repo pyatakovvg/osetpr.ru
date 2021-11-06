@@ -60,7 +60,7 @@ function ProductList() {
                       <Text>{ mode['value'] }</Text>
                     </div>
                     <div className={styles['price']}>
-                      <Text type={Text.TYPE_BODY}>{ numeral(Number(mode['price'])).format() } { mode['currency']['value'] }</Text>
+                      <Text type={Text.TYPE_BODY}>{ numeral(Number(mode['price'])).format() } { mode['currency']['displayName'] }</Text>
                     </div>
                   </div>
                 );
