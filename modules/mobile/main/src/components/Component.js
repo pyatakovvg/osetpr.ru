@@ -1,14 +1,14 @@
 
-import { selectProducts } from '@modules/mobile-main';
+import { selectProducts, selectFilter } from '@modules/mobile-main';
 
-import { objectToQuery } from '@ui.packages/utils';
 import { selectOrder, updateOrder } from '@ui.packages/order';
+import { objectToQuery, queryToObject } from '@ui.packages/utils';
 import { pushNotification } from '@ui.packages/mobile-notifications';
 import { Dialog, openDialog, closeDialog } from '@ui.packages/mobile-dialog';
 
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import Filter from './Filter';
 import Product from './Product';
@@ -17,9 +17,38 @@ import cn from 'classnames';
 import styles from './default.module.scss';
 
 
+function useGetCategories() {
+  const location = useLocation();
+  const query = queryToObject(location['search']);
+  const filter = useSelector(selectFilter);
+  let search = '';
+  if (query['categoryId']) {
+    if (query['categoryId'] instanceof Array) {
+      for (let i in filter['categories']) {
+        if (filter['categories'].hasOwnProperty(i)) {
+          const item = filter['categories'][i];
+          if (query['categoryId'].some((id) => id === item['id'])) {
+            search += search ? ', ' + item['value'] : item['value'];
+          }
+        }
+      }
+    }
+    else {
+      const item = filter['categories'].find((item) => query['categoryId'] === item['id']);
+      if (item) {
+        search = item['value'];
+      }
+    }
+  }
+  return search || 'Все';
+}
+
+
 function Main() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const selectedFilterName = useGetCategories();
 
   const order = useSelector(selectOrder);
   const products = useSelector(selectProducts);
@@ -78,7 +107,9 @@ function Main() {
       <div className={styles['content']}>
         <div className={styles['filter']} onClick={() => dispatch(openDialog('filter'))}>
           <span className={cn(styles['icon'], 'fas fa-filter')} />
-          <div className={styles['text']}>Все</div>
+          <div className={styles['text']}>
+            <span className={styles['names']}>{ selectedFilterName }</span>
+          </div>
           <span className={cn(styles['icon'], 'fas fa-chevron-right')} />
         </div>
         <div className={styles['products']}>
