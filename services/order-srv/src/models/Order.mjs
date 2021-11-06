@@ -10,7 +10,6 @@ export default function(sequelize, DataType) {
   Order.init({
     uuid: {
       type: DataType.UUID,
-      unique: true,
       primaryKey: true,
       defaultValue: DataType.UUIDV4,
     },
