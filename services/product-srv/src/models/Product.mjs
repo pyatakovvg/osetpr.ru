@@ -18,7 +18,7 @@ export default function(sequelize, DataType) {
       type: DataType.STRING(9),
       allowNull: false,
       unique: true,
-      defaultValue: Date.now().toString(32),
+      defaultValue: () => Date.now().toString(32),
     },
     categoryId: {
       type: DataType.INTEGER,
