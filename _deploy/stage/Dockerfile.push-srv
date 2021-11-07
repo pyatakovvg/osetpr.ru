@@ -7,14 +7,16 @@ RUN npm config set package-lock false
 
 WORKDIR /app
 
+COPY ./services/push-srv/db                ./services/push-srv/db
 COPY ./services/push-srv/src               ./services/push-srv/src
 COPY ./services/push-srv/.env.stage        ./services/push-srv/.env
 COPY ./services/push-srv/package.json      ./services/push-srv
-COPY ./sys.packages                       ./sys.packages
-COPY ./packages                           ./packages
-COPY ./package.json                       ./
-COPY ./lerna.json                         ./
-COPY ./yarn.lock                          ./
+COPY ./services/push-srv/.sequelizerc      ./services/push-srv
+COPY ./sys.packages                        ./sys.packages
+COPY ./packages                            ./packages
+COPY ./package.json                        ./
+COPY ./lerna.json                          ./
+COPY ./yarn.lock                           ./
 
 RUN yarn
 
