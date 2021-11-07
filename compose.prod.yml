@@ -41,6 +41,19 @@ services:
         max-size: 10m
 
 
+  sms_srv:
+    container_name: sms_srv
+    build:
+      context: ./
+      dockerfile: ./_deploy/prod/Dockerfile.sms-srv
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+
+
   customer_srv:
     container_name: customer_srv
     build:

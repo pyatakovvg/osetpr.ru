@@ -1,0 +1,23 @@
+
+# BUILD APP
+FROM node:16.10-alpine3.11
+
+RUN npm install -g npm@latest
+RUN npm config set package-lock false
+
+WORKDIR /app
+
+COPY ./services/sms-srv/src               ./services/sms-srv/src
+COPY ./services/sms-srv/.env.stage        ./services/sms-srv/.env
+COPY ./services/sms-srv/package.json      ./services/sms-srv
+COPY ./sys.packages                       ./sys.packages
+COPY ./packages                           ./packages
+COPY ./package.json                       ./
+COPY ./lerna.json                         ./
+COPY ./yarn.lock                          ./
+
+RUN yarn
+
+WORKDIR /app/services/sms-srv
+
+ENTRYPOINT ["yarn", "run", "start"]

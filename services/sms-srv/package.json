@@ -1,0 +1,22 @@
+{
+  "private": false,
+  "name": "sms-srv",
+  "license": "MIT",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node -r dotenv/config --experimental-modules --es-module-specifier-resolution=node src/index.mjs dotenv_config_path=./.env",
+    "start:dev": "nodemon --exec node -r dotenv/config --experimental-modules --es-module-specifier-resolution=node ./src/index.mjs dotenv_config_path=./.env"
+  },
+  "dependencies": {
+    "@packages/errors": "1.0.0",
+    "@packages/numeral": "1.0.0",
+    "@sys.packages/logger": "1.0.0",
+    "@sys.packages/rabbit": "1.0.0",
+    "@sys.packages/request": "1.0.0",
+    "@sys.packages/server": "1.0.0",
+    "dotenv": "10.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.14"
+  }
+}
