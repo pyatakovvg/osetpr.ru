@@ -26,8 +26,10 @@ export default () => async (ctx) => {
 
   ctx.body = {
     success: true,
-    customers: customers.map((customer) => customerBuilder(customer)),
-    statuses,
+    filters: {
+      statuses,
+      customers: customers.map((customer) => customerBuilder(customer)),
+    },
     data: result['data'],
     meta: result['meta'],
   };

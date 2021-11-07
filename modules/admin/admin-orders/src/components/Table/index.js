@@ -30,7 +30,7 @@ function getStatusMode(code) {
 function useCustomers() {
   const customers = useSelector(selectCustomers);
   return useMemo(() => customers.reduce((prev, value) => {
-    prev[value['userUuid']] = value['name'];
+    prev[value['userUuid']] = value['name'] ? value['name'] : 'Не указан';
     return prev;
   }, {}), [customers.length]);
 }
@@ -84,14 +84,11 @@ function OrderList() {
           width={200}
         >{(value) => (
           <div className={styles['row']}>
-            <div className={styles['title']}>
-              <Text type={Text.TYPE_BODY}>"{ customers[value['userUuid']] }"</Text>
-            </div>
             <div className={styles['description']}>
               <Text type={Text.TYPE_BODY}>{ value['title'] }</Text>
             </div>
-            <div className={styles['description']}>
-              <Text>{ value['description'] }</Text>
+            <div className={styles['title']}>
+              <Text type={Text.TYPE_BODY}>"{ customers[value['userUuid']] || 'Не указан' }"</Text>
             </div>
           </div>
         )}</Column>

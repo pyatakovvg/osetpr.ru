@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "@ui.packages/web-push",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "./src/index.js",
+  "dependencies": {
+    "@ui.packages/request": "1.0.0",
+    "@ui.packages/mobile-notifications": "1.0.0",
+    "@reduxjs/toolkit": "1.5.0"
+  }
+}

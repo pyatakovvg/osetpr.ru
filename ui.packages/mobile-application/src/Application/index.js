@@ -1,7 +1,9 @@
 
 import { on, off } from '@ui.packages/socket';
+import { checkSubscription, subscribeUser } from '@ui.packages/web-push';
+import { Confirm, openDialog, closeDialog } from '@ui.packages/mobile-dialog';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Router from '../Router';
@@ -18,6 +20,8 @@ import styles from './default.module.scss';
 function Application({ options }) {
   const dispatch = useDispatch();
   const isLoaded = useSelector(selectIsLoaded);
+
+  const [isPushNotifications, setPushNotifications] = useState(true);
 
   if (options['useSignIn']) {
     useRedirect();
@@ -38,6 +42,21 @@ function Application({ options }) {
     }, []);
   }
 
+  useEffect(async () => {
+    setPushNotifications(await checkSubscription());
+  }, []);
+
+  useEffect(() => {
+    if ( ! isPushNotifications) {
+      dispatch(openDialog('push-subscribe'));
+    }
+  }, [isPushNotifications]);
+
+  async function handleSubscribe() {
+    await subscribeUser(window.localStorage.getItem('userUuid'));
+    dispatch(closeDialog());
+  }
+
   return (
     <section className={styles['application']}>
       <ApplicationContext.Provider value={{ ...options }}>
@@ -45,6 +64,13 @@ function Application({ options }) {
           ? <Router />
           : <Loading />}
       </ApplicationContext.Provider>
+      { ! isPushNotifications && (
+        <Confirm
+          name={'push-subscribe'}
+          message={'Вы хотели бы получать информацию о статусе заказа посредством пуш-уведомлений?'}
+          onApply={() => handleSubscribe()}
+        />
+      )}
     </section>
   );
 }

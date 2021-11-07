@@ -105,7 +105,7 @@ class App {
       </Provider>
     , this.options['portal']);
 
-    worker.unregister();
+    await worker.unregister();
   }
 
   async render() {

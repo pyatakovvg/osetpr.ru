@@ -38,8 +38,8 @@ const typesSlice = createSlice({
       state['inProcess'] = false;
     },
     getItemsRequestSuccessAction(state, { payload }) {
-      state['statuses'] = payload['statuses'];
-      state['customers'] = payload['customers'];
+      state['statuses'] = payload['filters']['statuses'];
+      state['customers'] = payload['filters']['customers'];
       state['items'] = payload['data'];
       state['meta'] = payload['meta'];
       state['inProcess'] = false;

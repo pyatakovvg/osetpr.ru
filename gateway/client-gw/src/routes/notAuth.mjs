@@ -1,5 +1,6 @@
 
 import { getOrder } from "../controllers/order";
+import { registerWorker, unregisterWorker } from "../controllers/worker";
 import { signIn } from '../controllers/identity';
 import { getImage } from "../controllers/gallery";
 import { getAllPayments } from '../controllers/payment';
@@ -8,6 +9,9 @@ import { getAllProducts, getProductById } from "../controllers/product";
 
 
 export default (router) => {
+
+  router.post('/push/subscribe', registerWorker());
+  router.post('/push/unsubscribe', unregisterWorker());
 
   router.get('/gallery/:uuid', getImage());
 

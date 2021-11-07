@@ -42,8 +42,6 @@ const request = async (config, options = {}) => {
       headers = config['headers'];
     }
 
-    console.log(123, headers)
-
     const instance = axios.create({
       baseURL: hostApi,
       timeout: 24000,

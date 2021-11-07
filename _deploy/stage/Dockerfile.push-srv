@@ -1,0 +1,23 @@
+
+# BUILD APP
+FROM node:16.10-alpine3.11
+
+RUN npm install -g npm@latest
+RUN npm config set package-lock false
+
+WORKDIR /app
+
+COPY ./services/push-srv/src               ./services/push-srv/src
+COPY ./services/push-srv/.env.stage        ./services/push-srv/.env
+COPY ./services/push-srv/package.json      ./services/push-srv
+COPY ./sys.packages                       ./sys.packages
+COPY ./packages                           ./packages
+COPY ./package.json                       ./
+COPY ./lerna.json                         ./
+COPY ./yarn.lock                          ./
+
+RUN yarn
+
+WORKDIR /app/services/push-srv
+
+ENTRYPOINT ["yarn", "run", "start"]

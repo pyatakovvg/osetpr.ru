@@ -23,6 +23,7 @@
     "@ui.packages/theme": "1.0.0",
     "@ui.packages/theme-2": "1.0.0",
     "@ui.packages/utils": "1.0.0",
+    "@ui.packages/web-push": "1.0.0",
     "classnames": "2.3.1",
     "prop-types": "15.7.2",
     "react": "17.0.2",
