@@ -5,7 +5,7 @@ module.exports = {
 
     try {
 
-      await queryInterface.createTable('Categories', {
+      await queryInterface.createTable('Subscriptions', {
         uuid: {
           type: DataType.UUID,
           primaryKey: true,
