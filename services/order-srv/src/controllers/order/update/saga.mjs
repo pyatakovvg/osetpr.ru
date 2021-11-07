@@ -115,7 +115,9 @@ export default class Saga {
       .invoke(async (params) => {
         logger.info('Update gallery');
         const order = params.getOrder();
-
+        if ( ! body['products']) {
+          return void 0;
+        }
         const products = body['products'].map((product) => {
           const orderProduct = order['products'].find((item) => item['modeUuid'] === product['modeUuid']);
           return {

@@ -1,16 +1,26 @@
 
 function factory(type, data) {
   switch(type) {
-    case 'individual': {
+    case 'legal': {
       const customer = data[data['type']];
       if ( ! customer) {
         return null;
       }
+      let user = '';
+      if (customer['surname']) {
+        user += customer['surname'];
+      }
+      if (customer['name']) {
+        user += user ? ' ' + customer['surname'] : customer['surname'];
+      }
+      if (customer['patronymic']) {
+        user += user ? ' ' + customer['patronymic'] : customer['patronymic'];
+      }
       return {
-        name: (`${customer['surname']} ${customer['name']} ${customer['patronymic']}`).trim(),
+        name: user,
       };
     }
-    case 'legal': {
+    case 'individual': {
       const customer = data[data['type']];
       if ( ! customer) {
         return null;
