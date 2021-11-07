@@ -1,6 +1,7 @@
 
 import logger from '@sys.packages/logger';
 import { Server } from '@sys.packages/server';
+import connectToDatabase from '@sys.packages/db';
 import { connection as rabbitConnection } from "@sys.packages/rabbit";
 
 import webPush from 'web-push';
@@ -11,6 +12,7 @@ import routes from './routes';
 
 (async () => {
   try {
+    await connectToDatabase(process.env['DB_CONNECTION_HOST']);
     await rabbitConnection(process.env['RABBIT_CONNECTION_HOST']);
 
     const server = new Server({
@@ -32,13 +34,7 @@ import routes from './routes';
       ],
     });
 
-    webPush.setVapidDetails(
-      'mailto:pyatakov.viktor@gmail.com',
-      process.env['PUBLIC_KEY'], // process.env.VAPID_PUBLIC_KEY,
-      process.env['PRIVATE_KEY'], // process.env.VAPID_PRIVATE_KEY
-    )
-      // .then(() => console.log(234567))
-      // .catch((e) => console.log(e));
+    webPush.setVapidDetails(process.env['PUSH_HOST'], process.env['PUBLIC_KEY'], process.env['PRIVATE_KEY']);
 
     await server.start();
   }

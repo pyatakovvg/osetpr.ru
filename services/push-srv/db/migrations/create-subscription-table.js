@@ -5,23 +5,26 @@ module.exports = {
 
     try {
 
-      await queryInterface.createTable('ProductGalleries', {
-        id: {
-          type: DataType.INTEGER,
+      await queryInterface.createTable('Categories', {
+        uuid: {
+          type: DataType.UUID,
           primaryKey: true,
-          autoIncrement: true,
+          defaultValue: DataType.UUIDV4,
         },
-        imageUuid: {
-          type: DataType.STRING(40),
-          allowNull: false,
-        },
-        productUuid: {
+        userUuid: {
           type: DataType.UUID,
           allowNull: false,
         },
-        order: {
-          type: DataType.INTEGER,
-          defaultValue: 0,
+        endpoint: {
+          type: DataType.STRING,
+          allowNull: false,
+        },
+        createdAt: {
+          type: DataType.DATE,
+          allowNull: false,
+        },
+        updatedAt: {
+          type: DataType.DATE,
           allowNull: false,
         },
       }, {

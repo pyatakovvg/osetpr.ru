@@ -1,9 +1,17 @@
 
+import { models } from '@sys.packages/db';
+
 import webPush from 'web-push';
 
 
 export default () => async (ctx) => {
+  const { Subscription } = models;
   const data = ctx['request']['body'];
+
+  await Subscription.create({
+    userUuid: data['userUuid'],
+    endpoint: data['endpoint'],
+  });
 
   const subscription = {
     endpoint: data['endpoint'],
