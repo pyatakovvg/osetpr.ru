@@ -23,7 +23,7 @@ export default () => async (ctx) => {
 
   const payload = JSON.stringify({
     title: 'Добро пожаловать!',
-    body: 'Теперь вы сможите получать сообщения о статусе вашего заказа ',
+    body: 'Теперь вы сможете получать сообщения о статусе вашего заказа ',
     icon: 'http://localhost:4000/gallery/1e88bfbf-c71c-45d8-9be5-2d3c708366f3.jpg?size=small'
   });
 
