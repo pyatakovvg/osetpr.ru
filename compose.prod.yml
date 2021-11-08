@@ -78,9 +78,6 @@ services:
       options:
         max-file: "5"
         max-size: 10m
-    depends_on:
-      - db
-      - rabbit
     links:
       - db
       - rabbit
@@ -97,11 +94,6 @@ services:
       options:
         max-file: "5"
         max-size: 10m
-    depends_on:
-      - db
-      - rabbit
-      - mail_srv
-      - customer_srv
     links:
       - db
       - rabbit
@@ -119,9 +111,6 @@ services:
       options:
         max-file: "5"
         max-size: 10m
-    depends_on:
-      - db
-      - rabbit
     links:
       - db
       - rabbit
@@ -138,10 +127,6 @@ services:
       options:
         max-file: "5"
         max-size: 10m
-    depends_on:
-      - db
-      - rabbit
-      - gallery_srv
     links:
       - db
       - rabbit
@@ -159,10 +144,6 @@ services:
       options:
         max-file: "5"
         max-size: 10m
-    depends_on:
-      - db
-      - rabbit
-      - product_srv
     links:
       - db
       - rabbit
@@ -179,11 +160,6 @@ services:
       options:
         max-file: "5"
         max-size: 10m
-    depends_on:
-      - db
-      - rabbit
-      - product_srv
-      - customer_srv
     links:
       - db
       - rabbit
@@ -202,13 +178,6 @@ services:
       options:
         max-file: "5"
         max-size: 10m
-    depends_on:
-      - rabbit
-      - order_srv
-      - identity_srv
-      - customer_srv
-      - gallery_srv
-      - product_srv
     links:
       - rabbit
       - order_srv
@@ -229,14 +198,6 @@ services:
       options:
         max-file: "5"
         max-size: 10m
-    depends_on:
-      - rabbit
-      - order_srv
-      - identity_srv
-      - customer_srv
-      - gallery_srv
-      - product_srv
-      - plan_srv
     links:
       - rabbit
       - order_srv
@@ -258,13 +219,6 @@ services:
       options:
         max-file: "5"
         max-size: 10m
-    depends_on:
-      - rabbit
-      - order_srv
-      - identity_srv
-      - customer_srv
-      - gallery_srv
-      - product_srv
     links:
       - rabbit
       - order_srv
@@ -285,8 +239,6 @@ services:
       options:
         max-file: "5"
         max-size: 10m
-    depends_on:
-      - order_gw
     links:
       - order_gw
     volumes:
@@ -306,8 +258,6 @@ services:
       options:
         max-file: "5"
         max-size: 10m
-    depends_on:
-      - admin_gw
     links:
       - admin_gw
     volumes:
@@ -327,8 +277,6 @@ services:
       options:
         max-file: "5"
         max-size: 10m
-    depends_on:
-      - client_gw
     links:
       - client_gw
     volumes:
@@ -348,8 +296,6 @@ services:
       options:
         max-file: "5"
         max-size: 10m
-    depends_on:
-      - client_gw
     links:
       - client_gw
     volumes:
