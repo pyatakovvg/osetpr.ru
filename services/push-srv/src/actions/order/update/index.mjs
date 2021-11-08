@@ -33,22 +33,22 @@ export default async (data) => {
 
   let message = '';
   if (data['status']['code'] === 'new') {
-    message = 'Заказ принят. На сумму ' + data['total'] + data['currency']['displayName'];
+    message = 'Оформлен заказ на сумму ' + data['total'] + data['currency']['displayName'] + '. Номер заказа: ' + data['externalId'];
   }
   else if (data['status']['code'] === 'confirmed') {
-    message = 'Заказ подтвержден. Сумма к оплате ' + data['total'] + data['currency']['displayName'];
+    message = 'Заказ на сумма ' + data['total'] + data['currency']['displayName'] + ' подтвержден';
   }
   else if (data['status']['code'] === 'canceled') {
-    message = 'Заказ отменен';
+    message = 'Заказ №' + data['externalId'] + ' отменен';
   }
   else if (data['status']['code'] === 'process') {
-    message = 'Заказ готовится';
+    message = 'Заказ №' + data['externalId'] + ' готовится';
   }
   else if (data['status']['code'] === 'done') {
-    message = 'Заказ готов';
+    message = 'Заказ №' + data['externalId'] + ' готов';
   }
   else if (data['status']['code'] === 'finished') {
-    message = 'Заказ выполнен! Приятного аппетита!';
+    message = 'Заказ №' + data['externalId'] + ' выполнен! Приятного аппетита!';
   }
 
   const payload = JSON.stringify({
