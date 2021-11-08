@@ -36,6 +36,8 @@ import './styles/index.module.scss';
     });
 
     await app.start();
+
+    await worker.unregister();
     await worker.register();
   }
   catch (error) {
