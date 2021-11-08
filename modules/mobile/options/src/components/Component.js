@@ -1,29 +1,27 @@
 
-import { Header, Text, Checkbox } from "@ui.packages/mobile-kit";
-import { subscribeUser, unsubscribeUser, checkSubscription } from "@ui.packages/web-push";
+import { selectIsPushSubscribe, selectInProcess, subscribePushSubscribe, unsubscribePushSubscribe } from '@modules/mobile-options';
 
-import React, { useState, useEffect } from 'react';
+import { Header, Text, Checkbox } from "@ui.packages/mobile-kit";
+
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import styles from "./default.module.scss";
 
 
 function Options() {
-  const [isSubscribe, setSubscribe] = useState(false);
+  const dispatch = useDispatch();
 
-  useEffect(async () => {
-    const hasSubscribe = await checkSubscription();
-    setSubscribe(hasSubscribe);
-  }, [isSubscribe]);
+  const inProcess = useSelector(selectInProcess);
+  const hasSubscribe = useSelector(selectIsPushSubscribe);
+
 
   async function handleChangeSubscribe() {
-    console.log(123, isSubscribe)
-    if (isSubscribe) {
-      await unsubscribeUser(window.localStorage.getItem('userUuid'));
-      setSubscribe(false);
+    if (hasSubscribe) {
+      dispatch(unsubscribePushSubscribe(window.localStorage.getItem('userUuid')));
     }
     else {
-      await subscribeUser(window.localStorage.getItem('userUuid'));
-      setSubscribe(true);
+      dispatch(subscribePushSubscribe(window.localStorage.getItem('userUuid')));
     }
   }
 
@@ -35,7 +33,11 @@ function Options() {
         </div>
         <div className={styles['information']}>
           <div className={styles['row']}>
-            <Checkbox value={isSubscribe} onChange={handleChangeSubscribe}>
+            <Checkbox
+              value={hasSubscribe}
+              disabled={inProcess}
+              onChange={handleChangeSubscribe}
+            >
               <Text>Подписка на push-уведомленния</Text>
             </Checkbox>
           </div>

@@ -1,4 +1,5 @@
 
+import { UnavailableError } from '@packages/errors';
 import request from '@ui.packages/request';
 
 
@@ -51,8 +52,7 @@ export async function subscribeUser(userUuid) {
     return true;
   }
   catch(error) {
-    console.error('WePush error: SW unsubscribe user', error);
-    return false;
+    throw new UnavailableError({ code: '0.0.2', message: error['message'] })
   }
 }
 
@@ -79,11 +79,10 @@ export async function unsubscribeUser(userUuid) {
       data: JSON.stringify(subscriptionData),
     });
 
-    return await subscription.unsubscribe();
+    await subscription.unsubscribe();
   }
   catch(error) {
-    console.error('WePush error: SW unsubscribe', error);
-    return null;
+    throw new UnavailableError({ code: '0.0.2', message: error['message'] })
   }
 }
 
@@ -97,22 +96,21 @@ export async function registerServiceWorker() {
     console.log('WePush: SW file\'s worker was registered');
   }
   catch(error) {
-    console.error('WePush error: SW register', error);
+    throw new UnavailableError({ code: '0.0.2', message: error['message'] })
   }
 }
 
 export async function checkSubscription() {
   try {
     if ( ! serviceWorkerRegistration) {
-      throw new Error('SW not registered');
+      throw new Error('Воркер не установлен');
     }
     console.log('WePush: SW subscribe checking');
     const subscription = await serviceWorkerRegistration.pushManager.getSubscription();
     return ! (subscription === null);
   }
   catch(error) {
-    console.error('WebPush error', error);
-    return false;
+    throw new UnavailableError({ code: '0.0.2', message: error['message'] })
   }
 }
 
