@@ -38,7 +38,7 @@ export default async (data) => {
     message = 'Оформлен заказ #' + externalId + ' на сумму ' + data['total'] + data['currency']['displayName'];
   }
   else if (data['status']['code'] === 'confirmed') {
-    message = 'Заказ #' + externalId + 'на сумма ' + data['total'] + data['currency']['displayName'] + ' подтвержден';
+    message = 'Заказ #' + externalId + ' на сумма ' + data['total'] + data['currency']['displayName'] + ' подтвержден';
   }
   else if (data['status']['code'] === 'canceled') {
     message = 'Заказ #' + externalId + ' отменен';
@@ -50,7 +50,7 @@ export default async (data) => {
     message = 'Заказ #' + externalId + ' готов';
   }
   else if (data['status']['code'] === 'finished') {
-    message = 'Заказ #' + externalId + ' выполнен! Приятного аппетита!';
+    message = 'Заказ #' + externalId + ' выполнен. Приятного аппетита!';
   }
 
   const payload = JSON.stringify({
