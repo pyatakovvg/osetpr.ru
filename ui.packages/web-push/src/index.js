@@ -24,6 +24,10 @@ function urlB64ToUint8Array(base64String) {
 
 export async function subscribeUser(userUuid) {
   try {
+    if ( ! serviceWorkerRegistration) {
+      return false;
+    }
+
     const subscription = await serviceWorkerRegistration.pushManager.subscribe({
       userVisibleOnly: true,
       applicationServerKey: urlB64ToUint8Array(appServerKey),
@@ -52,6 +56,10 @@ export async function subscribeUser(userUuid) {
 
 export async function unsubscribeUser() {
   try {
+    if ( ! serviceWorkerRegistration) {
+      return null;
+    }
+
     const subscription = serviceWorkerRegistration.pushManager.getSubscription();
     const subscriptionData = {
       endpoint: subscription['endpoint'],
