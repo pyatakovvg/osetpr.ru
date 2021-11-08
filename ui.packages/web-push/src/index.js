@@ -24,6 +24,8 @@ function urlB64ToUint8Array(base64String) {
 
 export async function subscribeUser(userUuid) {
   try {
+    console.log('WePush: SW unsubscribe user');
+
     if ( ! serviceWorkerRegistration) {
       return false;
     }
@@ -56,7 +58,7 @@ export async function subscribeUser(userUuid) {
 
 export async function unsubscribeUser(userUuid) {
   try {
-    console.error('WePush: SW subscribe user');
+    console.log('WePush: SW subscribe user');
 
     if ( ! serviceWorkerRegistration) {
       return null;
