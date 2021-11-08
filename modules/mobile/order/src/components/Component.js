@@ -61,6 +61,7 @@ function Order() {
 
   const address = addressToString(order['address']);
   const statusMode = useStatusMode(order['status']['code']);
+  const externalId = order['externalId'].toUpperCase().replace(/(\w{3})(\w{3})(\w{3})/, '$1-$2-$3');
 
   return (
     <div className={styles['wrapper']}>
@@ -72,7 +73,7 @@ function Order() {
           <div className={styles['row']}>
             <div className={styles['number']}>
               <span className={styles['title']}>Номер:</span>
-              <span className={cn(styles['value'], styles['uppercase'])}>{ order['externalId'] }</span>
+              <span className={cn(styles['value'], styles['uppercase'])}>{ externalId }</span>
             </div>
             <div className={styles['status']}>
               <span className={styles['title']}>Статус:</span>

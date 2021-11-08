@@ -31,24 +31,26 @@ export default async (data) => {
     },
   };
 
+  const externalId = order['externalId'].toUpperCase().replace(/(\w{3})(\w{3})(\w{3})/, '$1-$2-$3');
+
   let message = '';
   if (data['status']['code'] === 'new') {
-    message = 'Оформлен заказ на сумму ' + data['total'] + data['currency']['displayName'] + '. Номер заказа: ' + data['externalId'];
+    message = 'Оформлен заказ #' + externalId + ' на сумму ' + data['total'] + data['currency']['displayName'];
   }
   else if (data['status']['code'] === 'confirmed') {
-    message = 'Заказ на сумма ' + data['total'] + data['currency']['displayName'] + ' подтвержден';
+    message = 'Заказ #' + externalId + 'на сумма ' + data['total'] + data['currency']['displayName'] + ' подтвержден';
   }
   else if (data['status']['code'] === 'canceled') {
-    message = 'Заказ №' + data['externalId'] + ' отменен';
+    message = 'Заказ #' + externalId + ' отменен';
   }
   else if (data['status']['code'] === 'process') {
-    message = 'Заказ №' + data['externalId'] + ' готовится';
+    message = 'Заказ #' + externalId + ' готовится';
   }
   else if (data['status']['code'] === 'done') {
-    message = 'Заказ №' + data['externalId'] + ' готов';
+    message = 'Заказ #' + externalId + ' готов';
   }
   else if (data['status']['code'] === 'finished') {
-    message = 'Заказ №' + data['externalId'] + ' выполнен! Приятного аппетита!';
+    message = 'Заказ #' + externalId + ' выполнен! Приятного аппетита!';
   }
 
   const payload = JSON.stringify({
