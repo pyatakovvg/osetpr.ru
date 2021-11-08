@@ -9,8 +9,8 @@ self.addEventListener('push', function(event) {
     notificationData = {
       title: 'Default title',
       body: 'Default message',
-      icon: '/favicon.ico',
-      image: '/favicon.ico',
+      icon: '/icon-vector.svg',
+      image: '/icon-vector.svg',
     };
   }
 
