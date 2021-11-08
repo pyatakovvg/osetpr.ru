@@ -88,7 +88,7 @@ export async function registerServiceWorker() {
   try {
     console.log('WePush: SW file\'s worker register');
     await navigator.serviceWorker.register('push-notification.js', {
-      scope: '/',
+      scope: process.env['PUBLIC_URL'],
     })
     serviceWorkerRegistration = await navigator.serviceWorker.ready;
   }
