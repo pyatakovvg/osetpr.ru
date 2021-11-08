@@ -86,7 +86,7 @@ export async function unsubscribeUser() {
 
 export async function registerServiceWorker() {
   try {
-    console.log('WePush: SW register');
+    console.log('WePush: SW file\'s worker register');
     await navigator.serviceWorker.register('push-notification.js', {
       scope: '/',
     })
@@ -104,7 +104,7 @@ export async function checkSubscription() {
     return ! (subscription === null);
   }
   catch(error) {
-    console.error('Service worker', error);
+    console.error('WebPush error', error);
     return false;
   }
 }

@@ -108,11 +108,9 @@ class App {
 
   async start() {
     await checkUserUUID();
-    console.log('userUuid created');
 
     if (checkServiceWorker()) {
       await registerServiceWorker();
-      console.log('ServiceWorker\'s file registered');
     }
 
     const routes = await createRoutes(this.options['routes']);
