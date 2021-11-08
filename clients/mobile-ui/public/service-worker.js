@@ -1,24 +1,24 @@
 
-console.log(123123123)
-
 self.addEventListener('push', function(event) {
-
   let notificationData = {};
 
   try {
     notificationData = event.data.json();
-  } catch (e) {
+  }
+  catch(e) {
     notificationData = {
       title: 'Default title',
       body: 'Default message',
-      icon: '/default-icon.png'
+      icon: '/favicon.ico',
+      image: '/favicon.ico',
     };
   }
 
   event.waitUntil(
-    self.registration.showNotification(notificationData.title, {
-      body: notificationData.body,
-      icon: notificationData.icon
+    self.registration.showNotification(notificationData['title'], {
+      body: notificationData['body'],
+      icon: notificationData['icon'],
+      image: notificationData['image'],
     })
   );
 });

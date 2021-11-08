@@ -3,10 +3,25 @@
   "name": "Пекарня \"Осетинские пироги\"",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    }
+      "src": "/icon-16.png",
+      "type": "image/png",
+      "sizes": "16x16"
+    },
+    {
+      "src": "/icon-32.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "/icon-48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "/icon-96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
   ],
   "start_url": ".",
   "display": "standalone",

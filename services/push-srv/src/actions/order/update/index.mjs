@@ -54,7 +54,8 @@ export default async (data) => {
   const payload = JSON.stringify({
     title: 'Статус заказа',
     body: message,
-    icon: '/favicon.ico',
+    icon: '/icon-16.png',
+    image: '/icon-48.png',
   });
 
   const options = {
