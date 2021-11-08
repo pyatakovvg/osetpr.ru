@@ -27,7 +27,7 @@ export async function subscribeUser(userUuid) {
     console.log('WePush: SW unsubscribe user');
 
     if ( ! serviceWorkerRegistration) {
-      return false;
+      throw new Error('SW not registered');
     }
 
     const subscription = await serviceWorkerRegistration.pushManager.subscribe({
@@ -61,7 +61,7 @@ export async function unsubscribeUser(userUuid) {
     console.log('WePush: SW subscribe user');
 
     if ( ! serviceWorkerRegistration) {
-      return null;
+      throw new Error('SW not registered');
     }
 
     const subscription = await serviceWorkerRegistration.pushManager.getSubscription();
@@ -94,6 +94,7 @@ export async function registerServiceWorker() {
       scope: process.env['PUBLIC_URL'],
     })
     serviceWorkerRegistration = await navigator.serviceWorker.ready;
+    console.log('WePush: SW file\'s worker was registered');
   }
   catch(error) {
     console.error('WePush error: SW register', error);
@@ -102,6 +103,9 @@ export async function registerServiceWorker() {
 
 export async function checkSubscription() {
   try {
+    if ( ! serviceWorkerRegistration) {
+      throw new Error('SW not registered');
+    }
     console.log('WePush: SW subscribe checking');
     const subscription = await serviceWorkerRegistration.pushManager.getSubscription();
     return ! (subscription === null);
