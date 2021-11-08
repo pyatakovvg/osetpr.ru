@@ -56,6 +56,7 @@ async function createRoutes(routes) {
 
 function createUserUUID() {
   window.localStorage.setItem('userUuid', UUID());
+  console.log('User created')
 }
 
 function getUserUUID() {
@@ -64,12 +65,11 @@ function getUserUUID() {
 
 async function checkUserUUID() {
   return new Promise((resolve) => {
-    createUserUUID();
     const timerId = setInterval(() => {
       const hasUser = getUserUUID();
       if (hasUser) {
         clearInterval(timerId);
-        resolve();
+        return resolve();
       }
       createUserUUID();
     }, 500);

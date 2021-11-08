@@ -7,10 +7,15 @@ import styles from './default.module.scss';
 
 
 function Checkbox({ className, value, children, disabled, onChange }) {
-  const classNameWrapper = useMemo(() => cn(styles['wrapper']), [className, disabled]);
+  const classNameWrapper = useMemo(() => cn(styles['wrapper'], {
+    [styles['disabled']]: disabled,
+  }), [className, disabled]);
   const classNameMarker = useMemo(() => cn(styles['marker'], "fas fa-check"), []);
 
   function handleClick(value) {
+    if (disabled) {
+      return void 0;
+    }
     onChange && onChange( ! value);
   }
 

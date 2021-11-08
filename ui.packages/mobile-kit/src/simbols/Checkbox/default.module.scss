@@ -12,6 +12,11 @@
   border: 1px solid $gray-darken;
   padding: 8px;
   border-radius: 4px;
+
+  &.disabled {
+
+    background: $gray-darken;
+  }
 }
 
 .checkbox {
@@ -25,6 +30,18 @@
   align-items: center;
   background: $white;
   border-radius: 4px;
+}
+
+.disabled {
+  .checkbox {
+
+    background: $gray-lighten;
+  }
+
+  .marker {
+
+    color: $gray;
+  }
 }
 
 .marker {
