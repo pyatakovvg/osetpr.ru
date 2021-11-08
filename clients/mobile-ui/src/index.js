@@ -37,8 +37,7 @@ import './styles/index.module.scss';
 
     await app.start();
 
-    await worker.unregister();
-    await worker.register();
+    worker.register();
   }
   catch (error) {
 

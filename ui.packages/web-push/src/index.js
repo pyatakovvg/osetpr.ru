@@ -86,22 +86,9 @@ export async function unsubscribeUser(userUuid) {
   }
 }
 
-export async function registerServiceWorker() {
-  try {
-    console.log('WePush: SW file\'s worker register');
-    await navigator.serviceWorker.register('push-notification.js', {
-      scope: process.env['PUBLIC_URL'],
-    })
-    serviceWorkerRegistration = await navigator.serviceWorker.ready;
-    console.log('WePush: SW file\'s worker was registered');
-  }
-  catch(error) {
-    console.error('WePush error: ', error);
-  }
-}
-
 export async function checkSubscription() {
   try {
+    serviceWorkerRegistration = await navigator.serviceWorker.ready;
     if ( ! serviceWorkerRegistration) {
       throw new Error('Воркер не установлен');
     }
