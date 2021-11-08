@@ -11,13 +11,15 @@ export default () => async (ctx) => {
   await Subscription.create({
     userUuid: data['userUuid'],
     endpoint: data['endpoint'],
+    auth: data['keys']['auth'],
+    p256dh: data['keys']['p256dh'],
   });
 
   const subscription = {
     endpoint: data['endpoint'],
     keys: {
-      p256dh: data['keys']['p256dh'],
       auth: data['keys']['auth'],
+      p256dh: data['keys']['p256dh'],
     }
   };
 

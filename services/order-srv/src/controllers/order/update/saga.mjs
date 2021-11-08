@@ -185,7 +185,7 @@ export default class Saga {
       .invoke(async (params) => {
         const order = params.getOrder();
 
-        if (order['statusCode'] === 'basket') {
+        if (order['status']['code'] === 'basket') {
           return void 0;
         }
 
@@ -199,6 +199,26 @@ export default class Saga {
           order['customer'] = null;
         }
         await sendCommand(process.env['QUEUE_MAIL_ORDER_UPDATE'], JSON.stringify(order));
+      })
+
+      .step('Send to push')
+      .invoke(async (params) => {
+        const order = params.getOrder();
+
+        if (order['status']['code'] === 'basket') {
+          return void 0;
+        }
+
+        const customer = params.getCustomer();
+        if (customer) {
+          order['customer'] = {};
+          order['customer']['name'] = customer['name'];
+          order['customer']['phone'] = customer['phone'];
+        }
+        else {
+          order['customer'] = null;
+        }
+        await sendCommand(process.env['QUEUE_PUSH_ORDER_UPDATE'], JSON.stringify(order));
       })
 
       .build();

@@ -7,13 +7,15 @@ import { connection as rabbitConnection } from "@sys.packages/rabbit";
 import webPush from 'web-push';
 
 import routes from './routes';
-// import rabbit from './rabbit';
+import rabbit from './rabbit';
 
 
 (async () => {
   try {
     await connectToDatabase(process.env['DB_CONNECTION_HOST']);
     await rabbitConnection(process.env['RABBIT_CONNECTION_HOST']);
+
+    await rabbit();
 
     const server = new Server({
       cookie: {

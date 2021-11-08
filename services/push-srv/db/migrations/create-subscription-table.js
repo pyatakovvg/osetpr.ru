@@ -19,6 +19,14 @@ module.exports = {
           type: DataType.STRING,
           allowNull: false,
         },
+        auth: {
+          type: DataType.STRING,
+          allowNull: false,
+        },
+        p256dh: {
+          type: DataType.STRING,
+          allowNull: false,
+        },
         createdAt: {
           type: DataType.DATE,
           allowNull: false,

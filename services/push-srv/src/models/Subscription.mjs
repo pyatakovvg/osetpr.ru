@@ -21,6 +21,14 @@ export default function(sequelize, DataType) {
       type: DataType.STRING,
       allowNull: false,
     },
+    auth: {
+      type: DataType.STRING,
+      allowNull: false,
+    },
+    p256dh: {
+      type: DataType.STRING,
+      allowNull: false,
+    },
   }, {
     sequelize,
     timestamps: true,

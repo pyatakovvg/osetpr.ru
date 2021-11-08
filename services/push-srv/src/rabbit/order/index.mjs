@@ -1,17 +1,12 @@
 
 import { consumer } from '@sys.packages/rabbit';
 
-import { orderCreated, orderUpdated } from '../../actions/order';
+import { orderUpdated } from '../../actions/order';
 
 
 export default async function() {
-  await consumer(process.env['QUEUE_MAIL_ORDER_CREATE'], async (data, cb) => {
-    const result = JSON.parse(data);
-    await orderCreated(result);
-    cb(true);
-  });
 
-  await consumer(process.env['QUEUE_MAIL_ORDER_UPDATE'], async (data, cb) => {
+  await consumer(process.env['QUEUE_PUSH_ORDER_UPDATE'], async (data, cb) => {
     const result = JSON.parse(data);
     await orderUpdated(result);
     cb(true);
