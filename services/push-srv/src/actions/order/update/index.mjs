@@ -31,7 +31,7 @@ export default async (data) => {
     },
   };
 
-  const externalId = order['externalId'].toUpperCase().replace(/(\w{3})(\w{3})(\w{3})/, '$1-$2-$3');
+  const externalId = data['externalId'].toUpperCase().replace(/(\w{3})(\w{3})(\w{3})/, '$1-$2-$3');
 
   let message = '';
   if (data['status']['code'] === 'new') {
