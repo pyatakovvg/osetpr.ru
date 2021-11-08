@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Пекарня",
+  "name": "Пекарня \"Осетинские пироги\"",
   "icons": [
     {
       "src": "favicon.ico",
@@ -9,11 +9,7 @@
     }
   ],
   "start_url": ".",
-  "display": "standalone",
+  "display": "display",
   "theme_color": "#000000",
-  "background_color": "#ffffff",
-  "background": {
-    "service_worker": "push-notification.js",
-    "type": "module"
-  }
+  "background_color": "#ffffff"
 }
