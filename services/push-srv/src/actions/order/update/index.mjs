@@ -31,10 +31,30 @@ export default async (data) => {
     },
   };
 
+  let message = '';
+  if (data['status']['code'] === 'new') {
+    message = 'Заказ оформлен';
+  }
+  else if (data['status']['code'] === 'confirmed') {
+    message = 'Заказ подтвержден';
+  }
+  else if (data['status']['code'] === 'canceled') {
+    message = 'Заказ отменен';
+  }
+  else if (data['status']['code'] === 'process') {
+    message = 'Заказ готовится';
+  }
+  else if (data['status']['code'] === 'done') {
+    message = 'Заказ готов';
+  }
+  else if (data['status']['code'] === 'finished') {
+    message = 'Заказ выполнен! Приятного аппетита!';
+  }
+
   const payload = JSON.stringify({
-    title: 'Статус заказа!',
-    body: 'Заказ принят ',
-    icon: 'http://localhost:4000/gallery/1e88bfbf-c71c-45d8-9be5-2d3c708366f3.jpg?size=small'
+    title: 'Статус заказа',
+    body: message,
+    icon: '/favicon.ico',
   });
 
   const options = {
