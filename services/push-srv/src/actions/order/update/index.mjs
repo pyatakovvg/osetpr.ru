@@ -32,10 +32,7 @@ export default async (data) => {
   };
 
   let message = '';
-  if (data['status']['code'] === 'new') {
-    message = 'Заказ оформлен';
-  }
-  else if (data['status']['code'] === 'confirmed') {
+  if (data['status']['code'] === 'confirmed') {
     message = 'Заказ подтвержден. Сумма к оплате ' + data['total'] + data['currency']['value'];
   }
   else if (data['status']['code'] === 'canceled') {
