@@ -1,60 +1,5 @@
-"use strict";
 
-const VERSION = 'v0.0.5';
-
-// self.addEventListener('install', function(event) {
-//   self.skipWaiting();
-//   event.waitUntil(
-//     caches.open(VERSION).then(function(cache) {
-//       return cache.addAll([
-//         '/',
-//         '/manifest.json',
-//         '/css/main.css',
-//         '/script/push.js'
-//       ]);
-//     })
-//   );
-// });
-
-// self.addEventListener('fetch', function(event) {
-//   let request = event.request;
-//
-//   if (request.method !== 'GET') return;
-//
-//   event.respondWith(
-//     caches.match(request).then(function(response) {
-//       return response || fetch(request);
-//     }).catch(function() {
-//       return caches.match('/');
-//     })
-//   );
-// });
-
-// self.addEventListener('activate', function(event) {
-//   if (self.clients && clients.claim) {
-//     clients.claim();
-//   }
-//   event.waitUntil(
-//     caches
-//       .keys()
-//       .then(function (keys) {
-//         return Promise.all(
-//           keys
-//             .filter(function (key) {
-//               return !key.startsWith(VERSION);
-//             })
-//             .map(function (key) {
-//               return caches.delete(key);
-//             })
-//         );
-//       })
-//       .then(function() {
-//         console.log('new service worker version registered', VERSION);
-//       }).catch(function (error) {
-//       console.error('error registering new service worker version', error);
-//     })
-//   );
-// });
+console.log(123123123)
 
 self.addEventListener('push', function(event) {
 
@@ -76,7 +21,6 @@ self.addEventListener('push', function(event) {
       icon: notificationData.icon
     })
   );
-
 });
 
 self.addEventListener('notificationclick', function(event) {
