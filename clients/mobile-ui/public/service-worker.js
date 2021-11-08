@@ -7,7 +7,7 @@ self.addEventListener('push', function(event) {
   }
   catch(e) {
     notificationData = {
-      title: 'Default title',
+      title: 'Пекарня "Осетинские прироги"',
       body: 'Default message',
       icon: '/icon-vector.svg',
       image: '/icon-vector.svg',
@@ -15,7 +15,7 @@ self.addEventListener('push', function(event) {
   }
 
   event.waitUntil(
-    self.registration.showNotification(notificationData['title'], {
+    self.registration.showNotification('Пекарня "Осетинские прироги"', {
       body: notificationData['body'],
       icon: notificationData['icon'],
       image: notificationData['image'],
