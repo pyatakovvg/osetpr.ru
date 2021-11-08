@@ -12,6 +12,10 @@ const navigate = [
     title: "О нас",
     path: '/about',
   },
+  {
+    title: "Настройка",
+    path: '/settings',
+  },
 ];
 
 export default navigate;

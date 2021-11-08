@@ -14,6 +14,7 @@
     "@modules/mobile-order": "1.0.0",
     "@modules/mobile-order-draft": "1.0.0",
     "@modules/mobile-product": "1.0.0",
+    "@modules/mobile-options": "1.0.0",
     "@ui.packages/mobile-application": "1.0.0",
     "@ui.packages/menu": "1.0.0",
     "@ui.packages/mobile-dialog": "1.0.0",

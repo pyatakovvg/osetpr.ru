@@ -54,7 +54,7 @@ export async function subscribeUser(userUuid) {
   }
 }
 
-export async function unsubscribeUser() {
+export async function unsubscribeUser(userUuid) {
   try {
     console.error('WePush: SW subscribe user');
 
@@ -62,8 +62,9 @@ export async function unsubscribeUser() {
       return null;
     }
 
-    const subscription = serviceWorkerRegistration.pushManager.getSubscription();
+    const subscription = await serviceWorkerRegistration.pushManager.getSubscription();
     const subscriptionData = {
+      userUuid,
       endpoint: subscription['endpoint'],
     };
 
@@ -79,7 +80,7 @@ export async function unsubscribeUser() {
     return await subscription.unsubscribe();
   }
   catch(error) {
-    console.error('WePush error: SW subscribe', error);
+    console.error('WePush error: SW unsubscribe', error);
     return null;
   }
 }
