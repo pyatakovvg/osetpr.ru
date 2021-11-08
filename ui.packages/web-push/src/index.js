@@ -96,7 +96,7 @@ export async function registerServiceWorker() {
     console.log('WePush: SW file\'s worker was registered');
   }
   catch(error) {
-    throw new UnavailableError({ code: '0.0.2', message: error['message'] })
+    console.error('WePush error: ', error);
   }
 }
 
