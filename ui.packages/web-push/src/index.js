@@ -49,13 +49,15 @@ export async function subscribeUser(userUuid) {
     return true;
   }
   catch(error) {
-    console.error('Service worker', error);
+    console.error('WePush error: SW unsubscribe user', error);
     return false;
   }
 }
 
 export async function unsubscribeUser() {
   try {
+    console.error('WePush: SW subscribe user');
+
     if ( ! serviceWorkerRegistration) {
       return null;
     }
@@ -77,23 +79,27 @@ export async function unsubscribeUser() {
     return await subscription.unsubscribe();
   }
   catch(error) {
-    console.error('Service worker', error);
+    console.error('WePush error: SW subscribe', error);
     return null;
   }
 }
 
 export async function registerServiceWorker() {
   try {
-    await navigator.serviceWorker.register('./push-notification.js')
+    console.log('WePush: SW register');
+    await navigator.serviceWorker.register('push-notification.js', {
+      scope: '/',
+    })
     serviceWorkerRegistration = await navigator.serviceWorker.ready;
   }
   catch(error) {
-    console.error('Service worker', error);
+    console.error('WePush error: SW register', error);
   }
 }
 
 export async function checkSubscription() {
   try {
+    console.log('WePush: SW subscribe checking');
     const subscription = await serviceWorkerRegistration.pushManager.getSubscription();
     return ! (subscription === null);
   }
@@ -104,5 +110,6 @@ export async function checkSubscription() {
 }
 
 export function checkServiceWorker() {
+  console.log('WePush: SW support checking');
   return ('serviceWorker' in navigator);
 }

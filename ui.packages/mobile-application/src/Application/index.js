@@ -29,8 +29,13 @@ function Application({ options }) {
   }
 
   useEffect(async () => {
-    if (checkServiceWorker()) {
-      if ( ! await checkSubscription()) {
+    const hasSWSupport = checkServiceWorker();
+    console.log('Application: SW support - ', hasSWSupport);
+    if (hasSWSupport) {
+      const hasSubscription = await checkSubscription();
+      console.log('Application: SW subscription - ', hasSWSupport);
+      if ( ! hasSubscription) {
+        console.log('Application: userUuid - ', window.localStorage.getItem('userUuid'));
         await subscribeUser(window.localStorage.getItem('userUuid'));
       }
     }
