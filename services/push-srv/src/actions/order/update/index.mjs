@@ -36,7 +36,7 @@ export default async (data) => {
     message = 'Заказ оформлен';
   }
   else if (data['status']['code'] === 'confirmed') {
-    message = 'Заказ подтвержден';
+    message = 'Заказ подтвержден. Сумма к оплате ' + data['total'] + data['currency']['value'];
   }
   else if (data['status']['code'] === 'canceled') {
     message = 'Заказ отменен';
