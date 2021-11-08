@@ -64,7 +64,7 @@ function Order() {
             </div>
             <div className={styles['status']}>
               <span className={styles['title']}>Статус:</span>
-              <span className={styles['value']}>{ order['status'] }</span>
+              <span className={styles['value']}>{ order['status']['displayName'] }</span>
             </div>
           </div>
           <div className={styles['row']}>

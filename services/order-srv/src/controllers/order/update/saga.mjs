@@ -81,6 +81,9 @@ export default class Saga {
 
       .step('Update address')
       .invoke(async () => {
+        if ( ! body['address']) {
+          return void 0;
+        }
         logger.info('Update address');
         await createAddress(uuid, body['address']);
       })

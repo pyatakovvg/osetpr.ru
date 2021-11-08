@@ -19,6 +19,7 @@ export default function HOC() {
     document.title = `${process.env['REACT_APP_WEBSITE_NAME']} - Заказ`;
 
     on(process.env['REACT_APP_SOCKET_ORDER_UPDATE'], (data) => {
+      console.log(123, data)
       dispatch(updateOrderRequestSuccessAction(data));
     });
 
@@ -27,7 +28,7 @@ export default function HOC() {
 
   useUnmount(() => {
 
-    on(process.env['REACT_APP_SOCKET_ORDER_UPDATE']);
+    off(process.env['REACT_APP_SOCKET_ORDER_UPDATE']);
 
     dispatch(resetStateAction());
   });

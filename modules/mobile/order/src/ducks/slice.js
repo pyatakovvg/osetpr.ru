@@ -31,9 +31,10 @@ const slice = createSlice({
     },
 
     updateOrderRequestSuccessAction(state, { payload }) {
+      console.log(payload)
       state['order'] = {
         ...state['order'],
-        ...payload,
+        status: payload['status'],
       };
     },
   },
