@@ -1,6 +1,7 @@
 
 export { default as Text } from './Text';
 export { default as Header } from './Header';
+export { default as Status } from './Status';
 
 export { default as Input } from './simbols/Input';
 export { default as Image } from './simbols/Image';

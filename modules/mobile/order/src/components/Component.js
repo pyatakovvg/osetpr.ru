@@ -2,7 +2,7 @@
 import { selectOrder } from '@modules/mobile-order';
 
 import numeral from "@packages/numeral";
-import { Header } from "@ui.packages/mobile-kit";
+import { Header, Status } from "@ui.packages/mobile-kit";
 
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -41,6 +41,17 @@ function addressToString(data) {
   return address;
 }
 
+function useStatusMode(code) {
+  switch(code) {
+    case 'done':
+    case 'confirmed':
+    case 'process': return 'primary';
+    case 'finished': return 'success';
+    case 'canceled': return 'danger';
+    default: return 'default';
+  }
+}
+
 function Order() {
   const order = useSelector(selectOrder);
 
@@ -49,6 +60,7 @@ function Order() {
   }
 
   const address = addressToString(order['address']);
+  const statusMode = useStatusMode(order['status']['code']);
 
   return (
     <div className={styles['wrapper']}>
@@ -64,7 +76,9 @@ function Order() {
             </div>
             <div className={styles['status']}>
               <span className={styles['title']}>Статус:</span>
-              <span className={styles['value']}>{ order['status']['displayName'] }</span>
+              <span className={styles['value']}>
+                <Status mode={statusMode}>{ order['status']['displayName'] }</Status>
+              </span>
             </div>
           </div>
           <div className={styles['row']}>
