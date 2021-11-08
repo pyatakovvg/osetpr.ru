@@ -3,7 +3,6 @@ import { UUID } from "@ui.packages/utils";
 import { Notifications } from '@ui.packages/mobile-notifications';
 import { middleware as requestMiddleware } from '@ui.packages/request';
 import Socket, { middleware as socketMiddleware} from '@ui.packages/socket';
-import { checkServiceWorker, registerServiceWorker } from '@ui.packages/web-push';
 
 import React from 'react';
 import thunk from 'redux-thunk';
@@ -108,10 +107,6 @@ class App {
 
   async start() {
     await checkUserUUID();
-
-    if (checkServiceWorker()) {
-      await registerServiceWorker();
-    }
 
     const routes = await createRoutes(this.options['routes']);
     const reducers = await createReducers(this.options['routes']);

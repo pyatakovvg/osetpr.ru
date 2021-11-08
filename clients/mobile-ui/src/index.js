@@ -13,6 +13,8 @@ import navigate from './configs/navigate';
 import Empty from './wrappers/Empty';
 import Navigate from './wrappers/Navigate';
 
+import * as worker from './serviceWorker';
+
 import './styles/index.module.scss';
 
 
@@ -34,6 +36,7 @@ import './styles/index.module.scss';
     });
 
     await app.start();
+    await worker.register();
   }
   catch (error) {
 
