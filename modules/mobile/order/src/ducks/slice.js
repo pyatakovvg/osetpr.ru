@@ -31,11 +31,12 @@ const slice = createSlice({
     },
 
     updateOrderRequestSuccessAction(state, { payload }) {
-      console.log(payload)
-      state['order'] = {
-        ...state['order'],
-        status: payload['status'],
-      };
+      if (state['order'] && state['order']['externalId'] === payload['externalId']) {
+        state['order'] = {
+          ...state['order'],
+          status: payload['status'],
+        };
+      }
     },
   },
 });

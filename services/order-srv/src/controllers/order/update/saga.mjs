@@ -212,16 +212,33 @@ export default class Saga {
           return void 0;
         }
 
-        const customer = params.getCustomer();
-        if (customer) {
-          order['customer'] = {};
-          order['customer']['name'] = customer['name'];
-          order['customer']['phone'] = customer['phone'];
+        const externalId = order['externalId'].toUpperCase().replace(/(\w{3})(\w{3})(\w{3})/, '$1-$2-$3');
+
+        let message = '';
+        if (order['status']['code'] === 'new') {
+          message = 'Оформлен заказ #' + externalId + ' на сумму ' + order['total'] + order['currency']['displayName'];
         }
-        else {
-          order['customer'] = null;
+        else if (order['status']['code'] === 'confirmed') {
+          message = 'Заказ #' + externalId + ' на сумма ' + order['total'] + order['currency']['displayName'] + ' подтвержден';
         }
-        await sendCommand(process.env['QUEUE_PUSH_ORDER_UPDATE'], JSON.stringify(order));
+        else if (order['status']['code'] === 'canceled') {
+          message = 'Заказ #' + externalId + ' отменен';
+        }
+        else if (order['status']['code'] === 'process') {
+          message = 'Заказ #' + externalId + ' готовится';
+        }
+        else if (order['status']['code'] === 'done') {
+          message = 'Заказ #' + externalId + ' готов';
+        }
+        else if (order['status']['code'] === 'finished') {
+          message = 'Заказ #' + externalId + ' выполнен. Приятного аппетита!';
+        }
+
+        await sendCommand(process.env['QUEUE_PUSH_SEND'], JSON.stringify({
+          title: 'Пекарня "Осетинские прироги"',
+          message: message,
+          userUuid: order['userUuid'],
+        }));
       })
 
       .build();

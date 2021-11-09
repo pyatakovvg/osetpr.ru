@@ -2,7 +2,7 @@
 import { UUID } from "@ui.packages/utils";
 import { Notifications } from '@ui.packages/mobile-notifications';
 import { middleware as requestMiddleware } from '@ui.packages/request';
-import Socket, { middleware as socketMiddleware} from '@ui.packages/socket';
+import Socket, { middleware as socketMiddleware, joinToRoom } from '@ui.packages/socket';
 
 import React from 'react';
 import thunk from 'redux-thunk';
@@ -107,6 +107,8 @@ class App {
 
   async start() {
     await checkUserUUID();
+
+    joinToRoom(window.localStorage.getItem('userUuid'));
 
     const routes = await createRoutes(this.options['routes']);
     const reducers = await createReducers(this.options['routes']);
