@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Item from "./Item";
+import Date from "./Date";
 import Address from "./Address";
 import Payment from "./Payment";
 import Details from "./Details";
@@ -50,7 +51,7 @@ function addressToString(data) {
 function customerData(data) {
   let customer = null;
   if (data && data instanceof Object) {
-    customer = data['name'] + ' (' + data['phone'] + ')';
+    customer = data['name'] + '; ' + data['phone'].replace(/(\+7)(\d{3})(\d{3})(\d{2})(\d{2})/ig, '$1 ($2) $3-$4-$5');
   }
   return customer;
 }
@@ -87,6 +88,17 @@ function Client() {
 
     if (isUpdated) {
       dispatch(closeDialog('payment'));
+    }
+  }
+
+  async function handleDateToUpdate(data) {
+    const isUpdated = await dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
+      ...order,
+      dateTo: data['dateTo'],
+    }));
+
+    if (isUpdated) {
+      dispatch(closeDialog('date'));
     }
   }
 
@@ -164,7 +176,7 @@ function Client() {
             <Item title={'Способ оплаты'} value={order['payment'] && order['payment']['displayName']} defaultValue={'Не указан'} onClick={() => dispatch(openDialog('payment'))}/>
           </div>
           <div className={styles['row']}>
-            <Item title={'Доставка ко времени'} value={null} defaultValue={'Как можно скорее'} onClick={() => console.log(4676)}/>
+            <Item title={'Доставка ко времени'} value={null} defaultValue={'Как можно скорее'} onClick={() => dispatch(openDialog('date'))}/>
           </div>
           <div className={styles['row']}>
             <Item
@@ -202,6 +214,15 @@ function Client() {
             code: order['payment'] ? order['payment']['code'] : payments[0]['code'],
           }}
           onSubmit={(data) => handlePaymentUpdate(data) }
+        />
+      </Dialog>
+
+      <Dialog name={'date'}>
+        <Date
+          initialValues={{
+            dateTo: order['dateTo'],
+          }}
+          onSubmit={(data) => handleDateToUpdate(data) }
         />
       </Dialog>
 

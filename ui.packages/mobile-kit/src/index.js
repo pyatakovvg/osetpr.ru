@@ -3,10 +3,12 @@ export { default as Text } from './Text';
 export { default as Header } from './Header';
 export { default as Status } from './Status';
 
+export { default as Time } from './simbols/Time';
 export { default as Input } from './simbols/Input';
 export { default as Image } from './simbols/Image';
 export { default as Button } from './simbols/Button';
 export { default as Checkbox } from './simbols/Checkbox';
+export { default as Datepicker } from './simbols/Datepicker';
 export { default as InputPhone } from './simbols/InputPhone';
 export { default as RadioContainer, Radio } from './simbols/RadioBox';
 
