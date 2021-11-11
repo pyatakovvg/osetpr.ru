@@ -1,10 +1,25 @@
 
+import moment from 'moment';
+import momentTZ from 'moment-timezone';
+
 import 'moment/locale/ru';
 
-import moment from 'moment';
 
+moment.updateLocale('ru', {
+  calendar : {
+    sameDay: '[сегодня, в] LT',
+    nextDay: 'L, [в] LT',
+    lastDay: '[вчера, в] LT',
+    nextWeek: 'L, [в] LT',
+    lastWeek: 'L, [в] LT',
+    sameElse: 'L, [в] LT'
+  }
+});
 
 moment.locale('ru');
-moment.defaultFormat = 'DD.MM.YYYY HH:mm';
 
-export default moment;
+momentTZ.tz.setDefault('Europe/Moscow');
+momentTZ.defineLocale('ru', moment.localeData()._config);
+
+
+export default momentTZ;

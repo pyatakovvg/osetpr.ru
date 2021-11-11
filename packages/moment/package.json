@@ -5,6 +5,10 @@
   "license": "MIT",
   "main": "./src/index.mjs",
   "dependencies": {
-    "moment": "2.29.1"
+    "moment": "2.29.1",
+    "moment-timezone": "0.5.34"
+  },
+  "resolutions": {
+    "moment-timezone/moment": "2.29.1"
   }
 }

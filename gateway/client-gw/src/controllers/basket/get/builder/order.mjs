@@ -8,7 +8,7 @@ export default function(data) {
   return {
     uuid: data['uuid'],
     total: data['total'],
-    dateTo: data['dateTo'] ? moment(data['dateTo']).format('YYYY-MM-DD HH:mm:SS.SSSSSS +03:00') : null,
+    dateTo: data['dateTo'] ? moment(data['dateTo']).tz('Europe/Moscow').format('YYYY-MM-DD HH:mm:SS.SSSSSSZ') : null,
     currency: data['currency'],
     address: data['address'],
     payment: data['payment'],
