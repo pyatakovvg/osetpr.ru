@@ -1,8 +1,38 @@
 
+import { models } from '@sys.packages/db';
+
+
 export default () => async (ctx) => {
+  const {
+    limit = null,
+    skip = null,
+    take = null,
+  } = ctx['query'];
+  const { Comment } = models;
+  let where = {};
+  let offset = {};
+  let options = {};
+
+  if (limit) {
+    options['limit'] = Number(limit);
+  }
+
+  if (skip && take) {
+    offset['offset'] = Number(skip);
+    offset['limit'] = Number(take);
+  }
+
+  const result = await Comment.findAndCountAll({
+    ...options,
+    ...offset,
+    distinct: true,
+    where: { ...where },
+    order: [],
+  });
+
   ctx.body = {
     success: true,
-    data: [],
-    meta: {},
+    data: result['rows'],
+    meta: result['meta'],
   };
 };

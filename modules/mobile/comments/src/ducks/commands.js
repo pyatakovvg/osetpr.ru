@@ -2,25 +2,25 @@
 import request from '@ui.packages/request';
 
 import {
-  getProductRequestAction,
-  getProductRequestFailAction,
-  getProductRequestSuccessAction,
+  getCommentsRequestAction,
+  getCommentsRequestFailAction,
+  getCommentsRequestSuccessAction,
 } from './slice';
 
 
-export const getProduct = (uuid) => async (dispatch) => {
+export const getComments = () => async (dispatch) => {
   try {
-    dispatch(getProductRequestAction());
+    dispatch(getCommentsRequestAction());
 
     const result = await request({
-      url: '/products/' + uuid,
+      url: '/comments',
       method: 'get',
     });
 
-    dispatch(getProductRequestSuccessAction(result['data']));
+    dispatch(getCommentsRequestSuccessAction(result));
   }
   catch(error) {
 
-    dispatch(getProductRequestFailAction());
+    dispatch(getCommentsRequestFailAction());
   }
 };

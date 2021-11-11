@@ -1,4 +1,5 @@
 
+import { getAllComments } from "../controllers/comment";
 import { getOrder } from "../controllers/order";
 import { registerWorker, unregisterWorker } from "../controllers/worker";
 import { signIn } from '../controllers/identity';
@@ -9,6 +10,8 @@ import { getAllProducts, getProductById } from "../controllers/product";
 
 
 export default (router) => {
+
+  router.get('/comments', getAllComments());
 
   router.post('/push/subscribe', registerWorker());
   router.post('/push/unsubscribe', unregisterWorker());

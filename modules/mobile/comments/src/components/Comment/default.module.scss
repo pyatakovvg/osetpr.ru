@@ -1,0 +1,48 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: block;
+  flex-direction: column;
+  flex: 1 0;
+  padding: 8px;
+  border: 1px solid $gray-darken;
+  background: $background;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 20%);
+  overflow: hidden;
+
+  & + & {
+
+    margin: 24px 0 0;
+  }
+}
+
+.header {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+}
+
+.user,
+.date {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  overflow: auto;
+}
+
+.date {
+
+  text-align: right;
+}
+
+.content {
+
+  display: block;
+  margin: 16px 0 0;
+}
