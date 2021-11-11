@@ -1,6 +1,7 @@
 
 import request from "@sys.packages/request";
 
+import orderBuilder from "./builder/order.mjs";
 import customerBuilder from './builder/customer.mjs';
 
 
@@ -30,7 +31,7 @@ export default () => async (ctx) => {
       statuses,
       customers: customers.map((customer) => customerBuilder(customer)),
     },
-    data: result['data'],
+    data: result['data'].map((order) => orderBuilder(order)),
     meta: result['meta'],
   };
 }

@@ -1,4 +1,7 @@
 
+import moment from '@packages/moment';
+
+
 function getTypeData(customer) {
   switch (customer['type']) {
     case 'legal': return {
@@ -19,6 +22,6 @@ export default function(data, plans) {
     type: data['type'],
     ...customerData,
     plans: plans.filter((item) => !!~ item['users'].indexOf(data['userUuid'])),
-    createdAt: data['createdAt'],
+    createdAt: moment(data['createdAt']).tz('Europe/Moscow').format('YYYY-MM-DD HH:mm:00.000000Z'),
   };
 }

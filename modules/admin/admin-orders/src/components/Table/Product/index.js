@@ -30,7 +30,7 @@ function Product({ title, vendor, value, number, price, total, currency }) {
       </div>
       <span className={styles['delimiter']}>=</span>
       <span>
-        <Text>{ total } { currency['displayName'] }</Text>
+        <Text type={Text.TYPE_BODY}>{ numeral(total).format() } { currency['displayName'] }</Text>
       </span>
     </div>
   );

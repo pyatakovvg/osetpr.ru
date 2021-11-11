@@ -81,13 +81,16 @@ function OrderList() {
         <Column
           title={'Описание'}
           align={'left'}
-          width={200}
+          width={150}
         >{(value) => (
           <div className={styles['row']}>
-            <div className={styles['description']}>
-              <Text type={Text.TYPE_BODY}>{ value['title'] }</Text>
+            <div className={styles['external-id']}>
+              <Text type={Text.TYPE_BODY}>{ value['externalId'] }</Text>
             </div>
             <div className={styles['title']}>
+              <Text type={Text.TYPE_BODY}>{ value['title'] }</Text>
+            </div>
+            <div className={styles['user']}>
               <Text type={Text.TYPE_BODY}>"{ customers[value['userUuid']] || 'Не указан' }"</Text>
             </div>
           </div>
@@ -106,26 +109,25 @@ function OrderList() {
           </div>
         )}</Column>
         <Column
-          title={'На дату'}
           width={200}
           align={'right'}
         >{(value) => {
           return (
             <div className={styles['row']}>
-              <div className={styles['status']}>
-                <Status type={'label'} mode={getStatusMode(value['status']['code'])}>{ value['status']['displayName'] }</Status>
-              </div>
-              <div className={styles['date']}>
+              <div className={styles['date-to']}>
                 <Text type={Text.TYPE_BODY}>На: { value['dateTo'] ? moment(value['dateTo']).format('DD.MM.YYYY - HH:mm') : 'Как можно быстрее' }</Text>
               </div>
-              <div className={styles['date']}>
+              <div className={styles['date-created']}>
                 <Text>Создан: { moment(value['createdAt']).format('DD.MM.YYYY - HH:mm') }</Text>
+              </div>
+              <div className={styles['status']}>
+                <Status type={'label'} mode={getStatusMode(value['status']['code'])}>{ value['status']['displayName'] }</Status>
               </div>
               {(value['status']['code'] === 'new') && (
                 <div className={styles['controls']}>
                   <Button
                     size={Button.SIZE_SMALL}
-                    mode={Button.MODE_PRIMARY}
+                    mode={Button.MODE_DANGER}
                     form={Button.FORM_CONTEXT}
                     onClick={() => handleCancel(value['uuid'])}
                   >Отменить</Button>

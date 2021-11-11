@@ -94,7 +94,6 @@ function Client() {
   }
 
   async function handleDateToUpdate(data) {
-    console.log(123, data)
     const isUpdated = await dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
       ...order,
       dateTo: data['dateTo'],

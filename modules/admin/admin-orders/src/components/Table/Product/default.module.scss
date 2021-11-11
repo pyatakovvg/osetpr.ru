@@ -12,7 +12,7 @@
 
   & + & {
 
-    margin: 16px 0 0;
+    margin: 8px 0 0;
   }
 
   &:before {
@@ -36,22 +36,23 @@
   display: flex;
   flex-direction: column;
   flex: 1 0;
-  margin: 0 0 0 16px;
+  margin: 0 0 0 8px;
+  white-space: nowrap;
+  overflow: auto;
 }
 
 .value {
 
   display: block;
   white-space: nowrap;
-  margin: 0 0 0 16px;
-  text-decoration: underline;
+  margin: 0 0 0 8px;
 }
 
 .price {
 
   display: block;
   white-space: nowrap;
-  margin: 0 0 0 16px;
+  margin: 0 0 0 8px;
 }
 
 .number {

@@ -16,27 +16,26 @@
   display: block;
 }
 
-.title {
+.user,
+.title,
+.external-id {
 
   display: block;
-  text-decoration: underline;
-  margin: 16px 0 0;
+
+  & + & {
+    margin: 8px 0 0;
+  }
 }
 
-.description {
-
-  display: block;
-}
-
+.date-to,
+.date-created,
 .status {
 
   display: block;
-}
 
-.date {
-
-  display: block;
-  margin: 16px 0 0;
+  & + & {
+    margin: 8px 0 0;
+  }
 }
 
 .controls {
@@ -55,5 +54,5 @@
 
   display: block;
   text-align: right;
-  margin: 24px 0 0;
+  margin: 16px 0 0;
 }

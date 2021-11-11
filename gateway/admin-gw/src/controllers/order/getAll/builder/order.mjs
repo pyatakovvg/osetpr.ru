@@ -7,7 +7,8 @@ import customerBuilder from './customer.mjs';
 export default function(data) {
   return {
     uuid: data['uuid'],
-    externalId: data['externalId'],
+    externalId: data['externalId'].toUpperCase().replace(/(\w{3})(\w{3})(\w{3})/, '$1-$2-$3'),
+    title: data['title'],
     status: data['status'],
     dateTo: data['dateTo'] ? moment(data['dateTo']).tz('Europe/Moscow').format('YYYY-MM-DD HH:mm:ss.SSSSSSZ') : null,
     total: data['total'],
