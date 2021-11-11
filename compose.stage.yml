@@ -67,6 +67,22 @@ services:
         max-size: 10m
 
 
+  comment_srv:
+    container_name: comment_srv
+    build:
+      context: ./
+      dockerfile: ./_deploy/stage/Dockerfile.comment-srv
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+    links:
+      - db
+      - rabbit
+
+
   customer_srv:
     container_name: customer_srv
     build:
