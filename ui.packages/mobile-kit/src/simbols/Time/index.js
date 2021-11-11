@@ -12,10 +12,7 @@ const TIME_FORMAT = 'YYYY-MM-DD HH:mm:00.000000Z';
 
 
 function Time({ value, onChange }) {
-  let instance = moment(value || undefined);
-  if ( ! value) {
-    instance = instance.add(2, 'hours');
-  }
+  let instance = moment(value);
 
   const hours = useMemo(() => instance.format('HH'), [value]);
   const minutes = useMemo(() => instance.format('mm'), [value]);
@@ -115,7 +112,7 @@ function Time({ value, onChange }) {
 
 Time.propTypes = {
   mode: types.oneOf(['danger', 'default']),
-  value: types.string,
+  value: types.oneOfType([types.string, types.object]),
 };
 
 Time.defaultType = {

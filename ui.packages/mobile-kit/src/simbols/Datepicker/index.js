@@ -132,10 +132,7 @@ class Month {
 
 
 function Datepicker({ value, onChange }) {
-  let instance = moment(value || undefined);
-  if ( ! value) {
-    instance = instance.add(2, 'hours');
-  }
+  let instance = moment(value);
 
   function handleNextMonth() {
     const month = moment(value || undefined).month();
@@ -208,7 +205,7 @@ function Datepicker({ value, onChange }) {
 
 Datepicker.propTypes = {
   mode: types.oneOf(['danger', 'default']),
-  value: types.string,
+  value: types.oneOfType([types.string, types.object]),
 };
 
 Datepicker.defaultType = {

@@ -222,7 +222,7 @@ function Client() {
       <Dialog name={'date'}>
         <Date
           initialValues={{
-            dateTo: order['dateTo'],
+            dateTo: order['dateTo'] ? moment(order['dateTo']) : moment().add(2, 'hours'),
           }}
           onSubmit={(data) => handleDateToUpdate(data) }
         />
