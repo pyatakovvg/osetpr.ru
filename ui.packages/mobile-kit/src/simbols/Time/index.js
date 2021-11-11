@@ -12,7 +12,7 @@ const TIME_FORMAT = 'YYYY-MM-DD HH:mm:00.000000Z';
 
 
 function Time({ value, onChange }) {
-  let instance = moment(value);
+  let instance = moment(value || undefined);
 
   const hours = useMemo(() => instance.format('HH'), [value]);
   const minutes = useMemo(() => instance.format('mm'), [value]);

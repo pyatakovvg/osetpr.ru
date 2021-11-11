@@ -132,7 +132,7 @@ class Month {
 
 
 function Datepicker({ value, onChange }) {
-  let instance = moment(value);
+  let instance = moment(value || undefined);
 
   function handleNextMonth() {
     const month = moment(value || undefined).month();
