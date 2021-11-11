@@ -1,4 +1,5 @@
 
+import numeral from "@packages/numeral";
 import { NetworkError } from "@packages/errors";
 
 import logger from '@sys.packages/logger';
@@ -216,10 +217,10 @@ export default class Saga {
 
         let message = '';
         if (order['status']['code'] === 'new') {
-          message = 'Оформлен заказ #' + externalId + ' на сумму ' + order['total'] + order['currency']['displayName'];
+          message = 'Оформлен заказ #' + externalId + ' на сумму ' + numeral(order['total']).format() + order['currency']['displayName'];
         }
         else if (order['status']['code'] === 'confirmed') {
-          message = 'Заказ #' + externalId + ' на сумма ' + order['total'] + order['currency']['displayName'] + ' подтвержден';
+          message = 'Заказ #' + externalId + ' на сумма ' + numeral(order['total']).format() + order['currency']['displayName'] + ' подтвержден';
         }
         else if (order['status']['code'] === 'canceled') {
           message = 'Заказ #' + externalId + ' отменен';
