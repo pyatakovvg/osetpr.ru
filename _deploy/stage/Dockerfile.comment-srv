@@ -19,6 +19,6 @@ COPY ./lerna.json                                ./
 
 RUN yarn
 
-WORKDIR /app/gateway/comment-srv
+WORKDIR /app/services/comment-srv
 
 ENTRYPOINT ["yarn", "run", "start"]
