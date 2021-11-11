@@ -2,6 +2,8 @@
 import { selectPayments } from '@modules/mobile-order-draft';
 
 import numeral from '@packages/numeral';
+import moment from '@packages/moment';
+
 import { pushNotification } from '@ui.packages/mobile-notifications';
 import { selectInProcess, resetStateAction } from '@ui.packages/order';
 import { Dialog, openDialog, closeDialog } from '@ui.packages/mobile-dialog';
@@ -176,7 +178,7 @@ function Client() {
             <Item title={'Способ оплаты'} value={order['payment'] && order['payment']['displayName']} defaultValue={'Не указан'} onClick={() => dispatch(openDialog('payment'))}/>
           </div>
           <div className={styles['row']}>
-            <Item title={'Доставка ко времени'} value={null} defaultValue={'Как можно скорее'} onClick={() => dispatch(openDialog('date'))}/>
+            <Item title={'Доставка ко времени'} value={order['dateTo'] ? moment(order['dateTo']).format('DD.MM.YYYY HH:mm') : null} defaultValue={'Как можно скорее'} onClick={() => dispatch(openDialog('date'))}/>
           </div>
           <div className={styles['row']}>
             <Item

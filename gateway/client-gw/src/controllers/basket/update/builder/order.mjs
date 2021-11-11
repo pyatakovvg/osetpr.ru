@@ -1,4 +1,6 @@
 
+import moment from "@packages/moment";
+
 import customerBuilder from "./customer.mjs";
 
 
@@ -6,6 +8,7 @@ export default function(data) {
   return {
     uuid: data['uuid'],
     total: data['total'],
+    dateTo: data['dateTo'] ? moment(data['dateTo']).format('YYYY-MM-DD HH:mm:SS.SSSSSS +03:00') : null,
     currency: data['currency'],
     address: data['address'],
     payment: data['payment'],

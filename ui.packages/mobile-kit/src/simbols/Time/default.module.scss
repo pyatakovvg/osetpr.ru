@@ -29,6 +29,14 @@
   }
 }
 
+.is-error {
+  border-color: $danger-darken;
+
+  .title {
+    background: $danger-darken;
+  }
+}
+
 .number {
 
   display: block;

@@ -1,8 +1,9 @@
 
 import moment from '@packages/moment';
+import { UUID } from '@ui.packages/utils';
 
 import types from 'prop-types';
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 
 import cn from 'classnames';
 import styles from './default.module.scss';
@@ -13,66 +14,157 @@ const months = ['Январь', 'Февраль', 'Март', 'Апрель', '�
 
 const TIME_FORMAT = 'YYYY-MM-DD HH:mm:00.000000Z';
 
-const reduceToArray = (items, SIZE = 4) => {
-  return items.reduce((p, c) => {
-    if( p[p.length - 1].length === SIZE) {
-      p.push([]);
+
+class Day {
+  #_instance = null;
+  #_id = null;
+  #_value = null;
+  #_isToday = false;
+  #_isWeekend = false;
+  #_isDisabled = false;
+
+  constructor(instance, value) {
+    this.#_instance = moment(instance).date(value);
+
+    this.#_id = UUID();
+    this.#_value = value;
+
+    if (value) {
+      this.#_isWeekend = this.#_instance.day() % 6 === 0;
+      this.#_isToday = moment(this.#_instance.format('YYYY-MM-DD')).isSame(moment().format('YYYY-MM-DD'));
+      this.#_isDisabled = moment(this.#_instance.format('YYYY-MM-DD')).isBefore(moment().format('YYYY-MM-DD'));
     }
-    p[p.length - 1].push(c);
-    return p;
-  }, [[]]);
-};
-
-
-function Datepicker({ name, value, onChange }) {
-  const instance = moment(value || undefined);
-
-  const [date, setDate] = useState(instance.date());
-
-  const weeks = useMemo(() => {
-    const lastDay = instance.endOf('month').date();
-
-    const weekDayOfLastDayOfMonth = instance.endOf('month').day();
-    const weekDayOfFirstDayOfMonth = instance.startOf('month').day();
-
-    const squares = [];
-
-    if (weekDayOfFirstDayOfMonth !== 0) {
-      for(let  i = 1; i < weekDayOfFirstDayOfMonth; i++) {
-        squares.push(null);
-      }
-    } else {
-      for(let i = 0; i < 6; i++) {
-        squares.push(null);
-      }
-    }
-
-    for(let i = 1; i <= lastDay; i++) {
-      squares.push(i);
-    }
-
-    if (weekDayOfLastDayOfMonth !== 0) {
-      for(let i = weekDayOfLastDayOfMonth; i < 7; i++) {
-        squares.push(null);
-      }
-    }
-
-    return reduceToArray(squares, 7);
-  }, [value]);
-
-  function handleChangeDate(number) {
-    console.log(number)
-    setDate(number);
   }
+
+  get() {
+    return {
+      id: this.#_id,
+      value: this.#_value,
+      isToday: this.#_isToday,
+      isWeekend: this.#_isWeekend,
+      isDisabled: this.#_isDisabled,
+    };
+  }
+
+  set(value) {
+    this.#_value = value;
+  }
+}
+
+class Week {
+  #_instance = null;
+  #_days = [];
+
+  constructor(instance) {
+    this.#_instance = moment(instance);
+  }
+
+  get() {
+    return this.#_days;
+  }
+
+  set(days) {
+    this.#_days = days;
+  }
+
+  add(number) {
+    this.#_days.push(new Day(this.#_instance, number));
+  }
+}
+
+class Month {
+  #_instance = null;
+  #_id = null;
+  #_name = null;
+  #_number = null;
+  #_weeks = [];
+
+  constructor(month) {
+    this.#_instance = moment({ month });
+    this.#_number = month;
+
+    const lastDay = this.#_instance.endOf('month').date();
+    const lastDayOfMonth = this.#_instance.endOf('month').day();
+    const firstDayOfMonth = this.#_instance.startOf('month').day() - 1;
+
+    let daysInWeek = [];
+
+    if (firstDayOfMonth > 0) {
+      daysInWeek = [ ... new Array(firstDayOfMonth).fill(null) ];
+    }
+    for (let i = 1; i <= lastDay; i++) {
+      daysInWeek.push(i);
+    }
+    if (lastDayOfMonth !== 0) {
+      daysInWeek = [ ...daysInWeek, ... new Array(7 - lastDayOfMonth).fill(null) ];
+    }
+
+    this.#_id = UUID();
+    this.#_name = months[this.#_instance.month()];
+    this.#_weeks = this.reduceToArray(daysInWeek);
+  }
+
+  reduceToArray(items, SIZE = 7) {
+    return items.reduce((p, c) => {
+      if( p[p.length - 1].get().length === SIZE) {
+        p.push(new Week(this.#_instance));
+      }
+      p[p.length - 1].add(c);
+      return p;
+    }, [new Week(this.#_instance)]);
+  };
+
+  getWeeks() {
+    return this.#_weeks;
+  }
+
+  addWeek() {
+    this.#_weeks.push(new Week(this.#_instance));
+  }
+
+  get() {
+    return {
+      name: this.#_name,
+      number: this.#_number,
+    };
+  }
+}
+
+
+function Datepicker({ value, onChange }) {
+  let instance = moment(value || undefined);
+  if ( ! value) {
+    instance = instance.add(2, 'hours');
+  }
+
+  function handleNextMonth() {
+    const month = moment(value || undefined).month();
+    const time = moment(value || undefined).month(month + 1);
+    onChange(time.format(TIME_FORMAT));
+  }
+
+  function handlePrevMonth() {
+    const month = moment(value || undefined).month();
+    const time = moment(value || undefined).month(month - 1);
+    onChange(time.format(TIME_FORMAT));
+  }
+
+  function handleChangeDate(data) {
+    const time = instance.date(data['date']).month(data['month']);
+    onChange(time.format(TIME_FORMAT));
+  }
+
+  const month = useMemo(() => new Month(instance.month()), [value]);
+  const weeks = month.getWeeks();
 
   return (
     <div className={styles['wrapper']}>
       <div className={styles['month']}>
-        <span className={cn(styles['icon'], 'fas fa-chevron-left')} />
+        <span className={cn(styles['icon'], 'fas fa-chevron-left')} onClick={handlePrevMonth} />
         <div className={styles['header']}>
-          { months[instance.month()] }
+          { month.get()['name'] } { instance.year() }
         </div>
-        <span className={cn(styles['icon'], 'fas fa-chevron-right')} />
+        <span className={cn(styles['icon'], 'fas fa-chevron-right')} onClick={handleNextMonth} />
       </div>
       <div className={styles['days']}>
         {days.map((name, index) => (
@@ -84,17 +176,29 @@ function Datepicker({ name, value, onChange }) {
       <div className={styles['numbers']}>
         {weeks.map((week, index) => (
           <div key={index} className={styles['week']}>
-            {week.map((number, key) => (
-              <div key={index + key} className={styles['day-number']}>
-                {number
-                  ? <div className={cn(styles['number'], {
-                    [styles['weekend']]: key > 4,
-                    [styles['to-day']]: moment().date() === number,
-                    [styles['active']]: date === number,
-                  })} onClick={() => handleChangeDate(number)}>{ number }</div>
-                  : null}
-              </div>
-            ))}
+            {week.get().map((day) => {
+              const dayValue = day.get();
+              return (
+                <div key={dayValue['id']} className={styles['day-number']}>
+                  {dayValue['value']
+                    ? (
+                      <div
+                        className={cn(styles['number'], {
+                          [styles['to-day']]: dayValue['isToday'],
+                          [styles['weekend']]: dayValue['isWeekend'],
+                          [styles['disabled']]: dayValue['isDisabled'],
+                          [styles['active']]: moment(instance.format('YYYY-MM-DD')).isSame(moment({ date: dayValue['value'], month: month.get()['number'] }).format('YYYY-MM-DD')),
+                        })}
+                        onClick={() => ! dayValue['isDisabled'] && handleChangeDate({
+                          date: dayValue['value'],
+                          month: month.get()['number'],
+                        })}
+                      >{ dayValue['value'] }</div>
+                    )
+                    : null}
+                </div>
+              );
+            })}
           </div>
         ))}
       </div>

@@ -2,16 +2,27 @@
 import { selectInProcess } from '@ui.packages/order';
 import { Button, Header, Time, Datepicker } from '@ui.packages/mobile-kit';
 
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getFormValues, change, submit } from 'redux-form';
 
 import styles from './default.module.scss';
 
 
-function DetailsForm({ handleSubmit }) {
-  const inProcess = useSelector(selectInProcess);
+function DetailsForm({ handleSubmit, form }) {
+  const dispatch = useDispatch();
 
-  const [time, setTime] = useState(null);
+  const inProcess = useSelector(selectInProcess);
+  const values = useSelector(getFormValues(form));
+
+  function changeDateTo(value) {
+    dispatch(change(form, 'dateTo', value));
+  }
+
+  async function handleResetTime() {
+    await dispatch(change(form, 'dateTo', null));
+    dispatch(submit(form));
+  }
 
   return (
     <form className={styles['wrapper']} onSubmit={handleSubmit}>
@@ -20,13 +31,20 @@ function DetailsForm({ handleSubmit }) {
           <Header level={2}>Время доставки</Header>
         </div>
         <div className={styles['row']}>
-          <Datepicker value={time} onChange={(value) => setTime(value)} />
+          <Datepicker value={values['dateTo']} onChange={(value) => changeDateTo(value)} />
         </div>
         <div className={styles['row']}>
-          <Time value={time} onChange={(value) => setTime(value)} />
+          <Time value={values['dateTo']} onChange={(value) => changeDateTo(value)} />
         </div>
       </div>
       <div className={styles['controls']}>
+        <Button
+          type={'button'}
+          mode={'primary'}
+          disabled={inProcess}
+          onClick={() => handleResetTime()}
+        >Как можно скорее!</Button>
+        <br/>
         <Button
           mode={'success'}
           inProcess={inProcess}
