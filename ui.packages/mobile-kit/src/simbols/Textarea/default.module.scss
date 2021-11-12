@@ -47,11 +47,13 @@
 
 .element {
 
+  position: relative;
   display: block;
   border: none;
   outline: none;
   width: 100%;
   padding: 12px 8px;
+  font-family: "Nunito", sans-serif;
   font-size: 14px;
   line-height: 1.4;
   color: $white;
@@ -76,8 +78,10 @@
   left: 0;
   display: block;
   padding: 12px 8px;
+  font-family: "Nunito", sans-serif;
   font-size: 14px;
   line-height: 1.4;
+  box-sizing: border-box;
   visibility: hidden;
   z-index: 10;
 }
