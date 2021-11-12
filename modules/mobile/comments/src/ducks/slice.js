@@ -32,6 +32,18 @@ const slice = createSlice({
       state['meta'] = payload['meta'];
       state['inProcess'] = false;
     },
+
+    createCommentRequestAction(state) {
+      state['inProcess'] = true;
+    },
+    createCommentRequestFailAction(state) {
+      state['inProcess'] = false;
+    },
+    createCommentRequestSuccessAction(state, { payload }) {
+      state['data'] = payload['data'];
+      state['meta'] = payload['meta'];
+      state['inProcess'] = false;
+    },
   },
 });
 

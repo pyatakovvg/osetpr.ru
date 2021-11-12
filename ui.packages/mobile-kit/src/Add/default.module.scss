@@ -1,0 +1,46 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.cart {
+
+  position: relative;
+  display: inline-flex;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: $primary;
+  justify-content: center;
+  align-items: center;
+  transition: transform 150ms, background-color 150ms;
+
+  &:active {
+    background: $primary-darken;
+    transform: scale(.95);
+  }
+
+  &.disabled,
+  &.disabled:active {
+
+    background: $gray-lighten;
+    transform: none;
+  }
+}
+
+.icon {
+
+  display: inline-block;
+  font-size: 32px;
+  color: $white;
+}
+
+.mode {
+
+  &--success {
+    background: $success;
+
+    &:active {
+      background: $success-darken;
+    }
+  }
+}

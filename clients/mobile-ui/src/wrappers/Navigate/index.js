@@ -6,6 +6,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
+import Add from './Add';
 import Cart from './Cart';
 import Header from './Header';
 
@@ -29,8 +30,11 @@ export default function NavigateModule({ children }) {
       <section className={styles['content']}>
         { children }
       </section>
-      { ! /order/.test(location['pathname']) && (
+      { ! /order|comments/.test(location['pathname']) && (
         <Cart />
+      )}
+      {/comments/.test(location['pathname']) && (
+        <Add />
       )}
       <Notifications />
     </section>
