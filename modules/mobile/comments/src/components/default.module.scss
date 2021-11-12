@@ -31,6 +31,8 @@
 
 .comments {
 
-  display: block;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
   margin: 32px 0 0;
 }

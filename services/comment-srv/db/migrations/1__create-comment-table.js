@@ -21,6 +21,10 @@ module.exports = {
           type: DataType.INTEGER,
           allowNull: true,
         },
+        user: {
+          type: DataType.STRING,
+          allowNull: false,
+        },
         content: {
           type: DataType.STRING,
           allowNull: false,

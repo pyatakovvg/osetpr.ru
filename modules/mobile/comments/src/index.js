@@ -18,4 +18,5 @@ export {
 
 export {
   getComments,
+  createComment,
 } from './ducks/commands';

@@ -8,19 +8,19 @@ import React from 'react';
 import styles from './default.module.scss';
 
 
-function Comment({ content, createdAt }) {
+function Comment({ user, content, createdAt }) {
   return (
     <div className={styles['wrapper']}>
       <div className={styles['header']}>
         <div className={styles['user']}>
-          <Text>Аноним</Text>
+          <Text>{ user ? user : 'Аноним' }</Text>
         </div>
         <div className={styles['date']}>
           <Text>{ moment(createdAt).format('DD.MM.YYYY') }</Text>
         </div>
       </div>
       <div className={styles['content']}>
-        <Text>{ content }</Text>
+        <Text isHtml>{ content }</Text>
       </div>
     </div>
   );

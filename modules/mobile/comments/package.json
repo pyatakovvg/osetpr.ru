@@ -9,6 +9,7 @@
     "start:dev": "cross-env NODE_ENV=development babel src --out-dir ./lib --copy-files --watch"
   },
   "dependencies": {
+    "@ui.packages/mobile-notifications": "1.0.0",
     "@ui.packages/mobile-kit": "1.0.0",
     "@ui.packages/mobile-dialog": "1.0.0",
     "@ui.packages/hoc": "1.0.0",

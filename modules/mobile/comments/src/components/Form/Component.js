@@ -1,5 +1,6 @@
 
-import { selectInProcess } from '@ui.packages/order';
+import { selectInProcess } from '@modules/mobile-comments';
+
 import { Button, Header, InputField, TextareaFieldField } from '@ui.packages/mobile-kit';
 
 import React from 'react';
@@ -18,10 +19,10 @@ function PaymentForm({ handleSubmit }) {
           <Header level={2}>Оставить комментарий</Header>
         </div>
         <div className={styles['row']}>
-          <InputField name={'user'} label={'Представтесь'} />
+          <InputField require name={'user'} label={'Представтесь'} />
         </div>
         <div className={styles['row']}>
-          <TextareaFieldField name={'content'} label={'Комментарий'} />
+          <TextareaFieldField require name={'content'} label={'Комментарий'} />
         </div>
       </div>
       <div className={styles['controls']}>

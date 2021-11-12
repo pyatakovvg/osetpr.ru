@@ -40,8 +40,11 @@ const slice = createSlice({
       state['inProcess'] = false;
     },
     createCommentRequestSuccessAction(state, { payload }) {
-      state['data'] = payload['data'];
-      state['meta'] = payload['meta'];
+      console.log(payload)
+      state['data'] = [
+        payload,
+        ...state['data'],
+      ];
       state['inProcess'] = false;
     },
   },
@@ -53,6 +56,10 @@ export const {
   getCommentsRequestAction,
   getCommentsRequestFailAction,
   getCommentsRequestSuccessAction,
+
+  createCommentRequestAction,
+  createCommentRequestFailAction,
+  createCommentRequestSuccessAction,
 } = slice['actions'];
 
 export const selectData = (state) => state[REDUCER_NAME]['data'];

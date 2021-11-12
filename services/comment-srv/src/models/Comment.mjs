@@ -24,6 +24,10 @@ export default function(sequelize, DataType)  {
       type: DataType.INTEGER,
       allowNull: true,
     },
+    user: {
+      type: DataType.STRING,
+      allowNull: false,
+    },
     content: {
       type: DataType.STRING,
       allowNull: false,

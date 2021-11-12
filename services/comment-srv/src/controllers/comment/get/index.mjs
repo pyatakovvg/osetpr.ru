@@ -27,7 +27,10 @@ export default () => async (ctx) => {
     ...offset,
     distinct: true,
     where: { ...where },
-    order: [],
+    order: [
+      ['createdAt', 'desc']
+    ],
+    attributes: ['uuid', 'userUuid', 'user', 'content', 'createdAt'],
   });
 
   ctx.body = {
