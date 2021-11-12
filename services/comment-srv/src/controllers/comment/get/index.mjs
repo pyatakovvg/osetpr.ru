@@ -8,7 +8,9 @@ export default () => async (ctx) => {
     skip = null,
     take = null,
   } = ctx['query'];
-  const { Comment } = models;
+
+  const { Comment, Theme } = models;
+
   let where = {};
   let offset = {};
   let options = {};
@@ -26,11 +28,24 @@ export default () => async (ctx) => {
     ...options,
     ...offset,
     distinct: true,
-    where: { ...where },
+    where: {
+      parentUuid: null,
+      ...where,
+    },
     order: [
       ['createdAt', 'desc']
     ],
     attributes: ['uuid', 'userUuid', 'user', 'content', 'createdAt'],
+    include: [
+      {
+        model: Theme,
+        as: 'theme',
+      },
+      {
+        model: Comment,
+        as: 'comments',
+      }
+    ]
   });
 
   ctx.body = {

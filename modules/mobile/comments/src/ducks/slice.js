@@ -40,7 +40,6 @@ const slice = createSlice({
       state['inProcess'] = false;
     },
     createCommentRequestSuccessAction(state, { payload }) {
-      console.log(payload)
       state['data'] = [
         payload,
         ...state['data'],

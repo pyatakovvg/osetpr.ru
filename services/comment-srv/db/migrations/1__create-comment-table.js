@@ -29,6 +29,11 @@ module.exports = {
           type: DataType.STRING,
           allowNull: false,
         },
+        parentUuid: {
+          type: DataType.UUID,
+          allowNull: true,
+          defaultValue: null,
+        },
         createdAt: {
           type: DataType.DATE,
           allowNull: false,

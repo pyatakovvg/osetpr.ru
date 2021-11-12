@@ -27,17 +27,34 @@ export default function(sequelize, DataType)  {
     user: {
       type: DataType.STRING,
       allowNull: false,
+      defaultValue: 'Аноним',
     },
     content: {
       type: DataType.STRING,
       allowNull: false,
+    },
+    parentUuid: {
+      type: DataType.UUID,
+      allowNull: true,
+      defaultValue: null,
     },
   }, {
     sequelize,
     timestamps: true,
   });
 
-  Comment.associate = ({}) => {};
+  Comment.associate = ({ Theme }) => {
+
+    Comment.belongsTo(Theme, {
+      foreignKey: 'themeId',
+      as: 'theme',
+    });
+
+    Comment.hasMany(Comment, {
+      foreignKey: 'parentUuid',
+      as: 'comments',
+    });
+  };
 
   return Comment;
 };

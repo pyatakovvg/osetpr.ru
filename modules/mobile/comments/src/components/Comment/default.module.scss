@@ -12,7 +12,7 @@
   box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 20%);
   overflow: hidden;
 
-  & + & {
+  & + * {
 
     margin: 24px 0 0;
   }
@@ -43,4 +43,25 @@
 
   display: block;
   margin: 16px 0 0;
+}
+
+.combine {
+
+  display: block;
+
+  & + * {
+
+    margin: 24px 0 0;
+  }
+}
+
+.parent {
+
+  display: block;
+}
+
+.children {
+
+  display: block;
+  margin: 24px 0 0 32px;
 }
