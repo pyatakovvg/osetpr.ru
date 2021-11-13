@@ -1,5 +1,5 @@
 
-import request from 'axios';
+import request from '@sys.packages/request';
 
 
 export default () => async (ctx) => {
