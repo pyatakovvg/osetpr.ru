@@ -1,21 +1,25 @@
 
-import { selectItems, selectInProcess } from '@modules/admin-products';
+import { selectItems, selectInProcess, removeItem, getItems } from '@modules/admin-products';
 
 import numeral from '@packages/numeral';
 
-import { Text, Header, Image, Actions, CheckBox } from '@ui.packages/admin-kit';
 import { Table, Column } from '@ui.packages/table';
+import { Confirm, openDialog, closeDialog } from '@ui.packages/dialog';
+import { Text, Header, Image, Actions, CheckBox } from '@ui.packages/admin-kit';
 
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 import cn from 'classnames';
 import styles from './default.module.scss';
 
 
 function ProductList() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [productUuid, setProductUuid] = useState(null);
 
   const items = useSelector(selectItems);
   const inProcess = useSelector(selectInProcess);
@@ -26,7 +30,16 @@ function ProductList() {
     navigate(process.env['PUBLIC_URL'] + '/products/' + uuid);
   }
 
-  function handleRemoveProduct() {}
+  function handleConfirmDestroyProduct(uuid) {
+    setProductUuid(uuid);
+    dispatch(openDialog('product-destroy'));
+  }
+
+  async function handleRemoveProduct() {
+    await dispatch(removeItem(productUuid));
+    await dispatch(getItems());
+    dispatch(closeDialog('product-destroy'));
+  }
 
   return (
     <div className={styles['wrapper']}>
@@ -83,11 +96,18 @@ function ProductList() {
               disabled={inProcess}
               onCopy={() => handleCopyProduct(uuid)}
               onEdit={() => handleEdit(uuid)}
-              onDelete={() => handleRemoveProduct(uuid)}
+              onDelete={() => handleConfirmDestroyProduct(uuid)}
             />
           )}
         </Column>
       </Table>
+
+      <Confirm
+        name={'product-destroy'}
+        message={'Вы точно уверены что хотите удалить продукт?'}
+        onConfirm={() => handleRemoveProduct()}
+        onCancel={() => setProductUuid(null)}
+      />
     </div>
   );
 }

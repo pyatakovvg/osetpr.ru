@@ -32,6 +32,16 @@ const slice = createSlice({
       state['meta'] = payload['meta'];
       state['inProcess'] = false;
     },
+
+    removeItemRequestAction(state) {
+      state['inProcess'] = true;
+    },
+    removeItemRequestFailAction(state) {
+      state['inProcess'] = false;
+    },
+    removeItemRequestSuccessAction(state) {
+      state['inProcess'] = false;
+    },
   },
 });
 
@@ -41,6 +51,10 @@ export const {
   getItemsRequestAction,
   getItemsRequestFailAction,
   getItemsRequestSuccessAction,
+
+  removeItemRequestAction,
+  removeItemRequestFailAction,
+  removeItemRequestSuccessAction,
 } = slice['actions'];
 
 export const selectMeta = (state) => state[REDUCER_NAME]['meta'];

@@ -12,4 +12,5 @@ export {
 
 export {
   getItems,
+  removeItem,
 } from './ducks/commands';
