@@ -29,7 +29,6 @@ export default function(sequelize, DataType)  {
     },
   }, {
     sequelize,
-    modelName: 'Gallery',
     timestamps: true,
   });
 
