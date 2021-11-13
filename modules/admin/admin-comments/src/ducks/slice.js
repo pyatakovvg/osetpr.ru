@@ -8,7 +8,7 @@ const initialState = {
   inProcess: false,
 };
 
-const REDUCER_NAME = 'orders';
+const REDUCER_NAME = 'comments';
 
 
 const typesSlice = createSlice({
