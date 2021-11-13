@@ -10,7 +10,7 @@
   overflow: hidden;
 }
 
-.content {
+.container {
 
   display: flex;
   flex: 1 0;
@@ -27,4 +27,20 @@
   flex: 0 0;
   justify-content: space-between;
   align-items: center;
+}
+
+.content {
+
+  display: block;
+  margin: 40px 0 0;
+}
+
+.row {
+
+  display: block;
+
+  & + & {
+
+    margin: 16px 0 0;
+  }
 }

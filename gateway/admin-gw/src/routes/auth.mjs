@@ -9,9 +9,13 @@ import { getAllCurrencies } from '../controllers/currency';
 import { getAllPlans, createPlan, updatePlan, getByIdPlan } from '../controllers/plan';
 
 import { getProfile } from '../controllers/profile';
+import { createComment, getAllComments } from "../controllers/comment";
 
 
 export default (router) => {
+
+  router.get('/comments', getAllComments());
+  router.post('/comments', createComment());
 
   router.get('/gallery', getImages());
   router.get('/gallery/:id', getImage());

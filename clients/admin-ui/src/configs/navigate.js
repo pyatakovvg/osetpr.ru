@@ -11,6 +11,11 @@ const navigate = [
     icon: 'fas fa-shopping-cart',
   },
   {
+    title: 'Комментарии',
+    path: '/comments',
+    icon: 'far fa-comments',
+  },
+  {
     title: 'Галерея',
     path: '/gallery',
     icon: 'fas fa-images',
