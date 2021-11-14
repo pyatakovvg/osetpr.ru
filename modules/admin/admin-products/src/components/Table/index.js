@@ -56,7 +56,6 @@ function ProductList() {
     <div className={styles['wrapper']}>
       <Table columns={items}>
         <Column
-          title="Фото"
           alias="gallery"
           width={140}
         >
@@ -66,7 +65,6 @@ function ProductList() {
           }
         </Column>
         <Column
-          title={'Данные'}
           align={'left'}
         >{(value) => (
           <div className={styles['row']}>
