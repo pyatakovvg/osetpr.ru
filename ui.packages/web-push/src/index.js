@@ -31,6 +31,10 @@ export async function subscribeUser(userUuid) {
       throw new Error('SW not registered');
     }
 
+    if ( ! 'pushManager'  in serviceWorkerRegistration) {
+      throw new Error('PushManager not registered');
+    }
+
     const subscription = await serviceWorkerRegistration.pushManager.subscribe({
       userVisibleOnly: true,
       applicationServerKey: urlB64ToUint8Array(appServerKey),
