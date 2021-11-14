@@ -31,10 +31,6 @@ export async function subscribeUser(userUuid) {
       throw new Error('SW not registered');
     }
 
-    if ( ! 'pushManager'  in serviceWorkerRegistration) {
-      throw new Error('PushManager not registered');
-    }
-
     const subscription = await serviceWorkerRegistration.pushManager.subscribe({
       userVisibleOnly: true,
       applicationServerKey: urlB64ToUint8Array(appServerKey),
@@ -68,10 +64,6 @@ export async function unsubscribeUser(userUuid) {
       throw new Error('SW not registered');
     }
 
-    if ( ! 'pushManager'  in serviceWorkerRegistration) {
-      throw new Error('PushManager not registered');
-    }
-
     const subscription = await serviceWorkerRegistration.pushManager.getSubscription();
     const subscriptionData = {
       userUuid,
@@ -98,26 +90,10 @@ export async function checkSubscription() {
   try {
     serviceWorkerRegistration = await navigator.serviceWorker.ready;
 
-    if (serviceWorkerRegistration instanceof Promise) {
-      serviceWorkerRegistration = await new Promise((resolve, reject) => {
-        serviceWorkerRegistration
-          .then((result) => {
-            resolve(result);
-          })
-          .catch((error) => {
-            reject(error);
-          });
-      });
-    }
-
     if ( ! serviceWorkerRegistration) {
       throw new Error('Воркер не установлен');
     }
     console.log('WePush: SW subscribe checking');
-
-    if ( ! 'pushManager'  in serviceWorkerRegistration) {
-      throw new Error('PushManager not registered');
-    }
 
     const subscription = await serviceWorkerRegistration.pushManager.getSubscription();
 
