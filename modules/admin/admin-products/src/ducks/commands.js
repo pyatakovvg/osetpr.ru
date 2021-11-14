@@ -96,7 +96,7 @@ export const updateItem = (uuid, data) => async (dispatch) => {
     if (error instanceof UnauthorizedError) {
       return void 0;
     }
-
+console.log(error)
     dispatch(updateItemRequestFailAction(uuid));
     dispatch(pushNotification({
       mode: 'danger',
