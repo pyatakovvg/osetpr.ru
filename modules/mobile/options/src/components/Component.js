@@ -1,8 +1,8 @@
 
 import { selectIsPushSubscribe, selectInProcess, subscribePushSubscribe, unsubscribePushSubscribe } from '@modules/mobile-options';
 
-import { checkServiceWorker } from "@ui.packages/web-push";
 import { Header, Text, Checkbox } from "@ui.packages/mobile-kit";
+import { checkServiceWorker, checkPushManager } from "@ui.packages/web-push";
 
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -16,6 +16,7 @@ function Options() {
   const inProcess = useSelector(selectInProcess);
   const hasSubscribe = useSelector(selectIsPushSubscribe);
 
+  const hasPushManagerSupport = checkPushManager();
   const hasServiceWorkerSupport = checkServiceWorker();
 
 
@@ -38,7 +39,7 @@ function Options() {
           <div className={styles['row']}>
             <Checkbox
               value={hasSubscribe}
-              disabled={inProcess || ! hasServiceWorkerSupport}
+              disabled={inProcess || ! hasServiceWorkerSupport || ! hasPushManagerSupport}
               onChange={handleChangeSubscribe}
             >
               <Text>Подписка на push-уведомленния</Text>

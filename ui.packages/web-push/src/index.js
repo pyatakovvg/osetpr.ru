@@ -116,6 +116,15 @@ export async function checkSubscription() {
   }
 }
 
+export function checkPushManager() {
+  console.log('WePush: SW support checking');
+
+  if ( ! ('PushManager' in window)) {
+    return false;
+  }
+  return true;
+}
+
 export function checkServiceWorker() {
   console.log('WePush: SW support checking');
 
