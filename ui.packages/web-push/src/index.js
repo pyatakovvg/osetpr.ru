@@ -25,6 +25,10 @@ function urlB64ToUint8Array(base64String) {
 
 export async function subscribeUser(userUuid) {
   try {
+    if ( ! ('PushManager' in window)) {
+      return false;
+    }
+
     console.log('WePush: SW unsubscribe user');
 
     if ( ! serviceWorkerRegistration) {
@@ -58,6 +62,10 @@ export async function subscribeUser(userUuid) {
 
 export async function unsubscribeUser(userUuid) {
   try {
+    if ( ! ('PushManager' in window)) {
+      return false;
+    }
+
     console.log('WePush: SW subscribe user');
 
     if ( ! serviceWorkerRegistration) {
@@ -88,6 +96,10 @@ export async function unsubscribeUser(userUuid) {
 
 export async function checkSubscription() {
   try {
+    if ( ! ('PushManager' in window)) {
+      return false;
+    }
+
     serviceWorkerRegistration = await navigator.serviceWorker.ready;
 
     if ( ! serviceWorkerRegistration) {
@@ -108,10 +120,6 @@ export function checkServiceWorker() {
   console.log('WePush: SW support checking');
 
   if ( ! ('serviceWorker' in navigator)) {
-    return false;
-  }
-
-  if ( ! ('PushManager' in window)) {
     return false;
   }
 }
