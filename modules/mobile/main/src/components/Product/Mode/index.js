@@ -1,6 +1,6 @@
 
-import React from 'react';
 import types from 'prop-types';
+import React, { useMemo } from 'react';
 
 import Price from './Price';
 
@@ -8,9 +8,21 @@ import cn from 'classnames';
 import styles from './default.module.scss';
 
 
-export default function Mode({ isActive, count, value, price, currency, onClick }) {
+export default function Mode({ isActive, disabled, count, value, price, currency, onClick }) {
+  const wrapperClassName = useMemo(() => cn(styles['wrapper'], {
+    [styles['active']]: isActive,
+    [styles['disabled']]: disabled,
+  }), [disabled, isActive]);
+
+  function handleClick() {
+    if (disabled) {
+      return void 0;
+    }
+    onClick();
+  }
+
   return (
-    <div className={cn(styles['wrapper'], { [styles['active']]: isActive })} onClick={onClick}>
+    <div className={wrapperClassName} onClick={() => handleClick()}>
       {count && (
         <span className={styles['count']}>{ count }</span>
       )}
@@ -24,8 +36,19 @@ export default function Mode({ isActive, count, value, price, currency, onClick 
 
 Mode.propTypes = {
   value: types.string,
+  disabled: types.bool,
+  isActive: types.bool,
+  count: types.number,
+  price: types.number,
+  currency: types.object,
+  onClick: types.func,
 };
 
 Mode.defaultProps = {
   value: '',
+  disabled: false,
+  isActive: true,
+  count: 0,
+  price: 0,
+  currency: { displayName: 'none' },
 };

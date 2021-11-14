@@ -1,7 +1,6 @@
 
 import Application from '@ui.packages/application';
 import { reducer as dialogReducer } from '@ui.packages/dialog';
-import { notificationReducer } from '@ui.packages/notifications';
 
 import { reducer as formReducer } from 'redux-form';
 
@@ -24,7 +23,6 @@ try {
     reducers: {
       form: formReducer,
       dialog: dialogReducer,
-      notifications: notificationReducer,
     },
     wrappers: { Empty, Navigate, Composite },
   });

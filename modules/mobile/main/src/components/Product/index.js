@@ -18,6 +18,9 @@ function useGetProduct() {
 }
 
 function useGetMaxModeCount(mode) {
+  if ( ! mode) {
+    return true;
+  }
   const products = useGetProduct();
   const product = products.find((product) => product['modeUuid'] === mode['uuid']);
   if ( ! product) {
@@ -27,11 +30,11 @@ function useGetMaxModeCount(mode) {
 }
 
 
-export default function DefaultProduct({ uuid, externalId, title, modes, gallery, toCart }) {
+export default function DefaultProduct({ uuid, externalId, title, modes, gallery, isAvailable, toCart }) {
   const orderProducts = useGetProduct();
   const [mode, setMode] = useState(modes.find((item) => item['isTarget']));
 
-  const isDisabled = useGetMaxModeCount(mode);
+  const isDisabled = ! isAvailable || useGetMaxModeCount(mode);
 
   function handleClick(mode) {
     setMode(mode);
@@ -61,12 +64,16 @@ export default function DefaultProduct({ uuid, externalId, title, modes, gallery
                     key={item['uuid']}
                     {...item}
                     count={count}
+                    disabled={ ! isAvailable}
                     isActive={item['uuid'] === mode['uuid']}
                     onClick={() => handleClick(item)}
                   />
                 );
               })}
             </div>
+            { ! isAvailable && (
+              <span className={styles['unavailable']}>Временно недоступен</span>
+            )}
           </div>
         </div>
         <div className={styles['cart']}>

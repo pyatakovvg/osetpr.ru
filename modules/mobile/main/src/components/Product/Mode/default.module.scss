@@ -59,6 +59,21 @@
   }
 }
 
+.disabled {
+
+  background: $gray;
+
+  &:before {
+
+    background: $gray;
+  }
+
+  &:after {
+
+    background: $gray;
+  }
+}
+
 .count {
 
   position: absolute;

@@ -12,6 +12,10 @@ import {
   removeItemRequestAction,
   removeItemRequestFailAction,
   removeItemRequestSuccessAction,
+
+  updateItemRequestAction,
+  updateItemRequestFailAction,
+  updateItemRequestSuccessAction,
 } from './slice';
 
 
@@ -52,6 +56,10 @@ export const removeItem = (uuid) => async (dispatch) => {
     });
 
     dispatch(removeItemRequestSuccessAction(result));
+    dispatch(pushNotification({
+      mode: 'success',
+      title: 'Операция выполнена успешно',
+    }));
   }
   catch(error) {
     if (error instanceof UnauthorizedError) {
@@ -62,6 +70,39 @@ export const removeItem = (uuid) => async (dispatch) => {
     dispatch(pushNotification({
       mode: 'danger',
       title: 'Ошибка при выполнении операции',
+      content: error['data']['message'],
+      autoClose: false,
+    }));
+  }
+};
+
+export const updateItem = (uuid, data) => async (dispatch) => {
+  try {
+    dispatch(updateItemRequestAction(uuid));
+
+    const result = await request({
+      url: '/products/' + uuid,
+      method: 'put',
+      data,
+    });
+
+    dispatch(updateItemRequestSuccessAction(result['data']));
+    dispatch(pushNotification({
+      mode: 'success',
+      title: 'Операция выполнена успешно',
+    }));
+  }
+  catch(error) {
+    if (error instanceof UnauthorizedError) {
+      return void 0;
+    }
+
+    dispatch(updateItemRequestFailAction(uuid));
+    dispatch(pushNotification({
+      mode: 'danger',
+      title: 'Ошибка при выполнении операции',
+      content: error['data']['message'],
+      autoClose: false,
     }));
   }
 };

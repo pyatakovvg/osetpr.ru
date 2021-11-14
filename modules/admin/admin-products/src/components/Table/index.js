@@ -1,5 +1,5 @@
 
-import { selectItems, selectInProcess, removeItem, getItems } from '@modules/admin-products';
+import { selectItems, selectInProcess, selectItemsInProcess, removeItem, getItems, updateItem } from '@modules/admin-products';
 
 import numeral from '@packages/numeral';
 
@@ -23,6 +23,7 @@ function ProductList() {
 
   const items = useSelector(selectItems);
   const inProcess = useSelector(selectInProcess);
+  const itemsInProcess = useSelector(selectItemsInProcess);
 
   function handleCopyProduct() {}
 
@@ -39,6 +40,14 @@ function ProductList() {
     await dispatch(removeItem(productUuid));
     await dispatch(getItems());
     dispatch(closeDialog('product-destroy'));
+  }
+
+  function handleChangeUse(uuid, data) {
+    dispatch(updateItem(uuid, data));
+  }
+
+  function handleChangeAvailable(uuid, data) {
+    dispatch(updateItem(uuid, data));
   }
 
   return (
@@ -60,14 +69,14 @@ function ProductList() {
         >{(value) => (
           <div className={styles['row']}>
             <div className={styles['title']}>
-              <Header level={3}>{ value['title'] }</Header>
+              <Header level={4}>{ value['title'] }</Header>
             </div>
             <div className={styles['products']}>
               {value['modes'].map((mode) => {
                 return (
                   <div key={mode['uuid']} className={cn(styles['mode'], { [styles['not-use']]: ! mode['isUse'] })}>
                     <div className={styles['vendor']}>
-                      <Text>{ mode['vendor'] }</Text>
+                      <Text>[{ mode['vendor'] }]</Text>
                     </div>
                     <div className={styles['value']}>
                       <Text>{ mode['value'] }</Text>
@@ -83,9 +92,23 @@ function ProductList() {
         )}</Column>
         <Column
           title={'Видим'}
+          width={60}
+        >{({ uuid, isUse, updatedAt }) => (
+          <CheckBox
+            value={isUse}
+            disabled={ !!~ itemsInProcess.indexOf(uuid)}
+            onChange={(value) => handleChangeUse(uuid, { isUse: value, updatedAt })}
+          />
+        )}</Column>
+        <Column
+          title={'Наличие'}
           width={70}
-        >{({ isUse }) => (
-          <CheckBox value={isUse} onChange={(a) => console.log(a)}/>
+        >{({ uuid, isAvailable, updatedAt }) => (
+          <CheckBox
+            value={isAvailable}
+            disabled={ !!~ itemsInProcess.indexOf(uuid)}
+            onChange={(value) => handleChangeAvailable(uuid, { isAvailable: value, updatedAt })}
+          />
         )}</Column>
         <Column
           align="right"
@@ -93,7 +116,7 @@ function ProductList() {
         >
           {({ uuid }) => (
             <Actions
-              disabled={inProcess}
+              disabled={inProcess || !!~ itemsInProcess.indexOf(uuid)}
               onCopy={() => handleCopyProduct(uuid)}
               onEdit={() => handleEdit(uuid)}
               onDelete={() => handleConfirmDestroyProduct(uuid)}

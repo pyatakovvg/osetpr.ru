@@ -37,6 +37,11 @@ export default function(sequelize, DataType) {
       allowNull: false,
       defaultValue: false,
     },
+    isAvailable: {
+      type: DataType.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+    },
   }, {
     sequelize,
   });

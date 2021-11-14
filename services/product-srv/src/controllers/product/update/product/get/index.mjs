@@ -11,7 +11,7 @@ export default async function updateProperties(uuid) {
       ['modes', 'order', 'asc'],
       ['gallery', 'order', 'asc'],
     ],
-    attributes: ['uuid', 'externalId', 'title', 'description', 'isUse', 'updatedAt'],
+    attributes: ['uuid', 'externalId', 'title', 'description', 'isUse', 'isAvailable', 'updatedAt'],
     include: [
       {
         model: Category,

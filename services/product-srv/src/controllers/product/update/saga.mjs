@@ -30,7 +30,6 @@ export default class Saga {
       return await saga.execute(params);
     }
     catch (e) {
-      console.log(e)
       if (e instanceof Sagas.SagaExecutionFailed) {
         throw new NetworkError({ code: '2.0.0', message: e['message'] });
       }
@@ -50,6 +49,9 @@ export default class Saga {
       .step('Update gallery')
       .invoke(async (params) => {
         logger.info('Update gallery');
+        if ( ! body['gallery']) {
+          return void 0;
+        }
         const gallery = await updateGallery(uuid, body['gallery']);
         params.setGallery(gallery);
       })
@@ -62,6 +64,9 @@ export default class Saga {
       .step('Update modes')
       .invoke(async (params) => {
         logger.info('Update options');
+        if ( ! body['modes']) {
+          return void 0;
+        }
         const options = await updateOption(uuid, body['modes']);
         params.setOptions(options);
       })
