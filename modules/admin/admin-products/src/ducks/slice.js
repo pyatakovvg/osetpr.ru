@@ -54,12 +54,6 @@ const slice = createSlice({
     },
     updateItemRequestSuccessAction(state, { payload }) {
       state['itemsInProcess'] = state['itemsInProcess'].filter((uuid) => uuid !== payload['uuid']);
-      state['items'] = state['items'].map((item) => {
-        if (item['uuid'] === payload['uuid']) {
-          return payload;
-        }
-        return item;
-      });
       state['inProcess'] = false;
     },
   },

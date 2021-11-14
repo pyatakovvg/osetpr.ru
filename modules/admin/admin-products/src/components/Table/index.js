@@ -42,12 +42,14 @@ function ProductList() {
     dispatch(closeDialog('product-destroy'));
   }
 
-  function handleChangeUse(uuid, data) {
-    dispatch(updateItem(uuid, data));
+  async function handleChangeUse(uuid, data) {
+    await dispatch(updateItem(uuid, data));
+    await dispatch(getItems());
   }
 
-  function handleChangeAvailable(uuid, data) {
-    dispatch(updateItem(uuid, data));
+  async function handleChangeAvailable(uuid, data) {
+    await dispatch(updateItem(uuid, data));
+    await dispatch(getItems());
   }
 
   return (
