@@ -130,5 +130,12 @@ export async function checkSubscription() {
 
 export function checkServiceWorker() {
   console.log('WePush: SW support checking');
-  return ('serviceWorker' in navigator);
+
+  if ( ! ('serviceWorker' in navigator)) {
+    return false;
+  }
+
+  if ( ! ('PushManager' in window)) {
+    return false;
+  }
 }
