@@ -86,7 +86,7 @@ function OrderList() {
               <Text type={Text.TYPE_BODY}>{ value['title'] }</Text>
             </div>
             <div className={styles['user']}>
-              <Text type={Text.TYPE_BODY}>"{ value['customer']['name'] }"</Text>
+              <Text type={Text.TYPE_BODY}>"{ value['customer'] ? value['customer']['name'] : 'Не указан' }"</Text>
             </div>
           </div>
         )}</Column>
