@@ -15,6 +15,7 @@ export default async function(userUuid) {
   if (data[0]) {
     return {
       uuid: data[0]['uuid'],
+      userUuid: userUuid,
       name: data[0][data[0]['type']]['name'],
       phone: data[0][data[0]['type']]['phone'],
     };

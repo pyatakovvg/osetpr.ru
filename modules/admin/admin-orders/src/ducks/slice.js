@@ -63,17 +63,7 @@ const typesSlice = createSlice({
       ];
     },
 
-    updateItemAction(state, { payload }) {
-      state['items'] = state['items'].map((item) => {
-        if (item['uuid'] === payload['uuid']) {
-          return {
-            ...item,
-            ...payload,
-          }
-        }
-        return item;
-      });
-    }
+    updateItemAction(state) { }
   },
 });
 
