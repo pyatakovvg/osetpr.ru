@@ -98,6 +98,18 @@ export async function checkSubscription() {
   try {
     serviceWorkerRegistration = await navigator.serviceWorker.ready;
 
+    if (serviceWorkerRegistration instanceof Promise) {
+      serviceWorkerRegistration = await new Promise((resolve, reject) => {
+        serviceWorkerRegistration
+          .then((result) => {
+            resolve(result);
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      });
+    }
+
     if ( ! serviceWorkerRegistration) {
       throw new Error('Воркер не установлен');
     }
