@@ -42,19 +42,20 @@ function ProductList() {
     dispatch(closeDialog('product-destroy'));
   }
 
-  function handleChangeUse(uuid, data) {
-    dispatch(updateItem(uuid, data));
+  async function handleChangeUse(uuid, data) {
+    await dispatch(updateItem(uuid, data));
+    await dispatch(getItems());
   }
 
-  function handleChangeAvailable(uuid, data) {
-    dispatch(updateItem(uuid, data));
+  async function handleChangeAvailable(uuid, data) {
+    await dispatch(updateItem(uuid, data));
+    await dispatch(getItems());
   }
 
   return (
     <div className={styles['wrapper']}>
       <Table columns={items}>
         <Column
-          title="Фото"
           alias="gallery"
           width={140}
         >
@@ -64,7 +65,6 @@ function ProductList() {
           }
         </Column>
         <Column
-          title={'Данные'}
           align={'left'}
         >{(value) => (
           <div className={styles['row']}>

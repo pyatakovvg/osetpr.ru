@@ -10,7 +10,6 @@ import styles from './defaults.module.scss';
 
 
 function Notifications() {
-  console.log(document.querySelector('#notification'))
   const dispatch = useDispatch();
   const notifications = useSelector(selectNotifications);
 
