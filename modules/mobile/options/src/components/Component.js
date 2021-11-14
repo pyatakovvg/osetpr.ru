@@ -31,11 +31,11 @@ function Options() {
 
   return (
     <div className={styles['wrapper']}>
-      <div className={styles['content']}>
+      <div className={styles['container']}>
         <div className={styles['header']}>
           <Header>Настройка</Header>
         </div>
-        <div className={styles['information']}>
+        <div className={styles['content']}>
           <div className={styles['row']}>
             <Checkbox
               value={hasSubscribe}

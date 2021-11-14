@@ -29,11 +29,11 @@ function Comments() {
 
   return (
     <section className={styles['wrapper']}>
-      <div className={styles['content']}>
+      <div className={styles['container']}>
         <div className={styles['header']}>
           <Header>Отзывы</Header>
         </div>
-        <div className={styles['comments']}>
+        <div className={styles['content']}>
           { ! items.length && (
             <Empty />
           )}

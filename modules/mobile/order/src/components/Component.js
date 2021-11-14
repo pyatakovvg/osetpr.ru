@@ -65,11 +65,11 @@ function Order() {
 
   return (
     <div className={styles['wrapper']}>
-      <div className={styles['content']}>
+      <div className={styles['container']}>
         <div className={styles['header']}>
           <Header>Ваш заказ</Header>
         </div>
-        <div className={styles['information']}>
+        <div className={styles['content']}>
           <div className={styles['row']}>
             <div className={styles['number']}>
               <span className={styles['title']}>Номер:</span>

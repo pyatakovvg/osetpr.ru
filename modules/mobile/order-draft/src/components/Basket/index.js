@@ -79,14 +79,14 @@ function Order() {
 
   return (
     <div className={styles['wrapper']}>
-      <div className={styles['content']}>
+      <div className={styles['container']}>
         <div className={styles['header']}>
           <Header>Корзина</Header>
           {order && !! order['products'].length && (
             <span className={styles['clean']} onClick={() => handleRemoveAll()}>Очистить</span>
           )}
         </div>
-        <div className={styles['products']}>
+        <div className={styles['content']}>
           {order && order['products'].map((product) => (
             <Product
               key={product['vendor']}

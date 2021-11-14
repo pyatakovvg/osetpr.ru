@@ -165,12 +165,12 @@ function Client() {
 
   return (
     <div className={styles['wrapper']}>
-      <div className={styles['content']}>
+      <div className={styles['container']}>
         <div className={styles['header']}>
           <Header>Корзина</Header>
           <span className={styles['clean']} onClick={() => handleBack()}>{'<'} Оформиление заказа</span>
         </div>
-        <div className={styles['products']}>
+        <div className={styles['content']}>
           <div className={styles['row']}>
             <Item title={'Адрес доставки'} value={addressToString(order['address'])} defaultValue={'Не указан'} onClick={() => dispatch(openDialog('address'))}/>
           </div>
