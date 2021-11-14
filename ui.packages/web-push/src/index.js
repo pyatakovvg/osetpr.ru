@@ -122,4 +122,5 @@ export function checkServiceWorker() {
   if ( ! ('serviceWorker' in navigator)) {
     return false;
   }
+  return true;
 }
