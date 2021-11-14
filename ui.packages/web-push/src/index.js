@@ -24,6 +24,8 @@ function urlB64ToUint8Array(base64String) {
 
 
 export async function subscribeUser(userUuid) {
+  let subscription;
+
   try {
     if ( ! ('PushManager' in window)) {
       return false;
@@ -35,7 +37,7 @@ export async function subscribeUser(userUuid) {
       throw new Error('SW not registered');
     }
 
-    const subscription = await serviceWorkerRegistration.pushManager.subscribe({
+    subscription = await serviceWorkerRegistration.pushManager.subscribe({
       userVisibleOnly: true,
       applicationServerKey: urlB64ToUint8Array(appServerKey),
     })
@@ -56,6 +58,9 @@ export async function subscribeUser(userUuid) {
     return true;
   }
   catch(error) {
+    if (subscription) {
+      await subscription.unsubscribe();
+    }
     throw new UnavailableError({ code: '0.0.2', message: error['message'] })
   }
 }
