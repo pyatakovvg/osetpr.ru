@@ -183,24 +183,24 @@ services:
       - customer_srv
 
 
-  order_gw:
-    container_name: order_gw
-    build:
-      context: ./
-      dockerfile: ./_deploy/stage/Dockerfile.order-gw
-    restart: always
-    logging:
-      driver: "json-file"
-      options:
-        max-file: "5"
-        max-size: 10m
-    links:
-      - rabbit
-      - order_srv
-      - identity_srv
-      - customer_srv
-      - gallery_srv
-      - product_srv
+#  order_gw:
+#    container_name: order_gw
+#    build:
+#      context: ./
+#      dockerfile: ./_deploy/stage/Dockerfile.order-gw
+#    restart: always
+#    logging:
+#      driver: "json-file"
+#      options:
+#        max-file: "5"
+#        max-size: 10m
+#    links:
+#      - rabbit
+#      - order_srv
+#      - identity_srv
+#      - customer_srv
+#      - gallery_srv
+#      - product_srv
 
 
   admin_gw:
@@ -244,23 +244,23 @@ services:
       - product_srv
 
 
-  order_ui:
-    container_name: order_ui
-    build:
-      context: ./
-      dockerfile: ./_deploy/stage/Dockerfile.order-ui
-    restart: always
-    logging:
-      driver: "json-file"
-      options:
-        max-file: "5"
-        max-size: 10m
-    links:
-      - order_gw
-    volumes:
-      - ./clients/order-ui/nginx/conf.d:/etc/nginx/conf.d:ro
-    environment:
-      - NODE_ENV=production
+#  order_ui:
+#    container_name: order_ui
+#    build:
+#      context: ./
+#      dockerfile: ./_deploy/stage/Dockerfile.order-ui
+#    restart: always
+#    logging:
+#      driver: "json-file"
+#      options:
+#        max-file: "5"
+#        max-size: 10m
+#    links:
+#      - order_gw
+#    volumes:
+#      - ./clients/order-ui/nginx/conf.d:/etc/nginx/conf.d:ro
+#    environment:
+#      - NODE_ENV=production
 
 
   admin_ui:
@@ -349,7 +349,6 @@ services:
     depends_on:
       - certbot
     links:
-      - order_ui
       - admin_ui
       - client_ui
       - mobile_ui
