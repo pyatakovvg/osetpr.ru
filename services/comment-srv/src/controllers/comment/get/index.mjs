@@ -35,7 +35,7 @@ export default () => async (ctx) => {
     order: [
       ['createdAt', 'desc']
     ],
-    attributes: ['uuid', 'userUuid', 'user', 'content', 'createdAt'],
+    attributes: ['uuid', 'userUuid', 'user', 'content', 'isAdmin', 'createdAt'],
     include: [
       {
         model: Theme,

@@ -3,14 +3,17 @@ import moment from '@packages/moment';
 
 import { Text } from '@ui.packages/mobile-kit'
 
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import cn from 'classnames';
 import styles from './default.module.scss';
 
 
-function Comment({ className, user, content, createdAt }) {
-  const wrapperClassName = cn(styles['wrapper'], className);
+function Comment({ className, user, content, isAdmin, createdAt }) {
+  const wrapperClassName = useMemo(() => cn(styles['wrapper'], className, {
+    [styles['is-admin']]: isAdmin,
+  }), [className, isAdmin]);
+
   return (
     <div className={wrapperClassName}>
       <div className={styles['header']}>
