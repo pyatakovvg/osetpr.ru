@@ -38,8 +38,8 @@ const typesSlice = createSlice({
       state['inProcess'] = false;
     },
     getItemsRequestSuccessAction(state, { payload }) {
-      state['statuses'] = payload['statuses'];
-      state['customers'] = payload['customers'];
+      state['statuses'] = payload['filters']['statuses'];
+      state['customers'] = payload['filters']['customers'];
       state['items'] = payload['data'];
       state['meta'] = payload['meta'];
       state['inProcess'] = false;
@@ -63,17 +63,7 @@ const typesSlice = createSlice({
       ];
     },
 
-    updateItemAction(state, { payload }) {
-      state['items'] = state['items'].map((item) => {
-        if (item['uuid'] === payload['uuid']) {
-          return {
-            ...item,
-            ...payload,
-          }
-        }
-        return item;
-      });
-    }
+    updateItemAction(state) { }
   },
 });
 

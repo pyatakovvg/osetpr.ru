@@ -8,7 +8,7 @@ import cn from 'classnames';
 import styles from './default.module.scss';
 
 
-export default function Button({ mode, children, disabled, inProcess, onClick }) {
+export default function Button({ type, mode, children, disabled, inProcess, onClick }) {
   const buttonClassName = useMemo(() => cn(styles['button'], {
     [styles['mode--success']]: mode === 'success',
     [styles['in-process']]: inProcess,
@@ -24,7 +24,7 @@ export default function Button({ mode, children, disabled, inProcess, onClick })
   }
 
   return (
-    <button className={buttonClassName} disabled={disabled} onClick={() => handleClick()}>
+    <button className={buttonClassName} type={type} disabled={disabled} onClick={() => handleClick()}>
       { children }
       {inProcess && (
         <Loading />
@@ -34,12 +34,14 @@ export default function Button({ mode, children, disabled, inProcess, onClick })
 }
 
 Button.propTypes = {
+  type: types.oneOf(['button', 'submit']),
   inProcess: types.bool,
   disabled: types.bool,
-  mode: types.oneOf(['success', 'default']),
+  mode: types.oneOf(['success', 'primary', 'default']),
 };
 
 Button.defaultProps = {
+  type: 'submit',
   inProcess: false,
   disabled: false,
   mode: 'default',

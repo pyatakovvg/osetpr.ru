@@ -2,6 +2,8 @@
 import { selectPayments } from '@modules/mobile-order-draft';
 
 import numeral from '@packages/numeral';
+import moment from '@packages/moment';
+
 import { pushNotification } from '@ui.packages/mobile-notifications';
 import { selectInProcess, resetStateAction } from '@ui.packages/order';
 import { Dialog, openDialog, closeDialog } from '@ui.packages/mobile-dialog';
@@ -14,9 +16,11 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Item from "./Item";
+import Date from "./Date";
 import Address from "./Address";
 import Payment from "./Payment";
 import Details from "./Details";
+import Description from "./Description";
 
 import styles from './default.module.scss';
 
@@ -49,7 +53,7 @@ function addressToString(data) {
 function customerData(data) {
   let customer = null;
   if (data && data instanceof Object) {
-    customer = data['name'] + ' (' + data['phone'] + ')';
+    customer = data['name'] + '; ' + data['phone'].replace(/(\+7)(\d{3})(\d{3})(\d{2})(\d{2})/ig, '$1 ($2) $3-$4-$5');
   }
   return customer;
 }
@@ -89,15 +93,36 @@ function Client() {
     }
   }
 
+  async function handleDateToUpdate(data) {
+    const isUpdated = await dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
+      ...order,
+      dateTo: data['dateTo'],
+    }));
+
+    if (isUpdated) {
+      dispatch(closeDialog('date'));
+    }
+  }
+
   async function handleDetailsUpdate(data) {
     const isUpdated = await dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
       ...order,
       customer: { name: data['name'], phone: data['phone'] },
-      description: data['description'],
     }));
 
     if (isUpdated) {
       dispatch(closeDialog('details'));
+    }
+  }
+
+  async function handleDescriptionUpdate(data) {
+    const isUpdated = await dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
+      ...order,
+      description: data['description'],
+    }));
+
+    if (isUpdated) {
+      dispatch(closeDialog('description'));
     }
   }
 
@@ -109,21 +134,21 @@ function Client() {
     if ( ! isAddress) {
       return dispatch(pushNotification({
         title: 'Вы не указали адрес доставки',
-        autoClose: false,
+        mode: 'danger',
       }));
     }
 
     if ( ! isPayment) {
       return dispatch(pushNotification({
         title: 'Вы не указали способ оплаты',
-        autoClose: false,
+        mode: 'danger',
       }));
     }
 
     if ( ! isCustomer) {
       return dispatch(pushNotification({
         title: 'Вы не указали контактные данные',
-        autoClose: false,
+        mode: 'danger',
       }));
     }
 
@@ -140,12 +165,12 @@ function Client() {
 
   return (
     <div className={styles['wrapper']}>
-      <div className={styles['content']}>
+      <div className={styles['container']}>
         <div className={styles['header']}>
           <Header>Корзина</Header>
-          <span className={styles['clean']} onClick={() => handleBack()}>Оформиление заказа</span>
+          <span className={styles['clean']} onClick={() => handleBack()}>{'<'} Оформиление заказа</span>
         </div>
-        <div className={styles['products']}>
+        <div className={styles['content']}>
           <div className={styles['row']}>
             <Item title={'Адрес доставки'} value={addressToString(order['address'])} defaultValue={'Не указан'} onClick={() => dispatch(openDialog('address'))}/>
           </div>
@@ -153,7 +178,7 @@ function Client() {
             <Item title={'Способ оплаты'} value={order['payment'] && order['payment']['displayName']} defaultValue={'Не указан'} onClick={() => dispatch(openDialog('payment'))}/>
           </div>
           <div className={styles['row']}>
-            <Item title={'Доставка ко времени'} value={null} defaultValue={'Как можно скорее'} onClick={() => console.log(4676)}/>
+            <Item title={'Доставка ко времени'} value={order['dateTo'] ? moment(order['dateTo']).format('DD.MM.YYYY HH:mm') : null} defaultValue={'Как можно скорее'} onClick={() => dispatch(openDialog('date'))}/>
           </div>
           <div className={styles['row']}>
             <Item
@@ -162,6 +187,9 @@ function Client() {
               defaultValue={'Не указан'}
               onClick={() => dispatch(openDialog('details'))}
             />
+          </div>
+          <div className={styles['row']}>
+            <Item title={'Информация к заказу (не обязательно)'} value={null} defaultValue={order['description'] || 'Не указано'} onClick={() => dispatch(openDialog('description'))}/>
           </div>
         </div>
       </div>
@@ -191,13 +219,30 @@ function Client() {
         />
       </Dialog>
 
+      <Dialog name={'date'}>
+        <Date
+          initialValues={{
+            dateTo: order['dateTo'] ? moment(order['dateTo']) : moment().add(2, 'hours'),
+          }}
+          onSubmit={(data) => handleDateToUpdate(data) }
+        />
+      </Dialog>
+
       <Dialog name={'details'}>
         <Details
           initialValues={{
             ...order['customer'],
-            description: order['description'],
           }}
           onSubmit={(data) => handleDetailsUpdate(data)}
+        />
+      </Dialog>
+
+      <Dialog name={'description'}>
+        <Description
+          initialValues={{
+            description: order['description'],
+          }}
+          onSubmit={(data) => handleDescriptionUpdate(data)}
         />
       </Dialog>
     </div>

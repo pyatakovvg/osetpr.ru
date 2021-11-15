@@ -1,7 +1,7 @@
 
 import { selectCategories, selectInProcess } from "@modules/admin-product";
 
-import { CheckBoxField, Col, Header, InputField, Row, SelectField, EditorField } from "@ui.packages/admin-kit";
+import { Col, Header, InputField, Row, SelectField, EditorField } from "@ui.packages/admin-kit";
 
 import React from 'react';
 import { useSelector } from "react-redux";
@@ -23,20 +23,8 @@ function Common() {
           <Col>
             <InputField name="externalId" label="Номер товара (генерируется автоматически)" disabled />
           </Col>
-          <Col className={styles['is-use']}>
-            <CheckBoxField name="isUse" label="отображать в каталоге" />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <InputField
-              name={'title'}
-              label={'Название'}
-            />
-          </Col>
           <Col>
             <SelectField
-              require
               simple
               name="categoryId"
               label="Категория"
@@ -49,8 +37,21 @@ function Common() {
         </Row>
         <Row>
           <Col>
+            <InputField
+              name={'title'}
+              label={'Название'}
+            />
+          </Col>
+          <Col>
+            <InputField
+              name={'originalName'}
+              label={'Оригинальное название'}
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
             <EditorField
-              require
               name="description"
               label="Описание"
               disabled={inProcess}

@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import styles from './default.module.scss';
 
 
-function DetailsForm({ handleSubmit, valid }) {
+function DetailsForm({ handleSubmit }) {
   const inProcess = useSelector(selectInProcess);
 
   return (
@@ -23,15 +23,11 @@ function DetailsForm({ handleSubmit, valid }) {
         <div className={styles['row']}>
           <InputPhoneField name={'phone'} label={'Контактный телефон'} require />
         </div>
-        <div className={styles['row']}>
-          <InputField name={'description'} label={'Дополнительная информация'} />
-        </div>
       </div>
       <div className={styles['controls']}>
         <Button
           mode={'success'}
           inProcess={inProcess}
-          disabled={ ! valid}
         >Указать</Button>
       </div>
     </form>

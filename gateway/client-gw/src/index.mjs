@@ -1,16 +1,19 @@
 
 import logger from '@sys.packages/logger';
 import { Server } from '@sys.packages/server';
+import { connection as rabbitConnection } from "@sys.packages/rabbit";
 
 import authRoutes from './routes/auth.mjs';
 import notAuthRoutes from './routes/notAuth.mjs';
 
-// import rabbit from './rabbit';
+import rabbit from './rabbit';
 
 
 (async () => {
   try {
-    // await rabbit();
+    await rabbitConnection(process.env['RABBIT_CONNECTION_HOST']);
+
+    await rabbit();
 
     const server = new Server({
       cookie: {

@@ -41,6 +41,48 @@ services:
         max-size: 10m
 
 
+  sms_srv:
+    container_name: sms_srv
+    build:
+      context: ./
+      dockerfile: ./_deploy/prod/Dockerfile.sms-srv
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+
+
+  push_srv:
+    container_name: push_srv
+    build:
+      context: ./
+      dockerfile: ./_deploy/prod/Dockerfile.push-srv
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+
+
+  comment_srv:
+    container_name: comment_srv
+    build:
+      context: ./
+      dockerfile: ./_deploy/prod/Dockerfile.comment-srv
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 10m
+    links:
+      - db
+      - rabbit
+
+
   customer_srv:
     container_name: customer_srv
     build:
@@ -52,9 +94,6 @@ services:
       options:
         max-file: "5"
         max-size: 10m
-    depends_on:
-      - db
-      - rabbit
     links:
       - db
       - rabbit
@@ -71,11 +110,6 @@ services:
       options:
         max-file: "5"
         max-size: 10m
-    depends_on:
-      - db
-      - rabbit
-      - mail_srv
-      - customer_srv
     links:
       - db
       - rabbit
@@ -93,9 +127,6 @@ services:
       options:
         max-file: "5"
         max-size: 10m
-    depends_on:
-      - db
-      - rabbit
     links:
       - db
       - rabbit
@@ -112,10 +143,6 @@ services:
       options:
         max-file: "5"
         max-size: 10m
-    depends_on:
-      - db
-      - rabbit
-      - gallery_srv
     links:
       - db
       - rabbit
@@ -133,10 +160,6 @@ services:
       options:
         max-file: "5"
         max-size: 10m
-    depends_on:
-      - db
-      - rabbit
-      - product_srv
     links:
       - db
       - rabbit
@@ -153,11 +176,6 @@ services:
       options:
         max-file: "5"
         max-size: 10m
-    depends_on:
-      - db
-      - rabbit
-      - product_srv
-      - customer_srv
     links:
       - db
       - rabbit
@@ -165,31 +183,24 @@ services:
       - customer_srv
 
 
-  order_gw:
-    container_name: order_gw
-    build:
-      context: ./
-      dockerfile: ./_deploy/prod/Dockerfile.order-gw
-    restart: always
-    logging:
-      driver: "json-file"
-      options:
-        max-file: "5"
-        max-size: 10m
-    depends_on:
-      - rabbit
-      - order_srv
-      - identity_srv
-      - customer_srv
-      - gallery_srv
-      - product_srv
-    links:
-      - rabbit
-      - order_srv
-      - identity_srv
-      - customer_srv
-      - gallery_srv
-      - product_srv
+#  order_gw:
+#    container_name: order_gw
+#    build:
+#      context: ./
+#      dockerfile: ./_deploy/prod/Dockerfile.order-gw
+#    restart: always
+#    logging:
+#      driver: "json-file"
+#      options:
+#        max-file: "5"
+#        max-size: 10m
+#    links:
+#      - rabbit
+#      - order_srv
+#      - identity_srv
+#      - customer_srv
+#      - gallery_srv
+#      - product_srv
 
 
   admin_gw:
@@ -203,14 +214,6 @@ services:
       options:
         max-file: "5"
         max-size: 10m
-    depends_on:
-      - rabbit
-      - order_srv
-      - identity_srv
-      - customer_srv
-      - gallery_srv
-      - product_srv
-      - plan_srv
     links:
       - rabbit
       - order_srv
@@ -232,13 +235,6 @@ services:
       options:
         max-file: "5"
         max-size: 10m
-    depends_on:
-      - rabbit
-      - order_srv
-      - identity_srv
-      - customer_srv
-      - gallery_srv
-      - product_srv
     links:
       - rabbit
       - order_srv
@@ -248,25 +244,23 @@ services:
       - product_srv
 
 
-  order_ui:
-    container_name: order_ui
-    build:
-      context: ./
-      dockerfile: ./_deploy/prod/Dockerfile.order-ui
-    restart: always
-    logging:
-      driver: "json-file"
-      options:
-        max-file: "5"
-        max-size: 10m
-    depends_on:
-      - order_gw
-    links:
-      - order_gw
-    volumes:
-      - ./clients/order-ui/nginx/conf.d:/etc/nginx/conf.d:ro
-    environment:
-      - NODE_ENV=production
+#  order_ui:
+#    container_name: order_ui
+#    build:
+#      context: ./
+#      dockerfile: ./_deploy/prod/Dockerfile.order-ui
+#    restart: always
+#    logging:
+#      driver: "json-file"
+#      options:
+#        max-file: "5"
+#        max-size: 10m
+#    links:
+#      - order_gw
+#    volumes:
+#      - ./clients/order-ui/nginx/conf.d:/etc/nginx/conf.d:ro
+#    environment:
+#      - NODE_ENV=production
 
 
   admin_ui:
@@ -280,8 +274,6 @@ services:
       options:
         max-file: "5"
         max-size: 10m
-    depends_on:
-      - admin_gw
     links:
       - admin_gw
     volumes:
@@ -301,8 +293,6 @@ services:
       options:
         max-file: "5"
         max-size: 10m
-    depends_on:
-      - client_gw
     links:
       - client_gw
     volumes:
@@ -322,8 +312,6 @@ services:
       options:
         max-file: "5"
         max-size: 10m
-    depends_on:
-      - client_gw
     links:
       - client_gw
     volumes:
@@ -361,7 +349,6 @@ services:
     depends_on:
       - certbot
     links:
-      - order_ui
       - admin_ui
       - client_ui
       - mobile_ui

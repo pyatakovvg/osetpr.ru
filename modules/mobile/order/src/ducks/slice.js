@@ -29,6 +29,15 @@ const slice = createSlice({
       state['order'] = payload;
       state['inProcess'] = false;
     },
+
+    updateOrderRequestSuccessAction(state, { payload }) {
+      if (state['order'] && state['order']['externalId'] === payload['externalId']) {
+        state['order'] = {
+          ...state['order'],
+          status: payload['status'],
+        };
+      }
+    },
   },
 });
 
@@ -38,6 +47,8 @@ export const {
   getOrderRequestAction,
   getOrderRequestFailAction,
   getOrderRequestSuccessAction,
+
+  updateOrderRequestSuccessAction,
 } = slice['actions'];
 
 export const selectOrder = (state) => state[REDUCER_NAME]['order'];

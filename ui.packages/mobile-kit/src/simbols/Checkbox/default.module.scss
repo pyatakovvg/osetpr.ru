@@ -1,0 +1,60 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  align-items: center;
+  background: $background;
+  border: 1px solid $gray-darken;
+  padding: 8px;
+  border-radius: 4px;
+
+  &.disabled {
+
+    background: $gray-darken;
+  }
+}
+
+.checkbox {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  justify-content: center;
+  align-items: center;
+  background: $white;
+  border-radius: 4px;
+}
+
+.disabled {
+  .checkbox {
+
+    background: $gray-lighten;
+  }
+
+  .marker {
+
+    color: $gray;
+  }
+}
+
+.marker {
+
+  display: inline-flex;
+  font-size: 16px;
+  color: $success;
+}
+
+.label {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  margin: 0 0 0 16px;
+}

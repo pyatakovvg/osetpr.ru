@@ -47,7 +47,7 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: $gray-lighten;
+  background: $white;
   outline: none;
   justify-content: center;
   align-items: center;
@@ -63,7 +63,7 @@
     display: block;
     width: 8px;
     height: 8px;
-    background: $background;
+    background: $success-darken;
     border-radius: 50%;
   }
 

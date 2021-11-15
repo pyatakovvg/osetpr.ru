@@ -7,7 +7,7 @@ export default function(data) {
   return {
     externalId: data['externalId'],
     uuid: data['uuid'],
-    isUse: data['isUse'],
+    isAvailable: data['isAvailable'],
     title: data['title'],
     categoryId: data['category']['id'],
     description: data['description'],

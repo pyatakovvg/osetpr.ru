@@ -1,5 +1,5 @@
 
-import {selectItems, selectInProcess, updateStatus, selectCustomers } from '@modules/admin-orders';
+import {selectItems, selectInProcess, updateStatus, getItems } from '@modules/admin-orders';
 
 import moment from '@packages/moment';
 import numeral from '@packages/numeral';
@@ -7,7 +7,7 @@ import numeral from '@packages/numeral';
 import { Table, Column } from '@ui.packages/table';
 import { Text, Status, Button, Actions } from '@ui.packages/admin-kit';
 
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -27,14 +27,6 @@ function getStatusMode(code) {
   }
 }
 
-function useCustomers() {
-  const customers = useSelector(selectCustomers);
-  return useMemo(() => customers.reduce((prev, value) => {
-    prev[value['userUuid']] = value['name'];
-    return prev;
-  }, {}), [customers.length]);
-}
-
 function OrderList() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -42,30 +34,33 @@ function OrderList() {
   const items = useSelector(selectItems);
   const inProcess = useSelector(selectInProcess);
 
-  const customers = useCustomers();
-
   function handleEdit(uuid) {
     navigate(process.env['PUBLIC_URL'] + '/orders/' + uuid);
   }
 
-  function handleCancel(uuid) {
-    dispatch(updateStatus(uuid, 'canceled'));
+  async function handleCancel(uuid) {
+    await dispatch(updateStatus(uuid, 'canceled'));
+    await dispatch(getItems());
   }
 
-  function handleConfirm(uuid) {
-    dispatch(updateStatus(uuid, 'confirmed'));
+  async function handleConfirm(uuid) {
+    await dispatch(updateStatus(uuid, 'confirmed'));
+    await dispatch(getItems());
   }
 
-  function handleInProcess(uuid) {
-    dispatch(updateStatus(uuid, 'process'));
+  async function handleInProcess(uuid) {
+    await dispatch(updateStatus(uuid, 'process'));
+    await dispatch(getItems());
   }
 
-  function handleClose(uuid) {
-    dispatch(updateStatus(uuid, 'finished'));
+  async function handleClose(uuid) {
+    await dispatch(updateStatus(uuid, 'finished'));
+    await dispatch(getItems());
   }
 
-  function handleFinished(uuid) {
-    dispatch(updateStatus(uuid, 'done'));
+  async function handleFinished(uuid) {
+    await dispatch(updateStatus(uuid, 'done'));
+    await dispatch(getItems());
   }
 
   return (
@@ -81,17 +76,17 @@ function OrderList() {
         <Column
           title={'Описание'}
           align={'left'}
-          width={200}
+          width={150}
         >{(value) => (
           <div className={styles['row']}>
-            <div className={styles['title']}>
-              <Text type={Text.TYPE_BODY}>"{ customers[value['userUuid']] }"</Text>
+            <div className={styles['external-id']}>
+              <Text type={Text.TYPE_BODY}>{ value['externalId'] }</Text>
             </div>
-            <div className={styles['description']}>
+            <div className={styles['title']}>
               <Text type={Text.TYPE_BODY}>{ value['title'] }</Text>
             </div>
-            <div className={styles['description']}>
-              <Text>{ value['description'] }</Text>
+            <div className={styles['user']}>
+              <Text type={Text.TYPE_BODY}>"{ value['customer'] ? value['customer']['name'] : 'Не указан' }"</Text>
             </div>
           </div>
         )}</Column>
@@ -109,26 +104,25 @@ function OrderList() {
           </div>
         )}</Column>
         <Column
-          title={'На дату'}
           width={200}
           align={'right'}
         >{(value) => {
           return (
             <div className={styles['row']}>
-              <div className={styles['status']}>
-                <Status type={'label'} mode={getStatusMode(value['status']['code'])}>{ value['status']['displayName'] }</Status>
-              </div>
-              <div className={styles['date']}>
+              <div className={styles['date-to']}>
                 <Text type={Text.TYPE_BODY}>На: { value['dateTo'] ? moment(value['dateTo']).format('DD.MM.YYYY - HH:mm') : 'Как можно быстрее' }</Text>
               </div>
-              <div className={styles['date']}>
+              <div className={styles['date-created']}>
                 <Text>Создан: { moment(value['createdAt']).format('DD.MM.YYYY - HH:mm') }</Text>
+              </div>
+              <div className={styles['status']}>
+                <Status type={'label'} mode={getStatusMode(value['status']['code'])}>{ value['status']['displayName'] }</Status>
               </div>
               {(value['status']['code'] === 'new') && (
                 <div className={styles['controls']}>
                   <Button
                     size={Button.SIZE_SMALL}
-                    mode={Button.MODE_PRIMARY}
+                    mode={Button.MODE_DANGER}
                     form={Button.FORM_CONTEXT}
                     onClick={() => handleCancel(value['uuid'])}
                   >Отменить</Button>

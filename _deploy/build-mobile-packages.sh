@@ -37,5 +37,7 @@ echo '[--- mobile about ---]'
 cd  ../about && npx yarn build
 echo '[--- mobile comments ---]'
 cd  ../comments && npx yarn build
+echo '[--- mobile settings ---]'
+cd  ../options && npx yarn build
 
 exit 0

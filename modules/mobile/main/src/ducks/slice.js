@@ -44,6 +44,7 @@ export const {
   getProductsRequestSuccessAction,
 } = slice['actions'];
 
+export const selectFilter = (state) => state[REDUCER_NAME]['filter'];
 export const selectProducts = (state) => state[REDUCER_NAME]['products'];
 
 export const name = slice['name'];

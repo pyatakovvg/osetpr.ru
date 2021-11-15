@@ -16,7 +16,6 @@ import initStore from './redux/initStore';
 
 import * as worker from './serviceWorker';
 
-
 const defaultOptions = {
   portal: null,
   state: {},
@@ -101,11 +100,12 @@ class App {
             ...this.options,
             routes
           }} />
+          <Notifications />
         </BrowserRouter>
       </Provider>
     , this.options['portal']);
 
-    worker.unregister();
+    await worker.unregister();
   }
 
   async render() {
@@ -125,8 +125,8 @@ class App {
               ...this.options,
               routes
             }} />
+            <Notifications />
           </StaticRouter>
-          <Notifications />
         </Provider>
       );
     }

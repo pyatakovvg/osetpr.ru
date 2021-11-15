@@ -1,6 +1,6 @@
 
 import { models } from '@sys.packages/db';
-import { sendCommand } from '@sys.packages/rabbit';
+import { sendEvent } from '@sys.packages/rabbit';
 
 
 export default () => async (ctx) => {
@@ -9,7 +9,7 @@ export default () => async (ctx) => {
 
   await Gallery.destroy({ where: { uuid: data['uuid'] }});
 
-  await sendCommand(process.env['EVENT_IMAGE_DELETE'], JSON.stringify(data['uuid']));
+  await sendEvent(process.env['EVENT_IMAGE_DELETE'], JSON.stringify(data['uuid']));
 
   ctx.body = {
     success: true,

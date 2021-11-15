@@ -11,6 +11,10 @@ export default async function updateProperties(uuid, properties) {
     product['title'] = properties['title'];
   }
 
+  if ('originalName' in properties) {
+    product['originalName'] = properties['originalName'];
+  }
+
   if ('description' in properties) {
     product['description'] = properties['description'];
   }
@@ -23,13 +27,15 @@ export default async function updateProperties(uuid, properties) {
     product['isUse'] = properties['isUse'];
   }
 
-  const result = await Product.update(product, {
+  if ('isAvailable' in properties) {
+    product['isAvailable'] = properties['isAvailable'];
+  }
+
+  return await Product.update(product, {
     where: {
       uuid,
       updatedAt: properties['updatedAt'],
     },
     returning: true,
   });
-
-  return result;
 }

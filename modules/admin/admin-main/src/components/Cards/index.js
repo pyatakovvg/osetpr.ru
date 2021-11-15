@@ -12,11 +12,12 @@ function Cards() {
       <div className={styles['line']}>
         <Card icon={'fas fa-tag'} title={'Заказы'} href={'/orders'} />
         <Card icon={'fas fa-shopping-cart'} title={'Товары'} href={'/products'} />
+        <Card icon={'far fa-comments'} title={'Комментарии'} href={'/comments'} />
       </div>
       <div className={styles['line']}>
-        <Card icon={'fas fa-user-cog'} title={'Галлерея'} href={'/gallery'} />
+        <Card icon={'far fa-images'} title={'Галлерея'} href={'/gallery'} />
         <Card icon={'fas fa-percentage'} title={'Фин. план'} href={'/plans'} />
-        <Card icon={'fas fa-percentage'} title={'Пользователи'} href={'/customers'} />
+        <Card icon={'fas fa-users'} title={'Пользователи'} href={'/customers'} />
       </div>
       <div className={styles['line']}>
         <Card icon={'fas fa-images'} title={'Настройки'} href={'/settings'} />

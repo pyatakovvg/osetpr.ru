@@ -105,6 +105,14 @@ const routes = [
     ),
   },
   {
+    path: '/comments',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "admin-comments" */
+      '@modules/admin-comments'
+    ),
+  },
+  {
     path: '/sign-in',
     wrapper: 'Empty',
     module: import(

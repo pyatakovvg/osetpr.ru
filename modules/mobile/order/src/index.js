@@ -3,9 +3,10 @@ export { default } from './components';
 export { name, reducer } from './ducks/slice';
 
 export {
-  resetStateAction,
-
   selectOrder,
+
+  resetStateAction,
+  updateOrderRequestSuccessAction,
 } from './ducks/slice';
 
 export {

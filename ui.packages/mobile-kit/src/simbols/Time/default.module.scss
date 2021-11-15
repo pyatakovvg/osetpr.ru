@@ -1,0 +1,83 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: inline-flex;
+  flex-direction: row;
+  flex: 1 0;
+}
+
+.time {
+
+  display: inline-block;
+  width: 112px;
+  background: $background;
+  border: 1px solid $gray-darken;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 20%);
+  overflow: hidden;
+  transition: border-color 150ms;
+}
+
+.in-focus {
+  border-color: $primary-darken;
+
+  .title {
+    background: $primary-darken;
+  }
+}
+
+.is-error {
+  border-color: $danger-darken;
+
+  .title {
+    background: $danger-darken;
+  }
+}
+
+.number {
+
+  display: block;
+  padding: 8px;
+}
+
+.title {
+
+  display: block;
+  padding: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: $white;
+  background: $gray-darken;
+  text-align: center;
+  transition: background-color 150ms;
+}
+
+.input {
+
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 40px;
+  font-weight: 300;
+  text-align: center;
+  background: transparent;
+  padding: 0;
+  outline: none;
+  border: none;
+  color: $white;
+}
+
+.delimiter {
+
+  display: block;
+  font-size: 40px;
+  font-weight: 700;
+  padding: 0 8px;
+  margin: 10px 0 0;
+  color: $gray-darken;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 30%);
+}

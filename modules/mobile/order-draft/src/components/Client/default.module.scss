@@ -7,10 +7,10 @@
   display: flex;
   flex-direction: column;
   flex: 1 0;
-  overflow: hidden;
+  overflow: auto;
 }
 
-.content {
+.container {
 
   display: flex;
   flex: 1 0;
@@ -33,16 +33,16 @@
 
   display: flex;
   flex-direction: row;
-  flex: 0 0;
+  flex: 0 0 auto;
   justify-content: space-between;
   align-items: center;
 }
 
-.products {
+.content {
 
   display: flex;
   flex-direction: column;
-  flex: 0 0;
+  flex: 0 0 auto;
   margin: 32px 0 0;
 }
 
@@ -50,8 +50,9 @@
 
   display: block;
   color: $danger;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: underline;
 }
 
 .row {

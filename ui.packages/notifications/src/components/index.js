@@ -29,8 +29,4 @@ function Notifications() {
   , document.querySelector('#notification'));
 }
 
-Notifications.propTypes = {};
-
-Notifications.defaultProps = {};
-
 export default Notifications;

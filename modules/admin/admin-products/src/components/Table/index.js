@@ -1,24 +1,29 @@
 
-import { selectItems, selectInProcess } from '@modules/admin-products';
+import { selectItems, selectInProcess, selectItemsInProcess, removeItem, getItems, updateItem } from '@modules/admin-products';
 
 import numeral from '@packages/numeral';
 
-import { Text, Header, Image, Actions, CheckBox } from '@ui.packages/admin-kit';
 import { Table, Column } from '@ui.packages/table';
+import { Confirm, openDialog, closeDialog } from '@ui.packages/dialog';
+import { Text, Header, Image, Actions, CheckBox } from '@ui.packages/admin-kit';
 
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 import cn from 'classnames';
 import styles from './default.module.scss';
 
 
 function ProductList() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [productUuid, setProductUuid] = useState(null);
 
   const items = useSelector(selectItems);
   const inProcess = useSelector(selectInProcess);
+  const itemsInProcess = useSelector(selectItemsInProcess);
 
   function handleCopyProduct() {}
 
@@ -26,13 +31,31 @@ function ProductList() {
     navigate(process.env['PUBLIC_URL'] + '/products/' + uuid);
   }
 
-  function handleRemoveProduct() {}
+  function handleConfirmDestroyProduct(uuid) {
+    setProductUuid(uuid);
+    dispatch(openDialog('product-destroy'));
+  }
+
+  async function handleRemoveProduct() {
+    await dispatch(removeItem(productUuid));
+    await dispatch(getItems());
+    dispatch(closeDialog('product-destroy'));
+  }
+
+  async function handleChangeUse(uuid, data) {
+    await dispatch(updateItem(uuid, data));
+    await dispatch(getItems());
+  }
+
+  async function handleChangeAvailable(uuid, data) {
+    await dispatch(updateItem(uuid, data));
+    await dispatch(getItems());
+  }
 
   return (
     <div className={styles['wrapper']}>
       <Table columns={items}>
         <Column
-          title="Фото"
           alias="gallery"
           width={140}
         >
@@ -42,19 +65,21 @@ function ProductList() {
           }
         </Column>
         <Column
-          title={'Данные'}
           align={'left'}
         >{(value) => (
           <div className={styles['row']}>
             <div className={styles['title']}>
-              <Header level={3}>{ value['title'] }</Header>
+              <Header level={4}>{ value['title'] }{ value['originalName'] ? ' (' + value['originalName'] + ')' : null }</Header>
+            </div>
+            <div className={styles['category']}>
+              <Text type={Text.TYPE_BODY}>"{ value['category'] ? value['category']['value'] : 'Все' }"</Text>
             </div>
             <div className={styles['products']}>
               {value['modes'].map((mode) => {
                 return (
                   <div key={mode['uuid']} className={cn(styles['mode'], { [styles['not-use']]: ! mode['isUse'] })}>
                     <div className={styles['vendor']}>
-                      <Text>{ mode['vendor'] }</Text>
+                      <Text>[{ mode['vendor'] }]</Text>
                     </div>
                     <div className={styles['value']}>
                       <Text>{ mode['value'] }</Text>
@@ -70,9 +95,23 @@ function ProductList() {
         )}</Column>
         <Column
           title={'Видим'}
+          width={60}
+        >{({ uuid, isUse, updatedAt }) => (
+          <CheckBox
+            value={isUse}
+            disabled={ !!~ itemsInProcess.indexOf(uuid)}
+            onChange={(value) => handleChangeUse(uuid, { isUse: value, updatedAt })}
+          />
+        )}</Column>
+        <Column
+          title={'Наличие'}
           width={70}
-        >{({ isUse }) => (
-          <CheckBox value={isUse} onChange={(a) => console.log(a)}/>
+        >{({ uuid, isAvailable, updatedAt }) => (
+          <CheckBox
+            value={isAvailable}
+            disabled={ !!~ itemsInProcess.indexOf(uuid)}
+            onChange={(value) => handleChangeAvailable(uuid, { isAvailable: value, updatedAt })}
+          />
         )}</Column>
         <Column
           align="right"
@@ -80,14 +119,21 @@ function ProductList() {
         >
           {({ uuid }) => (
             <Actions
-              disabled={inProcess}
+              disabled={inProcess || !!~ itemsInProcess.indexOf(uuid)}
               onCopy={() => handleCopyProduct(uuid)}
               onEdit={() => handleEdit(uuid)}
-              onDelete={() => handleRemoveProduct(uuid)}
+              onDelete={() => handleConfirmDestroyProduct(uuid)}
             />
           )}
         </Column>
       </Table>
+
+      <Confirm
+        name={'product-destroy'}
+        message={'Вы точно уверены что хотите удалить продукт?'}
+        onConfirm={() => handleRemoveProduct()}
+        onCancel={() => setProductUuid(null)}
+      />
     </div>
   );
 }

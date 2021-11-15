@@ -1,7 +1,8 @@
 
+import { UUID } from "@ui.packages/utils";
 import { Notifications } from '@ui.packages/mobile-notifications';
 import { middleware as requestMiddleware } from '@ui.packages/request';
-import Socket, { middleware as socketMiddleware} from '@ui.packages/socket';
+import Socket, { middleware as socketMiddleware, joinToRoom } from '@ui.packages/socket';
 
 import React from 'react';
 import thunk from 'redux-thunk';
@@ -13,8 +14,6 @@ import Application from './Application';
 import { reducer as applicationReducer } from './ducks/slice';
 
 import initStore from './redux/initStore';
-
-import * as worker from './serviceWorker';
 
 
 const defaultOptions = {
@@ -55,6 +54,28 @@ async function createRoutes(routes) {
   return reducers;
 }
 
+function createUserUUID() {
+  window.localStorage.setItem('userUuid', UUID());
+  console.log('User created')
+}
+
+function getUserUUID() {
+  return !! window.localStorage.getItem('userUuid');
+}
+
+async function checkUserUUID() {
+  return new Promise((resolve) => {
+    const timerId = setInterval(() => {
+      const hasUser = getUserUUID();
+      if (hasUser) {
+        clearInterval(timerId);
+        return resolve();
+      }
+      createUserUUID();
+    }, 500);
+  });
+}
+
 class App {
   constructor(options) {
     let socket;
@@ -85,6 +106,10 @@ class App {
   }
 
   async start() {
+    await checkUserUUID();
+
+    joinToRoom(window.localStorage.getItem('userUuid'));
+
     const routes = await createRoutes(this.options['routes']);
     const reducers = await createReducers(this.options['routes']);
 
@@ -103,8 +128,6 @@ class App {
         </BrowserRouter>
       </Provider>
     , this.options['portal']);
-
-    worker.unregister();
   }
 
   async render() {

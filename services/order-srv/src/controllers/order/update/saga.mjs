@@ -1,4 +1,5 @@
 
+import numeral from "@packages/numeral";
 import { NetworkError } from "@packages/errors";
 
 import logger from '@sys.packages/logger';
@@ -81,6 +82,9 @@ export default class Saga {
 
       .step('Update address')
       .invoke(async () => {
+        if ( ! body['address']) {
+          return void 0;
+        }
         logger.info('Update address');
         await createAddress(uuid, body['address']);
       })
@@ -115,7 +119,9 @@ export default class Saga {
       .invoke(async (params) => {
         logger.info('Update gallery');
         const order = params.getOrder();
-
+        if ( ! body['products']) {
+          return void 0;
+        }
         const products = body['products'].map((product) => {
           const orderProduct = order['products'].find((item) => item['modeUuid'] === product['modeUuid']);
           return {
@@ -183,7 +189,7 @@ export default class Saga {
       .invoke(async (params) => {
         const order = params.getOrder();
 
-        if (order['statusCode'] === 'basket') {
+        if (order['status']['code'] === 'basket') {
           return void 0;
         }
 
@@ -197,6 +203,48 @@ export default class Saga {
           order['customer'] = null;
         }
         await sendCommand(process.env['QUEUE_MAIL_ORDER_UPDATE'], JSON.stringify(order));
+      })
+
+      .step('Send to push')
+      .invoke(async (params) => {
+        const order = params.getOrder();
+
+        if (order['status']['code'] === 'basket') {
+          return void 0;
+        }
+
+        const externalId = order['externalId'].toUpperCase().replace(/(\w{3})(\w{3})(\w{3})/, '$1-$2-$3');
+
+        let message = '';
+        if (order['status']['code'] === 'new') {
+          message = 'Оформлен заказ #' + externalId + ' на сумму ' + numeral(order['total']).format() + order['currency']['displayName'];
+        }
+        else if (order['status']['code'] === 'confirmed') {
+          message = 'Заказ #' + externalId + ' на сумма ' + numeral(order['total']).format() + order['currency']['displayName'] + ' подтвержден';
+        }
+        else if (order['status']['code'] === 'canceled') {
+          message = 'Заказ #' + externalId + ' отменен';
+        }
+        else if (order['status']['code'] === 'process') {
+          message = 'Заказ #' + externalId + ' готовится';
+        }
+        else if (order['status']['code'] === 'done') {
+          message = 'Заказ #' + externalId + ' готов';
+        }
+        else if (order['status']['code'] === 'finished') {
+          message = 'Заказ #' + externalId + ' выполнен. Приятного аппетита!';
+        }
+
+        await sendCommand(process.env['QUEUE_PUSH_SEND'], JSON.stringify({
+          title: 'Пекарня "Осетинские прироги"',
+          message: message,
+          userUuid: order['userUuid'],
+        }));
+
+        await sendCommand(process.env['QUEUE_SEMYSMS_SEND'], JSON.stringify({
+          message: message,
+          phone: order['customer']['phone'],
+        }));
       })
 
       .build();

@@ -126,10 +126,9 @@ function checkValidServiceWorker(swUrl, config) {
     });
 }
 
-export function unregister() {
+export async function unregister() {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.ready.then(registration => {
-      registration.unregister();
-    });
+    const registration = await navigator.serviceWorker.ready;
+    await registration.unregister();
   }
 }

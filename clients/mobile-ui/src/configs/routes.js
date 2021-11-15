@@ -48,6 +48,14 @@ const routes = [
       '@modules/mobile-comments'
     ),
   },
+  {
+    path: '/settings',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "mobile-options" */
+      '@modules/mobile-options'
+    ),
+  },
 ];
 
 export default routes;

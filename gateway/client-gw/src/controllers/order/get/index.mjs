@@ -10,8 +10,6 @@ export default () => async (ctx) => {
   const { uuid } = ctx['params'];
   const { userUuid } = ctx['request']['query'];
 
-  console.log(123, uuid, userUuid)
-
   const { data: orders } = await request({
     url: process.env['ORDER_API_SRV'] + '/orders',
     params: {

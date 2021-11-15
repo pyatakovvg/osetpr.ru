@@ -25,7 +25,6 @@ export default function(sequelize, DataType) {
     },
   }, {
     sequelize,
-    hierarchy: true,
     timestamps: false,
   });
 

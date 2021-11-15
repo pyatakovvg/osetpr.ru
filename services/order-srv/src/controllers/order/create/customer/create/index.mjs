@@ -21,6 +21,8 @@ export default async function(userUuid, customer) {
   }
 
   return {
+    uuid: data['uuid'],
+    userUuid: data['userUuid'],
     name: data[data['type']]['name'],
     phone: data[data['type']]['phone'],
   };

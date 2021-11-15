@@ -21,7 +21,8 @@ const FORM_NAME = 'product-modify';
 
 
 const defaultProduct = {
-  isUse: true,
+  externalId: Date.now().toString(32),
+  isUse: false,
   gallery: [],
 };
 

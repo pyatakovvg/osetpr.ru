@@ -1,7 +1,6 @@
 
 import { selectInProcess } from '@modules/admin-products';
 
-import { selectProfile } from "@ui.packages/application";
 import { Header, Page, PageControls, PageContent, Button } from '@ui.packages/admin-kit';
 
 import React from 'react';
@@ -13,7 +12,7 @@ import Table from './Table';
 import styles from './default.module.scss';
 
 
-function Orders() {
+function Products() {
   const navigate = useNavigate();
 
   const inProcess = useSelector(selectInProcess);
@@ -48,8 +47,4 @@ function Orders() {
   );
 }
 
-Orders.propTypes = {};
-
-Orders.defaultProps = {};
-
-export default Orders;
+export default Products;

@@ -1,0 +1,56 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: block;
+}
+
+.content {
+
+  display: block;
+  padding: 24px 16px 0;
+}
+
+.controls {
+
+  display: block;
+  margin: 24px 0 0;
+  text-align: center;
+}
+
+.message {
+
+  display: block;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: $white;
+}
+
+.button-apply {
+
+  display: inline-block;
+  background: $danger;
+  font-size: 13px;
+  font-weight: 700;
+  color: $white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+}
+
+.button-cancel {
+
+  display: inline-block;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: underline;
+  color: $white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+}
