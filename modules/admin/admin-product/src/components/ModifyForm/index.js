@@ -11,18 +11,6 @@ const validate = (values) => {
     errors['externalId'] = 'Неоходимо сгенерировать';
   }
 
-  if ( ! values['categoryId']) {
-    errors['categoryId'] = 'Неоходимо сделать выбор';
-  }
-
-  if ( ! values['title']) {
-    errors['title'] = 'Неоходимо заполнить';
-  }
-
-  if ( ! values['description']) {
-    errors['description'] = 'Неоходимо заполнить';
-  }
-
   const modeErrors = [];
   if (values['modes']) {
     values['modes'].forEach((option, index) => {

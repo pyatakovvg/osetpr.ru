@@ -10,6 +10,7 @@ export default function(data) {
     isUse: data['isUse'],
     isAvailable: data['isAvailable'],
     title: data['title'],
+    originalName: data['originalName'],
     categoryId: data['category']['id'],
     description: data['description'],
     gallery: data['gallery'],

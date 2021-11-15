@@ -69,7 +69,7 @@ function ProductList() {
         >{(value) => (
           <div className={styles['row']}>
             <div className={styles['title']}>
-              <Header level={4}>{ value['title'] }</Header>
+              <Header level={4}>{ value['title'] }{ value['originalName'] ? ' (' + value['originalName'] + ')' : null }</Header>
             </div>
             <div className={styles['category']}>
               <Text type={Text.TYPE_BODY}>"{ value['category'] ? value['category']['value'] : 'Все' }"</Text>

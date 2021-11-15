@@ -11,6 +11,10 @@ export default async function updateProperties(uuid, properties) {
     product['title'] = properties['title'];
   }
 
+  if ('originalName' in properties) {
+    product['originalName'] = properties['originalName'];
+  }
+
   if ('description' in properties) {
     product['description'] = properties['description'];
   }
