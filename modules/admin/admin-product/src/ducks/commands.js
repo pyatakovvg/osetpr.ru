@@ -148,6 +148,7 @@ export const updateProductsById = (data) => async (dispatch) => {
         externalId: data['externalId'],
         categoryId: Number(data['categoryId']),
         title: data['title'],
+        originalName: data['originalName'],
         description: data['description'],
         gallery: data['gallery'].map((image) => image['uuid']),
         modes: data['modes'].map((option) => ({
@@ -198,6 +199,7 @@ export const createProduct = (data) => async (dispatch) => {
         externalId: data['externalId'],
         categoryId: Number(data['categoryId']),
         title: data['title'],
+        originalName: data['originalName'],
         description: data['description'],
         gallery: data['gallery'].map((image) => image['uuid']),
         modes: data['modes'].map((option) => ({

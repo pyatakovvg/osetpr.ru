@@ -23,14 +23,20 @@ export default function(sequelize, DataType) {
     categoryId: {
       type: DataType.INTEGER,
       allowNull: false,
+      defaultValue: -1,
     },
     title: {
       type: DataType.STRING(256),
       allowNull: true,
     },
+    originalName: {
+      type: DataType.STRING,
+      allowNull: true,
+      defaultValue: null,
+    },
     description: {
       type: DataType.STRING(2024),
-      allowNull: false,
+      allowNull: true,
     },
     isUse: {
       type: DataType.BOOLEAN,

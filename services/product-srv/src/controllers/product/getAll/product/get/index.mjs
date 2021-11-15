@@ -56,7 +56,7 @@ export default async ({
       ['modes', 'order', 'asc'],
       ['gallery', 'order', 'asc'],
     ],
-    attributes: ['uuid', 'externalId', 'title', 'description', 'isUse', 'isAvailable', 'updatedAt'],
+    attributes: ['uuid', 'externalId', 'title', 'originalName', 'description', 'isUse', 'isAvailable', 'updatedAt'],
     include: [
       {
         model: Category,
