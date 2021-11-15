@@ -1,27 +1,19 @@
 
-import { selectOrder } from '@ui.packages/order';
 import { Cart, Image } from '@ui.packages/mobile-kit';
 
 import types from 'prop-types';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 import Mode from './Mode';
 
 import styles from './default.module.scss';
 
 
-function useGetProduct() {
-  const order = useSelector(selectOrder);
-  return order ? order['products'] : [];
-}
-
-function useGetMaxModeCount(mode) {
-  if ( ! mode) {
-    return true;
+function useGetMaxModeCount(products) {
+  if ( ! products.length) {
+    return false;
   }
-  const products = useGetProduct();
   const product = products.find((product) => product['modeUuid'] === mode['uuid']);
   if ( ! product) {
     return false;
@@ -31,10 +23,10 @@ function useGetMaxModeCount(mode) {
 
 
 export default function DefaultProduct({ uuid, externalId, title, modes, gallery, isAvailable, toCart }) {
-  const orderProducts = useGetProduct();
   const [mode, setMode] = useState(modes.find((item) => item['isTarget']));
 
-  const isDisabled = ! isAvailable || useGetMaxModeCount(mode);
+  const hasMaxCountMode = useGetMaxModeCount(mode);
+  const isDisabled = ! isAvailable || hasMaxCountMode;
 
   function handleClick(mode) {
     setMode(mode);
@@ -56,20 +48,15 @@ export default function DefaultProduct({ uuid, externalId, title, modes, gallery
           </Link>
           <div className={styles['information']}>
             <div className={styles['modes']}>
-              {modes.map((item) => {
-                const product = orderProducts.find((product) => product['modeUuid'] === item['uuid']);
-                const count = product ? product['number'] : null;
-                return (
-                  <Mode
-                    key={item['uuid']}
-                    {...item}
-                    count={count}
-                    disabled={ ! isAvailable}
-                    isActive={item['uuid'] === mode['uuid']}
-                    onClick={() => handleClick(item)}
-                  />
-                );
-              })}
+              {modes.map((item) => (
+                <Mode
+                  key={item['uuid']}
+                  {...item}
+                  disabled={ ! isAvailable}
+                  isActive={item['uuid'] === mode['uuid']}
+                  onClick={() => handleClick(item)}
+                />
+              ))}
             </div>
             { ! isAvailable && (
               <span className={styles['unavailable']}>Временно недоступен</span>

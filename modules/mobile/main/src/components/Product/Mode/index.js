@@ -1,6 +1,9 @@
 
+import { selectOrder } from '@ui.packages/order';
+
 import types from 'prop-types';
 import React, { useMemo } from 'react';
+import { useSelector } from "react-redux";
 
 import Price from './Price';
 
@@ -8,7 +11,17 @@ import cn from 'classnames';
 import styles from './default.module.scss';
 
 
-export default function Mode({ isActive, disabled, count, value, price, currency, onClick }) {
+function useGetOrderProducts() {
+  const order = useSelector(selectOrder);
+  return useMemo(() => order ? order['products'] : [], [order && order['products']]);
+}
+
+export default function Mode({ uuid, isActive, disabled, value, price, currency, onClick }) {
+  const orderProducts = useGetOrderProducts();
+
+  const product = orderProducts.find((product) => product['modeUuid'] === uuid);
+  const count = product ? product['number'] : null;
+
   const wrapperClassName = useMemo(() => cn(styles['wrapper'], {
     [styles['active']]: isActive,
     [styles['disabled']]: disabled,
