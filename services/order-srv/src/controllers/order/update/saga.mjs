@@ -240,6 +240,11 @@ export default class Saga {
           message: message,
           userUuid: order['userUuid'],
         }));
+
+        await sendCommand(process.env['QUEUE_SEMYSMS_SEND'], JSON.stringify({
+          message: message,
+          phone: order['customer']['phone'],
+        }));
       })
 
       .build();

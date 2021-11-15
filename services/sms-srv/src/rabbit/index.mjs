@@ -1,8 +1,8 @@
 
-import order from './order';
+import semySms from './semySms';
 
 
 export default async function() {
 
-  await order();
+  await semySms();
 }
