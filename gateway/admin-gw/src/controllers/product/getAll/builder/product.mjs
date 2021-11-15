@@ -9,7 +9,7 @@ export default function(data, products) {
     isUse: data['isUse'],
     isAvailable: data['isAvailable'],
     title: data['title'],
-    categoryId: data['category']['id'],
+    category: data['category'],
     description: data['description'],
     gallery: data['gallery'],
     modes: data['modes'].map((data) => modeBuilder(data, products)),

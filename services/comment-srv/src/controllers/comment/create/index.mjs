@@ -14,7 +14,7 @@ export default () => async (ctx) => {
     where: {
       uuid,
     },
-    attributes: ['uuid', 'userUuid', 'user', 'content', 'createdAt'],
+    attributes: ['uuid', 'userUuid', 'user', 'content', 'isAdmin', 'createdAt'],
   });
 
   ctx.status = 200;

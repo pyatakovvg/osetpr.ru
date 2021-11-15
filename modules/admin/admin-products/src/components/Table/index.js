@@ -71,6 +71,9 @@ function ProductList() {
             <div className={styles['title']}>
               <Header level={4}>{ value['title'] }</Header>
             </div>
+            <div className={styles['category']}>
+              <Text type={Text.TYPE_BODY}>"{ value['category'] ? value['category']['value'] : 'Все' }"</Text>
+            </div>
             <div className={styles['products']}>
               {value['modes'].map((mode) => {
                 return (

@@ -3,7 +3,7 @@
   "development": {
     "port": 5432,
     "host": "localhost",
-    "database": "comment_srv",
+    "database": "osetpr-comment_srv",
     "username": "admin",
     "password": "1Ctdfcnjgjkm",
     "dialect": "postgres"

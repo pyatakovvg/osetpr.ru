@@ -6,7 +6,7 @@ import { objectToQuery, queryToObject } from '@ui.packages/utils';
 import { pushNotification } from '@ui.packages/mobile-notifications';
 import { Dialog, openDialog, closeDialog } from '@ui.packages/mobile-dialog';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -22,28 +22,30 @@ function useGetCategories() {
   const location = useLocation();
   const query = queryToObject(location['search']);
   const filter = useSelector(selectFilter);
-  let search = '';
-  if (filter['categories']) {
-    if (query['categoryId']) {
-      if (query['categoryId'] instanceof Array) {
-        for (let i in filter['categories']) {
-          if (filter['categories'].hasOwnProperty(i)) {
-            const item = filter['categories'][i];
-            if (query['categoryId'].some((id) => id === item['id'])) {
-              search += search ? ', ' + item['value'] : item['value'];
+  return useMemo(() => {
+    let search = '';
+    if (filter['categories']) {
+      if (query['categoryId']) {
+        if (query['categoryId'] instanceof Array) {
+          for (let i in filter['categories']) {
+            if (filter['categories'].hasOwnProperty(i)) {
+              const item = filter['categories'][i];
+              if (query['categoryId'].some((id) => id === item['id'])) {
+                search += search ? ', ' + item['value'] : item['value'];
+              }
             }
           }
         }
-      }
-      else {
-        const item = filter['categories'].find((item) => query['categoryId'] === item['id']);
-        if (item) {
-          search = item['value'];
+        else {
+          const item = filter['categories'].find((item) => query['categoryId'] === item['id']);
+          if (item) {
+            search = item['value'];
+          }
         }
       }
     }
-  }
-  return search || 'Все';
+    return search || 'Все';
+  }, [filter && filter['categories']]);
 }
 
 

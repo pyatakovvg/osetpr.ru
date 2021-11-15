@@ -52,7 +52,7 @@ export default async ({
     where: { ...where },
     order: [
       ['category', 'order', 'asc'],
-      ['createdAt', 'asc'],
+      ['createdAt', 'desc'],
       ['modes', 'order', 'asc'],
       ['gallery', 'order', 'asc'],
     ],

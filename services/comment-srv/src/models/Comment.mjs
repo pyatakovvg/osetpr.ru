@@ -38,6 +38,11 @@ export default function(sequelize, DataType)  {
       allowNull: true,
       defaultValue: null,
     },
+    isAdmin: {
+      type: DataType.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
   }, {
     sequelize,
     timestamps: true,
