@@ -1,5 +1,5 @@
 
-import { models } from '@sys.packages/db';
+import {models, Op} from '@sys.packages/db';
 import request from '@sys.packages/request';
 
 
@@ -49,9 +49,15 @@ export default () => async (ctx) => {
     ...options,
     ...offset,
     distinct: true,
-    where: { ...where },
+    where: {
+      ...where,
+      [Op.not]: {
+        statusCode: 'basket'
+      }
+    },
     order: [
       ['createdAt', 'desc'],
+      ['status', 'order', 'asc'],
       ['products', 'order', 'asc'],
     ],
     attributes: ['uuid', 'externalId', 'userUuid', 'title', 'description', 'dateTo', 'total', 'currencyCode', 'createdAt', 'updatedAt'],
