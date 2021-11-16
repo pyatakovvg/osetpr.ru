@@ -2,7 +2,7 @@
 import { selectPayments } from '@modules/mobile-order-draft';
 
 import { selectInProcess } from '@ui.packages/order';
-import { Button, Header, RadioContainerField, Radio } from '@ui.packages/mobile-kit';
+import { Button, Header, RadioContainerField, Radio, Text } from '@ui.packages/mobile-kit';
 
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -28,6 +28,9 @@ function PaymentForm({ handleSubmit }) {
               </div>
             ))}
           </RadioContainerField>
+        </div>
+        <div className={styles['description']}>
+          <Text type={Text.type.description}>"Проверьте, чек должен быть приложен к доставке"</Text>
         </div>
       </div>
       <div className={styles['controls']}>

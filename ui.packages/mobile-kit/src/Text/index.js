@@ -3,18 +3,25 @@ import React from 'react';
 import types from 'prop-types';
 
 import Default from './Default';
+import Description from './Description';
 
 
 export default function Factory({ type, children, ...props }) {
   switch(type) {
+    case Factory.type.description: return <Description {...props}>{ children }</Description>;
     default: return <Default {...props}>{ children }</Default>;
   }
 }
 
 Factory.propTypes = {
-  type: types.oneOf([1, 2, 3, 4]),
+  type: types.oneOf(['default', 'description']),
 };
 
 Factory.defaultType = {
-  type: '',
+  type: 'default',
 };
+
+Factory.type = {
+  default: 'default',
+  description: 'description',
+}
