@@ -9,7 +9,7 @@ const navigate = [
     path: '/comments',
   },
   {
-    title: "О нас",
+    title: "Информация",
     path: '/about',
   },
   {

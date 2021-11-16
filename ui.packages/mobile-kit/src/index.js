@@ -2,6 +2,7 @@
 export { default as Text } from './Text';
 export { default as Header } from './Header';
 export { default as Status } from './Status';
+export { default as Collapse } from './Collapse';
 
 export { default as Time } from './simbols/Time';
 export { default as Input } from './simbols/Input';
