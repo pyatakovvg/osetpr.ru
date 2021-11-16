@@ -16,7 +16,7 @@ export default function Factory({ type, children, ...props }) {
 }
 
 Factory.propTypes = {
-  type: types.oneOf(['default', 'description']),
+  type: types.oneOf(['default', 'description', 'bold']),
 };
 
 Factory.defaultType = {
