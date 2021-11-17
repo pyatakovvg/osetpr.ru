@@ -13,6 +13,8 @@ import Composite from './wrappers/Composite';
 
 import './styles/index.module.scss';
 
+import * as worker from './serviceWorker';
+
 
 try {
   const app = new Application({
@@ -28,6 +30,7 @@ try {
   });
 
   app.start();
+  worker.register();
 }
 catch (error) {
 

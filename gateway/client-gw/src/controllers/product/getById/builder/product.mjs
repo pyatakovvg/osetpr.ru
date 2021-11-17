@@ -3,12 +3,12 @@ import modeBuilder from './mode.mjs';
 
 
 export default function(data) {
-  console.log(data)
   return {
     externalId: data['externalId'],
     uuid: data['uuid'],
     isAvailable: data['isAvailable'],
     title: data['title'],
+    originalName: data['originalName'],
     categoryId: data['category']['id'],
     description: data['description'],
     gallery: data['gallery'],

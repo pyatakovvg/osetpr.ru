@@ -1,6 +1,6 @@
 
+import { pushNotification } from "@ui.packages/notifications";
 import { subscribeUser, unsubscribeUser, checkSubscription } from "@ui.packages/web-push";
-import { pushNotification } from "@ui.packages/mobile-notifications";
 
 import {
   checkPushSubscriptionAction,
@@ -15,6 +15,7 @@ import {
   unsubscribePushSubscriptionFailAction,
   unsubscribePushSubscriptionSuccessAction,
 } from './slice';
+import {UnauthorizedError} from "@packages/errors";
 
 
 export const checkPushSubscribe = () => async (dispatch) => {
@@ -26,6 +27,10 @@ export const checkPushSubscribe = () => async (dispatch) => {
     dispatch(checkPushSubscriptionSuccessAction(hasSubscribe));
   }
   catch(error) {
+    if (error instanceof UnauthorizedError) {
+      return void 0;
+    }
+
     dispatch(checkPushSubscriptionFailAction());
     dispatch(pushNotification({
       title: 'Упс! Что-то пошло не так',
@@ -50,6 +55,10 @@ export const subscribePushSubscribe = (userUuid) => async (dispatch) => {
     }));
   }
   catch(error) {
+    if (error instanceof UnauthorizedError) {
+      return void 0;
+    }
+
     dispatch(subscribePushSubscriptionFailAction());
     dispatch(pushNotification({
       title: 'Упс! Что-то пошло не так',
@@ -74,6 +83,10 @@ export const unsubscribePushSubscribe = (userUuid) => async (dispatch) => {
     }));
   }
   catch(error) {
+    if (error instanceof UnauthorizedError) {
+      return void 0;
+    }
+
     dispatch(unsubscribePushSubscriptionFailAction());
     dispatch(pushNotification({
       title: 'Упс! Что-то пошло не так',

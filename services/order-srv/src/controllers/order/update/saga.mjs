@@ -22,6 +22,8 @@ import updateOrder from './order/update';
 import getProducts from './product/get';
 import updateProducts from './product/update';
 
+import getUsers from './user/get';
+
 
 export default class Saga {
   ctx = null;
@@ -36,7 +38,6 @@ export default class Saga {
       return await saga.execute(params);
     }
     catch (e) {
-      console.log(e)
       if (e instanceof Sagas.SagaExecutionFailed) {
         throw new NetworkError({ code: '2.0.0', message: e['message'] });
       }
@@ -240,6 +241,28 @@ export default class Saga {
           message: message,
           userUuid: order['userUuid'],
         }));
+      })
+
+      .step('Send to push')
+      .invoke(async (params) => {
+        const order = params.getOrder();
+
+        if (order['status']['code'] !== 'new') {
+          return void 0;
+        }
+
+        const externalId = order['externalId'].toUpperCase().replace(/(\w{3})(\w{3})(\w{3})/, '$1-$2-$3');
+console.log(123, externalId)
+        const users = await getUsers();
+console.log(234, users)
+        for (let user in users) {
+          const userUuid = users[user]['uuid'];
+          await sendCommand(process.env['QUEUE_PUSH_SEND'], JSON.stringify({
+            title: 'Пекарня "Осетинские прироги"',
+            message: 'Поступил новый заказ ' + externalId + '.',
+            userUuid: userUuid,
+          }));
+        }
       })
 
       .step('Send to semySms')

@@ -113,6 +113,14 @@ const routes = [
     ),
   },
   {
+    path: '/settings',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "admin-settings" */
+      '@modules/admin-settings'
+      ),
+  },
+  {
     path: '/sign-in',
     wrapper: 'Empty',
     module: import(
