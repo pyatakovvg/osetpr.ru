@@ -49,9 +49,12 @@ export default () => async (ctx) => {
     ...options,
     ...offset,
     distinct: true,
-    where: { ...where },
+    where: {
+      ...where,
+    },
     order: [
       ['createdAt', 'desc'],
+      ['status', 'order', 'asc'],
       ['products', 'order', 'asc'],
     ],
     attributes: ['uuid', 'externalId', 'userUuid', 'title', 'description', 'dateTo', 'total', 'currencyCode', 'createdAt', 'updatedAt'],

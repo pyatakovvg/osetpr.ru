@@ -240,6 +240,34 @@ export default class Saga {
           message: message,
           userUuid: order['userUuid'],
         }));
+      })
+
+      .step('Send to semySms')
+      .invoke(async (params) => {
+        const order = params.getOrder();
+
+        if (order['status']['code'] === 'basket' || order['status']['code'] === 'new') {
+          return void 0;
+        }
+
+        const externalId = order['externalId'].toUpperCase().replace(/(\w{3})(\w{3})(\w{3})/, '$1-$2-$3');
+
+        let message = '';
+        if (order['status']['code'] === 'confirmed') {
+          message = 'Заказ #' + externalId + ' на сумма ' + numeral(order['total']).format() + order['currency']['displayName'] + ' подтвержден';
+        }
+        else if (order['status']['code'] === 'canceled') {
+          message = 'Заказ #' + externalId + ' отменен';
+        }
+        else if (order['status']['code'] === 'process') {
+          message = 'Заказ #' + externalId + ' готовится';
+        }
+        else if (order['status']['code'] === 'done') {
+          message = 'Заказ #' + externalId + ' готов';
+        }
+        else if (order['status']['code'] === 'finished') {
+          message = 'Заказ #' + externalId + ' выполнен. Приятного аппетита!';
+        }
 
         await sendCommand(process.env['QUEUE_SEMYSMS_SEND'], JSON.stringify({
           message: message,

@@ -10,7 +10,7 @@ function Text({ isHtml, className, children }) {
 
   if (isHtml) {
     return (
-      <p className={headerClassName} dangerouslySetInnerHTML={{ __html: children }}/>
+      <p className={headerClassName} dangerouslySetInnerHTML={{ __html: children }} />
     );
   }
 

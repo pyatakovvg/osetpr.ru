@@ -28,15 +28,17 @@ export default function(sequelize, DataType) {
     title: {
       type: DataType.STRING(256),
       allowNull: true,
+      defaultValue: '',
     },
     originalName: {
       type: DataType.STRING,
-      allowNull: true,
-      defaultValue: null,
+      allowNull: false,
+      defaultValue: '',
     },
     description: {
       type: DataType.STRING(2024),
       allowNull: true,
+      defaultValue: '',
     },
     isUse: {
       type: DataType.BOOLEAN,
