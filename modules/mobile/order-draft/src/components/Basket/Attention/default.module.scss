@@ -1,0 +1,41 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.attention {
+
+  display: flex;
+  padding: 8px 8px 8px 20px;
+  border-radius: 4px;
+  background: $danger;
+  align-items: center;
+}
+
+.type {
+
+  display: block;
+}
+
+.icon {
+
+  display: inline-block;
+  font-size: 24px;
+  color: $white;
+}
+
+.content {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  margin: 0 0 0 20px;
+}
+
+.link {
+
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 300;
+  color: $white;
+  margin: 8px 0;
+}

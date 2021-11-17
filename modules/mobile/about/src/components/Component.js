@@ -1,7 +1,11 @@
 
-import { Header, Text } from "@ui.packages/mobile-kit";
+import { Header, Collapse } from "@ui.packages/mobile-kit";
 
 import React from 'react';
+
+import Time from './Time';
+import Common from './Common';
+import Delivery from './Delivery';
 
 import styles from './default.module.scss';
 
@@ -11,25 +15,23 @@ function About() {
     <section className={styles['wrapper']}>
       <div className={styles['container']}>
         <div className={styles['header']}>
-          <Header>О нас</Header>
+          <Header>Информация</Header>
         </div>
         <div className={styles['content']}>
           <div className={styles['row']}>
-            <Text>Заказы принимаются с 8:00 до 22:00</Text>
+            <Collapse title={'О компании'}>
+              <Common />
+            </Collapse>
           </div>
           <div className={styles['row']}>
-            <Text>Бесплатная доставка от 500 руб.</Text>
-          </div>
-          <br />
-          <br />
-          <div className={styles['row']}>
-            <Text>ИП "Максим Бибилов"</Text>
+            <Collapse title={'Доставка'}>
+              <Delivery />
+            </Collapse>
           </div>
           <div className={styles['row']}>
-            <Text>Адрес: г. Симферополь, ул. Гавена 46</Text>
-          </div>
-          <div className={styles['row']}>
-            <Text>Тел.: +7 (978) 590-60-60</Text>
+            <Collapse title={'Время работы'}>
+              <Time />
+            </Collapse>
           </div>
         </div>
       </div>

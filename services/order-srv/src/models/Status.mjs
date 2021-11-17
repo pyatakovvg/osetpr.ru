@@ -16,6 +16,11 @@ export default function(sequelize, DataType) {
       type: DataType.STRING,
       allowNull: false,
     },
+    order: {
+      type: DataType.INTEGER,
+      allowNull: false,
+      defaultValue: 0,
+    },
   }, {
     sequelize,
     timestamps: false,

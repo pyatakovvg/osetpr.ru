@@ -10,11 +10,12 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Product from './Product';
+import Attention from './Attention';
 
 import styles from './default.module.scss';
 
 
-function Order() {
+function Basket() {
   const dispatch = useDispatch();
 
   const [productUuid, setProductUuid] = useState(null);
@@ -87,6 +88,11 @@ function Order() {
           )}
         </div>
         <div className={styles['content']}>
+          {order && (order['total'] < 500) && (
+            <div className={styles['attention']}>
+              <Attention />
+            </div>
+          )}
           {order && order['products'].map((product) => (
             <Product
               key={product['vendor']}
@@ -113,4 +119,4 @@ function Order() {
   );
 }
 
-export default Order;
+export default Basket;
