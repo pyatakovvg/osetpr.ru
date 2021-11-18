@@ -8,8 +8,8 @@ import cn from 'classnames';
 import styles from './default.module.scss';
 
 
-export default function Collapse({ title, children }) {
-  const [isOpen, setOpen] = useState(false);
+export default function Collapse({ title, defaultState, children }) {
+  const [isOpen, setOpen] = useState(defaultState);
 
   return (
     <div className={styles['wrapper']}>
@@ -34,8 +34,10 @@ export default function Collapse({ title, children }) {
 
 Collapse.propTypes = {
   disabled: types.bool,
+  defaultState: types.bool,
 };
 
 Collapse.defaultProps = {
   disabled: false,
+  defaultState: false,
 };
