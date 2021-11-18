@@ -268,7 +268,7 @@ console.log(234, users)
       .step('Send to semySms')
       .invoke(async (params) => {
         const order = params.getOrder();
-
+console.log(1, order)
         if (order['status']['code'] === 'basket' || order['status']['code'] === 'new') {
           return void 0;
         }
@@ -291,6 +291,8 @@ console.log(234, users)
         else if (order['status']['code'] === 'finished') {
           message = 'Заказ #' + externalId + ' выполнен. Приятного аппетита!';
         }
+
+        console.log(2, order['customer']['phone'], message)
 
         await sendCommand(process.env['QUEUE_SEMYSMS_SEND'], JSON.stringify({
           message: message,
