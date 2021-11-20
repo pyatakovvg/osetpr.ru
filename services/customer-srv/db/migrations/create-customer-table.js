@@ -17,7 +17,7 @@ module.exports = {
           allowNull: true,
         },
         type: {
-          type: DataType.STRING,
+          type: DataType.ENUM('admin', 'customer'),
           allowNull: false,
           defaultValue: 'admin',
         },
