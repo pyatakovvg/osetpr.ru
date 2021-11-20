@@ -18,7 +18,7 @@ export default function (sequelize, DataType) {
       allowNull: true,
     },
     type: {
-      type: DataType.ENUM('admin', 'customer'),
+      type: DataType.STRING,
       allowNull: false,
       defaultValue: 'admin',
     },
