@@ -6,7 +6,7 @@ import { connection as rabbitConnection } from "@sys.packages/rabbit";
 
 import routes from './routes';
 
-// import rabbit from './rabbit';
+import rabbit from './rabbit';
 
 
 (async () => {
@@ -14,7 +14,7 @@ import routes from './routes';
     await connectToDatabase(process.env['DB_CONNECTION_HOST']);
     await rabbitConnection(process.env['RABBIT_CONNECTION_HOST']);
 
-    // await rabbit();
+    await rabbit();
 
     const server = new Server({
       server: {

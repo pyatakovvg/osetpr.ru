@@ -21,7 +21,7 @@ export default function(data) {
       externalId: product['externalId'],
       productUuid: product['productUuid'],
       modeUuid: product['modeUuid'],
-      gallery: product['gallery'],
+      imageUuid: product['imageUuid'],
       vendor: product['vendor'],
       number: Number(product['number']),
       title: product['title'],

@@ -29,6 +29,11 @@ module.exports = {
           type: DataType.STRING(9),
           allowNull: false,
         },
+        imageUuid: {
+          type: DataType.STRING(40),
+          allowNull: true,
+          defaultValue: null,
+        },
         title: {
           type: DataType.STRING(255),
           allowNull: false,

@@ -11,32 +11,38 @@ export default function (sequelize, DataType) {
       type: DataType.UUID,
       primaryKey: true,
       allowNull: false,
+      defaultValue: DataType.UUIDV4,
     },
     userUuid: {
       type: DataType.UUID,
       allowNull: true,
     },
     type: {
-      type: DataType.ENUM,
-      values: ['individual', 'legal'],
+      type: DataType.ENUM(['admin', 'customer']),
       allowNull: false,
+      defaultValue: 'admin',
+    },
+    name: {
+      type: DataType.STRING(255),
+      allowNull: false,
+      defaultValue: 'No name',
+    },
+    email: {
+      type: DataType.STRING(255),
+      allowNull: false,
+      defaultValue: '',
+    },
+    phone: {
+      type: DataType.STRING(12),
+      allowNull: false,
+      defaultValue: '',
     },
   }, {
     sequelize,
+    timestamps: true,
   });
 
-  Customer.associate = ({ Legal, Individual }) => {
-
-    Customer.hasOne(Legal, {
-      foreignKey: 'customerUuid',
-      as: 'legal',
-    });
-
-    Customer.hasOne(Individual, {
-      foreignKey: 'customerUuid',
-      as: 'individual',
-    });
-  };
+  Customer.associate = () => {};
 
   return Customer;
 };

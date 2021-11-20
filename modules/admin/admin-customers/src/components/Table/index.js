@@ -11,19 +11,6 @@ import { useNavigate } from 'react-router-dom';
 import styles from './default.module.scss';
 
 
-const customerType = {
-  legal: '"ИП"',
-  individual: '"Физик"',
-};
-
-
-function getCustomerName(customer) {
-  if (customer['type'] === 'legal') {
-    return customer['name'];
-  }
-  return 'jhgg';
-}
-
 function CustomerList() {
   const navigate = useNavigate();
 
@@ -36,8 +23,8 @@ function CustomerList() {
   return (
     <div className={styles['wrapper']}>
       <Table columns={items}>
-        <Column title={'Тип'} alias={'type'} align={'left'} width={150}>{(value) => <Text>{ customerType[value] }</Text>}</Column>
-        <Column title={'Клиент'} align={'left'}>{(value) => <Text type={Text.TYPE_BODY}>{ getCustomerName(value) }</Text>}</Column>
+        <Column title={'Клиент'} align={'left'}>{(value) => <Text type={Text.TYPE_BODY}>{ value['name'] }</Text>}</Column>
+        <Column title={'Телефон'} align={'left'}>{(value) => <Text type={Text.TYPE_BODY}>{ value['phone'] || '---' }</Text>}</Column>
         <Column title={'Активный план'} align={'left'}>{(value) => <Text type={Text.TYPE_BODY}>{ value['plans'][value['plans'].length - 1] ? value['plans'][value['plans'].length - 1]['name'] : '---' }</Text>}</Column>
         <Column
           align={'right'}
@@ -51,9 +38,5 @@ function CustomerList() {
     </div>
   );
 }
-
-CustomerList.propTypes = {};
-
-CustomerList.defaultProps = {};
 
 export default CustomerList;

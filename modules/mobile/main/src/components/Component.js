@@ -82,7 +82,7 @@ function Main() {
         modeUuid: product['modeUuid'],
         value: product['value'],
         vendor: product['vendor'],
-        gallery: product['gallery'],
+        imageUuid: product['gallery'].length ? product['gallery'][0]['uuid'] : null,
         number: 1,
         currencyCode: product['currency']['code'],
       });

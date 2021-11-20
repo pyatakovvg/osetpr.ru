@@ -1,62 +1,33 @@
 
-import { UUID } from '@sys.packages/utils';
-import { models, sequelize } from '@sys.packages/db';
+import { models } from '@sys.packages/db';
+import { sendEvent } from '@sys.packages/rabbit';
 
 
 export default () => async (ctx) => {
   const data = ctx['request']['body'];
-  const { Customer, Legal, Individual } = models;
-
-  const transaction = await sequelize.transaction();
+  const { Customer } = models;
 
   const customer = await Customer.create({
-    uuid: UUID(),
     userUuid: data['userUuid'],
     type: data['type'],
-  }, {
-    transaction,
+    name: data['name'],
+    phone: data['phone'],
+    email: data['email'],
   });
-
-  if (data['type'] === 'legal') {
-    await Legal.create({
-      customerUuid: customer['uuid'],
-      ...data,
-    }, {
-      transaction,
-    });
-  }
-  else if (data['type'] === 'individual') {
-    await Individual.create({
-      customerUuid: customer['uuid'],
-      ...data,
-    }, {
-      transaction,
-    });
-  }
-
-  await transaction.commit();
 
   const result = await Customer.findOne({
-    where: { uuid: customer['uuid'] },
-    attributes: ['uuid', 'type', 'createdAt', 'updatedAt'],
-    include: [
-      {
-        model: Legal,
-        required: false,
-        as: 'legal',
-        attributes: ['name', 'address', 'phone'],
-      },
-      {
-        model: Individual,
-        required: false,
-        as: 'individual',
-        attributes: ['name', 'surname', 'patronymic', 'gender', 'age', 'birthday', 'phone'],
-      },
-    ]
+    where: {
+      uuid: customer['uuid'],
+    },
+    attributes: ['uuid', 'userUuid', 'type', 'name', 'phone', 'email', 'createdAt', 'updatedAt'],
   });
+
+  const customerData = result.toJSON();
+
+  await sendEvent(process.env['EXCHANGE_CUSTOMER_CREATE'], JSON.stringify(customerData));
 
   ctx.body = {
     success: true,
-    data: result.toJSON(),
+    data: customerData,
   };
 };

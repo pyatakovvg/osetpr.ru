@@ -1,6 +1,7 @@
 
 export default class SagaParams {
   _order = null;
+  _finishOrder = null;
   _customer = null;
 
   getOrder() {
@@ -17,5 +18,13 @@ export default class SagaParams {
 
   setCustomer(customer) {
     this._customer = customer;
+  }
+
+  getFinishOrder() {
+    return this._finishOrder;
+  }
+
+  setFinishOrder(order) {
+    this._finishOrder = order;
   }
 }

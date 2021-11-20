@@ -27,6 +27,6 @@ export default () => async (ctx) => {
 
   ctx.body = {
     success: true,
-    data: params.getOrder(),
+    data: params.getFinishOrder(),
   };
 };
