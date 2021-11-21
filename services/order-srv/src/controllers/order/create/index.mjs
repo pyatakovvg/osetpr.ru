@@ -25,16 +25,8 @@ export default () => async (ctx) => {
 
   const params = await saga.execute(sagaParams);
 
-  const order = params.getOrder();
-  const customer = params.getCustomer();
-
-  if (customer) {
-    order['customer']['name'] = customer['name'];
-    order['customer']['phone'] = customer['phone'];
-  }
-
   ctx.body = {
     success: true,
-    data: order,
+    data: params.getFinishOrder(),
   };
 };

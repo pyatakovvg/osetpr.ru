@@ -8,6 +8,7 @@
     "start": "react-scripts start"
   },
   "dependencies": {
+    "@modules/admin-settings": "1.0.0",
     "@modules/admin-comments": "1.0.0",
     "@modules/admin-customer": "1.0.0",
     "@modules/admin-customers": "1.0.0",

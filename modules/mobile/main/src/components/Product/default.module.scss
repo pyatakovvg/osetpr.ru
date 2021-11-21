@@ -5,7 +5,6 @@
 .wrapper {
 
   display: block;
-  height: 216px;
 
   & + * {
     margin: 16px 0 0;
@@ -25,11 +24,21 @@
 
 .name {
 
-  display: inline-block;
+  display: block;
   font-family: inherit;
   font-size: 18px;
   font-weight: 700;
   color: $white;
+}
+
+.original-name {
+
+  display: block;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  color: $white;
+  margin: 4px 0 0;
 }
 
 .content {
@@ -37,7 +46,7 @@
   display: flex;
   flex-direction: row;
   flex: 1 0;
-  margin: 8px 0 0;
+  margin: 8px 0 30px;
   background: rgba($gray-darken, .8);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(3px);

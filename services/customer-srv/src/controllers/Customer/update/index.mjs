@@ -1,59 +1,37 @@
 
-import {models, sequelize} from '@sys.packages/db';
+import { models } from '@sys.packages/db';
+import { sendEvent } from '@sys.packages/rabbit';
 
 
 export default () => async (ctx) => {
+  const { Customer } = models;
+
   const { uuid } = ctx['params'];
   const data = ctx['request']['body'];
-  const { Customer, Legal, Individual } = models;
 
-  const transaction = await sequelize.transaction();
-
-  if (data['type'] === 'individual') {
-    await Individual.update({
-      ...data,
-    }, {
-      where: {
-        customerUuid: uuid,
-      },
-      transaction,
-    });
-  }
-
-  if (data['type'] === 'legal') {
-    await Legal.update({
-      ...data,
-    }, {
-      where: {
-        customerUuid: uuid,
-      },
-      transaction,
-    });
-  }
-
-  await transaction.commit();
+  await Customer.update({
+    userUuid: data['userUuid'],
+    type: data['type'],
+    name: data['name'],
+    phone: data['phone'],
+    email: data['email'],
+  }, {
+    where: {
+      uuid,
+    },
+  });
 
   const result = await Customer.findOne({
     where: { uuid },
-    attributes: ['uuid', 'type', 'createdAt', 'updatedAt'],
-    include: [
-      {
-        model: Legal,
-        required: false,
-        as: 'legal',
-        attributes: ['name', 'address', 'phone'],
-      },
-      {
-        model: Individual,
-        required: false,
-        as: 'individual',
-        attributes: ['name', 'surname', 'patronymic', 'gender', 'age', 'birthday', 'phone'],
-      },
-    ]
+    attributes: ['uuid', 'userUuid', 'type', 'name', 'phone', 'email', 'createdAt', 'updatedAt'],
   });
+
+  const customerData = result.toJSON();
+
+  await sendEvent(process.env['EXCHANGE_CUSTOMER_UPDATE'], JSON.stringify(customerData));
 
   ctx.body = {
     success: true,
-    data: result.toJSON(),
+    data: customerData,
   };
 };

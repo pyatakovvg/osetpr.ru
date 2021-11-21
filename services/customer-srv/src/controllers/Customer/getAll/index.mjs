@@ -7,7 +7,7 @@ export default () => async (ctx) => {
   let offset = {};
   let options = {};
 
-  const { Customer, Legal, Individual } = models;
+  const { Customer } = models;
   const {
     uuid = null,
     userUuid = null,
@@ -38,22 +38,10 @@ export default () => async (ctx) => {
     ...options,
     ...offset,
     distinct: true,
-    order: [['uuid', 'desc']],
-    attributes: ['uuid', 'userUuid', 'type', 'createdAt', 'updatedAt'],
-    include: [
-      {
-        model: Legal,
-        required: false,
-        as: 'legal',
-        attributes: ['name', 'address', 'phone']
-      },
-      {
-        model: Individual,
-        required: false,
-        as: 'individual',
-        attributes: ['name', 'surname', 'patronymic', 'gender', 'age', 'birthday', 'phone'],
-      },
-    ]
+    order: [
+      ['createdAt', 'desc'],
+    ],
+    attributes: ['uuid', 'userUuid', 'type', 'name', 'phone', 'email', 'createdAt', 'updatedAt'],
   });
 
   ctx.body = {

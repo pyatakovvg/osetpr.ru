@@ -17,7 +17,7 @@ function Basket() {
       <div className={styles['content']}>
         <Text>Бесплатная доставка от 500 руб.</Text>
         <Text type={Text.type.bold}>Стоимость доставки 150 руб.</Text>
-        <Link className={styles['link']} to={process.env['PUBLIC_URL'] + '/about'}>Подробнее в разделе информации</Link>
+        <Link className={styles['link']} to={process.env['PUBLIC_URL'] + '/about#delivery'}>Подробнее в разделе информации</Link>
       </div>
     </div>
   );

@@ -61,7 +61,7 @@ export default function(sequelize, DataType) {
     sequelize,
   });
 
-  Order.associate = ({ OrderProduct, OrderAddress, Status, Currency, Payment }) => {
+  Order.associate = ({ OrderProduct, OrderAddress, Status, Currency, Payment, Customer }) => {
 
     Order.belongsTo(Currency, {
       foreignKey: 'currencyCode',
@@ -87,6 +87,11 @@ export default function(sequelize, DataType) {
     Order.belongsTo(Status, {
       foreignKey: 'statusCode',
       as: 'status',
+    });
+
+    Order.belongsTo(Customer, {
+      foreignKey: 'userUuid',
+      as: 'customer',
     });
   };
 

@@ -8,7 +8,7 @@ export default () => async (ctx) => {
   let offset = {};
   let options = {};
 
-  const { Order, OrderProduct, OrderAddress, ProductGallery, Status, Currency, Payment } = models;
+  const { Order, OrderProduct, OrderAddress, Status, Currency, Payment, Customer } = models;
 
   const {
     limit = null,
@@ -66,14 +66,9 @@ export default () => async (ctx) => {
       },
       {
         model: OrderProduct,
-        attributes: ['uuid', 'externalId', 'orderUuid', 'productUuid', 'modeUuid', 'title', 'vendor', 'value', 'price', 'total', 'number'],
+        attributes: ['uuid', 'externalId', 'orderUuid', 'productUuid', 'modeUuid', 'imageUuid', 'title', 'vendor', 'value', 'price', 'total', 'number'],
         as: 'products',
         include: [
-          {
-            model: ProductGallery,
-            attributes: [['imageUuid', 'uuid']],
-            as: 'gallery',
-          },
           {
             model: Currency,
             attributes: ['code', 'displayName'],
@@ -96,30 +91,17 @@ export default () => async (ctx) => {
         attributes: ['code', 'displayName'],
         as: 'payment',
       },
+      {
+        model: Customer,
+        attributes: ['uuid', 'name', 'phone', 'email'],
+        as: 'customer',
+      },
     ],
-  });
-
-  const orders = result['rows'].map((item) => item.toJSON());
-
-  const { data: customers } = await request({
-    url: process.env['CUSTOMER_API_SRV'] + '/customers',
-    method: 'get',
-    params: {
-      userUuid: orders.map((item) => item['userUuid']),
-    },
-  });
-
-  const resultOrders = orders.map((order) => {
-    const customer = customers.find((customer) => customer['userUuid'] === order['userUuid']);
-    if (customer) {
-      return { ...order, customer };
-    }
-    return { ...order, customer: null };
   });
 
   ctx.body = {
     success: true,
-    data: resultOrders,
+    data: result['rows'].map((item) => item.toJSON()),
     meta: {
       totalRows: result['count'],
     },

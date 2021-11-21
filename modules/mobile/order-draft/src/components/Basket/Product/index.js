@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import styles from './default.module.scss';
 
 
-export default function Product({ uuid, externalId, productUuid, title, gallery, number, value, price, total, currency, onChange, onRemove }) {
+export default function Product({ uuid, externalId, productUuid, title, imageUuid, number, value, price, total, currency, onChange, onRemove }) {
   function handleChange(number) {
     onChange({
       uuid,
@@ -23,7 +23,7 @@ export default function Product({ uuid, externalId, productUuid, title, gallery,
     <div className={styles['wrapper']}>
       <span className={styles['remove']} onClick={() => onRemove(uuid)} />
       <Link className={styles['gallery']} to={process.env['PUBLIC_URL'] + '/products/' + externalId}>
-        <Image src={gallery[0] ? process.env['REACT_APP_API_HOST'] + '/gallery/' + gallery[0]['uuid'] : null} />
+        <Image src={imageUuid ? process.env['REACT_APP_API_HOST'] + '/gallery/' + imageUuid : null} />
       </Link>
       <div className={styles['content']}>
         <span className={styles['name']}>{ title }</span>
@@ -47,7 +47,7 @@ export default function Product({ uuid, externalId, productUuid, title, gallery,
 }
 
 Product.propTypes = {
-  gallery: types.array,
+  imageUuid: types.string,
   title: types.string,
   value: types.string,
   number: types.number,
@@ -58,7 +58,7 @@ Product.propTypes = {
 
 Product.defaultProps = {
   externalId: null,
-  gallery: [],
+  imageUuid: null,
   title: 'Нет названия',
   value: '---',
   number: 0,

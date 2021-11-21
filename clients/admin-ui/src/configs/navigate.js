@@ -30,6 +30,11 @@ const navigate = [
     path: '/customers',
     icon: 'fas fa-user-friends',
   },
+  {
+    title: 'Настройки',
+    path: '/settings',
+    icon: 'fas fa-cog',
+  },
 ];
 
 export default navigate;

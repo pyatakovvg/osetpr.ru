@@ -7,20 +7,17 @@ import { sendEvent, sendCommand } from '@sys.packages/rabbit';
 
 import Sagas from 'node-sagas';
 
-import getCustomer from './customer/get';
-import createCustomer from './customer/create';
-import updateCustomer from './customer/update';
+import getCustomer from '../_base/customer/get';
+import createCustomer from '../_base/customer/create';
+import updateCustomer from '../_base/customer/update';
 
-import createGallery from './gallery/create';
-import removeGallery from './gallery/remove';
+import updateAddress from '../_base/address/update';
 
-import createAddress from './address/create';
+import getOrder from '../_base/order/get';
+import updateOrder from '../_base/order/update';
 
-import getOrder from './order/get';
-import updateOrder from './order/update';
-
-import getProducts from './product/get';
-import updateProducts from './product/update';
+import getProducts from '../_base/product/get';
+import updateProducts from '../_base/product/update';
 
 
 export default class Saga {
@@ -31,7 +28,7 @@ export default class Saga {
   }
 
   async execute(params) {
-    const saga = await this.getUpdateProductSagaDefinition(this.ctx);
+    const saga = await this.sagaDefinition(this.ctx);
     try {
       return await saga.execute(params);
     }
@@ -46,7 +43,7 @@ export default class Saga {
     }
   }
 
-  async getUpdateProductSagaDefinition(ctx) {
+  async sagaDefinition(ctx) {
     const sagaBuilder = new Sagas.SagaBuilder();
 
     const { uuid } = ctx['params'];
@@ -57,27 +54,21 @@ export default class Saga {
       .invoke(async (params) => {
         logger.info('Get order');
         const order = await getOrder(uuid);
+
         params.setOrder(order);
       })
 
       .step('Update order')
       .invoke(async () => {
         logger.info('Update order');
+
         await updateOrder(uuid, body);
       })
       .withCompensation(async (params) => {
         logger.info('Restore update order');
         const order = params.getOrder();
-        await updateOrder(uuid, order);
-      })
 
-      .step('Remove gallery')
-      .invoke(async () => {
-        if ( ! body['products']) {
-          return void 0;
-        }
-        logger.info('Remove gallery');
-        await removeGallery(body['products']);
+        await updateOrder(uuid, order);
       })
 
       .step('Update address')
@@ -86,12 +77,14 @@ export default class Saga {
           return void 0;
         }
         logger.info('Update address');
-        await createAddress(uuid, body['address']);
+
+        await updateAddress(uuid, body['address']);
       })
       .withCompensation(async (params) => {
         logger.info('Restore update address');
         const order = params.getOrder();
-        await createAddress(uuid, order['address']);
+
+        await updateAddress(uuid, order['address']);
       })
 
       .step('Update products')
@@ -100,45 +93,30 @@ export default class Saga {
           return void 0;
         }
         logger.info('Update products');
+
         await updateProducts(uuid, body['products']);
       })
       .withCompensation(async (params) => {
         logger.info('Restore update products');
         const order = params.getOrder();
-        await updateProducts(uuid, order['products']);
-      })
 
-      .step('Get order')
-      .invoke(async (params) => {
-        logger.info('Get order');
-        const order = await getOrder(uuid);
-        params.setOrder(order);
-      })
-
-      .step('Update gallery')
-      .invoke(async (params) => {
-        logger.info('Update gallery');
-        const order = params.getOrder();
-        if ( ! body['products']) {
-          return void 0;
-        }
-        const products = body['products'].map((product) => {
-          const orderProduct = order['products'].find((item) => item['modeUuid'] === product['modeUuid']);
-          return {
-            ...product,
-            uuid: orderProduct['uuid'],
-          }
-        });
-        await createGallery(uuid, products);
+        await updateProducts(uuid, order['products'].map((product) => ({
+          ...product,
+          currencyCode: product['currency']['code'],
+        })));
       })
 
       .step('Update customer')
       .invoke(async (params) => {
         logger.info('Update customer');
         const order = params.getOrder();
-        const customer = await getCustomer(order['userUuid']);
-        if (customer) {
-          const result = await updateCustomer(customer['uuid'], {
+        const customer = await getCustomer({
+          uuid: order['userUuid'],
+        });
+
+        if (customer[0]) {
+          const result = await updateCustomer({
+            ...customer[0],
             ...body['customer'],
           });
           params.setCustomer(result);
@@ -152,14 +130,24 @@ export default class Saga {
       .step('Update order')
       .invoke(async () => {
         logger.info('Update order');
-        const products = await getProducts(uuid);
-        const total = !! products.length
-          ? products.reduce((prev, next) => prev + next['total'], 0)
-          : 0;
+
+        if (body['products'] && body['products'].length) {
+          const products = await getProducts(uuid);
+          const total = !! products.length
+            ? products.reduce((prev, next) => prev + next['total'], 0)
+            : 0;
+
+          await updateOrder(uuid, {
+            total,
+          });
+        }
+      })
+      .withCompensation(async (params) => {
+        logger.info('Restore order');
+        const order = params.getOrder();
 
         await updateOrder(uuid, {
-          total,
-          currencyCode: 'RUB',
+          ...order,
         });
       })
 
@@ -167,47 +155,31 @@ export default class Saga {
       .invoke(async (params) => {
         logger.info('Get updated order');
         const order = await getOrder(uuid);
-        params.setOrder(order);
+
+        params.setFinishOrder(order);
       })
 
       .step('Send event')
       .invoke(async (params) => {
-        const order = params.getOrder();
-        const customer = params.getCustomer();
-        if (customer) {
-          order['customer'] = {};
-          order['customer']['name'] = customer['name'];
-          order['customer']['phone'] = customer['phone'];
-        }
-        else {
-          order['customer'] = null;
-        }
+        const order = params.getFinishOrder();
+
         await sendEvent(process.env['EXCHANGE_ORDER_UPDATE'], JSON.stringify(order));
       })
 
-      .step('Send to mail')
+      .step('Send command to mail')
       .invoke(async (params) => {
-        const order = params.getOrder();
+        const order = params.getFinishOrder();
 
         if (order['status']['code'] === 'basket') {
           return void 0;
         }
 
-        const customer = params.getCustomer();
-        if (customer) {
-          order['customer'] = {};
-          order['customer']['name'] = customer['name'];
-          order['customer']['phone'] = customer['phone'];
-        }
-        else {
-          order['customer'] = null;
-        }
         await sendCommand(process.env['QUEUE_MAIL_ORDER_UPDATE'], JSON.stringify(order));
       })
 
-      .step('Send to push')
+      .step('Send command to push-notification')
       .invoke(async (params) => {
-        const order = params.getOrder();
+        const order = params.getFinishOrder();
 
         if (order['status']['code'] === 'basket') {
           return void 0;
@@ -242,9 +214,34 @@ export default class Saga {
         }));
       })
 
-      .step('Send to semySms')
+      .step('Send command to push-notification for admins')
       .invoke(async (params) => {
-        const order = params.getOrder();
+        const order = params.getFinishOrder();
+
+        if (order['status']['code'] !== 'new') {
+          return void 0;
+        }
+
+        const externalId = order['externalId'].toUpperCase().replace(/(\w{3})(\w{3})(\w{3})/, '$1-$2-$3');
+
+        const customers = await getCustomer({
+          type: 'admin',
+        });
+
+        for (let customer in customers) {
+          const userUuid = customers[customer]['uuid'];
+
+          await sendCommand(process.env['QUEUE_PUSH_SEND'], JSON.stringify({
+            title: 'Пекарня "Осетинские прироги"',
+            message: 'Поступил новый заказ ' + externalId + '.',
+            userUuid: userUuid,
+          }));
+        }
+      })
+
+      .step('Send command to semySms')
+      .invoke(async (params) => {
+        const order = params.getFinishOrder();
 
         if (order['status']['code'] === 'basket' || order['status']['code'] === 'new') {
           return void 0;
@@ -273,6 +270,30 @@ export default class Saga {
           message: message,
           phone: order['customer']['phone'],
         }));
+      })
+
+      .step('Send command to semySms for admins')
+      .invoke(async (params) => {
+        const order = params.getFinishOrder();
+
+        if (order['status']['code'] !== 'new') {
+          return void 0;
+        }
+
+        const externalId = order['externalId'].toUpperCase().replace(/(\w{3})(\w{3})(\w{3})/, '$1-$2-$3');
+
+        const customers = await getCustomer({
+          type: 'admin',
+        });
+
+        for (let customer in customers) {
+          const phone = customers[customer]['phone'];
+
+          await sendCommand(process.env['QUEUE_SEMYSMS_SEND'], JSON.stringify({
+            message: 'Поступил новый заказ №' + externalId,
+            phone: phone,
+          }));
+        }
       })
 
       .build();

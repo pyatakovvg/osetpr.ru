@@ -6,7 +6,6 @@ import request from '@ui.packages/request';
 let serviceWorkerRegistration = null;
 const appServerKey = process.env['REACT_APP_PUSH_PUBLIC_KYE'];
 
-
 function urlB64ToUint8Array(base64String) {
   const padding = '='.repeat((4 - base64String.length % 4) % 4);
   const base64 = (base64String + padding)
@@ -61,6 +60,7 @@ export async function subscribeUser(userUuid) {
     if (subscription) {
       await subscription.unsubscribe();
     }
+console.log(error)
     throw new UnavailableError({ code: '0.0.2', message: error['message'] })
   }
 }

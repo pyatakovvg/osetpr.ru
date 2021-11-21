@@ -22,7 +22,7 @@ function useGetMaxModeCount(products) {
 }
 
 
-export default function DefaultProduct({ uuid, externalId, title, modes, gallery, isAvailable, toCart }) {
+export default function DefaultProduct({ uuid, externalId, title, originalName, modes, gallery, isAvailable, toCart }) {
   const [mode, setMode] = useState(modes.find((item) => item['isTarget']));
 
   const hasMaxCountMode = useGetMaxModeCount(mode);
@@ -41,6 +41,9 @@ export default function DefaultProduct({ uuid, externalId, title, modes, gallery
       <div className={styles['container']}>
         <div className={styles['header']}>
           <span className={styles['name']}>{ title }</span>
+          {originalName && (
+            <span className={styles['original-name']}>{ originalName }</span>
+          )}
         </div>
         <div className={styles['content']}>
           <Link className={styles['gallery']} to={process.env['PUBLIC_URL'] + '/products/' + externalId}>

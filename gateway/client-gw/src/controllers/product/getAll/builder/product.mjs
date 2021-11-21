@@ -8,6 +8,7 @@ export default function(data, products) {
     uuid: data['uuid'],
     isAvailable: data['isAvailable'],
     title: data['title'],
+    originalName: data['originalName'],
     categoryId: data['category']['id'],
     description: data['description'],
     gallery: data['gallery'],

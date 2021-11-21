@@ -22,13 +22,25 @@ export default () => async (ctx) => {
         description: data['description'],
         statusCode: data['statusCode'] || 'basket',
         address: data['address'],
-        products: data['products'],
+        products: data['products'].map((item, index) => ({
+          productUuid: item['productUuid'],
+          externalId: item['externalId'],
+          modeUuid: item['modeUuid'],
+          imageUuid: item['imageUuid'] || null,
+          title: item['title'],
+          vendor: item['vendor'],
+          value: item['value'],
+          price: item['price'],
+          total: Number(item['price']) * Number(item['number']),
+          currencyCode: item['currencyCode'],
+          number: Number(item['number']),
+          order: index,
+        })),
         customer: data['customer'],
         paymentCode: data['paymentCode'],
       },
     });
-  }
-  else {
+  } else {
 
     result = await request({
       url: process.env['ORDER_API_SRV'] + '/orders',
@@ -40,7 +52,20 @@ export default () => async (ctx) => {
         description: data['description'],
         statusCode: 'basket',
         address: data['address'],
-        products: data['products'],
+        products: data['products'].map((item, index) => ({
+          productUuid: item['productUuid'],
+          externalId: item['externalId'],
+          modeUuid: item['modeUuid'],
+          imageUuid: item['imageUuid'] || null,
+          title: item['title'],
+          vendor: item['vendor'],
+          value: item['value'],
+          price: item['price'],
+          total: Number(item['price']) * Number(item['number']),
+          currencyCode: item['currencyCode'],
+          number: Number(item['number']),
+          order: index,
+        })),
         customer: data['customer'],
         paymentCode: data['paymentCode'],
       },

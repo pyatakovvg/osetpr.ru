@@ -38,11 +38,11 @@ export const checkPushSubscribe = () => async (dispatch) => {
 
 export const subscribePushSubscribe = (userUuid) => async (dispatch) => {
   try {
-    dispatch(checkPushSubscriptionAction());
+    dispatch(subscribePushSubscriptionAction());
 
     await subscribeUser(userUuid);
 
-    dispatch(checkPushSubscriptionSuccessAction(true));
+    dispatch(subscribePushSubscriptionSuccessAction(true));
     dispatch(pushNotification({
       title: 'Успешно установлено',
       content: 'Теперь вы сможете получать push-уведомления',
@@ -50,7 +50,7 @@ export const subscribePushSubscribe = (userUuid) => async (dispatch) => {
     }));
   }
   catch(error) {
-    dispatch(checkPushSubscriptionFailAction());
+    dispatch(subscribePushSubscriptionFailAction());
     dispatch(pushNotification({
       title: 'Упс! Что-то пошло не так',
       content: error['data']['message'],
@@ -62,11 +62,11 @@ export const subscribePushSubscribe = (userUuid) => async (dispatch) => {
 
 export const unsubscribePushSubscribe = (userUuid) => async (dispatch) => {
   try {
-    dispatch(checkPushSubscriptionAction());
+    dispatch(unsubscribePushSubscriptionAction());
 
     await unsubscribeUser(userUuid);
 
-    dispatch(checkPushSubscriptionSuccessAction(false));
+    dispatch(unsubscribePushSubscriptionSuccessAction(false));
     dispatch(pushNotification({
       title: 'Успешно отключено',
       content: 'Теперь вы не сможете получать push-уведомления',
@@ -74,7 +74,7 @@ export const unsubscribePushSubscribe = (userUuid) => async (dispatch) => {
     }));
   }
   catch(error) {
-    dispatch(checkPushSubscriptionFailAction());
+    dispatch(unsubscribePushSubscriptionFailAction());
     dispatch(pushNotification({
       title: 'Упс! Что-то пошло не так',
       content: error['data']['message'],

@@ -27,6 +27,11 @@ export default function(sequelize, DataType) {
       type: DataType.UUID,
       allowNull: false,
     },
+    imageUuid: {
+      type: DataType.STRING(40),
+      allowNull: true,
+      defaultValue: null,
+    },
     externalId: {
       type: DataType.STRING(9),
       allowNull: false,
@@ -79,17 +84,11 @@ export default function(sequelize, DataType) {
     timestamps: false,
   });
 
-  OrderProduct.associate = ({ ProductGallery, Currency }) => {
+  OrderProduct.associate = ({ Currency }) => {
 
     OrderProduct.belongsTo(Currency, {
       foreignKey: 'currencyCode',
       as: 'currency',
-    });
-
-    OrderProduct.hasMany(ProductGallery, {
-      foreignKey: 'productUuid',
-      sourceKey: 'uuid',
-      as: 'gallery',
     });
   };
 

@@ -14,7 +14,6 @@ import { reducer as applicationReducer } from './ducks/slice';
 
 import initStore from './redux/initStore';
 
-import * as worker from './serviceWorker';
 
 const defaultOptions = {
   portal: null,
@@ -104,8 +103,6 @@ class App {
         </BrowserRouter>
       </Provider>
     , this.options['portal']);
-
-    await worker.unregister();
   }
 
   async render() {

@@ -10,12 +10,16 @@ import { getAllPlans, createPlan, updatePlan, getByIdPlan } from '../controllers
 
 import { getProfile } from '../controllers/profile';
 import { createComment, getAllComments } from "../controllers/comment";
+import { registerWorker, unregisterWorker } from "../controllers/push";
 
 
 export default (router) => {
 
   router.get('/comments', getAllComments());
   router.post('/comments', createComment());
+
+  router.post('/push/subscribe', registerWorker());
+  router.post('/push/unsubscribe', unregisterWorker());
 
   router.get('/gallery', getImages());
   router.get('/gallery/:id', getImage());
