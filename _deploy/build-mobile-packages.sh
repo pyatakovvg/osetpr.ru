@@ -31,6 +31,8 @@ echo '[--- mobile product ---]'
 cd  ../product && npx yarn build
 echo '[--- mobile order ---]'
 cd  ../order && npx yarn build
+echo '[--- mobile orders ---]'
+cd  ../orders && npx yarn build
 echo '[--- mobile order draft ---]'
 cd  ../order-draft && npx yarn build
 echo '[--- mobile about ---]'
