@@ -28,12 +28,12 @@ function Input({ mode, label, name, value, readOnly, require, onChange, onFocus,
 
   function handleChange(event) {
     setFocus(true);
-    onChange(event['target']['value'].replace(/[+\D]+/i, ''));
+    onChange(event['target']['value'].replace(/[^+\d]/g, ''));
   }
 
   function handleBlur(event) {
     setFocus(false);
-    onBlur(event['target']['value'].replace(/[^+\d]+/ig, ''));
+    onBlur(event['target']['value'].replace(/[^+\d]/g, ''));
   }
 
   return (

@@ -6,23 +6,9 @@ import cn from 'classnames';
 import styles from './default.module.scss';
 
 
-function Input({ mode, label, name, value, readOnly, require, onChange, onFocus, onBlur, ...props }) {
+function Textarea({ mode, label, name, value, readOnly, require, onChange, onFocus, onBlur, ...props }) {
   const [isFocus, setFocus] = useState(false);
-
-  const hiddenRef = useRef(null);
   const textareaRef = useRef(null);
-
-  useEffect(() => {
-    const hiddenElement = hiddenRef['current'];
-    const textareaElement = textareaRef['current'];
-
-    if ( ! hiddenElement || ! textareaElement) {
-      return void 0;
-    }
-
-    const hiddenRECT = hiddenElement.getBoundingClientRect();
-    textareaElement.style.height = hiddenRECT['height'] + 8 + 'px';
-  }, [value]);
 
   const titleClassName = useMemo(() => cn(styles['title'], {
     [styles['is-focus']]: value || isFocus,
@@ -31,9 +17,29 @@ function Input({ mode, label, name, value, readOnly, require, onChange, onFocus,
   const contentClassName = useMemo(() => cn(styles['content'], {
     [styles['mode--success']]: mode === 'success',
   }), [mode]);
-  const elementClassName = useMemo(() => cn(styles['element'], {
+  const elementClassName = useMemo(() => cn(styles['element'], {}), [mode]);
 
-  }), [mode]);
+  useEffect(() => {
+    const textareaElement = textareaRef['current'];
+
+    if ( ! textareaElement) {
+      return void 0;
+    }
+
+    function handleInput(event) {
+      const target = event['target'];
+      target.style.height = 'auto';
+      target.style.height = target.scrollHeight + 'px'
+    }
+
+    textareaElement.classList.add(styles['auto']);
+    textareaElement.setAttribute('style', 'height: ' + textareaElement.scrollHeight + 'px');
+    textareaElement.addEventListener('input', handleInput);
+
+    return () => {
+      textareaElement.removeEventListener('input', handleInput);
+    };
+  }, []);
 
   function handleFocus(event) {
     setFocus(true);
@@ -43,26 +49,26 @@ function Input({ mode, label, name, value, readOnly, require, onChange, onFocus,
   function handleChange(event) {
     const value = event['target']['value'];
     setFocus(true);
-    onChange(value.replace(/\n/ig, '<br/>'));
+    onChange(value);
   }
 
   function handleBlur(event) {
     const value = event['target']['value'];
     setFocus(false);
-    onBlur(value.replace(/\n/ig, '<br/>'));
+    onBlur(value);
   }
 
   return (
     <div className={styles['wrapper']}>
       <span className={titleClassName}>{ label }</span>
       <div className={contentClassName}>
-        <div ref={hiddenRef} className={styles['hidden']} dangerouslySetInnerHTML={{ __html: value }} />
         <textarea
           ref={textareaRef}
           className={elementClassName}
           name={name}
-          value={value.replace(/<br\/>/ig, '\n')}
+          value={value}
           {...props}
+          rows={1}
           readOnly={readOnly}
           onChange={handleChange}
           onFocus={handleFocus}
@@ -73,20 +79,20 @@ function Input({ mode, label, name, value, readOnly, require, onChange, onFocus,
   );
 }
 
-Input.propTypes = {
+Textarea.propTypes = {
   require: types.bool,
   readOnly: types.bool,
   mode: types.oneOf(['danger', 'default']),
 };
 
-Input.defaultType = {
+Textarea.defaultType = {
   require: false,
   readOnly: false,
   mode: 'default',
 };
 
-Input.mode = {
+Textarea.mode = {
   danger: 'danger',
 }
 
-export default Input;
+export default Textarea;
