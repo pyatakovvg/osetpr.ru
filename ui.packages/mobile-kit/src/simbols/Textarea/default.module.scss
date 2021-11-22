@@ -47,6 +47,7 @@
 
 .element {
 
+  -webkit-appearance: none;
   position: relative;
   display: block;
   border: none;
@@ -62,6 +63,11 @@
   resize: none;
   z-index: 20;
   overflow: hidden;
+
+  &.auto {
+
+    overflow-y: hidden;
+  }
 }
 
 .is-focus {
