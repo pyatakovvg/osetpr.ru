@@ -29,34 +29,6 @@
   box-sizing: border-box;
   box-shadow: 0 -2px 6px 0 rgba(0, 0, 0, 20%);
   overflow: hidden;
-  animation-name: showDialog;
-  animation-timing-function: ease-in-out;
-  animation-duration: 150ms;
-}
-
-.hide {
-
-  animation-name: hideDialog;
-  animation-timing-function: ease-in-out;
-  animation-duration: 150ms;
-}
-
-@keyframes showDialog {
-  from {
-    top: 100%;
-  }
-  to {
-    top: 32px;
-  }
-}
-
-@keyframes hideDialog {
-  from {
-    top: 32px;
-  }
-  to {
-    top: 100%;
-  }
 }
 
 .close {

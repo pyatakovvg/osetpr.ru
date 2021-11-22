@@ -19,9 +19,6 @@
   backdrop-filter: blur(2px);
   z-index: 99999;
   overflow: hidden;
-  animation-name: showBackgroundDialog;
-  animation-timing-function: ease-in-out;
-  animation-duration: 150ms;
 }
 
 .dialog {
@@ -38,23 +35,6 @@
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 40%);
   overflow: hidden;
   width: 100%;
-  animation-name: showDialog;
-  animation-timing-function: ease-in-out;
-  animation-duration: 150ms;
-}
-
-.hide {
-
-  animation-name: hideDialog;
-  animation-timing-function: ease-in-out;
-  animation-duration: 150ms;
-}
-
-.hide-background {
-
-  animation-name: hideBackgroundDialog;
-  animation-timing-function: ease-in-out;
-  animation-duration: 150ms;
 }
 
 .close {
@@ -74,48 +54,4 @@
   flex-direction: column;
   flex: 1 0;
   overflow: hidden;
-}
-
-@keyframes showDialog {
-  from {
-    transform: scale(.8);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes hideDialog {
-  from {
-    transform: scale(1);
-    opacity: 1;
-  }
-  to {
-    transform: scale(.8);
-    opacity: 0;
-  }
-}
-
-@keyframes showBackgroundDialog {
-  from {
-    opacity: 0;
-    backdrop-filter: blur(0);
-  }
-  to {
-    opacity: 1;
-    backdrop-filter: blur(2px);
-  }
-}
-
-@keyframes hideBackgroundDialog {
-  from {
-    opacity: 1;
-    backdrop-filter: blur(2px);
-  }
-  to {
-    opacity: 0;
-    backdrop-filter: blur(0);
-  }
 }

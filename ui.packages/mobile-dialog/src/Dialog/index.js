@@ -23,36 +23,19 @@ function Dialog({ className, name, children, onClose }) {
     return () => {
       dispatch(closeDialog());
     }
-  }, [])
+  }, []);
 
-  useEffect(() => {
+  function handleClickWrapperDialog(event) {
     const elementDialog = dialogRef['current'];
 
-    if ( ! elementDialog) {
-      return void 0;
+    if (elementDialog.isEqualNode(event['target'])) {
+      handleCloseDialog();
     }
-
-    function handleCloseDialog() {
-      if (elementDialog.classList.contains(styles['hide'])) {
-        dispatch(closeDialog());
-        onClose && onClose(name);
-      }
-    }
-
-    elementDialog.addEventListener('animationend', handleCloseDialog);
-    return () => {
-      if ( ! elementDialog) {
-        return void 0;
-      }
-
-      elementDialog.removeEventListener('animationend', handleCloseDialog);
-    }
-  }, [isOpen]);
+  }
 
   function handleCloseDialog() {
-    const elementDialog = dialogRef['current'];
-
-    elementDialog.classList.add(styles['hide']);
+    dispatch(closeDialog());
+    onClose && onClose(name);
   }
 
   if ( ! isOpen) {
@@ -66,7 +49,7 @@ function Dialog({ className, name, children, onClose }) {
   const classNameDialog = cn(styles['dialog'], className);
 
   return ReactDOM.createPortal((
-    <div className={styles['wrapper']}>
+    <div className={styles['wrapper']} onClick={(event) => handleClickWrapperDialog(event)}>
       <div ref={dialogRef} className={classNameDialog}>
         <span className={styles['close']} onClick={handleCloseDialog} />
         <div className={styles['content']}>
