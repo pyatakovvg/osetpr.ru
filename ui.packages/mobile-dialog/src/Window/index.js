@@ -14,7 +14,6 @@ function Dialog({ className, name, children, onClose }) {
   const dispatch = useDispatch();
 
   const dialogRef = useRef(null);
-  const wrapperRef = useRef(null);
 
   const isOpen = useSelector(selectIsOpen);
   const activeName = useSelector(selectName);
@@ -26,36 +25,17 @@ function Dialog({ className, name, children, onClose }) {
     }
   }, [])
 
-  useEffect(() => {
+  function handleClickWrapperDialog(event) {
     const elementDialog = dialogRef['current'];
 
-    if ( ! elementDialog) {
-      return void 0;
+    if (elementDialog.isEqualNode(event['target'])) {
+      handleCloseDialog();
     }
-
-    function handleCloseDialog() {
-      if (elementDialog.classList.contains(styles['hide'])) {
-        dispatch(closeDialog());
-        onClose && onClose(name);
-      }
-    }
-
-    elementDialog.addEventListener('animationend', handleCloseDialog);
-    return () => {
-      if ( ! elementDialog) {
-        return void 0;
-      }
-
-      elementDialog.removeEventListener('animationend', handleCloseDialog);
-    }
-  }, [isOpen]);
+  }
 
   function handleCloseDialog() {
-    const elementDialog = dialogRef['current'];
-    const elementWrapper = wrapperRef['current'];
-
-    elementDialog.classList.add(styles['hide']);
-    elementWrapper.classList.add(styles['hide-background']);
+    dispatch(closeDialog());
+    onClose && onClose(name);
   }
 
   if ( ! isOpen) {
@@ -69,9 +49,9 @@ function Dialog({ className, name, children, onClose }) {
   const classNameDialog = cn(styles['dialog'], className);
 
   return ReactDOM.createPortal((
-    <div ref={wrapperRef} className={styles['wrapper']}>
-      <div ref={dialogRef} className={classNameDialog}>
-        <span className={styles['close']} onClick={handleCloseDialog} />
+    <div ref={dialogRef} className={styles['wrapper']} onClick={(event) => handleClickWrapperDialog(event)}>
+      <div className={classNameDialog}>
+        <span className={styles['close']} onClick={() => handleCloseDialog()} />
         <div className={styles['content']}>
           { React.cloneElement(children, { data }) }
         </div>

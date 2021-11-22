@@ -1,9 +1,11 @@
 
+import { selectInProcess } from '@ui.packages/order';
 import { Cart, Image } from '@ui.packages/mobile-kit';
 
 import types from 'prop-types';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import Mode from './Mode';
 
@@ -27,6 +29,8 @@ export default function DefaultProduct({ uuid, externalId, title, originalName, 
 
   const hasMaxCountMode = useGetMaxModeCount(mode);
   const isDisabled = ! isAvailable || hasMaxCountMode;
+
+  const inProcess = useSelector(selectInProcess);
 
   function handleClick(mode) {
     setMode(mode);
@@ -69,7 +73,7 @@ export default function DefaultProduct({ uuid, externalId, title, originalName, 
         <div className={styles['cart']}>
           <Cart
             mode={Cart.mode.success}
-            disabled={isDisabled}
+            disabled={isDisabled || inProcess}
             onClick={() => handleCart({
               productUuid: uuid,
               externalId,

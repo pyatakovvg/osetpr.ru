@@ -18,7 +18,7 @@ function DetailsForm({ handleSubmit }) {
           <Header level={2}>Ваши данные</Header>
         </div>
         <div className={styles['row']}>
-          <InputField name={'name'} label={'Представтесь'} require />
+          <InputField name={'name'} label={'Представьтесь'} require />
         </div>
         <div className={styles['row']}>
           <InputPhoneField name={'phone'} label={'Контактный телефон'} require />
