@@ -3,29 +3,29 @@ import request from '@ui.packages/request';
 import { pushNotification } from '@ui.packages/mobile-notifications';
 
 import {
-  getOrderRequestAction,
-  getOrderRequestFailAction,
-  getOrderRequestSuccessAction,
+  getOrdersRequestAction,
+  getOrdersRequestFailAction,
+  getOrdersRequestSuccessAction,
 } from './slice';
 
 
-export const getOrder = (externalId, userUuid) => async (dispatch) => {
+export const getOrders = (userUuid) => async (dispatch) => {
   try {
-    dispatch(getOrderRequestAction());
+    dispatch(getOrdersRequestAction());
 
     const result = await request({
-      url: '/orders/' + externalId,
+      url: '/orders',
       method: 'get',
       params: {
         userUuid,
       },
     });
 
-    dispatch(getOrderRequestSuccessAction(result['data']));
+    dispatch(getOrdersRequestSuccessAction(result['data']));
   }
   catch(error) {
-console.log(error)
-    dispatch(getOrderRequestFailAction());
+
+    dispatch(getOrdersRequestFailAction());
     dispatch(pushNotification({
       title: 'Упс! Что-то пошло не так',
       content: error['data']['message'],

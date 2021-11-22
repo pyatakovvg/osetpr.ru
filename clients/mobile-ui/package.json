@@ -12,6 +12,7 @@
     "@modules/mobile-comments": "1.0.0",
     "@modules/mobile-main": "1.0.0",
     "@modules/mobile-order": "1.0.0",
+    "@modules/mobile-orders": "1.0.0",
     "@modules/mobile-order-draft": "1.0.0",
     "@modules/mobile-product": "1.0.0",
     "@modules/mobile-options": "1.0.0",

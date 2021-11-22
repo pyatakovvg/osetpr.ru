@@ -13,6 +13,10 @@ const navigate = [
     path: '/about',
   },
   {
+    title: "История заказов",
+    path: '/orders',
+  },
+  {
     title: "Настройка",
     path: '/settings',
   },

@@ -1,0 +1,121 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  overflow: hidden;
+}
+
+.container {
+
+  display: flex;
+  flex: 1 0;
+  flex-direction: column;
+  padding: 32px 16px 128px;
+  overflow: auto;
+  z-index: 10;
+}
+
+.header {
+
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content {
+
+  display: block;
+  margin: 32px 0 0;
+}
+
+.row {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  align-items: flex-end;
+
+  & + & {
+
+    margin: 24px 0 0;
+  }
+}
+
+.number {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.status {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  margin: 0 0 0 16px;
+}
+
+.address {
+
+  display: block;
+  margin: 24px 0 0;
+}
+
+.payment {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.amount {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  margin: 0 0 0 16px;
+}
+
+.products {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  margin: 32px 0 0;
+}
+
+.title {
+
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: $gray-lighten;
+}
+
+.value {
+
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: $white;
+  margin: 8px 0 0
+}
+
+.status {
+  .value {
+    margin: 4px 0 0;
+  }
+}
+
+.uppercase {
+
+  text-transform: uppercase;
+}

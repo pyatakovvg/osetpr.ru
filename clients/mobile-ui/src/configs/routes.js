@@ -25,11 +25,19 @@ const routes = [
     ),
   },
   {
-    path: '/order/:uuid',
+    path: '/orders/:uuid',
     wrapper: 'Navigate',
     module: import(
       /* webpackChunkName: "mobile-order" */
       '@modules/mobile-order'
+    ),
+  },
+  {
+    path: '/orders',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "mobile-orders" */
+      '@modules/mobile-orders'
     ),
   },
   {

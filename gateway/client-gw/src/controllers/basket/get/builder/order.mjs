@@ -6,6 +6,7 @@ import customerBuilder from './customer.mjs';
 
 export default function(data) {
   return {
+    externalId: data['externalId'],
     uuid: data['uuid'],
     total: data['total'],
     dateTo: data['dateTo'] ? moment(data['dateTo']).tz('Europe/Moscow').format('YYYY-MM-DD HH:mm:ss.SSSSSSZ') : null,

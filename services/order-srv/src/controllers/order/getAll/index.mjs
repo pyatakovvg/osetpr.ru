@@ -1,5 +1,5 @@
 
-import { models } from '@sys.packages/db';
+import { models, Op } from '@sys.packages/db';
 import request from '@sys.packages/request';
 
 
@@ -11,6 +11,7 @@ export default () => async (ctx) => {
   const { Order, OrderProduct, OrderAddress, Status, Currency, Payment, Customer } = models;
 
   const {
+    externalId = null,
     limit = null,
     skip = null,
     take = null,
@@ -19,6 +20,10 @@ export default () => async (ctx) => {
     isUse = null,
     status = null,
   } = ctx['request']['query'];
+
+  if (externalId) {
+    where['externalId'] = externalId;
+  }
 
   if (uuid) {
     where['uuid'] = uuid;
@@ -45,11 +50,15 @@ export default () => async (ctx) => {
     offset['limit'] = Number(take);
   }
 
+  console.log(where)
+
   const result = await Order.findAndCountAll({
     ...options,
     ...offset,
     distinct: true,
-    where: {
+    where: {      statusCode: {
+        [Op.not]: 'basket'
+      },
       ...where,
     },
     order: [

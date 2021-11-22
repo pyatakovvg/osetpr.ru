@@ -5,7 +5,6 @@ import customerBuilder from './customer.mjs';
 
 
 export default function(data) {
-  // console.log(data)
   return {
     externalId: data['externalId'],
     status: data['status'],

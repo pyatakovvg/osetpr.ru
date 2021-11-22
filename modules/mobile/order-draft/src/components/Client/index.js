@@ -159,7 +159,7 @@ function Client() {
 
     if (isUpdated) {
       await dispatch(resetStateAction());
-      navigate(process.env['PUBLIC_URL'] + '/order/' + order['uuid']);
+      navigate(process.env['PUBLIC_URL'] + '/orders/' + order['externalId']);
     }
   }
 
