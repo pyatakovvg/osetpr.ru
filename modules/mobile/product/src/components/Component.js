@@ -1,9 +1,9 @@
 
 import { selectProduct } from '@modules/mobile-product';
 
-import { selectOrder, updateOrder } from '@ui.packages/order';
 import { Image, Header, Cart } from '@ui.packages/mobile-kit';
 import { pushNotification } from '@ui.packages/mobile-notifications';
+import { selectInProcess, selectOrder, updateOrder } from '@ui.packages/order';
 
 
 import React, { useState, useEffect } from 'react';
@@ -31,6 +31,7 @@ function Product() {
 
   const order = useSelector(selectOrder);
   const product = useSelector(selectProduct);
+  const inProcess = useSelector(selectInProcess);
 
   const [mode, setMode] = useState(null);
 
@@ -119,7 +120,7 @@ function Product() {
           <div className={styles['cart']}>
             <Cart
               mode={Cart.mode.success}
-              disabled={isDisabled}
+              disabled={isDisabled || inProcess}
               onClick={() => handleToCart({
                 externalId: product['externalId'],
                 productUuid: product['uuid'],
