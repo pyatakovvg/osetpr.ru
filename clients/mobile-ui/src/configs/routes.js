@@ -64,6 +64,14 @@ const routes = [
       '@modules/mobile-options'
     ),
   },
+  {
+    path: '*',
+    wrapper: 'Empty',
+    module: import(
+      /* webpackChunkName: "mobile-not-found" */
+      '@modules/mobile-not-found'
+    ),
+  },
 ];
 
 export default routes;

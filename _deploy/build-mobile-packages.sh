@@ -41,5 +41,7 @@ echo '[--- mobile comments ---]'
 cd  ../comments && npx yarn build
 echo '[--- mobile settings ---]'
 cd  ../options && npx yarn build
+echo '[--- mobile not found ---]'
+cd  ../not-found && npx yarn build
 
 exit 0
