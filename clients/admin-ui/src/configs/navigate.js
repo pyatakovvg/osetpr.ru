@@ -20,7 +20,7 @@ const navigate = [
       },
       {
         title: 'Категория',
-        path: '/products/category',
+        path: '/products/categories',
       }
     ],
   },

@@ -11,10 +11,10 @@ export default (router) => {
   router.get('/api/v1/currencies', getAllCurrencies());
 
   router.get('/api/v1/categories', getAllCategories());
-  router.put('/api/v1/categories', updateCategories());
+  router.post('/api/v1/categories', updateCategories());
 
   router.get('/api/v1/groups', getAllGroups());
-  router.put('/api/v1/groups', updateGroups());
+  router.post('/api/v1/groups', updateGroups());
 
   router.get('/api/v1/products/modes', getAllProductModes());
 

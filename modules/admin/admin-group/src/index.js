@@ -10,6 +10,6 @@ export {
 } from './ducks/slice';
 
 export {
-  getCategories,
-  updateCategories,
+  getGroups,
+  updateGroups,
 } from './ducks/commands';

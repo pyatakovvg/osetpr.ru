@@ -7,7 +7,7 @@ const initialState = {
   inProcess: false,
 };
 
-const REDUCER_NAME = 'category';
+const REDUCER_NAME = 'categories';
 
 
 const typesSlice = createSlice({

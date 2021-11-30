@@ -1,5 +1,5 @@
 
-import { getCategories, resetStateAction } from '@modules/admin-category';
+import { getGroups, resetStateAction } from '@modules/admin-group';
 
 import { useMount, useUnmount, useUpdate } from '@ui.packages/hoc';
 
@@ -13,9 +13,9 @@ export default function HOC() {
   const dispatch = useDispatch();
 
   useMount(async function() {
-    document.title = `${process.env['REACT_APP_WEBSITE_NAME']} - Категории`;
+    document.title = `${process.env['REACT_APP_WEBSITE_NAME']} - Группы товаров`;
 
-    await dispatch(getCategories());
+    await dispatch(getGroups());
   });
 
   useUpdate(async function() {});

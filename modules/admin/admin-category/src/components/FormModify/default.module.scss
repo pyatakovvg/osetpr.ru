@@ -8,7 +8,7 @@
 
   & + & {
 
-    margin: 10px 0 0;
+    margin: 8px 0 0;
   }
 }
 
@@ -52,7 +52,7 @@
   flex: 1 0;
   box-sizing: border-box;
   font-size: 0;
-  justify-content: flex-end;
+  align-items: center;
 
   & + & {
 
@@ -87,7 +87,7 @@
     display: flex;
     align-items: center;
     justify-items: center;
-    padding: 19px 0 0 16px;
+    padding: 0 8px 0 16px;
   }
 
   &__remove {
@@ -107,7 +107,6 @@
 
   display: block;
   margin: 0 10px 0 0;
-  padding: 28px 0 0;
 }
 
 .unit {
@@ -120,4 +119,72 @@
   background: $pale-grey;
   border-radius: 5px;
   margin: 17px 0 0;
+}
+
+.labels {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  margin: 0 0 8px;
+  align-items: center;
+}
+
+.icon {
+
+  font-size: 12px;
+  color: $blue-grey;
+}
+
+.label {
+
+  display: block;
+
+  &:nth-child(1) {
+    padding: 0 0 0 9px;
+  }
+  &:nth-child(2) {
+    width: 21px;
+    padding: 0 0 0 16px;
+    text-align: center;
+  }
+  &:nth-child(3) {
+    width: 21px;
+    padding: 0 0 0 10px;
+    text-align: center;
+  }
+  &:nth-child(4) {
+
+    display: flex;
+    flex-direction: column;
+    flex: 1 0;
+    padding: 0 0 0 26px;
+  }
+  &:nth-child(5) {
+
+    display: flex;
+    flex-direction: column;
+    flex: 1 0;
+    padding: 0 0 0 26px;
+  }
+  &:nth-child(6) {
+
+    display: flex;
+    flex-direction: column;
+    flex: 1 0;
+    padding: 0 0 0 26px;
+  }
+  &:nth-child(7) {
+
+    display: block;
+    width: 105px;
+    padding: 0 0 0 26px;
+  }
+  &:nth-child(8) {
+
+    display: block;
+    width: 12px;
+    padding: 0 16px 0 16px;
+    text-align: center;
+  }
 }

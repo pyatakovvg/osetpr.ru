@@ -65,7 +65,7 @@ const routes = [
     ),
   },
   {
-    path: '/products/group',
+    path: '/products/groups',
     wrapper: 'Composite',
     module: import(
       /* webpackChunkName: "admin-group" */
@@ -73,7 +73,7 @@ const routes = [
       ),
   },
   {
-    path: '/products/category',
+    path: '/products/categories',
     wrapper: 'Composite',
     module: import(
       /* webpackChunkName: "admin-category" */
@@ -82,7 +82,7 @@ const routes = [
   },
   {
     path: '/products/:uuid',
-    wrapper: 'Navigate',
+    wrapper: 'Composite',
     module: import(
       /* webpackChunkName: "admin-product" */
       '@modules/admin-product'

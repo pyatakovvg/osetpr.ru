@@ -47,9 +47,14 @@ export const updateCategories = (data) => async (dispatch) => {
 
     await request({
       url: '/categories',
-      method: 'put',
+      method: 'post',
       data: {
-        bulk: data,
+        bulk: data['bulk'].map((item, index) => {
+          return {
+            ...item,
+            order: index,
+          }
+        }),
       },
     });
 

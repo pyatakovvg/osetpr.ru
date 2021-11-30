@@ -4,7 +4,7 @@ import React from 'react';
 import Types from './Types';
 import Common from './Common';
 import Gallery from './Gallery';
-import Options from './Options';
+import Modes from './Modes';
 
 import styles from './default.module.scss';
 
@@ -23,7 +23,7 @@ function ModifyForm({ handleSubmit }) {
           <Common />
         </div>
         <div className={styles['section']}>
-          <Options />
+          <Modes />
         </div>
       </div>
     </form>

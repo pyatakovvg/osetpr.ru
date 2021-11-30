@@ -4,26 +4,29 @@ import { models, sequelize } from '@sys.packages/db';
 
 
 export default () => async (ctx) => {
-  const { Category } = models;
+  const { Group } = models;
 
   const data = ctx['request']['body'];
 
   const transaction = await sequelize.transaction();
 
-  await Category.destroy({
+  await Group.destroy({
     where: {
       uuid: data['bulk'].map(i => i['uuid']),
     },
     transaction,
   });
 
-  await Category.bulkCreate(data['bulk'], {
+  await Group.bulkCreate(data['bulk'], {
     transaction,
   });
 
   await transaction.commit();
 
-  const result = await Category.findAll({
+  const result = await Group.findAll({
+    order: [
+      ['order', 'asc']
+    ],
     attributes: ['uuid', 'value', 'order'],
   });
 

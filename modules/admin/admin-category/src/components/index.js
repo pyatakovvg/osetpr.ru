@@ -13,7 +13,7 @@ export default function HOC() {
   const dispatch = useDispatch();
 
   useMount(async function() {
-    document.title = `${process.env['REACT_APP_WEBSITE_NAME']} - Категории`;
+    document.title = `${process.env['REACT_APP_WEBSITE_NAME']} - Категории товаров`;
 
     await dispatch(getCategories());
   });

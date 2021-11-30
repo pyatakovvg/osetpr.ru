@@ -24,10 +24,15 @@ export default () => async (ctx) => {
   await transaction.commit();
 
   const result = await Category.findAll({
+    order: [
+      ['order', 'asc']
+    ],
     attributes: ['uuid', 'value', 'order'],
   });
 
-  // await sendEvent(process.env['EXCHANGE_C'], JSON.stringify(result.map(i => i.toJSON())));
+  console.log(result)
+
+  // await sendEvent(process.env['EX'], JSON.stringify(result.map(i => i.toJSON())));
 
   ctx.body = {
     success: true,

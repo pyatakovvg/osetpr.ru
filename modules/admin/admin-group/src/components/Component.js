@@ -1,14 +1,18 @@
 
-import { updateCategories, selectInProcess, selectItems } from '@modules/admin-category';
+import { updateGroups, selectInProcess, selectItems } from '@modules/admin-group';
 
-import { Header, Page, PageContent, PageControls, Draggable, arrayMoveImmutable, Button } from '@ui.packages/admin-kit';
+import { Header, Button, Page, PageControls, PageContent } from '@ui.packages/admin-kit';
 
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { isPristine, isValid, reset, submit } from "redux-form";
 
-import Item from './Item';
+import FormModify from './FormModify';
 
 import styles from './default.module.scss';
+
+
+const FORM_NAME = 'group-modify';
 
 
 function Category() {
@@ -17,41 +21,52 @@ function Category() {
   const items = useSelector(selectItems);
   const inProcess = useSelector(selectInProcess);
 
+  const valid = useSelector(isValid(FORM_NAME));
+  const pristine = useSelector(isPristine(FORM_NAME));
 
-  function handleOrderChange(from, to) {
-    dispatch(updateCategories(arrayMoveImmutable(items, from, to)));
+
+  function handleSubmitGroups(data) {
+    dispatch(updateGroups(data));
+  }
+
+  function handleSubmit() {
+    dispatch(submit(FORM_NAME));
+  }
+
+  function handleReset() {
+    dispatch(reset(FORM_NAME));
   }
 
   return (
     <Page inProcess={inProcess}>
       <PageControls>
         <div className={styles['controls']}>
-          <Button mode={Button.MODE_PRIMARY}>Добавить</Button>
+          <Button
+            form={Button.FORM_CONTEXT}
+            mode={Button.MODE_PRIMARY}
+            disabled={pristine || inProcess}
+            onClick={handleReset}
+          >Отмена</Button>
+          <Button
+            type={Button.TYPE_BUTTON}
+            disabled={ ! valid || pristine || inProcess}
+            mode="success"
+            onClick={handleSubmit}
+          >Сохранить</Button>
         </div>
       </PageControls>
       <PageContent>
         <section className={styles['wrapper']}>
           <div className={styles['header']}>
-            <Header level={1}>Категория</Header>
+            <Header level={1}>Группа товара</Header>
           </div>
           <article className={styles['content']}>
-            <div className={styles['items']}>
-              <Draggable type={Draggable.TYPE_LIST} onChange={handleOrderChange}>
-                {items.map((item) => {
-                  return (
-                    <Item
-                      key={item['uuid']}
-                      {...item}
-                      onEdit={() => console.log(item['uuid'])}
-                      onRemove={() => console.log(item['uuid'])}
-                    />
-                  );
-                })}
-              </Draggable>
-            </div>
-            <div className={styles['controls']}>
-
-            </div>
+            <FormModify
+              initialValues={{
+                bulk: items,
+              }}
+              onSubmit={(data) => handleSubmitGroups(data)}
+            />
           </article>
         </section>
       </PageContent>

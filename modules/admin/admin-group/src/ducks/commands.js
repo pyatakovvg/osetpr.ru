@@ -41,15 +41,20 @@ export const getGroups = () => async (dispatch) => {
   }
 };
 
-export const updateCategories = (data) => async (dispatch) => {
+export const updateGroups = (data) => async (dispatch) => {
   try {
     dispatch(updateItemsRequestAction());
 
     await request({
       url: '/groups',
-      method: 'put',
+      method: 'post',
       data: {
-        bulk: data,
+        bulk: data['bulk'].map((item, index) => {
+          return {
+            ...item,
+            order: index,
+          }
+        }),
       },
     });
 

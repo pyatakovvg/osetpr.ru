@@ -13,7 +13,7 @@ import cn from 'classnames';
 import styles from './default.module.scss';
 
 
-function OptionField({ field, disabled, onRemove }) {
+function ModeField({ field, disabled, onRemove }) {
   const dispatch = useDispatch();
 
   const currencies = useSelector(selectCurrencies);
@@ -43,7 +43,6 @@ function OptionField({ field, disabled, onRemove }) {
       <div className={styles['attr__value']}>
         <InputField
           require
-          label="Артикул"
           name={`${field}.vendor`}
           disabled={disabled}
         />
@@ -51,7 +50,6 @@ function OptionField({ field, disabled, onRemove }) {
       <div className={styles['attr__title']}>
         <InputField
           require
-          label="Значение"
           name={`${field}.value`}
           disabled={disabled}
         />
@@ -60,7 +58,6 @@ function OptionField({ field, disabled, onRemove }) {
         <InputField
           require
           name={`${field}.price`}
-          label="Цена"
           disabled={disabled}
         />
       </div>
@@ -70,7 +67,6 @@ function OptionField({ field, disabled, onRemove }) {
           simple
           clearable={false}
           name={`${field}.currencyCode`}
-          label="Валюта"
           options={currencies}
           optionKey="code"
           optionValue="displayName"
@@ -84,12 +80,12 @@ function OptionField({ field, disabled, onRemove }) {
   );
 }
 
-OptionField.propTypes = {
+ModeField.propTypes = {
   field: types.string,
   onRemove: types.func,
 };
 
-OptionField.defaultProps = {
+ModeField.defaultProps = {
   field: '',
 };
 
@@ -114,7 +110,7 @@ function OptionsList({ fields, disabled }) {
           <Draggable onChange={(from, to) => handleChangeOrder(from, to)}>
             {fields.map((field, index) => {
               return (
-                <OptionField
+                <ModeField
                   key={index}
                   field={field}
                   disabled={disabled}
@@ -129,7 +125,7 @@ function OptionsList({ fields, disabled }) {
   );
 }
 
-function OptionsField({ fields, disabled }) {
+function ModesField({ fields, disabled }) {
   const currencies = useSelector(selectCurrencies);
 
   function handleAddAttr() {
@@ -158,18 +154,18 @@ function OptionsField({ fields, disabled }) {
   );
 }
 
-OptionsField.propTypes = {
+ModesField.propTypes = {
   fields: types.object,
   disabled: types.bool,
 };
 
-OptionsField.defaultProps = {
+ModesField.defaultProps = {
   fields: null,
   disabled: false,
 };
 
 
-function Options() {
+function Modes() {
   const inProcess = useSelector(selectInProcess);
 
   return (
@@ -178,14 +174,40 @@ function Options() {
         <Header level={3}>Комплектация</Header>
       </div>
       <div className={styles['content']}>
+        <div className={styles['labels']}>
+          <div className={styles['label']}>
+            <span className={cn(styles['icon'], 'fas fa-arrows-alt')} />
+          </div>
+          <div className={styles['label']}>
+            <Text>T</Text>
+          </div>
+          <div className={styles['label']}>
+            <Text>A</Text>
+          </div>
+          <div className={styles['label']}>
+            <Text>Артикул</Text>
+          </div>
+          <div className={styles['label']}>
+            <Text>Значение</Text>
+          </div>
+          <div className={styles['label']}>
+            <Text>Цена</Text>
+          </div>
+          <div className={styles['label']}>
+            <Text>Валюта</Text>
+          </div>
+          <div className={styles['label']}>
+            <span className={cn(styles['icon'], 'fas fa-exclamation')} />
+          </div>
+        </div>
         <FieldArray
           name="modes"
           validate={[(value) => ! value]}
-          component={OptionsField} disabled={inProcess}
+          component={ModesField} disabled={inProcess}
         />
       </div>
     </div>
   );
 }
 
-export default Options;
+export default Modes;

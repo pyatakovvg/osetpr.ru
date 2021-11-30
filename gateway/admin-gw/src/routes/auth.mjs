@@ -54,10 +54,10 @@ export default (router) => {
   router.put('/customers/:uuid', updateCustomer());
 
   router.get('/categories', getAllCategories());
-  router.put('/categories', updateCategories());
+  router.post('/categories', updateCategories());
 
   router.get('/groups', getAllGroups());
-  router.put('/groups', updateGroups());
+  router.post('/groups', updateGroups());
 
   router.get('/currencies', getAllCurrencies());
 
