@@ -8,10 +8,14 @@ export {
   setProcessAction,
 
   selectMeta,
+  selectItem,
   selectItems,
   selectInProcess,
 } from './ducks/slice';
 
 export {
+  getItem,
   getItems,
+  createItem,
+  deleteItem,
 } from './ducks/commands';

@@ -1,12 +1,14 @@
 
 import { selectInProcess } from '@modules/admin-orders';
 
+import { Dialog } from '@ui.packages/dialog';
 import { Header, Page, PageContent } from '@ui.packages/admin-kit';
 
 import React from 'react';
 import { useSelector } from 'react-redux';
 
 import List from './List';
+import CommentModify from './CommentModify';
 
 import styles from './default.module.scss';
 
@@ -26,6 +28,10 @@ function Comments() {
           </article>
         </section>
       </PageContent>
+
+      <Dialog name={'comment-modify'}>
+        <CommentModify />
+      </Dialog>
     </Page>
   );
 }

@@ -6,11 +6,11 @@ module.exports = {
     try {
 
       await queryInterface.createTable('Categories', {
-        id: {
-          type: DataType.INTEGER,
+        uuid: {
+          type: DataType.UUID,
           primaryKey: true,
-          autoIncrement: true,
-          index: true,
+          allowNull: false,
+          defaultValue: DataType.UUIDV4,
         },
         value: {
           type: DataType.STRING(256),

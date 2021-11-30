@@ -8,11 +8,11 @@ export default function(sequelize, DataType) {
   class Category extends Model {}
 
   Category.init({
-    id: {
-      type: DataType.INTEGER,
+    uuid: {
+      type: DataType.UUID,
       primaryKey: true,
-      autoIncrement: true,
-      index: true,
+      allowNull: false,
+      defaultValue: DataType.UUIDV4,
     },
     value: {
       type: DataType.STRING(256),

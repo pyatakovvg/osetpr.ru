@@ -9,7 +9,7 @@ export default async ({
   uuid = null,
   externalId = null,
   isUse = null,
-  categoryId = null,
+  categoryUuid = null,
 }) => {
   let where = {};
   let whereMode = {};
@@ -17,7 +17,7 @@ export default async ({
   let offset = {};
   let options = {};
 
-  const { Product, ProductMode, ProductGallery, Category, Currency } = models;
+  const { Product, ProductMode, ProductGallery, Group, Category, Currency } = models;
 
   if (uuid) {
     where['uuid'] = uuid;
@@ -27,8 +27,8 @@ export default async ({
     where['externalId'] = externalId;
   }
 
-  if (categoryId) {
-    whereCategory['id'] = categoryId;
+  if (categoryUuid) {
+    whereCategory['id'] = categoryUuid;
   }
 
   if (isUse) {
@@ -51,6 +51,7 @@ export default async ({
     distinct: true,
     where: { ...where },
     order: [
+      ['group', 'order', 'asc'],
       ['category', 'order', 'asc'],
       ['createdAt', 'desc'],
       ['modes', 'order', 'asc'],
@@ -59,10 +60,17 @@ export default async ({
     attributes: ['uuid', 'externalId', 'title', 'originalName', 'description', 'isUse', 'isAvailable', 'updatedAt'],
     include: [
       {
-        model: Category,
-        required: true,
+        model: Group,
+        required: false,
         where: { ...whereCategory },
-        attributes: ['id', 'value'],
+        attributes: ['uuid', 'value'],
+        as: 'group',
+      },
+      {
+        model: Category,
+        required: false,
+        where: { ...whereCategory },
+        attributes: ['uuid', 'value'],
         as: 'category',
       },
       {

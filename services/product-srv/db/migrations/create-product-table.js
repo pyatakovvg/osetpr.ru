@@ -18,13 +18,24 @@ module.exports = {
           unique: true,
           defaultValue: Date.now().toString(32),
         },
-        categoryId: {
-          type: DataType.INTEGER,
-          allowNull: false,
+        groupUuid: {
+          type: DataType.UUID,
+          allowNull: true,
+          defaultValue: null,
+        },
+        categoryUuid: {
+          type: DataType.UUID,
+          allowNull: true,
+          defaultValue: null,
         },
         title: {
           type: DataType.STRING(256),
           allowNull: true,
+        },
+        originalName: {
+          type: DataType.STRING,
+          allowNull: true,
+          defaultValue: null,
         },
         description: {
           type: DataType.STRING(2024),

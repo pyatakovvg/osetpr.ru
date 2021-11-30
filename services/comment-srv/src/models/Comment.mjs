@@ -48,7 +48,7 @@ export default function(sequelize, DataType)  {
     timestamps: true,
   });
 
-  Comment.associate = ({ Theme }) => {
+  Comment.associate = ({ Theme, Customer }) => {
 
     Comment.belongsTo(Theme, {
       foreignKey: 'themeId',
@@ -58,6 +58,11 @@ export default function(sequelize, DataType)  {
     Comment.hasMany(Comment, {
       foreignKey: 'parentUuid',
       as: 'comments',
+    });
+
+    Comment.belongsTo(Customer, {
+      foreignKey: 'userUuid',
+      as: 'customer',
     });
   };
 

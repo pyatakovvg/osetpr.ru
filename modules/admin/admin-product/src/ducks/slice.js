@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 
 const initialState = {
+  groups: [],
   categories: [],
   currencies: [],
   gallery: [],
@@ -19,6 +20,7 @@ const productModifySlice = createSlice({
   initialState,
   reducers: {
     resetStateAction(state) {
+      state['groups'] = [];
       state['categories'] = [];
       state['currencies'] = [];
       state['gallery'] = [];
@@ -29,6 +31,12 @@ const productModifySlice = createSlice({
 
     setProcessAction(state, { payload }) {
       state['inProcess'] = payload;
+    },
+
+    getGroupsRequestAction() {},
+    getGroupsRequestFailAction() {},
+    getGroupsRequestSuccessAction(state, { payload }) {
+      state['groups'] = payload;
     },
 
     getCategoriesRequestAction() {},
@@ -110,6 +118,10 @@ export const {
 
   setProcessAction,
 
+  getGroupsRequestAction,
+  getGroupsRequestFailAction,
+  getGroupsRequestSuccessAction,
+
   getCategoriesRequestAction,
   getCategoriesRequestFailAction,
   getCategoriesRequestSuccessAction,
@@ -143,6 +155,7 @@ export const {
   createGalleryRequestSuccessAction,
 } = productModifySlice['actions'];
 
+export const selectGroups = (state) => state[REDUCER_NAME]['groups'];
 export const selectGallery = (state) => state[REDUCER_NAME]['gallery'];
 export const selectProduct = (state) => state[REDUCER_NAME]['product'];
 export const selectInProcess = (state) => state[REDUCER_NAME]['inProcess'];

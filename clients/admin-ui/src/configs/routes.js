@@ -113,11 +113,19 @@ const routes = [
     ),
   },
   {
-    path: '/settings',
-    wrapper: 'Navigate',
+    path: '/settings/main',
+    wrapper: 'Composite',
     module: import(
       /* webpackChunkName: "admin-settings" */
       '@modules/admin-settings'
+      ),
+  },
+  {
+    path: '/settings/category',
+    wrapper: 'Composite',
+    module: import(
+      /* webpackChunkName: "admin-category" */
+      '@modules/admin-category'
       ),
   },
   {

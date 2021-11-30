@@ -13,7 +13,12 @@
   flex-direction: row;
   flex: 1 0;
   background: $white;
+  padding: 8px;
+  border: 1px solid $pale-lilac;
+  border-radius: 4px;
   z-index: 9999;
+  box-shadow: none;
+  transition: box-shadow 1000ms, border-color 1000ms;
 
   & + & {
 
@@ -23,9 +28,17 @@
 
 .handle {
 
-  display: block;
-  margin: 20px 0 0;
+  display: inline-flex;
+  flex-direction: column;
+  flex: 0 0;
+  justify-content: center;
   cursor: grabbing;
+}
+
+.helper {
+
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, .2);
+  border-color: $blue-grey;
 }
 
 .helper .icon,
@@ -38,7 +51,6 @@
 
   font-size: 16px;
   color: $pale-lilac;
-  margin: 10px 0 0;
   transition: color 200ms;
 }
 
@@ -47,5 +59,5 @@
   display: flex;
   flex-direction: column;
   flex: 1 0;
-  margin: 0 0 0 10px;
+  margin: 0 0 0 16px;
 }

@@ -16,6 +16,7 @@ export default () => async (ctx) => {
   const validation = ajv.compile(productScheme);
 
   if ( ! validation(body)) {
+    console.log(validation.errors)
     throw new BadRequestError({ code: '9.9.9', message: 'Неверный формат запроса' });
   }
 

@@ -4,7 +4,10 @@ export { name, reducer } from './ducks/slice';
 
 export {
   resetStateAction,
+
   setProcessAction,
+
+  selectGroups,
   selectGallery,
   selectProduct,
   selectInProcess,
@@ -14,6 +17,7 @@ export {
 } from './ducks/slice';
 
 export {
+  getGroups,
   getCategories,
   getCurrencies,
   createGallery,

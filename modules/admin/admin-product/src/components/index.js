@@ -1,6 +1,6 @@
 
 import { resetStateAction, setProcessAction } from '@modules/admin-product';
-import { getCurrencies, getCategories, getProductById } from '@modules/admin-product';
+import { getCurrencies, getGroups, getCategories, getProductById } from '@modules/admin-product';
 
 import { useMount, useUnmount } from '@ui.packages/hoc';
 
@@ -20,6 +20,7 @@ export default function HOC() {
 
     dispatch(setProcessAction(true));
 
+    await dispatch(getGroups());
     await dispatch(getCategories());
     await dispatch(getCurrencies());
 

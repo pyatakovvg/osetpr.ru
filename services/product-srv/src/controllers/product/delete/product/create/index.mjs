@@ -11,6 +11,6 @@ export default async function createProduct(data) {
     title: data['title'],
     description: data['description'],
     isUse: data['isUse'],
-    categoryId: data['category']['id'],
+    categoryUuid: data['category']['id'],
   });
 }

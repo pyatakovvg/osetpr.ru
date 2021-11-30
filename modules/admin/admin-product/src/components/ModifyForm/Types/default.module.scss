@@ -1,0 +1,61 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: block;
+}
+
+.header {
+
+  display: block;
+  padding: 0 0 0 20px;
+}
+
+.content {
+
+  display: block;
+  margin: 10px 0 0;
+  border: 1px solid $pale-lilac;
+  background: $white;
+  border-radius: 5px;
+  padding: 40px 50px;
+}
+
+.link {
+
+  display: inline-flex;
+  flex-direction: column;
+  font-size: 20px;
+  color: $primary;
+  cursor: pointer;
+  opacity: .4;
+  transition: opacity 200ms;
+
+  &:hover {
+
+    opacity: 1;
+  }
+}
+
+.block {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  align-items: flex-end;
+}
+
+.value {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.controls {
+
+  display: block;
+  margin: 0 0 10px 14px;
+}

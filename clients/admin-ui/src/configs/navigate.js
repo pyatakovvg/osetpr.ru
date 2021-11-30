@@ -32,8 +32,18 @@ const navigate = [
   },
   {
     title: 'Настройки',
-    path: '/settings',
+    path: '/settings/main',
     icon: 'fas fa-cog',
+    navigate: [
+      {
+        title: 'Настройки',
+        path: '/settings/main',
+      },
+      {
+        title: 'Категория',
+        path: '/settings/category',
+      }
+    ],
   },
 ];
 

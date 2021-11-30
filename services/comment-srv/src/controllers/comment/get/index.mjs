@@ -4,16 +4,21 @@ import { models } from '@sys.packages/db';
 
 export default () => async (ctx) => {
   const {
+    uuid = null,
     limit = null,
     skip = null,
     take = null,
   } = ctx['query'];
 
-  const { Comment, Theme } = models;
+  const { Comment, Theme, Customer } = models;
 
   let where = {};
   let offset = {};
   let options = {};
+
+  if (uuid) {
+    where['uuid'] = uuid;
+  }
 
   if (limit) {
     options['limit'] = Number(limit);
@@ -44,6 +49,36 @@ export default () => async (ctx) => {
       {
         model: Comment,
         as: 'comments',
+        include: [
+          {
+            model: Customer,
+            as: 'customer',
+          },
+          {
+            model: Comment,
+            as: 'comments',
+            include: [
+              {
+                model: Customer,
+                as: 'customer',
+              },
+              {
+                model: Comment,
+                as: 'comments',
+                include: [
+                  {
+                    model: Customer,
+                    as: 'customer',
+                  }
+                ]
+              },
+            ]
+          },
+        ]
+      },
+      {
+        model: Customer,
+        as: 'customer',
       }
     ]
   });

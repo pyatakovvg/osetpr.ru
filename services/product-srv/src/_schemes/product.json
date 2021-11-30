@@ -1,12 +1,6 @@
 {
   "type": "object",
   "properties": {
-    "isUse": {
-      "type": "boolean"
-    },
-    "isAvailable": {
-      "type": "boolean"
-    },
     "uuid": {
       "type": "string",
       "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
@@ -14,20 +8,31 @@
     "externalId": {
       "type": "string"
     },
-    "categoryId": {
-      "type": "number"
+    "groupUuid": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "categoryUuid": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
     },
     "title": {
       "type": "string"
     },
     "originalName": {
-      "type": "string"
+      "type": ["string", "null"]
     },
     "description": {
-      "type": "string"
+      "type": ["string", "null"]
     },
     "gallery": {
       "type": "array"
+    },
+    "isUse": {
+      "type": "boolean"
+    },
+    "isAvailable": {
+      "type": "boolean"
     },
     "modes": {
       "type": "array",

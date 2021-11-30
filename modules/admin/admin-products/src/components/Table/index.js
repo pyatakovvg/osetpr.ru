@@ -72,7 +72,8 @@ function ProductList() {
               <Header level={4}>{ value['title'] }{ value['originalName'] ? ' (' + value['originalName'] + ')' : null }</Header>
             </div>
             <div className={styles['category']}>
-              <Text type={Text.TYPE_BODY}>"{ value['category'] ? value['category']['value'] : 'Все' }"</Text>
+              <Text type={Text.TYPE_BODY}>Гр.: "{ value['group'] ? value['group']['value'] : 'Все' }"</Text>
+              <Text type={Text.TYPE_BODY}>Кт.: "{ value['category'] ? value['category']['value'] : 'Все' }"</Text>
             </div>
             <div className={styles['products']}>
               {value['modes'].map((mode) => {

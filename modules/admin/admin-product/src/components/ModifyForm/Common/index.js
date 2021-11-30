@@ -1,7 +1,7 @@
 
-import { selectCategories, selectInProcess } from "@modules/admin-product";
+import { selectInProcess } from "@modules/admin-product";
 
-import { Col, Header, InputField, Row, SelectField, EditorField } from "@ui.packages/admin-kit";
+import { Col, Header, InputField, Row, EditorField } from "@ui.packages/admin-kit";
 
 import React from 'react';
 import { useSelector } from "react-redux";
@@ -10,7 +10,6 @@ import styles from './default.module.scss';
 
 
 function Common() {
-  const categories = useSelector(selectCategories);
   const inProcess = useSelector(selectInProcess);
 
   return (
@@ -23,17 +22,7 @@ function Common() {
           <Col>
             <InputField name="externalId" label="Номер товара (генерируется автоматически)" disabled />
           </Col>
-          <Col>
-            <SelectField
-              simple
-              name="categoryId"
-              label="Категория"
-              options={categories}
-              optionKey="id"
-              optionValue="value"
-              disabled={inProcess}
-            />
-          </Col>
+          <Col/>
         </Row>
         <Row>
           <Col>

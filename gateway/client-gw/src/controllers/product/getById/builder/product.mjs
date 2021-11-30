@@ -9,7 +9,7 @@ export default function(data) {
     isAvailable: data['isAvailable'],
     title: data['title'],
     originalName: data['originalName'],
-    categoryId: data['category']['id'],
+    categoryUuid: data['category'] ? data['category']['uuid'] : null,
     description: data['description'],
     gallery: data['gallery'],
     modes: data['modes'].map((data) => modeBuilder(data)),

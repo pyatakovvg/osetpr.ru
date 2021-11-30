@@ -8,6 +8,10 @@ import { closeDialog } from "@ui.packages/dialog";
 import { pushNotification } from '@ui.packages/notifications';
 
 import {
+  getGroupsRequestAction,
+  getGroupsRequestFailAction,
+  getGroupsRequestSuccessAction,
+
   getCategoriesRequestAction,
   getCategoriesRequestFailAction,
   getCategoriesRequestSuccessAction,
@@ -41,6 +45,36 @@ import {
   createGalleryRequestSuccessAction,
 } from './slice';
 
+
+export const getGroups = () => async (dispatch) => {
+  try {
+    dispatch(getGroupsRequestAction());
+
+    const { data } = await request({
+      method: 'get',
+      url: '/groups',
+    });
+
+    dispatch(getGroupsRequestSuccessAction(data));
+
+    return true;
+  }
+  catch(error) {
+    dispatch(getGroupsRequestFailAction(error));
+
+    if (error instanceof UnauthorizedError) {
+      return void 0;
+    }
+    dispatch(pushNotification({
+      mode: Mode.DANGER,
+      title: 'Ошибка при получании данных Групп',
+      content: `${error['data']['message']} (${error['data']['code']})`,
+      autoClose: false,
+    }));
+
+    return false;
+  }
+};
 
 export const getCategories = () => async (dispatch) => {
   try {
@@ -146,7 +180,8 @@ export const updateProductsById = (data) => async (dispatch) => {
       data: {
         isUse: data['isUse'],
         externalId: data['externalId'],
-        categoryId: Number(data['categoryId']),
+        groupUuid: data['groupUuid'],
+        categoryUuid: data['categoryUuid'],
         title: data['title'],
         originalName: data['originalName'],
         description: data['description'],
@@ -197,7 +232,8 @@ export const createProduct = (data) => async (dispatch) => {
         uuid: UUID(),
         isUse: data['isUse'],
         externalId: data['externalId'],
-        categoryId: Number(data['categoryId']),
+        groupUuid: data['groupUuid'],
+        categoryUuid: data['categoryUuid'],
         title: data['title'],
         originalName: data['originalName'],
         description: data['description'],

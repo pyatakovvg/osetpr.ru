@@ -1,6 +1,7 @@
 
 import React from 'react';
 
+import Types from './Types';
 import Common from './Common';
 import Gallery from './Gallery';
 import Options from './Options';
@@ -14,6 +15,9 @@ function ModifyForm({ handleSubmit }) {
       <div className={styles['content']}>
         <div className={styles['section']}>
           <Gallery />
+        </div>
+        <div className={styles['section']}>
+          <Types />
         </div>
         <div className={styles['section']}>
           <Common />
