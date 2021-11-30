@@ -1,6 +1,8 @@
 
 import request from "@sys.packages/request";
 
+import groupBuilder from './builder/group.mjs';
+import categoryBuilder from './builder/category.mjs';
 import productBuilder from './builder/product.mjs';
 
 
@@ -14,6 +16,11 @@ export default () => async (ctx) => {
       isUse: true,
       ...params,
     },
+  });
+
+  const { data: groups } = await request({
+    url: process.env['PRODUCT_API_SRV'] + '/groups',
+    method: 'get',
   });
 
   const { data: categories } = await request({
@@ -33,11 +40,11 @@ export default () => async (ctx) => {
     userPlan = plans.length ? plans[0]['products'] : null;
   }
 
-
   ctx.body = {
     success: true,
     filter: {
-      categories,
+      groups: groups.map((item) => groupBuilder(item)),
+      categories: categories.map((item) => categoryBuilder(item)),
     },
     data: products.map((item) => productBuilder(item, userPlan ? userPlan['products'] : [])),
     meta: meta,

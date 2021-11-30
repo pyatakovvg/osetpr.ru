@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import styles from './default.module.scss';
 
 
-function Categories({ values, onChange }) {
+function Groups({ values, onChange }) {
   const filter = useSelector(selectFilter);
 
   function handleChange(value) {
@@ -26,10 +26,10 @@ function Categories({ values, onChange }) {
   return (
     <div className={styles['wrapper']}>
       <div className={styles['header']}>
-        <Header level={2}>Категория</Header>
+        <Header level={2}>Группа</Header>
       </div>
       <div className={styles['content']}>
-        {filter['categories'].map((item) => (
+        {filter['groups'].map((item) => (
           <div key={item['uuid']} className={styles['row']}>
             <Checkbox value={ !!~ values.indexOf(item['uuid'])} onChange={() => handleChange(item['uuid'])}>
               <Text>{ item['value'] }</Text>
@@ -41,4 +41,4 @@ function Categories({ values, onChange }) {
   );
 }
 
-export default Categories;
+export default Groups;

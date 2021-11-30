@@ -82,7 +82,7 @@ const routes = [
   },
   {
     path: '/products/:uuid',
-    wrapper: 'Composite',
+    wrapper: 'Navigate',
     module: import(
       /* webpackChunkName: "admin-product" */
       '@modules/admin-product'

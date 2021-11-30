@@ -43,3 +43,13 @@
   display: block;
   margin: 32px 0 0;
 }
+
+.row {
+
+  display: block;
+
+  & + & {
+
+    margin: 24px 0 0;
+  }
+}

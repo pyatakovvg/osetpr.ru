@@ -9,10 +9,12 @@ export default async ({
   uuid = null,
   externalId = null,
   isUse = null,
+  groupUuid = null,
   categoryUuid = null,
 }) => {
   let where = {};
   let whereMode = {};
+  let whereGroup = {};
   let whereCategory = {};
   let offset = {};
   let options = {};
@@ -27,8 +29,12 @@ export default async ({
     where['externalId'] = externalId;
   }
 
+  if (groupUuid) {
+    whereGroup['uuid'] = groupUuid;
+  }
+
   if (categoryUuid) {
-    whereCategory['id'] = categoryUuid;
+    whereCategory['uuid'] = categoryUuid;
   }
 
   if (isUse) {
@@ -61,14 +67,14 @@ export default async ({
     include: [
       {
         model: Group,
-        required: false,
-        where: { ...whereCategory },
+        required: !! Object.keys(whereGroup).length,
+        where: { ...whereGroup },
         attributes: ['uuid', 'value'],
         as: 'group',
       },
       {
         model: Category,
-        required: false,
+        required: !! Object.keys(whereCategory).length,
         where: { ...whereCategory },
         attributes: ['uuid', 'value'],
         as: 'category',

@@ -1,6 +1,5 @@
 
-import { models, sequelize } from '@sys.packages/db';
-// import { sendEvent } from '@sys.packages/rabbit';
+import { models, sequelize, Op } from '@sys.packages/db';
 
 
 export default () => async (ctx) => {
@@ -12,7 +11,9 @@ export default () => async (ctx) => {
 
   await Group.destroy({
     where: {
-      uuid: data['bulk'].map(i => i['uuid']),
+      [Op.not]: {
+        uuid: null,
+      },
     },
     transaction,
   });
@@ -29,10 +30,6 @@ export default () => async (ctx) => {
     ],
     attributes: ['uuid', 'value', 'order'],
   });
-
-  console.log(result)
-
-  // await sendEvent(process.env['EX'], JSON.stringify(result.map(i => i.toJSON())));
 
   ctx.body = {
     success: true,
