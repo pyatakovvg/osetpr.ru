@@ -65,6 +65,22 @@ const routes = [
     ),
   },
   {
+    path: '/products/group',
+    wrapper: 'Composite',
+    module: import(
+      /* webpackChunkName: "admin-group" */
+      '@modules/admin-group'
+      ),
+  },
+  {
+    path: '/products/category',
+    wrapper: 'Composite',
+    module: import(
+      /* webpackChunkName: "admin-category" */
+      '@modules/admin-category'
+      ),
+  },
+  {
     path: '/products/:uuid',
     wrapper: 'Navigate',
     module: import(
@@ -74,7 +90,7 @@ const routes = [
   },
   {
     path: '/products',
-    wrapper: 'Navigate',
+    wrapper: 'Composite',
     module: import(
       /* webpackChunkName: "admin-products" */
       '@modules/admin-products'
@@ -113,19 +129,11 @@ const routes = [
     ),
   },
   {
-    path: '/settings/main',
-    wrapper: 'Composite',
+    path: '/settings',
+    wrapper: 'Navigate',
     module: import(
       /* webpackChunkName: "admin-settings" */
       '@modules/admin-settings'
-      ),
-  },
-  {
-    path: '/settings/category',
-    wrapper: 'Composite',
-    module: import(
-      /* webpackChunkName: "admin-category" */
-      '@modules/admin-category'
       ),
   },
   {

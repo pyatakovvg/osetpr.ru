@@ -9,6 +9,20 @@ const navigate = [
     title: 'Товары',
     path: '/products',
     icon: 'fas fa-shopping-cart',
+    navigate: [
+      {
+        title: 'Товары',
+        path: '/products',
+      },
+      {
+        title: 'Группы',
+        path: '/products/groups',
+      },
+      {
+        title: 'Категория',
+        path: '/products/category',
+      }
+    ],
   },
   {
     title: 'Комментарии',
@@ -32,18 +46,8 @@ const navigate = [
   },
   {
     title: 'Настройки',
-    path: '/settings/main',
+    path: '/settings',
     icon: 'fas fa-cog',
-    navigate: [
-      {
-        title: 'Настройки',
-        path: '/settings/main',
-      },
-      {
-        title: 'Категория',
-        path: '/settings/category',
-      }
-    ],
   },
 ];
 

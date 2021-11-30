@@ -55,5 +55,9 @@ echo '[--- Admin settings ---]'
 cd  ../admin-settings && npx yarn build
 echo '[--- Admin sign in ---]'
 cd  ../admin-sign-in && npx yarn build
+echo '[--- Admin group ---]'
+cd  ../admin-group && npx yarn build
+echo '[--- Admin category ---]'
+cd  ../admin-category && npx yarn build
 
 exit 0
