@@ -2,7 +2,7 @@
 import { selectProducts } from '@modules/client-main';
 
 import { selectOrder, updateOrder } from "@ui.packages/order";
-import { pushNotification } from "@ui.packages/mobile-notifications";
+import { pushNotification } from "@ui.packages/notifications";
 
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';

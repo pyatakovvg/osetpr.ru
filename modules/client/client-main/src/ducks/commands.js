@@ -1,6 +1,6 @@
 
 import request from '@ui.packages/request';
-import { pushNotification } from '@ui.packages/mobile-notifications';
+import { pushNotification } from '@ui.packages/notifications';
 
 import {
   getProductsRequestAction,
