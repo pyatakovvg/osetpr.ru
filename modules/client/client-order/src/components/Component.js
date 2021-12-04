@@ -1,5 +1,5 @@
 
-import { Header, Page, PageContent } from '@ui.packages/admin-kit';
+import { Header, Page, PageContent } from '@ui.packages/client-kit';
 
 import React from 'react';
 
