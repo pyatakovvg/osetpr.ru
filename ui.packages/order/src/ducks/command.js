@@ -1,6 +1,5 @@
 
 import request from '@ui.packages/request';
-import { pushNotification } from '@ui.packages/mobile-notifications';
 
 import {
   getOrderRequestAction,
@@ -61,11 +60,6 @@ export const updateOrder = (userUuid, order) => async (dispatch) => {
   catch(error) {
 
     dispatch(updateOrderRequestFailAction());
-    dispatch(pushNotification({
-      mode: 'danger',
-      title: 'Упс! Что-то пошло не так',
-      content: error['data']['message'],
-    }));
 
     return false;
   }
