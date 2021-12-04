@@ -1,0 +1,93 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.content {
+
+  position: relative;
+  display: block;
+  border-bottom: 1px solid $gray-darken;
+  margin: 12px 0 0;
+  min-height: 40px;
+  z-index: 20;
+}
+
+.title {
+
+  position: absolute;
+  top: 25px;
+  left: 0;
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: $gray-lighten;
+  margin-left: 8px;
+  transition: color 150ms, top 150ms, font-size 150ms;
+  transition-timing-function: ease-in-out;
+  z-index: 10;
+}
+
+.require {
+  &:after {
+
+    display: inline-block;
+    margin-left: 4px;
+    content: '*';
+    color: $danger;
+  }
+}
+
+.element {
+
+  -webkit-appearance: none;
+  position: relative;
+  display: block;
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 12px 8px;
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  color: $white;
+  background: transparent;
+  box-sizing: border-box;
+  resize: none;
+  z-index: 20;
+  overflow: hidden;
+
+  &.auto {
+
+    overflow-y: hidden;
+  }
+}
+
+.is-focus {
+
+  top: 0;
+  font-size: 11px;
+}
+
+.hidden {
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: block;
+  padding: 12px 8px;
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  box-sizing: border-box;
+  visibility: hidden;
+  z-index: 10;
+}

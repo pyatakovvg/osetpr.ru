@@ -12,7 +12,7 @@ export default function Navigation() {
   const { navigate } = useContext(Context);
 
   return (
-    <nav role="navigation" className={styles['navigate']}>
+    <nav role="navigation" className={styles['wrapper']}>
       {navigate.map((item, index) => (
         <Item key={index} {...item} />
       ))}

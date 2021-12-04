@@ -2,7 +2,7 @@
 const routes = [
   {
     path: '/',
-    wrapper: 'Empty',
+    wrapper: 'Navigate',
     module: import(
       /* webpackChunkName: "client-main" */
       '@modules/client-main'

@@ -1,0 +1,58 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  border: 1px solid $gray-darken;
+  border-radius: 4px;
+  background: rgba($background, .8);
+  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 20%);
+  backdrop-filter: blur(4px);
+  transition: transform 150ms;
+
+  &:active {
+    transform: scale(.98);
+  }
+}
+
+.header {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  padding: 16px;
+  align-items: center;
+}
+
+.title {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.type {
+
+  display: block;
+  margin: 0 0 0 16px;
+}
+
+.icon {
+
+  display: inline-block;
+  font-size: 16px;
+  color: $white;
+}
+
+.content {
+
+  display: block;
+  margin: 0 16px 16px;
+  padding: 16px 0 0;
+  border-top: 1px solid $gray-darken;
+}
+

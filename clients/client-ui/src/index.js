@@ -2,6 +2,7 @@
 import Application from '@ui.packages/application';
 import { reducer as dialogReducer } from '@ui.packages/dialog';
 import { notificationReducer } from '@ui.packages/notifications';
+import { name as orderReducerName, reducer as orderReducer } from "@ui.packages/order";
 
 import { reducer as formReducer } from 'redux-form';
 
@@ -25,6 +26,7 @@ try {
       form: formReducer,
       dialog: dialogReducer,
       notifications: notificationReducer,
+      [orderReducerName]: orderReducer,
     },
     wrappers: { Empty, Navigate, Composite },
   });

@@ -1,0 +1,25 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  position: relative;
+  display: block;
+  height: 100%;
+}
+
+.image {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.image img {
+
+  display: block;
+  width: 100%;
+}

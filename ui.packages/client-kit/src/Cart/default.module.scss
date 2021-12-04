@@ -1,0 +1,73 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.cart {
+
+  position: relative;
+  display: inline-flex;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: $primary;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 150ms, background-color 150ms;
+
+  &:active {
+    background: $primary-darken;
+    transform: scale(.95);
+  }
+
+  &.disabled,
+  &.disabled:active {
+
+    background: $gray-lighten;
+    transform: none;
+  }
+}
+
+.icon {
+
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background: url("./cart.svg") center/100% no-repeat;
+  margin: 0 0 0 4px;
+}
+
+.count {
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  justify-content: center;
+  align-items: center;
+  background: $danger;
+  color: $white;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 2px 0 0;
+  box-sizing: border-box;
+}
+
+.mode {
+
+  &--success {
+    background: $success;
+
+    &:hover {
+      background: $success-lighten;
+    }
+
+    &:active {
+      background: $success-darken;
+    }
+  }
+}

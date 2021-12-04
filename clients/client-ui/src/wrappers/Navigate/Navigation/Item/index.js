@@ -14,8 +14,8 @@ export default function Item(item) {
 
   const isMatch = levelPath === levelPathname;
 
-  const itemClassName = cn(styles['item'], {
-    [styles['item--active']]: isMatch,
+  const itemClassName = cn(styles['wrapper'], {
+    [styles['wrapper--active']]: isMatch,
   });
 
   return (

@@ -1,38 +1,45 @@
 
-@import "~@ui.packages/theme";
+@import "~@ui.packages/theme-2";
 
 
 .wrapper {
 
   display: flex;
-  flex: 1 0;
   flex-direction: column;
-  overflow: hidden;
-}
-
-.header {
-
-  display: block;
-  background: $coal-dark;
-}
-
-.container {
-
-  display: flex;
   flex: 1 0;
-  flex-direction: row;
-  background: $pale-grey;
-  overflow: hidden;
-  z-index: 10;
+  background-image: url("./net.png");
+  background-position: top;
+  background-attachment: scroll;
+  background-repeat: repeat;
+  background-size: 80px;
 }
 
 .navigate {
 
-  display: block;
-  width: 230px;
-  background: $white;
-  box-shadow: 3px 0 4px 1px rgba($pale-lilac, .5);
+  display: flex;
+  flex-direction: column;
+  flex: 0 0;
+  align-items: center;
+  background-color: $background;
+  background-image: url("./food.svg");
+  background-size: 160px;
+  background-position: top center;
+  padding: 8px 0;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 20%);
   z-index: 20;
+}
+
+.header {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0;
+}
+
+.menu {
+
+  display: block;
+  margin: 8px 0 0;
 }
 
 .content {
@@ -41,6 +48,18 @@
   display: flex;
   flex: 1 0;
   flex-direction: column;
-  overflow: auto;
+  align-items: center;
+  padding: 40px 0 120px;
   z-index: 10;
+}
+
+.footer {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0;
+  align-items: center;
+  background: $background;
+  box-shadow: 0 -4px 6px 0 rgba(0, 0, 0, 20%);
+  z-index: 20;
 }

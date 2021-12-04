@@ -1,61 +1,30 @@
 
-@import "~@ui.packages/theme";
+@import "~@ui.packages/theme-2";
 
 
-.header {
+.wrapper {
 
   display: flex;
-  flex: 1 0 auto;
+  flex: 1 0;
   flex-direction: row;
-  color: $white;
-  align-items: center;
-  padding: 0 20px;
-
-  &__title {
-
-    display: flex;
-    flex: 1 0 auto;
-    padding: 20px 15px;
-    flex-direction: column;
-  }
+  width: 1200px;
+  padding: 8px 0;
 
   .logotype {
 
     display: inline-block;
-    font-family: inherit;
-    font-weight: 700;
-    font-size: 20px;
-    color: $white;
-    text-decoration: none;
-    letter-spacing: .5px;
-  }
-
-  &__cart {
-
-    display: block;
   }
 }
 
-.container {
+@media only screen and (max-width: 1280px) {
+
+  .wrapper {
+
+    width: 900px;
+  }
+}
+
+.content {
 
   display: block;
-}
-
-.controls {
-
-  display: block;
-}
-
-.sign-out {
-
-  font-size: 14px;
-  font-weight: 700;
-  color: $white;
-  cursor: pointer;
-  transition: color 200ms;
-
-  &:hover {
-
-    color: $danger;
-  }
 }

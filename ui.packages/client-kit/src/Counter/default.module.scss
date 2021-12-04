@@ -1,0 +1,49 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 0 0;
+  align-items: center;
+}
+
+.button {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 24px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid $info;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  color: $info;
+  font-size: 22px;
+  transition: transform 150ms, color 150ms;
+
+  &:active {
+    transform: scale(.95);
+  }
+
+  &.disabled,
+  &.disabled:active {
+
+    color: $gray-lighten;
+    border-color: $gray-lighten;
+    transform: none;
+  }
+}
+
+.number {
+
+  display: block;
+  width: 24px;
+  color: $white;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+}

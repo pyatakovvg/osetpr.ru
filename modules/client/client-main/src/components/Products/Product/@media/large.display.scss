@@ -1,0 +1,128 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  margin: 12px 12px 40px;
+}
+
+.gallery {
+
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 270px;
+  background: $gray-lighten;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+}
+
+.image {
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: -50% 0 0 -50%;
+  transition: transform 150ms;
+}
+
+.wrapper:hover .image {
+  transform: scale(1.04);
+}
+
+.gray {
+
+  filter: grayscale(.8);
+}
+
+.unavailable {
+
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  display: block;
+  background: $warning-darken;
+  color: $white;
+  padding: 4px 16px;
+  border-radius: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 1280px) {
+
+  .unavailable {
+    padding: 4px 8px;
+  }
+}
+
+.name {
+
+  position: absolute;
+  left: 16px;
+  bottom: 8px;
+  display: block;
+  background: $gray-darken;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.content {
+
+  position: relative;
+  display: block;
+  padding: 16px 16px 40px;
+  background: rgba($gray-darken, .8);
+  backdrop-filter: blur(2px);
+  border-radius: 0 0 8px 8px;
+}
+
+.title {
+
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  color: $white;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.information {
+
+  display: block;
+  margin: 16px 0 0;
+}
+
+.modes {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  height: 76px;
+}
+
+.cart {
+
+  position: absolute;
+  right: 0;
+  bottom: -30px;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 16px;
+}
