@@ -1,0 +1,67 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  background: $whitesmoke;
+}
+
+.loader {
+
+  display: flex;
+  width: 300px;
+  height: 300px;
+  margin: auto auto;
+  text-align: center;
+  background: transparent;
+  font-size: 18px;
+}
+
+.container {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  margin: auto auto;
+  white-space: pre-wrap;
+  justify-content: center;
+}
+
+.logotype {
+
+  display: inline-block;
+  font-size: 0;
+  white-space: nowrap;
+
+  &__icon {
+
+    display: inline-block;
+    font-size: 30px;
+    margin: 0 15px 0 0;
+    vertical-align: baseline;
+    color: $dark-grey;
+  }
+
+  &__text {
+
+    display: inline-block;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 30px;
+    vertical-align: baseline;
+    color: $coal-dark;
+  }
+}
+
+.spinner {
+
+  display: block;
+  font-size: 18px;
+  margin: 16px 0 0;
+  color: $coal-dark;
+  letter-spacing: 1px;
+}

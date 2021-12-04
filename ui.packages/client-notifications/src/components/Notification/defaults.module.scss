@@ -1,0 +1,150 @@
+
+@import "~@ui.packages/theme";
+
+
+.notification {
+
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 auto;
+  padding: 18px 30px 18px 20px;
+  border-radius: 5px;
+  transform-origin: center center;
+  animation-name: showing;
+  animation-duration: 150ms;
+  animation-timing-function: ease-in-out;
+  color: $coal-dark;
+  background: $white;
+  border: 1px solid transparent;
+  box-shadow: 0 4px 10px 0 rgba($coal-dark, .3);
+
+  &__icon {
+
+    display: flex;
+    flex: 0 0;
+    flex-direction: column;
+    margin: 0 20px 0 0;
+    justify-content: center;
+  }
+
+  &__block {
+
+    display: flex;
+    flex: 1 0;
+    flex-direction: column;
+  }
+
+  &__title {
+
+    display: block;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 14px;
+    margin: 0 10px 0 0;
+    color: inherit;
+  }
+
+  &__title + &__content {
+
+    margin: 12px 0 0;
+  }
+
+  &__content {
+
+    display: block;
+    font-family: inherit;
+    font-weight: 300;
+    font-size: 13px;
+    color: inherit;
+  }
+
+  &__close {
+
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: block;
+    font-size: 16px;
+    color: inherit;
+    cursor: pointer;
+    transition: opacity 200ms;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  & + & {
+
+    margin: 10px 0 0;
+  }
+}
+
+.mode {
+  &--success {
+    border-color: $success;
+    background: $success;
+    color: $white;
+  }
+
+  &--danger {
+    border-color: $danger;
+    background: $danger;
+    color: $white;
+  }
+
+  &--info {
+    color: $white;
+    border-color: $information;
+    background: $information;
+  }
+
+  &--primary {
+    border-color: $primary;
+    background: $primary;
+    color: $white;
+  }
+
+  &--warning {
+    border-color: $warning;
+    background: $warning;
+    color: $white;
+  }
+}
+
+.icon {
+
+  display: block;
+  font-size: 22px;
+
+  &--primary {
+    color: $primary;
+  }
+
+  &--success {
+    color: $success;
+  }
+
+  &--info {
+    color: $information;
+  }
+
+  &--danger {
+    color: $danger;
+  }
+}
+
+@keyframes showing {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}

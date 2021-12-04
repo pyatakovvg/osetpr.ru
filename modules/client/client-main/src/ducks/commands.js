@@ -1,6 +1,6 @@
 
 import request from '@ui.packages/request';
-import { pushNotification } from '@ui.packages/notifications';
+import { pushNotification } from '@ui.packages/client-notifications';
 
 import {
   getProductsRequestAction,

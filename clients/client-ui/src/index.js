@@ -1,7 +1,7 @@
 
-import Application from '@ui.packages/application';
-import { reducer as dialogReducer } from '@ui.packages/dialog';
-import { notificationReducer } from '@ui.packages/notifications';
+import Application from '@ui.packages/client-application';
+import { reducer as dialogReducer } from '@ui.packages/client-dialog';
+import { notificationReducer } from '@ui.packages/client-notifications';
 import { name as orderReducerName, reducer as orderReducer } from "@ui.packages/order";
 
 import { reducer as formReducer } from 'redux-form';
