@@ -6,20 +6,17 @@ echo '-------------------'
 
 cd ./ui.packages || return
 
-echo '[--- Application ---]'
-cd  ./application && npx yarn build
+echo '[--- Kit ---]'
+cd ./client-kit && npx yarn build
 echo '[--- Dialog ---]'
 cd ../client-dialog && npx yarn build
+echo '[--- Application ---]'
+cd  ../client-application && npx yarn build
 echo '[--- Notifications ---]'
-cd ../notifications && npx yarn build
-echo '[--- Table ---]'
-cd ../table && npx yarn build
-echo '[--- Kit ---]'
-cd ../client-kit && npx yarn build
+cd ../client-notifications && npx yarn build
+
 echo '[--- HOC ---]'
 cd ../hoc && npx yarn build
-echo '[--- Editor ---]'
-cd ../editor && npx yarn build
 
 echo ''
 echo 'Сборка модулей для приложения "Client"'
