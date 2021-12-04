@@ -1,6 +1,7 @@
 
 import React from 'react';
 
+import Aside from './Aside';
 import Filter from './Filter';
 import Products from './Products';
 
@@ -14,6 +15,7 @@ function Main() {
         <Filter />
       </aside>
       <article className={styles['content']}>
+        <Aside />
         <Products />
       </article>
     </section>

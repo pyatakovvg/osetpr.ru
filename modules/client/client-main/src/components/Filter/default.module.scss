@@ -4,6 +4,8 @@
 
 .wrapper {
 
+  position: sticky;
+  top: 8px;
   display: flex;
   flex-direction: column;
   flex: 1 0;

@@ -1,14 +1,26 @@
 
 import numeral from "@packages/numeral";
+import { selectOrder } from "@ui.packages/order";
 
 import types from 'prop-types';
 import React, { useMemo } from 'react';
+import { useSelector } from "react-redux";
 
 import cn from 'classnames';
 import styles from './default.module.scss';
 
 
-export default function Mode({ isActive, count, value, price, currency, onClick }) {
+function useGetOrderProducts() {
+  const order = useSelector(selectOrder);
+  return useMemo(() => order ? order['products'] : [], [order && order['products']]);
+}
+
+export default function Mode({ uuid, isActive, value, price, currency, onClick }) {
+  const orderProducts = useGetOrderProducts();
+
+  const product = orderProducts.find((product) => product['modeUuid'] === uuid);
+  const count = product ? product['number'] : null;
+
   const wrapperClassName = useMemo(() => cn(styles['wrapper'], {
     [styles['active']]: isActive,
   }), [isActive]);
@@ -32,8 +44,8 @@ export default function Mode({ isActive, count, value, price, currency, onClick 
 Mode.propTypes = {
   isActive: types.bool,
   count: types.number,
-  price: types.string,
-  currency: types.string,
+  price: types.number,
+  currency: types.object,
   value: types.string,
   onClick: types.func,
 };
@@ -42,6 +54,6 @@ Mode.defaultProps = {
   isActive: false,
   count: null,
   price: 0,
-  currency: '',
+  currency: {},
   value: '',
 };
