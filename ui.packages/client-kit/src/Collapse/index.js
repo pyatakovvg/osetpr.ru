@@ -1,5 +1,5 @@
 
-import { Header } from '@ui.packages/mobile-kit';
+import { Header } from '@ui.packages/client-kit';
 
 import React, { useState } from 'react';
 import types from 'prop-types';
