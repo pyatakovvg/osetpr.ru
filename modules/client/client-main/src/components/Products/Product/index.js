@@ -1,5 +1,5 @@
 
-import { selectInProcess } from "@ui.packages/order";
+import { selectInProcess, selectOrder } from "@ui.packages/order";
 import { Image, Header, Text, Cart } from '@ui.packages/client-kit';
 
 import React, { useState } from 'react';
@@ -12,11 +12,13 @@ import cn from 'classnames';
 import styles from './default.module.scss';
 
 
-function useGetMaxModeCount(products) {
-  if ( ! products.length) {
+function useGetMaxModeCount(mode) {
+  const order = useSelector(selectOrder);
+
+  if ( ! order && ! order['products'].length) {
     return false;
   }
-  const product = products.find((product) => product['modeUuid'] === mode['uuid']);
+  const product = order['products'].find((product) => product['modeUuid'] === mode['uuid']);
   if ( ! product) {
     return false;
   }

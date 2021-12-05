@@ -1,0 +1,33 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 0 0;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover .title {
+    text-decoration: underline;
+  }
+}
+
+.icon {
+
+  display: block;
+  font-size: 16px;
+  color: $danger;
+}
+
+.title {
+
+  display: block;
+  margin: 0 0 0 8px;
+  color: $white;
+  font-size: 16px;
+  font-weight: 400;
+  white-space: nowrap;
+}

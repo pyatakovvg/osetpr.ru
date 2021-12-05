@@ -7,16 +7,20 @@ import { nounDeclension } from '@ui.packages/utils';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
+import FilterReset from "./FilterReset";
+
 import styles from './default.module.scss';
 
 
-function Filter() {
+function Aside() {
   const meta = useSelector(selectMeta);
 
   return (
     <div className={styles['wrapper']}>
       <div className={styles['controls']}>
-
+        <div className={styles['reset']}>
+          <FilterReset />
+        </div>
       </div>
       {meta && !! meta['total'] && (
         <div className={styles['count']}>
@@ -27,4 +31,4 @@ function Filter() {
   );
 }
 
-export default Filter;
+export default Aside;

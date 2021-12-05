@@ -1,0 +1,24 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0;
+  width: 1200px;
+}
+
+.product {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+}
+
+.description {
+
+  display: block;
+  margin: 56px 0 0;
+}

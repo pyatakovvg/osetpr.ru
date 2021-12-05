@@ -9,11 +9,19 @@ const routes = [
     ),
   },
   {
-    path: '/order',
+    path: '/products/:uuid',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "client-product" */
+      '@modules/client-product'
+    ),
+  },
+  {
+    path: '/orders/:uuid',
     wrapper: 'Empty',
     module: import(
-      /* webpackChunkName: "client-main" */
-      '@modules/client-main'
+      /* webpackChunkName: "client-order" */
+      '@modules/client-order'
     ),
   },
 ];
