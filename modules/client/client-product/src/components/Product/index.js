@@ -1,5 +1,5 @@
 
-import { selectProduct } from "@modules/mobile-product";
+import { selectProduct } from "@modules/client-product";
 
 import { Image, Header, Text, Cart } from '@ui.packages/client-kit';
 import { pushNotification } from "@ui.packages/client-notifications";
