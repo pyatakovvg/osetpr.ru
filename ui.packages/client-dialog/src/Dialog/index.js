@@ -1,5 +1,5 @@
 
-import { closeDialog, selectIsOpen, selectName, selectData } from '@ui.packages/dialog';
+import { closeDialog, selectIsOpen, selectName, selectData } from '@ui.packages/client-dialog';
 
 import { Header } from '@ui.packages/client-kit';
 
