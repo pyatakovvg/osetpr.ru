@@ -104,6 +104,8 @@ export default async ({
 
   return {
     data: result['rows'],
-    meta: result['meta'],
+    meta: {
+      total: result['count'],
+    },
   };
 };

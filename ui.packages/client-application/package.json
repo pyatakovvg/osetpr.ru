@@ -11,9 +11,11 @@
   "dependencies": {
     "@packages/errors": "1.0.0",
     "@reduxjs/toolkit": "1.5.0",
+    "@ui.packages/client-dialog": "1.0.0",
     "@ui.packages/client-notifications": "1.0.0",
     "@ui.packages/request": "1.0.0",
     "@ui.packages/socket": "1.0.0",
+    "@ui.packages/web-push": "1.0.0",
     "history": "5.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",

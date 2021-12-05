@@ -20,10 +20,12 @@
   }
 
   &.disabled,
+  &.disabled:hover,
   &.disabled:active {
 
     background: $gray-lighten;
     transform: none;
+    cursor: default;
   }
 }
 
