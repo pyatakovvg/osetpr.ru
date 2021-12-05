@@ -1,7 +1,7 @@
 
 import { middleware as requestMiddleware } from '@ui.packages/request';
 import Socket, { middleware as socketMiddleware} from '@ui.packages/socket';
-import { Notifications, notificationReducer } from '@ui.packages/notifications';
+import { Notifications, notificationReducer } from '@ui.packages/client-notifications';
 
 import React from 'react';
 import thunk from 'redux-thunk';
