@@ -5,7 +5,8 @@ import { Header, Button } from '@ui.packages/client-kit';
 import { selectOrder, selectInProcess } from '@ui.packages/order';
 
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { isValid, isPristine, submit } from 'redux-form';
 
 import Empty from './Empty';
 import Basket from './Basket';
@@ -17,9 +18,14 @@ import numeral from "@packages/numeral";
 
 
 function Order() {
+  const dispatch = useDispatch();
+
   const order = useSelector(selectOrder);
   const payments = useSelector(selectPayments);
   const inProcess = useSelector(selectInProcess);
+
+  const valid = useSelector(isValid('order-modify'));
+  const pristine = useSelector(isPristine('order-modify'));
 
   function handleSubmit(data) {
     console.log(data);
@@ -58,12 +64,14 @@ function Order() {
               },
               description: order['description'],
             }}
+            onSubmit={handleSubmit}
           />
         </div>
         <div className={styles['controls']}>
           <Button
             inProcess={inProcess}
-            onClick={() => handleSubmit()}
+            disabled={ ! valid || pristine}
+            onClick={() => dispatch(submit('order-modify'))}
           >Подтвердить заказ на { numeral(order['total']).format()} {order['currency']['displayName'] }</Button>
         </div>
       </article>
