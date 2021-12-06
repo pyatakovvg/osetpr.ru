@@ -13,14 +13,15 @@
 .content {
 
   display: block;
-  text-align: center;
+  text-align: left;
+  line-height: 1.6;
 }
 
 .controls {
 
   display: block;
-  margin: 40px 0 0;
-  text-align: center
+  margin: 32px 0 0;
+  text-align: right;
 }
 
 .reset {

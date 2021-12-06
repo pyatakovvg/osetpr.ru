@@ -1,5 +1,5 @@
 
-@import "~@ui.packages/theme";
+@import "~@ui.packages/theme-2";
 
 .wrapper {
 
@@ -12,7 +12,7 @@
   flex: 1 0;
   padding: 40px 0;
   flex-direction: column;
-  background: rgba($coal-dark, .2);
+  background: rgba($background, 0.6);
   z-index: 99999;
   overflow: auto;
 }
@@ -23,13 +23,14 @@
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
-  background: $white;
+  background: $background;
+  border: 2px solid $gray-darken;
   min-width: 250px;
   border-radius: 5px;
   margin: auto;
   padding: 32px 0;
   box-sizing: border-box;
-  box-shadow: 0 3px 10px 2px rgba($dark-grey, 0.3);
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.6);
   overflow: hidden;
 }
 
@@ -42,12 +43,13 @@
   width: 16px;
   height: 16px;
   font-size: 20px;
-  color: $pale-lilac;
+  color: $gray;
   cursor: pointer;
   transition: color 400ms;
 
   &:hover {
-    color: $coal-dark;
+
+    color: $white;
   }
 }
 

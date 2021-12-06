@@ -1,39 +1,46 @@
 
-import { Mode } from '@ui.packages/types';
-import { Button, Text } from "@ui.packages/client-kit";
+import { closeDialog } from '@ui.packages/client-dialog';
 
-import types from 'prop-types';
+import { Mode } from '@ui.packages/types';
+import { Button, Header } from "@ui.packages/client-kit";
+
 import React from 'react';
+import types from 'prop-types';
+import { useDispatch } from 'react-redux';
 
 import Dialog from '../Dialog';
 
 import styles from './defaults.module.scss';
 
 
-function ConfirmDialog({ name, title, mode, message, disabled, onConfirm, onCancel }) {
+function ConfirmDialog({ name, title, mode, message, disabled, onApply, onCancel }) {
+  const dispatch = useDispatch();
+
   function handleConfirm() {
-    onConfirm && onConfirm();
+    onApply && onApply();
   }
 
   function handleCancel() {
     onCancel && onCancel();
+    dispatch(closeDialog());
   }
 
   return (
     <Dialog name={name} title={title} onClose={() => handleCancel()}>
       <div className={styles['confirm']}>
         <div className={styles['content']}>
-          <Text type={Text.TYPE_BODY}>{ message }</Text>
+          <Header level={3}>{ message }</Header>
         </div>
         <div className={styles['controls']}>
           <Button
-            form={Button.FORM_CONTEXT}
-            mode={Mode.DEFAULT}
+            form={'context'}
+            size={'small'}
             disabled={disabled}
             onClick={() => handleCancel()}
           >Отмена</Button>
           <Button
             mode={mode}
+            size={'small'}
             disabled={disabled}
             onClick={() => handleConfirm()}
           >Подтверждаю</Button>
@@ -49,7 +56,7 @@ ConfirmDialog.propTypes = {
   message: types.string,
   mode: types.string,
   disabled: types.bool,
-  onConfirm: types.func,
+  onApply: types.func,
   onCancel: types.func,
 };
 
@@ -59,7 +66,7 @@ ConfirmDialog.defaultProps = {
   mode: Mode.DANGER,
   message: null,
   disabled: false,
-  onCancel: null,
+  onApply: null,
   onConfirm: null,
 };
 

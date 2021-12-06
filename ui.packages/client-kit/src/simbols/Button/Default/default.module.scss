@@ -7,7 +7,6 @@
   position: relative;
   display: inline-block;
   padding: 16px 32px 14px;
-  text-align: center;
   font-size: 16px;
   font-weight: 600;
   color: $white;
@@ -17,9 +16,9 @@
   cursor: pointer;
   transition: background-color 200ms;
 
-  &:focus {
+  &:hover {
 
-    background: $primary-darken;
+    background: $primary-lighten;
   }
 
   &:disabled {
@@ -30,6 +29,7 @@
 }
 
 .in-process,
+.in-process:focus,
 .in-process:active {
 
   color: transparent;
@@ -40,8 +40,25 @@
   &--success {
     background: $success;
 
-    &:active {
-      background: $success-darken;
+    &:hover {
+      background: $success-lighten;
     }
+  }
+
+  &--danger {
+    background: $danger;
+
+    &:hover {
+      background: $danger-lighten;
+    }
+  }
+}
+
+.size {
+
+  &--small {
+
+    padding: 10px 24px 10px;
+    font-size: 13px;
   }
 }

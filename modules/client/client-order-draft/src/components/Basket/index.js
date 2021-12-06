@@ -93,7 +93,7 @@ function Basket() {
         </div>
       </div>
 
-      <Confirm name={'apply-remove'} message={'Вы уверены, что хотите убрать товар из корзины?'} onApply={handleRemoveApply} />
+      <Confirm name={'apply-remove'} mode={'danger'} message={'Вы уверены, что хотите убрать товар из корзины?'} onApply={handleRemoveApply} />
       <Confirm name={'apply-remove-all'} message={'Вы уверены, что хотите очистить корзину?'} onApply={handleRemoveAllApply} />
     </div>
   );

@@ -1,0 +1,53 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.button {
+
+  position: relative;
+  display: inline-block;
+  padding: 16px 32px 14px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: $white;
+  text-decoration: underline;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color 150ms;
+
+  &:disabled {
+
+    color: $gray-lighten;
+  }
+}
+
+.mode {
+
+  &--success {
+    color: $success;
+
+    &:hover {
+      color: $success-darken;
+    }
+  }
+
+  &--danger {
+    color: $danger;
+
+    &:hover {
+      color: $danger-darken;
+    }
+  }
+}
+
+.size {
+
+  &--small {
+
+    padding: 10px 24px 10px;
+    font-size: 13px;
+  }
+}

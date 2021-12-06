@@ -23,14 +23,15 @@
   border-radius: 50%;
   color: $info;
   font-size: 22px;
+  cursor: pointer;
   transition: transform 150ms, color 150ms;
 
-  &:active {
+  &:hover {
     transform: scale(.95);
   }
 
   &.disabled,
-  &.disabled:active {
+  &.disabled:hover {
 
     color: $gray-lighten;
     border-color: $gray-lighten;
