@@ -17,8 +17,16 @@ const routes = [
     ),
   },
   {
+    path: '/order',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "client-order-draft" */
+      '@modules/client-order-draft'
+    ),
+  },
+  {
     path: '/orders/:uuid',
-    wrapper: 'Empty',
+    wrapper: 'Navigate',
     module: import(
       /* webpackChunkName: "client-order" */
       '@modules/client-order'

@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux';
 
 import Header from './Header';
 import Footer from './Footer';
-import Navigation from './Navigation';
 
 import styles from './default.module.scss';
 
@@ -21,14 +20,9 @@ export default function NavigateModule({ children }) {
 
   return (
     <section className={styles['wrapper']}>
-      <aside className={styles['navigate']}>
-        <header className={styles['header']}>
-          <Header />
-        </header>
-        <nav className={styles['menu']}>
-          <Navigation />
-        </nav>
-      </aside>
+      <header className={styles['header']}>
+        <Header />
+      </header>
       <section className={styles['content']}>
         { React.Children.map(children, (child) => child) }
       </section>

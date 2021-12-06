@@ -13,7 +13,7 @@
 .content {
 
   display: block;
-  border-bottom: 1px solid $gray-darken;
+  border-bottom: 1px solid $gray-lighten;
   margin: 12px 0 0;
   z-index: 20;
 }
@@ -60,4 +60,5 @@
 
   top: 0;
   font-size: 11px;
+  //color: $white;
 }

@@ -4,9 +4,7 @@
 
 .wrapper {
 
-  display: flex;
-  flex: 1 0;
-  flex-direction: row;
+  display: block;
   width: 1200px;
 
   .logotype {
@@ -23,7 +21,38 @@
   }
 }
 
+.container {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  overflow: auto;
+}
+
 .content {
 
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  overflow: auto;
+}
+
+.header {
+
   display: block;
+}
+
+.navigate {
+
+  display: block;
+  margin: 16px 0 0;
+}
+
+.controls {
+
+  display: flex;
+  flex: 0 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

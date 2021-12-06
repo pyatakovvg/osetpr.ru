@@ -37,7 +37,7 @@ Button.propTypes = {
   type: types.oneOf(['button', 'submit']),
   inProcess: types.bool,
   disabled: types.bool,
-  mode: types.oneOf(['success', 'primary', 'default']),
+  mode: types.oneOf(['success', 'primary', 'danger', 'default']),
 };
 
 Button.defaultProps = {

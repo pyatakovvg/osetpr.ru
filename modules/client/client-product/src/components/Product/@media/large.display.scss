@@ -26,9 +26,8 @@
 .image {
 
   position: relative;
-  display: flex;
-  flex-direction: column;
-  flex: 1 0;
+  display: block;
+  height: 100%;
   z-index: 10;
 }
 

@@ -10,7 +10,7 @@
   flex: 1 0;
   border-radius: 4px;
   background: $gray;
-  padding: 8px 16px;
+  padding: 16px 24px;
   align-items: flex-end;
   justify-content: flex-end;
   cursor: pointer;
@@ -20,7 +20,7 @@
 
     position: absolute;
     top: 50%;
-    left: 8px;
+    left: 16px;
     display: block;
     content: '';
     width: 16px;
@@ -65,14 +65,14 @@
 
     position: absolute;
     top: 50%;
-    left: 12px;
+    left: 18px;
     display: block;
     content: '';
-    width: 8px;
-    height: 8px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background: $info-darken;
-    margin: -4px 0 0;
+    margin: -6px 0 0;
   }
 }
 

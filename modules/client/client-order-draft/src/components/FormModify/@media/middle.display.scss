@@ -1,0 +1,31 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.line {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  margin: 40px 0 0;
+}
+
+.row {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  box-sizing: border-box;
+
+  & + & {
+
+    margin: 40px 0 0;
+  }
+}

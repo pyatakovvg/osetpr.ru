@@ -14,32 +14,19 @@
   background-size: 80px;
 }
 
-.navigate {
+.header {
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex: 0 0;
-  align-items: center;
+  justify-content: center;
   background-color: $background;
   background-image: url("./food.svg");
   background-size: 160px;
   background-position: top center;
-  padding: 8px 0 16px;
+  padding: 16px 0 16px;
   box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 20%);
   z-index: 20;
-}
-
-.header {
-
-  display: flex;
-  flex-direction: column;
-  flex: 0 0;
-}
-
-.menu {
-
-  display: block;
-  margin: 8px 0 0;
 }
 
 .content {
