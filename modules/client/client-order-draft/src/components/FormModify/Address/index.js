@@ -31,13 +31,13 @@ function AddressForm({ disabled }) {
         </div>
         <div className={styles['row']}>
           <div className={styles['col']}>
-            <InputField label={'Подъезд'} name={'front'} tabIndex={5} disabled={disabled} />
+            <InputField label={'Подъезд'} name={'address.front'} tabIndex={5} disabled={disabled} />
           </div>
           <div className={styles['col']}>
             <InputField label={'Этаж'} name={'address.floor'} tabIndex={6} disabled={disabled} />
           </div>
           <div className={styles['col']}>
-            <InputField label={'Квартира'} name={'apartment'} tabIndex={7} disabled={disabled} />
+            <InputField label={'Квартира'} name={'address.apartment'} tabIndex={7} disabled={disabled} />
           </div>
           <div className={styles['col']} />
         </div>

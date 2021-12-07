@@ -1,7 +1,7 @@
 
 import { selectPayments } from '@modules/client-order-draft';
 
-import { Header, Button } from '@ui.packages/client-kit';
+import { Header, Button, Text } from '@ui.packages/client-kit';
 import { selectOrder, selectInProcess } from '@ui.packages/order';
 
 import React from 'react';
@@ -66,6 +66,9 @@ function Order() {
             }}
             onSubmit={handleSubmit}
           />
+        </div>
+        <div className={styles['description']}>
+          <Text>Нажимая на кнопку "Подтвердить&nbsp;заказ", Вы даете право на обработку персональных данных.</Text>
         </div>
         <div className={styles['controls']}>
           <Button

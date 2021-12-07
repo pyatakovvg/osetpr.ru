@@ -32,11 +32,21 @@
 
 .row {
 
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  align-items: center;
+}
+
+.col {
+
   display: block;
-  text-align: center;
 
   & + & {
 
-    margin: 48px 0 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1 0;
+    margin: 0 0 0 40px;
   }
 }

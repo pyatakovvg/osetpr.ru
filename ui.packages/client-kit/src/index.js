@@ -16,6 +16,7 @@ export { default as RadioContainer, Radio } from './simbols/RadioBox';
 
 export { default as InputField } from './fields/InputField';
 export { default as CheckboxField } from './fields/CheckboxField';
+export { default as DatepickerField } from './fields/DatepickerField';
 export { default as InputPhoneField } from './fields/InputPhoneField';
 export { default as TextareaFieldField } from './fields/TextareaField';
 export { default as RadioContainerField } from './fields/RadioBoxField';
