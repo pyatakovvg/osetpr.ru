@@ -32,6 +32,22 @@ const routes = [
       '@modules/client-order'
     ),
   },
+  {
+    path: '/comments',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "client-comments" */
+      '@modules/client-comments'
+    ),
+  },
+  {
+    path: '/about',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "client-about" */
+      '@modules/client-about'
+    ),
+  },
 ];
 
 export default routes;

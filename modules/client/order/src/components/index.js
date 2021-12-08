@@ -9,7 +9,7 @@ import Component from './Component';
 export default function HOC() {
 
   useMount(async function() {
-    document.title = `${process.env['REACT_APP_WEBSITE_NAME']} - Витрина`;
+    document.title = `${process.env['REACT_APP_WEBSITE_NAME']} - Разделы`;
   });
 
   return <Component />;

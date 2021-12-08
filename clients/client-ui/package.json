@@ -8,9 +8,10 @@
     "start": "react-scripts start"
   },
   "dependencies": {
-    "@modules/client-dev": "1.0.0",
     "@modules/client-main": "1.0.0",
     "@modules/client-order": "1.0.0",
+    "@modules/client-about": "1.0.0",
+    "@modules/client-comments": "1.0.0",
     "@ui.packages/client-kit": "1.0.0",
     "@ui.packages/client-dialog": "1.0.0",
     "@ui.packages/client-application": "1.0.0",

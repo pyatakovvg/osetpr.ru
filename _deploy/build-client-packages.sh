@@ -25,12 +25,12 @@ echo '-----------------------------------------'
 cd ../../modules/client || return
 
 echo '[--- Client main ---]'
-cd  ./client-main && npx yarn build
+cd  ./main && npx yarn build
 echo '[--- Client product ---]'
-cd  ../client-product && npx yarn build
+cd  ../product && npx yarn build
 echo '[--- Client order ---]'
-cd  ../client-order && npx yarn build
+cd  ../order && npx yarn build
 echo '[--- Client order draft ---]'
-cd  ../client-order-draft && npx yarn build
+cd  ../order-draft && npx yarn build
 
 exit 0

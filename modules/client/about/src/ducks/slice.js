@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {};
 
-const REDUCER_NAME = 'main';
+const REDUCER_NAME = 'about';
 
 
 const slice = createSlice({
