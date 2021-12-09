@@ -1,5 +1,5 @@
 
-import { selectProfile, signOut } from '@ui.packages/application';
+import { selectProfile, signOut } from '@ui.packages/admin-application';
 
 import React from 'react';
 import { useNavigate } from "react-router-dom";
