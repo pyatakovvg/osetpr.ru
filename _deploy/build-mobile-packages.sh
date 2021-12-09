@@ -4,7 +4,7 @@ echo ''
 echo 'Сборка пакетов "UI" для "Mobile"'
 echo '-------------------'
 
-cd ../ui.packages || return
+cd ./ui.packages || return
 
 echo '[--- Application ---]'
 cd  ./mobile-application && npx yarn build
