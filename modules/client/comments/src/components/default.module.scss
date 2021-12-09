@@ -1,45 +1,8 @@
 
-@import "~@ui.packages/theme-2";
-
-
-.wrapper {
-
-  display: block;
-  width: 1200px;
+@media only screen and (min-width: 1281px) {
+  @import "./@media/large.display";
 }
 
-.header {
-
-  display: block;
-  font-family: inherit;
-  font-weight: 700;
-  font-size: 18px;
-  letter-spacing: .5px;
-  margin: 0 0 40px;
-}
-
-
-.content {
-
-  display: block;
-}
-
-.description {
-
-  display: block;
-}
-
-.controls {
-
-  display: block;
-  text-align: right;
-  margin: 80px 0 0;
-  padding: 0 0 24px;
-  border-bottom: 1px solid $gray-darken;
-}
-
-.comments {
-
-  display: block;
-  margin: 40px 0 0;
+@media only screen and (max-width: 1280px) and (min-width: 901px) {
+  @import "./@media/middle.display";
 }

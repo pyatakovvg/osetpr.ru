@@ -4,7 +4,7 @@ echo ''
 echo 'Сборка пакетов "UI" для "Mobile"'
 echo '-------------------'
 
-cd ./ui.packages || return
+cd ../ui.packages || return
 
 echo '[--- Application ---]'
 cd  ./mobile-application && npx yarn build
@@ -13,7 +13,7 @@ cd ../mobile-kit && npx yarn build
 echo '[--- HOC ---]'
 cd ../hoc && npx yarn build
 echo '[--- Menu ---]'
-cd ../menu && npx yarn build
+cd ../mobile-menu && npx yarn build
 echo '[--- Dialog ---]'
 cd ../mobile-dialog && npx yarn build
 echo '[--- Notifications ---]'
