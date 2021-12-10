@@ -32,5 +32,9 @@ echo '[--- Client order ---]'
 cd  ../order && npx yarn build
 echo '[--- Client order draft ---]'
 cd  ../order-draft && npx yarn build
+echo '[--- Client comments ---]'
+cd  ../comments && npx yarn build
+echo '[--- Client about ---]'
+cd  ../about && npx yarn build
 
 exit 0
