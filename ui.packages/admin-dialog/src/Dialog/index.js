@@ -1,5 +1,5 @@
 
-import { closeDialog, selectIsOpen, selectName, selectData } from '@ui.packages/dialog';
+import { closeDialog, selectIsOpen, selectName, selectData } from '@ui.packages/admin-dialog';
 
 import { Header } from '@ui.packages/admin-kit';
 
