@@ -30,4 +30,5 @@ export const { closeNotification, pushNotification, cleanNotifications } = notif
 
 export const selectNotifications = (state) => state['notifications']['items'];
 
+export const name = notificationSlice['name'];
 export const reducer = notificationSlice['reducer'];

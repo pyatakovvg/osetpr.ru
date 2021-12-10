@@ -1,8 +1,8 @@
 
 import Application from '@ui.packages/client-application';
-import { reducer as dialogReducer } from '@ui.packages/client-dialog';
-import { notificationReducer } from '@ui.packages/client-notifications';
 import { name as orderReducerName, reducer as orderReducer } from "@ui.packages/order";
+import { name as dialogReducerName, reducer as dialogReducer } from '@ui.packages/client-dialog';
+import { name as notificationReducerName, reducer as notificationReducer } from '@ui.packages/client-notifications';
 
 import { reducer as formReducer } from 'redux-form';
 
@@ -24,9 +24,9 @@ try {
     portal: document.getElementById('root'),
     reducers: {
       form: formReducer,
-      dialog: dialogReducer,
-      notifications: notificationReducer,
       [orderReducerName]: orderReducer,
+      [dialogReducerName]: dialogReducer,
+      [notificationReducerName]: notificationReducer,
     },
     wrappers: { Empty, Navigate, Composite },
   });
