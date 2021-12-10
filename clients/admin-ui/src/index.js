@@ -1,6 +1,6 @@
 
 import Application from '@ui.packages/admin-application';
-import { reducer as dialogReducer } from '@ui.packages/dialog';
+import { reducer as dialogReducer } from '@ui.packages/client-dialog';
 
 import { reducer as formReducer } from 'redux-form';
 
