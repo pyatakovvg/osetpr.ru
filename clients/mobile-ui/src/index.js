@@ -1,7 +1,7 @@
 
 import Application from '@ui.packages/mobile-application';
-import { reducer as menuReducer, name as menuNameReducer } from '@ui.packages/menu';
 import { name as orderReducerName, reducer as orderReducer } from '@ui.packages/order';
+import { reducer as menuReducer, name as menuNameReducer } from '@ui.packages/mobile-menu';
 import { reducer as dialogReducer, name as dialogNameReducer } from '@ui.packages/mobile-dialog';
 import { reducer as notificationReducer, name as notificationNameReducer } from '@ui.packages/mobile-notifications';
 

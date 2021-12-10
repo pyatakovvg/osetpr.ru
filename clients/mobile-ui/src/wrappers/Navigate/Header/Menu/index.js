@@ -1,6 +1,6 @@
 
 import { Context } from '@ui.packages/mobile-application';
-import { openMenuAction, Widget } from '@ui.packages/menu';
+import { openMenuAction, Widget } from '@ui.packages/mobile-menu';
 
 import React, { useContext } from 'react';
 import { useDispatch } from 'react-redux';
