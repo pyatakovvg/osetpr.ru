@@ -1,7 +1,7 @@
 
 import moment from '@packages/moment';
 
-import { Text } from '@ui.packages/mobile-kit'
+import { Text } from '@ui.packages/client-kit'
 
 import React, { useMemo } from 'react';
 
