@@ -1,5 +1,5 @@
 
-import { selectIsOpen, closeMenuAction } from '@ui.packages/menu';
+import { selectIsOpen, closeMenuAction } from '@ui.packages/mobile-menu';
 
 import React from 'react';
 import ReactDOM from 'react-dom';

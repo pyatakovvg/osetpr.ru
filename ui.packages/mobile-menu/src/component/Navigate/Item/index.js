@@ -1,5 +1,5 @@
 
-import { closeMenuAction } from '@ui.packages/menu';
+import { closeMenuAction } from '@ui.packages/mobile-menu';
 
 import React from 'react';
 import { useDispatch } from 'react-redux';
