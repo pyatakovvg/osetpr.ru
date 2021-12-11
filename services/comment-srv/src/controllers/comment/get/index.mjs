@@ -51,26 +51,12 @@ export default () => async (ctx) => {
         as: 'comments',
         include: [
           {
-            model: Customer,
-            as: 'customer',
-          },
-          {
             model: Comment,
             as: 'comments',
             include: [
               {
-                model: Customer,
-                as: 'customer',
-              },
-              {
                 model: Comment,
                 as: 'comments',
-                include: [
-                  {
-                    model: Customer,
-                    as: 'customer',
-                  }
-                ]
               },
             ]
           },
