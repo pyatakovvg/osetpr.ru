@@ -1,7 +1,7 @@
 
 import numeral from '@packages/numeral';
 
-import { Image } from '@ui.packages/mobile-kit';
+import { Image } from '@ui.packages/client-kit';
 
 import React from 'react';
 import types from 'prop-types';
