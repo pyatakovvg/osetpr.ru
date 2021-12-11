@@ -59,11 +59,6 @@ export default function(sequelize, DataType)  {
       foreignKey: 'parentUuid',
       as: 'comments',
     });
-
-    Comment.belongsTo(Customer, {
-      foreignKey: 'userUuid',
-      as: 'customer',
-    });
   };
 
   return Comment;
