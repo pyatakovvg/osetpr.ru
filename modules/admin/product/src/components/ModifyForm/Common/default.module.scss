@@ -59,3 +59,25 @@
   display: block;
   margin: 0 0 10px 14px;
 }
+
+
+.external-id {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  align-items: flex-end;
+}
+
+.input {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.button {
+
+  display: block;
+  margin: 0 0 0 16px;
+}

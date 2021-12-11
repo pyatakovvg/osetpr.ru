@@ -6,6 +6,10 @@ export default async function updateProperties(uuid, properties) {
   const { Product } = models;
   const product = {};
 
+  if ('externalId' in properties) {
+    product['externalId'] = properties['externalId'];
+  }
+
   if ('title' in properties) {
     product['title'] = properties['title'];
   }

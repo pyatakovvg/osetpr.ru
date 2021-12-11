@@ -1,16 +1,24 @@
 
 import { selectInProcess } from "@modules/admin-product";
 
-import { Col, Header, InputField, Row, EditorField } from "@ui.packages/admin-kit";
+import { Col, Header, InputField, Row, EditorField, Button } from "@ui.packages/admin-kit";
 
 import React from 'react';
-import { useSelector } from "react-redux";
+import { change } from 'redux-form';
+import { useSelector, useDispatch } from "react-redux";
 
 import styles from './default.module.scss';
 
 
 function Common() {
+  const dispatch = useDispatch();
+
   const inProcess = useSelector(selectInProcess);
+
+  function handleGenerateExternalId() {
+    const externalId = Date.now().toString(32);
+    dispatch(change('product-modify', 'externalId', externalId));
+  }
 
   return (
     <div className={styles['wrapper']}>
@@ -20,7 +28,14 @@ function Common() {
       <div className={styles['content']}>
         <Row>
           <Col>
-            <InputField name="externalId" label="Номер товара (генерируется автоматически)" disabled />
+            <div className={styles['external-id']}>
+              <div className={styles['input']}>
+                <InputField name="externalId" label="Номер товара" maxLength={9} />
+              </div>
+              <div className={styles['button']}>
+                <Button mode={'primary'} onClick={handleGenerateExternalId}>Сгенерировать</Button>
+              </div>
+            </div>
           </Col>
           <Col/>
         </Row>
