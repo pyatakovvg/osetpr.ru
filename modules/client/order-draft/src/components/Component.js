@@ -1,10 +1,13 @@
 
 import { selectPayments } from '@modules/client-order-draft';
 
+import moment from "@packages/moment";
+import numeral from "@packages/numeral";
 import { Header, Button, Text } from '@ui.packages/client-kit';
-import { selectOrder, selectInProcess } from '@ui.packages/order';
+import { selectOrder, selectInProcess, updateOrder, resetStateAction } from '@ui.packages/order';
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { isValid, isPristine, submit } from 'redux-form';
 
@@ -13,12 +16,11 @@ import Basket from './Basket';
 import FormModify from './FormModify';
 
 import styles from './default.module.scss';
-import moment from "@packages/moment";
-import numeral from "@packages/numeral";
 
 
 function Order() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const order = useSelector(selectOrder);
   const payments = useSelector(selectPayments);
@@ -27,8 +29,23 @@ function Order() {
   const valid = useSelector(isValid('order-modify'));
   const pristine = useSelector(isPristine('order-modify'));
 
-  function handleSubmit(data) {
-    console.log(data);
+  async function handleSubmit(data) {
+    const isUpdated = await dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
+      statusCode: 'new',
+      uuid: data['uuid'],
+      payment: data['payment'],
+      address: data['address'],
+      customer: data['customer'],
+      products: data['products'],
+      externalId: data['externalId'],
+      description: data['description'],
+      dateTo: moment(data['dateTo']).format(),
+    }));
+
+    if (isUpdated) {
+      await dispatch(resetStateAction());
+      navigate(process.env['PUBLIC_URL'] + '/orders/' + data['externalId']);
+    }
   }
 
   if ( ! payments.length) {
@@ -51,6 +68,11 @@ function Order() {
         <div className={styles['details']}>
           <FormModify
             initialValues={{
+              uuid: order['uuid'],
+              externalId: order['externalId'],
+              products: [
+                ...order['products'],
+              ],
               address: {
                 city: 'Симферополь',
                 ...order['address'],

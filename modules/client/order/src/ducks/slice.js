@@ -2,7 +2,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 
-const initialState = {};
+const initialState = {
+  order: null,
+  inProcess: false,
+};
 
 const REDUCER_NAME = 'order';
 
@@ -10,10 +13,45 @@ const REDUCER_NAME = 'order';
 const slice = createSlice({
   name: REDUCER_NAME,
   initialState,
-  reducers: {},
+  reducers: {
+    resetStateAction(state) {
+      state['order'] = null;
+      state['inProcess'] = false;
+    },
+
+    getOrderRequestAction(state) {
+      state['inProcess'] = true;
+    },
+    getOrderRequestFailAction(state) {
+      state['inProcess'] = false;
+    },
+    getOrderRequestSuccessAction(state, { payload }) {
+      state['order'] = payload;
+      state['inProcess'] = false;
+    },
+
+    updateOrderRequestSuccessAction(state, { payload }) {
+      if (state['order'] && state['order']['externalId'] === payload['externalId']) {
+        state['order'] = {
+          ...state['order'],
+          status: payload['status'],
+        };
+      }
+    },
+  },
 });
 
-export const {} = slice['actions'];
+export const {
+  resetStateAction,
+
+  getOrderRequestAction,
+  getOrderRequestFailAction,
+  getOrderRequestSuccessAction,
+
+  updateOrderRequestSuccessAction,
+} = slice['actions'];
+
+export const selectOrder = (state) => state[REDUCER_NAME]['order'];
 
 export const name = slice['name'];
 export const reducer = slice['reducer'];

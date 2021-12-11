@@ -3,14 +3,12 @@ export { default } from './components';
 export { name, reducer } from './ducks/slice';
 
 export {
-  resetStateAction,
+  selectOrder,
 
-  selectMeta,
-  selectItems,
-  selectStatuses,
-  selectInProcess,
+  resetStateAction,
+  updateOrderRequestSuccessAction,
 } from './ducks/slice';
 
 export {
-  getItems,
+  getOrder,
 } from './ducks/commands';

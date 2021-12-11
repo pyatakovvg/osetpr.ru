@@ -50,13 +50,12 @@ export default () => async (ctx) => {
     offset['limit'] = Number(take);
   }
 
-  console.log(where)
-
   const result = await Order.findAndCountAll({
     ...options,
     ...offset,
     distinct: true,
-    where: {      statusCode: {
+    where: {
+      statusCode: {
         [Op.not]: 'basket'
       },
       ...where,

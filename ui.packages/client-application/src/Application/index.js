@@ -1,5 +1,6 @@
 
 import { on, off } from '@ui.packages/socket';
+import { Notifications } from '@ui.packages/client-notifications';
 
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -44,6 +45,7 @@ function Application({ options }) {
         {isLoaded
           ? <Router />
           : <Loading />}
+        <Notifications />
       </ApplicationContext.Provider>
     </section>
   );

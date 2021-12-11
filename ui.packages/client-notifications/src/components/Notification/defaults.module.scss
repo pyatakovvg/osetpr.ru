@@ -1,5 +1,5 @@
 
-@import "~@ui.packages/theme";
+@import "~@ui.packages/theme-2";
 
 
 .notification {
@@ -14,10 +14,10 @@
   animation-name: showing;
   animation-duration: 150ms;
   animation-timing-function: ease-in-out;
-  color: $coal-dark;
-  background: $white;
+  color: $white;
+  background: $gray-darken;
   border: 1px solid transparent;
-  box-shadow: 0 4px 10px 0 rgba($coal-dark, .3);
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, .3);
 
   &__icon {
 
@@ -82,33 +82,34 @@
 }
 
 .mode {
+
   &--success {
     border-color: $success;
-    background: $success;
+    background: $success-darken;
     color: $white;
   }
 
   &--danger {
     border-color: $danger;
-    background: $danger;
+    background: $danger-darken;
     color: $white;
   }
 
   &--info {
     color: $white;
-    border-color: $information;
-    background: $information;
+    border-color: $info-darken;
+    background: $info;
   }
 
   &--primary {
     border-color: $primary;
-    background: $primary;
+    background: $primary-darken;
     color: $white;
   }
 
   &--warning {
     border-color: $warning;
-    background: $warning;
+    background: $warning-darken;
     color: $white;
   }
 }
@@ -127,7 +128,7 @@
   }
 
   &--info {
-    color: $information;
+    color: $info;
   }
 
   &--danger {
