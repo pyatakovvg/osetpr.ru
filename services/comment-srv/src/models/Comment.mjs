@@ -48,7 +48,7 @@ export default function(sequelize, DataType)  {
     timestamps: true,
   });
 
-  Comment.associate = ({ Theme, Customer }) => {
+  Comment.associate = ({ Theme }) => {
 
     Comment.belongsTo(Theme, {
       foreignKey: 'themeId',
