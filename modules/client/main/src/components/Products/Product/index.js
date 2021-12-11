@@ -15,7 +15,7 @@ import styles from './default.module.scss';
 function useGetMaxModeCount(mode) {
   const order = useSelector(selectOrder);
 
-  if ( ! order && ! order['products'].length) {
+  if ( ! order || ! order['products'].length) {
     return false;
   }
   const product = order['products'].find((product) => product['modeUuid'] === mode['uuid']);
