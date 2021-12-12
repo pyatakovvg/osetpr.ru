@@ -68,6 +68,8 @@ export default () => async (ctx) => {
   ctx.body = {
     success: true,
     data: result['rows'],
-    meta: result['meta'],
+    meta: {
+      total: result['count'],
+    },
   };
 };

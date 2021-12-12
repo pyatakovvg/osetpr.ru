@@ -28,7 +28,6 @@ const slice = createSlice({
       state['inProcess'] = false;
     },
     getCommentsRequestSuccessAction(state, { payload }) {
-      console.log(123, payload)
       state['data'] = payload['data'];
       state['meta'] = payload['meta'];
       state['inProcess'] = false;

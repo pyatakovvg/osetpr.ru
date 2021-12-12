@@ -18,7 +18,7 @@ function Controls() {
   return (
     <div className={styles['wrapper']}>
       <div className={styles['content']}>
-        <Text>Усли у вас есть предложения или замечания, поделитесь ими с нами</Text>
+        <Text>Если у вас есть предложения или замечания, а так же благодарность, поделитесь ими с нами</Text>
       </div>
       <div className={styles['control']}>
         <Button onClick={handleOpenDialog}>Оставить коментарий</Button>

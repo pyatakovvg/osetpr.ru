@@ -5,8 +5,15 @@
 .wrapper {
 
   display: block;
-  border: 1px solid $gray-darken;
-  padding: 40px 156px 80px;
-  background: rgba($gray, .4);
-  border-radius: 4px;
+}
+
+.header {
+
+  display: block;
+}
+
+.content {
+
+  display: block;
+  margin: 32px 0 0;
 }

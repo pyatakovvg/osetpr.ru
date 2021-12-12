@@ -1,6 +1,8 @@
 
 import { selectData } from '@modules/client-comments';
 
+import { Header } from '@ui.packages/client-kit';
+
 import React from 'react';
 import { useSelector } from "react-redux";
 
@@ -14,9 +16,14 @@ function Comments() {
 
   return (
     <div className={styles['wrapper']}>
-      {comments.map((item) => (
-        <Comment key={item['uuid']} {...item} />
-      ))}
+      <div className={styles['header']}>
+        <Header>Комментарии</Header>
+      </div>
+      <div className={styles['content']}>
+        {comments.map((item) => (
+          <Comment key={item['uuid']} {...item} />
+        ))}
+      </div>
     </div>
   );
 }
