@@ -1,7 +1,7 @@
 
 import moment from '@packages/moment';
 
-import { Text } from '@ui.packages/client-kit'
+import { Header, Text } from '@ui.packages/client-kit'
 
 import React, { useMemo } from 'react';
 
@@ -18,7 +18,7 @@ function Comment({ className, user, content, isAdmin, createdAt }) {
     <div className={wrapperClassName}>
       <div className={styles['header']}>
         <div className={styles['user']}>
-          <Text>{ user ? user : 'Аноним' }</Text>
+          <Header level={3}>{ user ? user : 'Аноним' }</Header>
         </div>
         <div className={styles['date']}>
           <Text>{ moment(createdAt).format('DD.MM.YYYY') }</Text>

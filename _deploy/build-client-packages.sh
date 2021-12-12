@@ -36,5 +36,7 @@ echo '[--- Client comments ---]'
 cd  ../comments && npx yarn build
 echo '[--- Client about ---]'
 cd  ../about && npx yarn build
+echo '[--- Client profile ---]'
+cd  ../profile && npx yarn build
 
 exit 0
