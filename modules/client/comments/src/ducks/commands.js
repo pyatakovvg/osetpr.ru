@@ -46,6 +46,7 @@ export const createComment = (data) => async (dispatch) => {
       method: 'post',
       data: {
         ...data,
+        content: data['content'].replace(/\n/gm, '<br/>'),
         userUuid: window.localStorage.getItem('userUuid'),
       },
     });

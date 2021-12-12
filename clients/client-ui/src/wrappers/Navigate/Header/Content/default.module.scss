@@ -1,0 +1,23 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: block;
+}
+
+.logotype {
+
+  display: inline-block;
+}
+
+.col {
+
+  display: block;
+
+  & + & {
+
+    margin: 16px 0 0;
+  }
+}

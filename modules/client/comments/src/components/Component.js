@@ -1,25 +1,21 @@
 
-import { selectData, createComment } from '@modules/client-comments';
+import { createComment } from '@modules/client-comments';
 
-import { Header, Text, Button } from '@ui.packages/client-kit';
-import { openDialog, closeDialog, Dialog } from '@ui.packages/client-dialog';
+import { Header, Text } from '@ui.packages/client-kit';
+import { closeDialog, Dialog } from '@ui.packages/client-dialog';
 
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import Form from './Form';
-import Comment from './Comment';
+import Comments from './Comments';
+import Controls from './Controls';
 
 import styles from './default.module.scss';
 
 
-function Comments() {
+function CommentsContent() {
   const dispatch = useDispatch();
-  const comments = useSelector(selectData);
-
-  function handleOpenDialog() {
-    dispatch(openDialog('create-comment'));
-  }
 
   async function handleSubmit(data) {
     const isSuccess = await dispatch(createComment(data));
@@ -40,12 +36,10 @@ function Comments() {
           <Text>Ресторан «Сахара» приглашает Вас опробовать блюда русской, кавказской, японской, паназиатской и азербайджанской кухонь. Порадует эксклюзивностью, непередаваемым вкусом и удивительной подачей. Прикладываются особые усилия для того, чтобы каждый клиент остался доволен проделанной работой и оставил положительный отзыв в данном разделе сайта.</Text>
         </div>
         <div className={styles['controls']}>
-          <Button onClick={handleOpenDialog}>Оставить коментарий</Button>
+          <Controls />
         </div>
         <div className={styles['comments']}>
-          {comments.map((item) => (
-            <Comment key={item['uuid']} {...item} />
-          ))}
+          <Comments />
         </div>
       </div>
 
@@ -56,4 +50,4 @@ function Comments() {
   );
 }
 
-export default Comments;
+export default CommentsContent;

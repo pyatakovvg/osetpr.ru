@@ -7,9 +7,9 @@ import { Header, Button, Text } from '@ui.packages/client-kit';
 import { selectOrder, selectInProcess, updateOrder, resetStateAction } from '@ui.packages/order';
 
 import React from 'react';
+import { submit } from 'redux-form';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { isValid, isPristine, submit } from 'redux-form';
 
 import Empty from './Empty';
 import Basket from './Basket';
@@ -25,9 +25,6 @@ function Order() {
   const order = useSelector(selectOrder);
   const payments = useSelector(selectPayments);
   const inProcess = useSelector(selectInProcess);
-
-  const valid = useSelector(isValid('order-modify'));
-  const pristine = useSelector(isPristine('order-modify'));
 
   async function handleSubmit(data) {
     const isUpdated = await dispatch(updateOrder(window.localStorage.getItem('userUuid'), {
@@ -95,7 +92,6 @@ function Order() {
         <div className={styles['controls']}>
           <Button
             inProcess={inProcess}
-            disabled={ ! valid || pristine}
             onClick={() => dispatch(submit('order-modify'))}
           >Подтвердить заказ на { numeral(order['total']).format()} {order['currency']['displayName'] }</Button>
         </div>

@@ -36,7 +36,7 @@ function useCreatePortal(parent) {
 }
 
 
-function Options({ parentRef, useTime, value, onChange }) {
+function Options({ parentRef, useTime, value, minDate, maxDate, onChange }) {
   const portal = useCreatePortal(parentRef);
 
   const dateValue = moment(value || new Date());
@@ -115,6 +115,8 @@ function Options({ parentRef, useTime, value, onChange }) {
           hour={hour}
           minute={minute}
           useTime={useTime}
+          minDate={minDate}
+          maxDate={maxDate}
           onPrev={() => handlePrevMonth()}
           onNext={() => handleNextMonth()}
           onYearModify={() => handleOpenYearModify(true)}
@@ -154,7 +156,10 @@ function Options({ parentRef, useTime, value, onChange }) {
 
 Options.propTypes = {
   parentRef: types.object,
-  value: types.string,
+  value: types.oneOfType([
+    types.string,
+    types.object,
+  ]),
   onChange: types.func,
 };
 

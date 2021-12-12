@@ -1,0 +1,28 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  align-items: center;
+  padding: 16px 24px;
+  background: rgba($gray-darken, .8);
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+}
+
+.content {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.control {
+
+  display: block;
+  margin: 0 0 0 16px;
+}

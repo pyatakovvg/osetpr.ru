@@ -4,7 +4,6 @@ import { Header, DatepickerField, Checkbox, Text } from '@ui.packages/client-kit
 
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-// import { change, submit } from 'redux-form';
 
 import styles from './default.module.scss';
 

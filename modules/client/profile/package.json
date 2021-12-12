@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@modules/client-comments",
+  "name": "@modules/client-profile",
   "version": "1.0.0",
   "license": "MIT",
   "main": "lib/index.js",

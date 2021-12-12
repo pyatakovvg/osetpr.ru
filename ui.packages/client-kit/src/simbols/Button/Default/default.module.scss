@@ -6,15 +6,20 @@
 
   position: relative;
   display: inline-block;
-  padding: 16px 32px 14px;
-  font-size: 16px;
+  padding: 12px 32px 11px;
+  font-size: 14px;
   font-weight: 600;
   color: $white;
   background: $primary;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 200ms;
+  transition: background-color 150ms;
+
+  &:active {
+
+    transform: scale(.98);
+  }
 
   &:hover {
 

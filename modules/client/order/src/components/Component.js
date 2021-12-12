@@ -1,6 +1,7 @@
 
 import { selectOrder } from "@modules/client-order";
 
+import moment from '@packages/moment';
 import numeral from "@packages/numeral";
 import { Header, Text, Status } from '@ui.packages/client-kit';
 
@@ -67,7 +68,7 @@ function Order() {
   return (
     <div className={styles['wrapper']}>
       <div className={styles['header']}>
-        <Header>Ваш заказ</Header>
+        <Header>Ваш заказ от { moment(order['createdAt']).format('DD.MM.YYYY') } в { moment(order['createdAt']).format('HH:mm') }</Header>
       </div>
       <div className={styles['content']}>
         <div className={styles['order']}>
@@ -96,6 +97,10 @@ function Order() {
           <div className={styles['address']}>
             <span className={styles['title']}>По адресу:</span>
             <span className={styles['value']}>{ address }</span>
+          </div>
+          <div className={styles['address']}>
+            <span className={styles['title']}>Время доставки:</span>
+            <span className={styles['value']}>{ order['dateTo'] ? moment(order['dateTo']).format('DD.MM.YYYY - HH:mm') : 'Как можно быстрее' }</span>
           </div>
           <div className={styles['products']}>
             <div className={styles['container']}>

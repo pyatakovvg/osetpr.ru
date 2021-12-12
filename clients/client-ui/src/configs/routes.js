@@ -48,6 +48,14 @@ const routes = [
       '@modules/client-about'
     ),
   },
+  {
+    path: '/profile',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "client-profile" */
+      '@modules/client-profile'
+    ),
+  },
 ];
 
 export default routes;

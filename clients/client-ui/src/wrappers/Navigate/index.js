@@ -19,7 +19,7 @@ export default function NavigateModule({ children }) {
   }, []);
 
   return (
-    <section className={styles['wrapper']}>
+    <section id={'scroller'} className={styles['wrapper']}>
       <header className={styles['header']}>
         <Header />
       </header>

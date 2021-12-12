@@ -1,10 +1,10 @@
 
+import moment from '@packages/moment';
+
 import React, { useMemo } from 'react';
 
 import cn from "classnames";
 import styles from './default.module.scss';
-
-import moment from "moment";
 
 
 export const dayOfWeekNames = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
@@ -41,15 +41,27 @@ function getMonthDays(value) {
   return squares;
 }
 
-function Day({ date, year, month, number, onClick }) {
+function Day({ date, year, month, number, minDate, maxDate, onClick }) {
+  const isDisabled = useMemo(() => {
+    if ( ! number) {
+      return false;
+    }
+    const currentDate = moment().date(number).month(month).year(year).format('YYYY-MM-DD');
+    const currentMinDate = moment(minDate).format('YYYY-MM-DD');
+    const currentMaxDate = moment(maxDate).format('YYYY-MM-DD');
+
+    return moment(currentDate).isBefore(currentMinDate) || moment(currentDate).isAfter(currentMaxDate);
+  }, [minDate, maxDate, number]);
+
   const wrapperClassName = cn(styles['day'], {
     [styles['empty']]: ! number,
     [styles['active']]: date && date === number,
     [styles['today']]: moment({ date: number, year, month }).isSame(moment(), 'date'),
+    [styles['disabled']]: isDisabled,
   });
 
   function handleChange() {
-    if ( ! number) {
+    if ( ! number || isDisabled) {
       return void 0;
     }
     onClick();
@@ -72,7 +84,7 @@ function DayOfMonth({ day }) {
   );
 }
 
-function Days({ date, month, year, value, onChange }) {
+function Days({ date, month, year, value, minDate, maxDate, onChange }) {
   const days = useMemo(() => getMonthDays(value), [value]);
 
   return (
@@ -90,6 +102,8 @@ function Days({ date, month, year, value, onChange }) {
             year={year}
             key={index}
             number={number}
+            minDate={minDate}
+            maxDate={maxDate}
             onClick={() => onChange(number)}
           />
         ))}

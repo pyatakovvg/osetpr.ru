@@ -10,7 +10,7 @@ export default () => async (ctx) => {
     take = null,
   } = ctx['query'];
 
-  const { Comment, Theme, Customer } = models;
+  const { Comment, Theme } = models;
 
   let where = {};
   let offset = {};
@@ -61,10 +61,6 @@ export default () => async (ctx) => {
             ]
           },
         ]
-      },
-      {
-        model: Customer,
-        as: 'customer',
       }
     ]
   });

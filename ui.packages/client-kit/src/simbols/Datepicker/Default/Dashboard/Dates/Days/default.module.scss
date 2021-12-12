@@ -63,6 +63,14 @@
   color: $white;
 }
 
+.disabled .container,
+.disabled:hover .container {
+
+  color: $gray;
+  background: transparent;
+  cursor: default;
+}
+
 .container {
 
   display: inline-flex;
