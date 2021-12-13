@@ -4,15 +4,12 @@
 
 .wrapper {
 
-  position: relative;
   display: flex;
-  flex-direction: column;
-  flex: 0 0 auto;
-  padding: 16px 16px 24px;
+  flex-direction: row;
+  padding: 24px 24px 24px 0;
   border: 1px solid $gray-darken;
   background: rgba($gray-darken, .4);
   border-radius: 4px;
-  //box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 20%);
   overflow: hidden;
 
   & + * {
@@ -21,30 +18,39 @@
   }
 }
 
-.header {
-
-  display: flex;
-  flex-direction: row;
-  flex: 1 0;
-}
-
-.user,
-.date {
+.aside {
 
   display: flex;
   flex-direction: column;
-  flex: 1 0;
-  overflow: auto;
-}
-
-.date {
-
-  text-align: right;
+  flex: 0 0 auto;
+  width: 160px;
+  justify-content: center;
+  align-items: center;
 }
 
 .content {
 
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  align-items: flex-start;
+}
+
+.header {
+
   display: block;
+}
+
+.date {
+
+  display: block;
+}
+
+.comment {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
   margin: 16px 0 0;
 }
 

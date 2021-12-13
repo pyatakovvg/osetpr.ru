@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@packages/errors": "1.0.0",
+    "@packages/numeral": "1.0.0",
+    "@ui.packages/utils": "1.0.0",
     "@ui.packages/client-kit": "1.0.0",
     "@ui.packages/client-dialog": "1.0.0",
     "@ui.packages/client-notifications": "1.0.0",

@@ -1,7 +1,9 @@
 
-import { selectData } from '@modules/client-comments';
+import { selectData, selectMeta } from '@modules/client-comments';
 
+import numeral from '@packages/numeral';
 import { Header } from '@ui.packages/client-kit';
+import { nounDeclension } from '@ui.packages/utils';
 
 import React from 'react';
 import { useSelector } from "react-redux";
@@ -12,15 +14,16 @@ import styles from "./default.module.scss";
 
 
 function Comments() {
-  const comments = useSelector(selectData);
+  const data = useSelector(selectData);
+  const meta = useSelector(selectMeta);
 
   return (
     <div className={styles['wrapper']}>
       <div className={styles['header']}>
-        <Header>Комментарии</Header>
+        <Header>{ numeral(meta['total']).format() } { nounDeclension(meta['total'], ['комментария', 'комментарий', 'комментариев']) }</Header>
       </div>
       <div className={styles['content']}>
-        {comments.map((item) => (
+        {data.map((item) => (
           <Comment key={item['uuid']} {...item} />
         ))}
       </div>

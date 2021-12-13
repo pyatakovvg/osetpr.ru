@@ -5,6 +5,8 @@ import { Header, Text } from '@ui.packages/client-kit'
 
 import React, { useMemo } from 'react';
 
+import User from './User';
+
 import cn from 'classnames';
 import styles from './default.module.scss';
 
@@ -16,16 +18,18 @@ function Comment({ className, user, content, isAdmin, createdAt }) {
 
   return (
     <div className={wrapperClassName}>
-      <div className={styles['header']}>
-        <div className={styles['user']}>
-          <Header level={3}>{ user ? user : 'Аноним' }</Header>
-        </div>
-        <div className={styles['date']}>
-          <Text>{ moment(createdAt).format('DD.MM.YYYY') }</Text>
-        </div>
+      <div className={styles['aside']}>
+        <User name={user} />
       </div>
       <div className={styles['content']}>
-        <Text isHtml>{ content }</Text>
+        <div className={styles['header']}>
+          <div className={styles['date']}>
+            <Header level={3}>{ moment(createdAt).format('DD.MM.YYYY в HH:mm') }</Header>
+          </div>
+        </div>
+        <div className={styles['comment']}>
+          <Text isHtml>{ content }</Text>
+        </div>
       </div>
     </div>
   );
