@@ -1,0 +1,54 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: block;
+  width: 1200px;
+}
+
+.header {
+
+  display: block;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: .5px;
+}
+
+
+.content {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+}
+
+.col {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+
+  & + & {
+
+    margin: 0 0 0 32px;
+  }
+}
+
+.info {
+
+  display: block;
+  margin: 32px 0 0;
+}
+
+.row {
+
+  display: block;
+
+  & + & {
+
+    margin: 16px 0 0;
+  }
+}

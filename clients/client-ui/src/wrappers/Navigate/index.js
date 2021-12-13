@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import Header from './Header';
-import Footer from './Footer';
+// import Footer from './Footer';
 
 import styles from './default.module.scss';
 
@@ -26,9 +26,9 @@ export default function NavigateModule({ children }) {
       <section className={styles['content']}>
         { React.Children.map(children, (child) => child) }
       </section>
-      <footer className={styles['footer']}>
-        <Footer />
-      </footer>
+      {/*<footer className={styles['footer']}>*/}
+      {/*  <Footer />*/}
+      {/*</footer>*/}
     </section>
   );
 }
