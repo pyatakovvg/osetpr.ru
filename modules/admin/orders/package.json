@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "@packages/errors": "1.0.0",
+    "@packages/moment": "1.0.0",
     "@ui.packages/admin-kit": "1.0.0",
     "@ui.packages/admin-dialog": "1.0.0",
     "@ui.packages/hoc": "1.0.0",
+    "@ui.packages/utils": "1.0.0",
     "@ui.packages/admin-notifications": "1.0.0",
     "@ui.packages/request": "1.0.0",
     "@ui.packages/socket": "1.0.0",

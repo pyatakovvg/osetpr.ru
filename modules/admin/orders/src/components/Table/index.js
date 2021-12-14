@@ -1,11 +1,11 @@
 
-import {selectItems, selectInProcess, updateStatus, getItems } from '@modules/admin-orders';
+import {selectItems, selectMeta, selectInProcess, updateStatus, getItems } from '@modules/admin-orders';
 
 import moment from '@packages/moment';
 import numeral from '@packages/numeral';
 
 import { Table, Column } from '@ui.packages/table';
-import { Text, Status, Button, Actions } from '@ui.packages/admin-kit';
+import { Header, Text, Status, Button, Actions } from '@ui.packages/admin-kit';
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -14,6 +14,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Product from './Product';
 
 import styles from './default.module.scss';
+import {nounDeclension} from "@ui.packages/utils";
 
 
 function getStatusMode(code) {
@@ -31,6 +32,7 @@ function OrderList() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const meta = useSelector(selectMeta);
   const items = useSelector(selectItems);
   const inProcess = useSelector(selectInProcess);
 
@@ -65,6 +67,9 @@ function OrderList() {
 
   return (
     <div className={styles['wrapper']}>
+      <div className={styles['header']}>
+        <Header level={4}>{ nounDeclension(meta['total'], ['Найден', 'Найдено', 'Найдено']) } { meta['total'] } { nounDeclension(meta['total'], ['товар', 'товара', 'товаров']) }</Header>
+      </div>
       <Table columns={items}>
         <Column
           alias={'status'}

@@ -30,7 +30,9 @@ export default async ({
   }
 
   if (externalId) {
-    where['externalId'] = externalId;
+    where['externalId'] = {
+      [Op.like]: `%${externalId}%`,
+    };
   }
 
   if (vendor) {
