@@ -19,13 +19,14 @@ import {
 } from './slice';
 
 
-export const getItems = () => async (dispatch) => {
+export const getItems = (params) => async (dispatch) => {
   try {
     dispatch(getItemsRequestAction());
 
     const result = await request({
       url: '/products',
       method: 'get',
+      params,
     });
 
     dispatch(getItemsRequestSuccessAction(result));

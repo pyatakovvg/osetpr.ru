@@ -4,6 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   items: [],
+  filter: {},
   meta: {},
   inProcess: false,
   itemsInProcess: [],
@@ -30,6 +31,7 @@ const slice = createSlice({
     },
     getItemsRequestSuccessAction(state, { payload }) {
       state['items'] = payload['data'];
+      state['filter'] = payload['filter'];
       state['meta'] = payload['meta'];
       state['inProcess'] = false;
     },
@@ -77,6 +79,7 @@ export const {
 
 export const selectMeta = (state) => state[REDUCER_NAME]['meta'];
 export const selectItems = (state) => state[REDUCER_NAME]['items'];
+export const selectFilter = (state) => state[REDUCER_NAME]['filter'];
 export const selectInProcess = (state) => state[REDUCER_NAME]['inProcess'];
 export const selectItemsInProcess = (state) => state[REDUCER_NAME]['itemsInProcess'];
 

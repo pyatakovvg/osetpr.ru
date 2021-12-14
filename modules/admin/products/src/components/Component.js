@@ -7,6 +7,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import Filter from './Filter';
 import Table from './Table';
 
 import styles from './default.module.scss';
@@ -38,6 +39,9 @@ function Products() {
           <div className={styles['header']}>
             <Header level={1}>Товары</Header>
           </div>
+          <aside className={styles['filter']}>
+            <Filter />
+          </aside>
           <article className={styles['content']}>
             <Table />
           </article>

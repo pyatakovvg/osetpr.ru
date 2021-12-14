@@ -27,9 +27,22 @@ export default () => async (ctx) => {
     userPlan = plans.length ? plans[0]['products'] : null;
   }
 
+  const { data: groups } = await request({
+    url: process.env['PRODUCT_API_SRV'] + '/groups',
+    method: 'get',
+  });
+
+  const { data: categories } = await request({
+    url: process.env['PRODUCT_API_SRV'] + '/categories',
+    method: 'get',
+  });
 
   ctx.body = {
     success: true,
+    filter: {
+      groups,
+      categories,
+    },
     data: products.map((item) => productBuilder(item, userPlan ? userPlan['products'] : [])),
     meta: meta,
   };

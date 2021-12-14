@@ -1,5 +1,5 @@
 
-import { models } from '@sys.packages/db';
+import { models, Op } from '@sys.packages/db';
 
 
 export default async ({
@@ -9,8 +9,12 @@ export default async ({
   uuid = null,
   externalId = null,
   isUse = null,
+  isAvailable = null,
   groupUuid = null,
   categoryUuid = null,
+  vendor = null,
+  minPrice = null,
+  maxPrice = null,
 }) => {
   let where = {};
   let whereMode = {};
@@ -29,6 +33,28 @@ export default async ({
     where['externalId'] = externalId;
   }
 
+  if (vendor) {
+    whereMode['vendor'] = {
+      [Op.like]: `%${vendor}%`,
+    };
+  }
+
+  if (minPrice && maxPrice) {
+    whereMode['price'] = {
+      [Op.between]: [minPrice, maxPrice],
+    };
+  }
+  else if (minPrice) {
+    whereMode['price'] = {
+      [Op.gte]: minPrice,
+    };
+  }
+  else if (maxPrice) {
+    whereMode['price'] = {
+      [Op.lte]: maxPrice,
+    };
+  }
+
   if (groupUuid) {
     whereGroup['uuid'] = groupUuid;
   }
@@ -40,6 +66,10 @@ export default async ({
   if (isUse) {
     where['isUse'] = isUse;
     whereMode['isUse'] = isUse;
+  }
+
+  if (isAvailable) {
+    where['isAvailable'] = isAvailable;
   }
 
   if (limit) {
@@ -87,7 +117,7 @@ export default async ({
       },
       {
         model: ProductMode,
-        required: false,
+        required: !! Object.keys(whereMode).length,
         where: { ...whereMode },
         as: 'modes',
         attributes: ['uuid', 'vendor', 'value', 'price', 'isUse', 'isTarget'],

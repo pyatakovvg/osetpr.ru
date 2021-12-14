@@ -1,14 +1,14 @@
 
-import { selectItems, selectInProcess, selectItemsInProcess, removeItem, getItems, updateItem } from '@modules/admin-products';
+import { selectItems, selectMeta, selectInProcess, selectItemsInProcess, removeItem, getItems, updateItem } from '@modules/admin-products';
 
 import numeral from '@packages/numeral';
 
 import { Table, Column } from '@ui.packages/table';
+import { nounDeclension } from '@ui.packages/utils';
 import { Confirm, openDialog, closeDialog } from '@ui.packages/admin-dialog';
 import { Text, Header, Image, Actions, CheckBox } from '@ui.packages/admin-kit';
 
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import cn from 'classnames';
@@ -17,19 +17,15 @@ import styles from './default.module.scss';
 
 function ProductList() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const [productUuid, setProductUuid] = useState(null);
 
   const items = useSelector(selectItems);
+  const meta = useSelector(selectMeta);
   const inProcess = useSelector(selectInProcess);
   const itemsInProcess = useSelector(selectItemsInProcess);
 
   function handleCopyProduct() {}
-
-  function handleEdit(uuid) {
-    navigate(process.env['PUBLIC_URL'] + '/products/' + uuid);
-  }
 
   function handleConfirmDestroyProduct(uuid) {
     setProductUuid(uuid);
@@ -54,6 +50,9 @@ function ProductList() {
 
   return (
     <div className={styles['wrapper']}>
+      <div className={styles['header']}>
+        <Header level={4}>{ nounDeclension(meta['total'], ['Найден', 'Найдено', 'Найдено']) } { meta['total'] } { nounDeclension(meta['total'], ['товар', 'товара', 'товаров']) }</Header>
+      </div>
       <Table columns={items}>
         <Column
           alias="gallery"
@@ -122,7 +121,7 @@ function ProductList() {
             <Actions
               disabled={inProcess || !!~ itemsInProcess.indexOf(uuid)}
               onCopy={() => handleCopyProduct(uuid)}
-              onEdit={() => handleEdit(uuid)}
+              toEdit={process.env['PUBLIC_URL'] + '/products/' + uuid}
               onDelete={() => handleConfirmDestroyProduct(uuid)}
             />
           )}
