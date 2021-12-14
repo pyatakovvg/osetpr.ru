@@ -59,5 +59,7 @@ echo '[--- Admin group ---]'
 cd  ../group && npx yarn build
 echo '[--- Admin category ---]'
 cd  ../category && npx yarn build
+echo '[--- Admin payments ---]'
+cd  ../payments && npx yarn build
 
 exit 0

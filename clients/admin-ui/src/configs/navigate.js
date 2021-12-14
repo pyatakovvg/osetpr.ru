@@ -4,6 +4,16 @@ const navigate = [
     title: "Заказы",
     path: '/orders',
     icon: 'fas fa-tag',
+    navigate: [
+      {
+        title: 'Заказы',
+        path: '/orders',
+      },
+      {
+        title: 'Способ оплаты',
+        path: '/orders/payments',
+      },
+    ],
   },
   {
     title: 'Товары',

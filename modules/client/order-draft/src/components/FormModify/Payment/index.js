@@ -1,7 +1,7 @@
 
 import { selectPayments } from '@modules/client-order-draft';
 
-// import { selectInProcess } from '@ui.packages/order';
+import { selectInProcess } from '@ui.packages/order';
 import { Header, RadioContainerField, Radio, Text } from '@ui.packages/client-kit';
 
 import React from 'react';
@@ -12,7 +12,7 @@ import styles from './default.module.scss';
 
 function PaymentForm() {
   const payments = useSelector(selectPayments);
-  // const inProcess = useSelector(selectInProcess);
+  const inProcess = useSelector(selectInProcess);
 
   return (
     <div className={styles['wrapper']}>
@@ -21,7 +21,7 @@ function PaymentForm() {
       </div>
       <div className={styles['content']}>
         <div className={styles['row']}>
-          <RadioContainerField name={'payment.code'}>
+          <RadioContainerField name={'payment.code'} disabled={inProcess}>
             {payments.map((payment) => (
               <div key={payment['code']} className={styles['row']}>
                 <Radio name={payment['code']} label={payment['displayName']} disabled={ ! payment['isUse']} temp={'Временно недоступно'} />

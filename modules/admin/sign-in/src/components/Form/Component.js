@@ -18,7 +18,7 @@ function Form({ handleSubmit }) {
   return (
     <form className={styles['dialog']} onSubmit={handleSubmit}>
       <div className={styles['header']}>
-        <Header level={4}>Вход в личный кабинет</Header>
+        <Header level={4}>Вход в кабинет управления</Header>
       </div>
       <div className={styles['content']}>
         <div className={styles['row']}>

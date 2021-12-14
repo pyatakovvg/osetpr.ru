@@ -15,12 +15,21 @@
   background: rgba($background, .8);
   box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 20%);
   padding: 16px;
+  cursor: pointer;
+  transition: border 150ms;
+
+  &:hover {
+
+    border-color: $gray-lighten;
+  }
 }
 
-.disabled {
+.disabled,
+.disabled:hover {
 
   background: rgba($gray-darken, .4);
   color: $gray-darken;
+  border-color: $gray-darken;
   box-shadow: none;
 }
 

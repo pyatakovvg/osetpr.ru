@@ -10,18 +10,18 @@ const routes = [
   },
   {
     path: '/orders',
-    wrapper: 'Navigate',
+    wrapper: 'Composite',
     module: import(
       /* webpackChunkName: "admin-orders" */
       '@modules/admin-orders'
     ),
   },
   {
-    path: '/orders/create',
-    wrapper: 'Navigate',
+    path: '/orders/payments',
+    wrapper: 'Composite',
     module: import(
-      /* webpackChunkName: "admin-order" */
-      '@modules/admin-order'
+      /* webpackChunkName: "admin-payments" */
+      '@modules/admin-payments'
     ),
   },
   {

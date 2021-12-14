@@ -18,7 +18,12 @@ module.exports = {
           type: DataType.BOOLEAN,
           allowNull: false,
           defaultValue: true,
-        }
+        },
+        order: {
+          type: DataType.INTEGER,
+          allowNull: false,
+          defaultValue: 0,
+        },
       }, {
         transaction
       });
