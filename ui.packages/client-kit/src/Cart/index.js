@@ -1,6 +1,6 @@
 
 import types from 'prop-types';
-import React, { useMemo } from 'react';
+import React, { forwardRef, useMemo } from 'react';
 
 import Loading from './Loading';
 
@@ -8,7 +8,7 @@ import cn from 'classnames';
 import styles from './default.module.scss';
 
 
-export default function Cart({ count, mode, inProcess, disabled, onClick }) {
+const Cart = forwardRef(({ count, mode, inProcess, disabled, onClick }, ref) => {
   const cartClassName = useMemo(() => cn(styles['cart'], {
     [styles['mode--success']]: mode === Cart.mode.success,
     [styles['disabled']]: disabled,
@@ -22,7 +22,7 @@ export default function Cart({ count, mode, inProcess, disabled, onClick }) {
   }
 
   return (
-    <div className={cartClassName} onClick={() => handleClick()}>
+    <div ref={ref} className={cartClassName} onClick={() => handleClick()}>
       {count > 0 && (
         <span className={styles['count']}>{ count }</span>
       )}
@@ -34,7 +34,7 @@ export default function Cart({ count, mode, inProcess, disabled, onClick }) {
       )}
     </div>
   );
-}
+});
 
 Cart.propTypes = {
   disabled: types.bool,
@@ -51,3 +51,5 @@ Cart.defaultProps = {
 Cart.mode = {
   success: 'success',
 }
+
+export default Cart;

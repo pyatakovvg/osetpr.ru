@@ -22,15 +22,13 @@
 .controls {
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex: 1 0;
 }
 
 .reset {
 
-  display: flex;
-  flex-direction: column;
-  flex: 0 0;
+  display: block;
 }
 
 .count {

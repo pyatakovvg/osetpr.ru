@@ -26,7 +26,8 @@
     background: $primary-lighten;
   }
 
-  &:disabled {
+  &:disabled,
+  &:disabled:hover {
 
     background: $gray-darken;
     color: $gray-lighten;

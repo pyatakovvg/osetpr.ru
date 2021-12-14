@@ -17,6 +17,11 @@
   }
 }
 
+.wrapper:hover .checkbox {
+
+  border-color: $gray-lighten;
+}
+
 .checkbox {
 
   display: flex;
@@ -29,9 +34,11 @@
   background: rgba($background, 50%);
   border: 1px solid $gray;
   border-radius: 4px;
+  transition: background-color 150ms, border-color 150ms;
 }
 
-.disabled {
+.disabled,
+.disabled:hover {
   .checkbox {
 
     background: $gray-lighten;
