@@ -1,0 +1,11 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.logotype {
+
+  display: inline-block;
+  background: url("logotype.svg") center/100% no-repeat;
+  width: 187px;
+  height: 55px;
+}
