@@ -8,8 +8,9 @@
   flex-direction: row;
   padding: 24px 24px 24px 0;
   border: 1px solid $gray-darken;
-  background: rgba($gray-darken, .4);
+  background: rgba($gray-darken, .8);
   border-radius: 4px;
+  backdrop-filter: blur(6px);
   overflow: hidden;
 
   & + * {
@@ -23,7 +24,8 @@
   display: flex;
   flex-direction: column;
   flex: 0 0 auto;
-  width: 160px;
+  padding: 16px 0;
+  width: 192px;
   justify-content: center;
   align-items: center;
 }
@@ -72,10 +74,11 @@
 .children {
 
   display: block;
-  margin: 24px 0 0 32px;
+  margin: 24px 0 0 64px;
 }
 
 .is-admin {
 
-  border-color: mix($info-darken, $background);
+  border-color: lighten($background, 5%);
+  background-color: rgba($background, .8);
 }

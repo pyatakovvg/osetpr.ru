@@ -1,0 +1,32 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: inline-flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  align-items: center;
+  overflow: hidden;
+}
+
+.icon {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  background: url("./icon.svg") 100%/100%;
+  width: 72px;
+  height: 72px;
+}
+
+.title {
+
+  display: block;
+  margin: 16px 0 0;
+  width: 100px;
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

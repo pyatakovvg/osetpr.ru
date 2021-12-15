@@ -41,7 +41,7 @@ function Comment({ uuid, user, customer, parentUuid, createdAt, content }) {
           {customer && customer['type'] === 'admin' && (
             <span className={cn(styles['icon'], 'fas fa-crown')} />
           )}
-          <Text type={Text.TYPE_BODY}>{ customer ? customer['name'] : user }</Text>
+          <Text type={Text.TYPE_BODY}>{ customer ? 'Админ' : user }</Text>
         </div>
         <div className={styles['date']}>
           <Text>{ moment(createdAt).format('DD.MM.YYYY') }</Text>
