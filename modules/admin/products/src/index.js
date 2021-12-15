@@ -6,6 +6,7 @@ export {
 export {
   selectMeta,
   selectItems,
+  selectFilter,
   selectInProcess,
   selectItemsInProcess,
 } from './ducks/slice';

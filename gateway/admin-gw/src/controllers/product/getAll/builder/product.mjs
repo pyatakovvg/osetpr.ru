@@ -2,7 +2,7 @@
 import modeBuilder from './mode.mjs';
 
 
-export default function(data, products) {
+export default function(data) {
   return {
     externalId: data['externalId'],
     uuid: data['uuid'],
@@ -14,7 +14,7 @@ export default function(data, products) {
     category: data['category'],
     description: data['description'],
     gallery: data['gallery'],
-    modes: data['modes'].map((data) => modeBuilder(data, products)),
+    modes: data['modes'].map((data) => modeBuilder(data)),
     updatedAt: data['updatedAt'],
   };
 }

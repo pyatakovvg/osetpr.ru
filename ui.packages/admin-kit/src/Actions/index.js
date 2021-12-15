@@ -1,14 +1,16 @@
 
 import React from 'react';
 import types from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import cn from 'classnames';
 import styles from './default.module.scss';
 
 
-function Actions({ disabled, onEdit, onDelete, onCopy }) {
+function Actions({ disabled, toEdit, onEdit, onDelete, onCopy }) {
   return (
     <div className={styles['block']}>
+      {toEdit && <Link to={toEdit} className={cn(styles['action'], styles['action--edit'], 'fas fa-edit', { [styles['disabled']]: disabled })} onClick={ ! disabled ? onEdit : undefined} />}
       {onEdit && <span className={cn(styles['action'], styles['action--edit'], 'fas fa-edit', { [styles['disabled']]: disabled })} onClick={ ! disabled ? onEdit : undefined} />}
       {onCopy && <span className={cn(styles['action'], styles['action--copy'], 'far fa-copy', { [styles['disabled']]: disabled })} onClick={ ! disabled ? onCopy : undefined} />}
       {onDelete && <span className={cn(styles['action'], styles['action--delete'], 'far fa-trash-alt', { [styles['disabled']]: disabled })} onClick={ ! disabled ? onDelete : undefined} />}

@@ -6,7 +6,7 @@ import customerBuilder from './builder/customer.mjs';
 
 
 export default () => async (ctx) => {
-  const params = ctx['params'];
+  const params = ctx['request']['query'];
 
   const result = await request({
     url: process.env['ORDER_API_SRV'] + '/orders',
@@ -17,7 +17,6 @@ export default () => async (ctx) => {
   const { data: statuses } = await request({
     url: process.env['ORDER_API_SRV'] + '/statuses',
     method: 'get',
-    params,
   });
 
   const { data: customers } = await request({

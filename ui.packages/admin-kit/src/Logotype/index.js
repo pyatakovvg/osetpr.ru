@@ -1,14 +1,13 @@
 
 import React from 'react';
-import { Link } from "react-router-dom";
 
-import styles from './default.module.scss';
+import Line from './Line';
+import Circle from './Circle';
 
 
-export default function Logotype() {
-  return (
-    <div className={styles['wrapper']}>
-      <Link className={styles['logotype']} to={'/'}><i className="fas fa-circle-notch" />&nbsp;&nbsp;{process.env['REACT_APP_WEBSITE_NAME']}</Link>
-    </div>
-  )
+export default function Factory({ type }) {
+  switch(type) {
+    case 'circle': return <Circle />;
+    default: return <Line />;
+  }
 }

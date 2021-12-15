@@ -13,6 +13,7 @@ import { getAllPlans, createPlan, updatePlan, getByIdPlan } from '../controllers
 import { getProfile } from '../controllers/profile';
 import { createComment, getAllComments, deleteComment } from "../controllers/comment";
 import { registerWorker, unregisterWorker } from "../controllers/push";
+import { getAllStatuses } from "../controllers/status";
 
 
 export default (router) => {
@@ -64,6 +65,8 @@ export default (router) => {
   router.post('/payments', updatePayments());
 
   router.get('/currencies', getAllCurrencies());
+
+  router.get('/statuses', getAllStatuses());
 
   router.get('/profile', getProfile());
 };

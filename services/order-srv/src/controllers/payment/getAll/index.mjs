@@ -5,7 +5,12 @@ import { models } from '@sys.packages/db';
 export default () => async (ctx) => {
   const { Payment } = models;
 
-  const result = await Payment.findAll();
+  const result = await Payment.findAll({
+    order: [
+      ['order', 'asc']
+    ],
+    attributes: ['code', 'displayName', 'isUse', 'order'],
+  });
 
   ctx.body = {
     success: true,
