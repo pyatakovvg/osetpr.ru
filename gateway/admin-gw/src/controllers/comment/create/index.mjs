@@ -11,6 +11,7 @@ export default () => async (ctx) => {
     method: 'post',
     data: {
       userUuid: uuid,
+      isAdmin: true,
       ...data,
     },
   });

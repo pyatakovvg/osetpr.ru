@@ -6,6 +6,7 @@ import { Header, Text } from '@ui.packages/client-kit'
 import React, { useMemo } from 'react';
 
 import User from './User';
+import Admin from './Admin';
 
 import cn from 'classnames';
 import styles from './default.module.scss';
@@ -19,7 +20,7 @@ function Comment({ className, user, content, isAdmin, createdAt }) {
   return (
     <div className={wrapperClassName}>
       <div className={styles['aside']}>
-        <User name={user} />
+        {isAdmin ? <Admin /> : <User name={user} />}
       </div>
       <div className={styles['content']}>
         <div className={styles['header']}>
