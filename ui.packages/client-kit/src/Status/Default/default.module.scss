@@ -1,0 +1,30 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: inline-block;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  color: $white;
+  background: $gray-darken;
+  padding: 6px 8px 5px;
+  border-radius: 4px;
+}
+
+.mode {
+  &--success {
+    background: $success-darken;
+  }
+
+  &--primary {
+    background: $primary-darken;
+  }
+
+  &--danger {
+    background: $danger-darken;
+  }
+}

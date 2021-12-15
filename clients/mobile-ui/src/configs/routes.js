@@ -25,11 +25,19 @@ const routes = [
     ),
   },
   {
-    path: '/order/:uuid',
+    path: '/orders/:uuid',
     wrapper: 'Navigate',
     module: import(
       /* webpackChunkName: "mobile-order" */
       '@modules/mobile-order'
+    ),
+  },
+  {
+    path: '/orders',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "mobile-orders" */
+      '@modules/mobile-orders'
     ),
   },
   {
@@ -54,6 +62,14 @@ const routes = [
     module: import(
       /* webpackChunkName: "mobile-options" */
       '@modules/mobile-options'
+    ),
+  },
+  {
+    path: '*',
+    wrapper: 'Empty',
+    module: import(
+      /* webpackChunkName: "mobile-not-found" */
+      '@modules/mobile-not-found'
     ),
   },
 ];

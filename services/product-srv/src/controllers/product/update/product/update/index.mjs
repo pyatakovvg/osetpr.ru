@@ -4,8 +4,11 @@ import { models } from '@sys.packages/db';
 
 export default async function updateProperties(uuid, properties) {
   const { Product } = models;
-
   const product = {};
+
+  if ('externalId' in properties) {
+    product['externalId'] = properties['externalId'];
+  }
 
   if ('title' in properties) {
     product['title'] = properties['title'];
@@ -19,8 +22,12 @@ export default async function updateProperties(uuid, properties) {
     product['description'] = properties['description'];
   }
 
-  if ('categoryId' in properties) {
-    product['categoryId'] = properties['categoryId'];
+  if ('groupUuid' in properties) {
+    product['groupUuid'] = properties['groupUuid'];
+  }
+
+  if ('categoryUuid' in properties) {
+    product['categoryUuid'] = properties['categoryUuid'];
   }
 
   if ('isUse' in properties) {

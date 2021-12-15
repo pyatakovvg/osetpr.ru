@@ -1,0 +1,147 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  border-radius: 4px;
+  background: $gray;
+  padding: 16px 24px;
+  align-items: flex-end;
+  justify-content: flex-end;
+  cursor: pointer;
+  transition: background-color 200ms;
+
+  &:before {
+
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    display: block;
+    content: '';
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: $gray-darken;
+    margin: -8px 0 0;
+    transition: background-color 200ms;
+  }
+
+  &:after {
+
+    transition: background-color 200ms;
+  }
+
+  &:hover {
+    background: $gray-lighten;
+  }
+
+  &:hover:before {
+
+    background: $gray-darken;
+  }
+
+  & + & {
+
+    margin: 8px 0 0;
+  }
+}
+
+.active,
+.active:hover {
+
+  background: $info-darken;
+
+  &:before {
+
+    background: $white;
+  }
+
+  &:after {
+
+    position: absolute;
+    top: 50%;
+    left: 18px;
+    display: block;
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: $info-darken;
+    margin: -6px 0 0;
+  }
+}
+
+.count {
+
+  position: absolute;
+  top: 50%;
+  right: -10px;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  justify-content: center;
+  align-items: center;
+  background: $success;
+  color: $white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 0 0;
+  box-sizing: border-box;
+  border-left: 1px solid $white;
+}
+
+.content {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.value {
+
+  display: inline-block;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 600;
+  font-style: italic;
+  color: $white;
+  vertical-align: middle;
+}
+
+.amount {
+
+  display: block;
+  margin: 0 0 0 16px;
+}
+
+.price {
+
+  display: inline-block;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  color: $white;
+  vertical-align: baseline;
+}
+
+.currency {
+
+  display: inline-block;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  color: $white;
+  vertical-align: baseline;
+  margin: 0 0 0 4px;
+}

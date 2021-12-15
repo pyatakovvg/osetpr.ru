@@ -1,0 +1,73 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  padding: 12px;
+  background: rgba($gray-darken, .8);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(3px);
+  border-radius: 8px;
+  text-decoration: none;
+  overflow: hidden;
+
+  & + & {
+    margin: 24px 0 0;
+  }
+}
+
+.line {
+
+  display: flex;
+  flex: 1 0;
+  flex-direction: row;
+  align-items: flex-end;
+
+  & + & {
+
+    margin: 8px 0 0;
+  }
+
+  &:last-child {
+
+    margin: 16px 0 0;
+  }
+}
+
+.external-id {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.date {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  justify-content: center;
+}
+
+.status {
+
+  display: block;
+}
+
+.address {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.small {
+
+  font-size: 12px;
+  letter-spacing: .5px;
+}

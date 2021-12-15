@@ -1,0 +1,140 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: inline-flex;
+  flex-direction: column;
+  flex: 1 0;
+  width: 300px;
+  background: $background;
+  border: 1px solid $gray-darken;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 20%);
+  overflow: hidden;
+}
+
+.month {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  margin: 4px;
+  align-items: center;
+}
+
+.header {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: $white;
+}
+
+.icon {
+
+  display: inline-flex;
+  flex-direction: column;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  background: $gray-darken;
+  border-radius: 4px;
+  color: $white;
+  font-size: 18px;
+  justify-content: center;
+  align-items: center;
+  transform: scale(1);
+
+  &:active {
+    transform: scale(.95);
+  }
+}
+
+.days {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+}
+
+.numbers {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  margin: 8px 0 0;
+}
+
+.week {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+}
+
+.day-name {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  height: 40px;
+  padding: 8px;
+  background: $gray-darken;
+  color: $white;
+  font-size: 16px;
+  font-weight: 600;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+}
+
+.day-number {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  height: 48px;
+  justify-content: center;
+  align-items: center;
+}
+
+.number {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 32px;
+  color: $white;
+  font-size: 16px;
+  font-weight: 400;
+  width: 32px;
+  height: 32px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.weekend {
+
+  color: $danger-lighten;
+}
+
+.to-day {
+
+  color: $primary-lighten;
+  font-weight: 700;
+}
+
+.active {
+
+  color: $white;
+  background: $info-darken;
+}
+
+.disabled {
+
+  color: $gray-darken;
+}

@@ -1,0 +1,48 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  overflow: hidden;
+}
+
+.container {
+
+  display: flex;
+  flex: 1 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 16px 128px;
+  overflow: auto;
+  z-index: 10;
+}
+
+.header {
+
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content {
+
+  display: block;
+  margin: 40px 0 0;
+}
+
+.row {
+
+  display: block;
+
+  & + & {
+
+    margin: 16px 0 0;
+  }
+}

@@ -15,10 +15,9 @@ export default async function updateProperties(uuid) {
     include: [
       {
         model: Category,
-        required: true,
-        attributes: ['id', 'value'],
+        required: false,
+        attributes: ['uuid', 'value'],
         as: 'category',
-        hierarchy: true,
       },
       {
         model: ProductGallery,

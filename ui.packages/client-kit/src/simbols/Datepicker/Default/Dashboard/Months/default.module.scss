@@ -1,0 +1,95 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  background: $white;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.close {
+
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: inline-block;
+  font-size: 16px;
+  color: $blue-grey;
+  cursor: pointer;
+  transition: color 200ms;
+
+  &:hover {
+    color: $coal-dark;
+  }
+}
+
+.content {
+
+  display: block;
+  width: 180px;
+}
+
+.next {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0;
+  justify-content: flex-start;
+  border-bottom: 1px solid $pale-lilac;
+  text-align: center;
+  cursor: pointer;
+}
+
+.value {
+
+  display: block;
+  font-size: 30px;
+  font-weight: 400;
+  text-align: center;
+  margin: 10px 0;
+  padding: 6px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 200ms;
+
+  &:hover {
+
+    background: rgba($primary, .1);
+  }
+}
+
+.prev {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0;
+  justify-content: flex-end;
+  border-top: 1px solid $pale-lilac;
+  text-align: center;
+  cursor: pointer;
+}
+
+.prev,
+.next {
+
+  height: 38px;
+  color: $pale-lilac;
+  transition: color 200ms;
+
+  &:hover {
+    color: $coal-dark;
+  }
+}
+
+.icon {
+
+  font-size: 24px;
+}

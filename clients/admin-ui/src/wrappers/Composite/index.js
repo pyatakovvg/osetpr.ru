@@ -1,5 +1,5 @@
 
-import { Context } from '@ui.packages/application';
+import { Context } from '@ui.packages/admin-application';
 
 import types from "prop-types";
 import React, { useContext } from 'react';

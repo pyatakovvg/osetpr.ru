@@ -1,6 +1,6 @@
 
 import { getAllComments, createComment } from "../controllers/comment";
-import { getOrder } from "../controllers/order";
+import { getOrder, getAllOrder } from "../controllers/order";
 import { registerWorker, unregisterWorker } from "../controllers/worker";
 import { signIn } from '../controllers/identity';
 import { getImage } from "../controllers/gallery";
@@ -21,7 +21,8 @@ export default (router) => {
 
   router.get('/payments', getAllPayments());
 
-  router.get('/orders/:uuid', getOrder());
+  router.get('/orders', getAllOrder());
+  router.get('/orders/:externalId', getOrder());
 
   router.get('/basket', getBasket());
   router.post('/basket', updateBasket());

@@ -18,6 +18,36 @@ import cn from 'classnames';
 import styles from './default.module.scss';
 
 
+function useGetGroups() {
+  const location = useLocation();
+  const query = queryToObject(location['search']);
+  const filter = useSelector(selectFilter);
+  return useMemo(() => {
+    let search = '';
+    if (filter['groups']) {
+      if (query['groupUuid']) {
+        if (query['groupUuid'] instanceof Array) {
+          for (let i in filter['groups']) {
+            if (filter['groups'].hasOwnProperty(i)) {
+              const item = filter['groups'][i];
+              if (query['groupUuid'].some((uuid) => uuid === item['uuid'])) {
+                search += search ? ', ' + item['value'] : item['value'];
+              }
+            }
+          }
+        }
+        else {
+          const item = filter['groups'].find((item) => query['groupUuid'] === item['uuid']);
+          if (item) {
+            search = item['value'];
+          }
+        }
+      }
+    }
+    return search || null;
+  }, [filter && filter['groups']]);
+}
+
 function useGetCategories() {
   const location = useLocation();
   const query = queryToObject(location['search']);
@@ -25,26 +55,26 @@ function useGetCategories() {
   return useMemo(() => {
     let search = '';
     if (filter['categories']) {
-      if (query['categoryId']) {
-        if (query['categoryId'] instanceof Array) {
+      if (query['categoryUuid']) {
+        if (query['categoryUuid'] instanceof Array) {
           for (let i in filter['categories']) {
             if (filter['categories'].hasOwnProperty(i)) {
               const item = filter['categories'][i];
-              if (query['categoryId'].some((id) => id === item['id'])) {
+              if (query['categoryUuid'].some((uuid) => uuid === item['uuid'])) {
                 search += search ? ', ' + item['value'] : item['value'];
               }
             }
           }
         }
         else {
-          const item = filter['categories'].find((item) => query['categoryId'] === item['id']);
+          const item = filter['categories'].find((item) => query['categoryUuid'] === item['uuid']);
           if (item) {
             search = item['value'];
           }
         }
       }
     }
-    return search || 'Все';
+    return search || null;
   }, [filter && filter['categories']]);
 }
 
@@ -53,7 +83,8 @@ function Main() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const selectedFilterName = useGetCategories();
+  const selectedFilterGroupsName = useGetGroups();
+  const selectedFilterCategoriesName = useGetCategories();
 
   const order = useSelector(selectOrder);
   const products = useSelector(selectProducts);
@@ -113,7 +144,15 @@ function Main() {
         <div className={styles['filter']} onClick={() => dispatch(openDialog('filter'))}>
           <span className={cn(styles['icon'], 'fas fa-filter')} />
           <div className={styles['text']}>
-            <span className={styles['names']}>{ selectedFilterName }</span>
+            { !! selectedFilterGroupsName && (
+              <span className={styles['names']}>{ selectedFilterGroupsName }</span>
+            )}
+            { !! selectedFilterCategoriesName && (
+              <span className={styles['names']}>{ selectedFilterCategoriesName }</span>
+            )}
+            { ! (selectedFilterGroupsName && selectedFilterCategoriesName) && (
+              <span className={styles['names']}>Все</span>
+            )}
           </div>
           <span className={cn(styles['icon'], 'fas fa-chevron-right')} />
         </div>

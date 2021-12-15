@@ -1,34 +1,38 @@
 
-import { models } from '@sys.packages/db';
-import { sendEvent } from '@sys.packages/rabbit';
+import {models, Op, sequelize} from '@sys.packages/db';
 
 
 export default () => async (ctx) => {
-  const { Order, Status } = models;
+  const { Category } = models;
 
-  const { uuid } = ctx['params'];
   const data = ctx['request']['body'];
 
-  await Order.update(data, {
-    where: { uuid },
-  });
+  const transaction = await sequelize.transaction();
 
-  const result = await Order.findOne({
-    where: { uuid },
-    attributes: ['uuid', 'userUuid', 'title', 'description', 'dateTo', 'address', 'createdAt', 'updatedAt'],
-    include: [
-      {
-        model: Status,
-        required: true,
-        as: 'status',
+  await Category.destroy({
+    where: {
+      [Op.not]: {
+        uuid: null,
       },
-    ],
+    },
+    transaction,
   });
 
-  await sendEvent(process.env['EXCHANGE_UNIT_UPDATE'], JSON.stringify(result.toJSON()));
+  await Category.bulkCreate(data['bulk'], {
+    transaction,
+  });
+
+  await transaction.commit();
+
+  const result = await Category.findAll({
+    order: [
+      ['order', 'asc']
+    ],
+    attributes: ['uuid', 'value', 'order'],
+  });
 
   ctx.body = {
     success: true,
-    data: result.toJSON(),
+    data: result.map(i => i.toJSON()),
   };
 };

@@ -1,0 +1,35 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: block;
+}
+
+.header {
+
+  display: block;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: .5px;
+  margin: 0 0 40px;
+}
+
+.filter {
+
+  display: block;
+  margin: 0 0 56px;
+}
+
+.content {
+
+  display: block;
+}
+
+.controls {
+
+  display: block;
+  text-align: right;
+}

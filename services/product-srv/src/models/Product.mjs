@@ -20,10 +20,15 @@ export default function(sequelize, DataType) {
       unique: true,
       defaultValue: () => Date.now().toString(32),
     },
-    categoryId: {
-      type: DataType.INTEGER,
-      allowNull: false,
-      defaultValue: -1,
+    groupUuid: {
+      type: DataType.UUID,
+      allowNull: true,
+      defaultValue: null,
+    },
+    categoryUuid: {
+      type: DataType.UUID,
+      allowNull: true,
+      defaultValue: null,
     },
     title: {
       type: DataType.STRING(256),
@@ -32,8 +37,8 @@ export default function(sequelize, DataType) {
     },
     originalName: {
       type: DataType.STRING,
-      allowNull: false,
-      defaultValue: '',
+      allowNull: true,
+      defaultValue: null,
     },
     description: {
       type: DataType.STRING(2024),
@@ -54,10 +59,15 @@ export default function(sequelize, DataType) {
     sequelize,
   });
 
-  Product.associate = ({ Category, ProductMode, ProductGallery }) => {
+  Product.associate = ({ Group, Category, ProductMode, ProductGallery }) => {
+
+    Product.belongsTo(Group, {
+      foreignKey: 'groupUuid',
+      as: 'group',
+    });
 
     Product.belongsTo(Category, {
-      foreignKey: 'categoryId',
+      foreignKey: 'categoryUuid',
       as: 'category',
     });
 

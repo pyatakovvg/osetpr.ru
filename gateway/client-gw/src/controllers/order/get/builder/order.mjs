@@ -5,10 +5,12 @@ import customerBuilder from './customer.mjs';
 
 
 export default function(data) {
+  // console.log(data)
   return {
     externalId: data['externalId'],
     status: data['status'],
     dateTo: data['dateTo'] ? moment(data['dateTo']).tz('Europe/Moscow').format('YYYY-MM-DD HH:mm:ss.SSSSSSZ') : null,
+    createdAt: moment(data['createdAt']).tz('Europe/Moscow').format('YYYY-MM-DD HH:mm:ss.SSSSSSZ'),
     total: data['total'],
     currency: data['currency'],
     address: data['address'],

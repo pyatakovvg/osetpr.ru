@@ -1,24 +1,39 @@
 
-import { models } from '@sys.packages/db';
+import { models, Op } from '@sys.packages/db';
 import request from '@sys.packages/request';
 
 
 export default () => async (ctx) => {
   let where = {};
+  let whereMode = {};
   let offset = {};
   let options = {};
 
   const { Order, OrderProduct, OrderAddress, Status, Currency, Payment, Customer } = models;
 
   const {
+    externalId = null,
     limit = null,
     skip = null,
     take = null,
     uuid = null,
     userUuid = null,
     isUse = null,
+    vendor = null,
     status = null,
+    minPrice = null,
+    maxPrice = null,
+    minDateTo = null,
+    maxDateTo = null,
+    minDateCreate = null,
+    maxDateCreate = null,
   } = ctx['request']['query'];
+
+  if (externalId) {
+    where['externalId'] = {
+      [Op.like]: `%${externalId}%`,
+    };
+  }
 
   if (uuid) {
     where['uuid'] = uuid;
@@ -26,6 +41,60 @@ export default () => async (ctx) => {
 
   if (status) {
     where['statusCode'] = status;
+  }
+
+  if (vendor) {
+    whereMode['vendor'] = {
+      [Op.like]: `%${vendor}%`,
+    };
+  }
+
+  if (minDateCreate && maxDateCreate) {
+    where['createAt'] = {
+      [Op.between]: [minDateCreate, maxDateCreate],
+    };
+  }
+  else if (minDateCreate) {
+    where['createAt'] = {
+      [Op.gte]: minDateCreate,
+    };
+  }
+  else if (maxDateCreate) {
+    where['createAt'] = {
+      [Op.lte]: maxDateCreate,
+    };
+  }
+
+  if (minDateTo && maxDateTo) {
+    where['dateTo'] = {
+      [Op.between]: [minDateTo, maxDateTo],
+    };
+  }
+  else if (minDateTo) {
+    where['dateTo'] = {
+      [Op.gte]: minDateTo,
+    };
+  }
+  else if (maxDateTo) {
+    where['dateTo'] = {
+      [Op.lte]: maxDateTo,
+    };
+  }
+
+  if (minPrice && maxPrice) {
+    where['total'] = {
+      [Op.between]: [minPrice, maxPrice],
+    };
+  }
+  else if (minPrice) {
+    where['total'] = {
+      [Op.gte]: minPrice,
+    };
+  }
+  else if (maxPrice) {
+    where['total'] = {
+      [Op.lte]: maxPrice,
+    };
   }
 
   if (userUuid) {
@@ -50,6 +119,9 @@ export default () => async (ctx) => {
     ...offset,
     distinct: true,
     where: {
+      statusCode: {
+        [Op.not]: 'basket'
+      },
       ...where,
     },
     order: [
@@ -66,6 +138,8 @@ export default () => async (ctx) => {
       },
       {
         model: OrderProduct,
+        required: !! Object.keys(whereMode).length,
+        where: { ...whereMode },
         attributes: ['uuid', 'externalId', 'orderUuid', 'productUuid', 'modeUuid', 'imageUuid', 'title', 'vendor', 'value', 'price', 'total', 'number'],
         as: 'products',
         include: [
@@ -103,7 +177,7 @@ export default () => async (ctx) => {
     success: true,
     data: result['rows'].map((item) => item.toJSON()),
     meta: {
-      totalRows: result['count'],
+      total: result['count'],
     },
   };
 };

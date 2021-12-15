@@ -4,19 +4,23 @@ import { getAllProducts, createProduct, deleteProducts, updateProduct, getProduc
 import { getByOrderId, getAllOrders, updateByOrderId, createOrder, updateOrderStatus } from '../controllers/order';
 import { getAllUsers } from '../controllers/users';
 import { getAllCustomers, getCustomerByUuid, updateCustomer } from '../controllers/customers';
-import { getAllCategories } from '../controllers/category';
+import { getAllGroups, updateGroups } from '../controllers/group';
+import { getAllPayments, updatePayments } from '../controllers/payment';
+import { getAllCategories, updateCategories } from '../controllers/category';
 import { getAllCurrencies } from '../controllers/currency';
 import { getAllPlans, createPlan, updatePlan, getByIdPlan } from '../controllers/plan';
 
 import { getProfile } from '../controllers/profile';
-import { createComment, getAllComments } from "../controllers/comment";
+import { createComment, getAllComments, deleteComment } from "../controllers/comment";
 import { registerWorker, unregisterWorker } from "../controllers/push";
+import { getAllStatuses } from "../controllers/status";
 
 
 export default (router) => {
 
   router.get('/comments', getAllComments());
   router.post('/comments', createComment());
+  router.delete('/comments', deleteComment());
 
   router.post('/push/subscribe', registerWorker());
   router.post('/push/unsubscribe', unregisterWorker());
@@ -52,8 +56,17 @@ export default (router) => {
   router.put('/customers/:uuid', updateCustomer());
 
   router.get('/categories', getAllCategories());
+  router.post('/categories', updateCategories());
+
+  router.get('/groups', getAllGroups());
+  router.post('/groups', updateGroups());
+
+  router.get('/payments', getAllPayments());
+  router.post('/payments', updatePayments());
 
   router.get('/currencies', getAllCurrencies());
+
+  router.get('/statuses', getAllStatuses());
 
   router.get('/profile', getProfile());
 };

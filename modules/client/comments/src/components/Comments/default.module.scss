@@ -1,0 +1,21 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: block;
+}
+
+.header {
+
+  display: block;
+  padding: 0 0 16px;
+  border-bottom: 1px solid $gray-darken;
+}
+
+.content {
+
+  display: block;
+  margin: 32px 0 0;
+}

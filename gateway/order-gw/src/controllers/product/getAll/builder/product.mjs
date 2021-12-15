@@ -8,7 +8,7 @@ export default function(data, products) {
     uuid: data['uuid'],
     isUse: data['isUse'],
     title: data['title'],
-    categoryId: data['category']['id'],
+    categoryUuid: data['category'] ? data['category']['uuid'] : null,
     description: data['description'],
     gallery: data['gallery'],
     modes: data['modes'].map((data) => modeBuilder(data, products)),

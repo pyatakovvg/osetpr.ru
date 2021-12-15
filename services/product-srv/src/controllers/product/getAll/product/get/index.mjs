@@ -1,5 +1,5 @@
 
-import { models } from '@sys.packages/db';
+import { models, Op } from '@sys.packages/db';
 
 
 export default async ({
@@ -9,31 +9,69 @@ export default async ({
   uuid = null,
   externalId = null,
   isUse = null,
-  categoryId = null,
+  isAvailable = null,
+  groupUuid = null,
+  categoryUuid = null,
+  vendor = null,
+  minPrice = null,
+  maxPrice = null,
 }) => {
   let where = {};
   let whereMode = {};
+  let whereGroup = {};
   let whereCategory = {};
   let offset = {};
   let options = {};
 
-  const { Product, ProductMode, ProductGallery, Category, Currency } = models;
+  const { Product, ProductMode, ProductGallery, Group, Category, Currency } = models;
 
   if (uuid) {
     where['uuid'] = uuid;
   }
 
   if (externalId) {
-    where['externalId'] = externalId;
+    where['externalId'] = {
+      [Op.like]: `%${externalId}%`,
+    };
   }
 
-  if (categoryId) {
-    whereCategory['id'] = categoryId;
+  if (vendor) {
+    whereMode['vendor'] = {
+      [Op.like]: `%${vendor}%`,
+    };
+  }
+
+  if (minPrice && maxPrice) {
+    whereMode['price'] = {
+      [Op.between]: [minPrice, maxPrice],
+    };
+  }
+  else if (minPrice) {
+    whereMode['price'] = {
+      [Op.gte]: minPrice,
+    };
+  }
+  else if (maxPrice) {
+    whereMode['price'] = {
+      [Op.lte]: maxPrice,
+    };
+  }
+
+  if (groupUuid) {
+    whereGroup['uuid'] = groupUuid;
+  }
+
+  if (categoryUuid) {
+    whereCategory['uuid'] = categoryUuid;
   }
 
   if (isUse) {
     where['isUse'] = isUse;
     whereMode['isUse'] = isUse;
+  }
+
+  if (isAvailable) {
+    where['isAvailable'] = isAvailable;
   }
 
   if (limit) {
@@ -51,6 +89,7 @@ export default async ({
     distinct: true,
     where: { ...where },
     order: [
+      ['group', 'order', 'asc'],
       ['category', 'order', 'asc'],
       ['createdAt', 'desc'],
       ['modes', 'order', 'asc'],
@@ -59,10 +98,17 @@ export default async ({
     attributes: ['uuid', 'externalId', 'title', 'originalName', 'description', 'isUse', 'isAvailable', 'updatedAt'],
     include: [
       {
+        model: Group,
+        required: !! Object.keys(whereGroup).length,
+        where: { ...whereGroup },
+        attributes: ['uuid', 'value'],
+        as: 'group',
+      },
+      {
         model: Category,
-        required: true,
+        required: !! Object.keys(whereCategory).length,
         where: { ...whereCategory },
-        attributes: ['id', 'value'],
+        attributes: ['uuid', 'value'],
         as: 'category',
       },
       {
@@ -73,7 +119,7 @@ export default async ({
       },
       {
         model: ProductMode,
-        required: false,
+        required: !! Object.keys(whereMode).length,
         where: { ...whereMode },
         as: 'modes',
         attributes: ['uuid', 'vendor', 'value', 'price', 'isUse', 'isTarget'],
@@ -90,6 +136,8 @@ export default async ({
 
   return {
     data: result['rows'],
-    meta: result['meta'],
+    meta: {
+      total: result['count'],
+    },
   };
 };

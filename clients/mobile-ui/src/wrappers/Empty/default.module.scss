@@ -8,11 +8,11 @@
   flex: 1 0 auto;
   flex-direction: column;
   align-items: center;
-  background-image: url("./arrow.png"), url("./arrow.png"), url("./net.png");
+  background-image: url("./net.png");
   background-position: left, right, top;
-  background-attachment: scroll, scroll, scroll;
-  background-repeat: repeat-y, repeat-y, repeat;
-  background-size: 80px, 80px, 80px;
+  background-attachment: scroll;
+  background-repeat: repeat;
+  background-size: 80px;
 }
 
 .content {

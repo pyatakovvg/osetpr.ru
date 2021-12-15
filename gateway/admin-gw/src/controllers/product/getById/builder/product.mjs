@@ -3,7 +3,6 @@ import modeBuilder from './mode.mjs';
 
 
 export default function(data) {
-  console.log(data)
   return {
     externalId: data['externalId'],
     uuid: data['uuid'],
@@ -11,7 +10,8 @@ export default function(data) {
     isAvailable: data['isAvailable'],
     title: data['title'],
     originalName: data['originalName'],
-    categoryId: data['category']['id'],
+    groupUuid: data['group'] ? data['group']['uuid'] : null,
+    categoryUuid: data['category'] ? data['category']['uuid'] : null,
     description: data['description'],
     gallery: data['gallery'],
     modes: data['modes'].map((data) => modeBuilder(data)),

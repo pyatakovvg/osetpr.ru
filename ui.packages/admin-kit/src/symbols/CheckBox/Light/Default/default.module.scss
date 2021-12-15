@@ -5,6 +5,7 @@
 .wrapper {
 
   display: inline-block;
+  background: $white;
   cursor: pointer;
 }
 
@@ -45,6 +46,7 @@
   width: 21px;
   height: 21px;
   border: 1px solid $pale-lilac;
+  background: $white;
   border-radius: 5px;
   color: $coal-dark;
   font-size: 0;

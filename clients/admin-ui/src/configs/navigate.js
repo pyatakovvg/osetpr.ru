@@ -4,11 +4,35 @@ const navigate = [
     title: "Заказы",
     path: '/orders',
     icon: 'fas fa-tag',
+    navigate: [
+      {
+        title: 'Заказы',
+        path: '/orders',
+      },
+      {
+        title: 'Способ оплаты',
+        path: '/orders/payments',
+      },
+    ],
   },
   {
     title: 'Товары',
     path: '/products',
     icon: 'fas fa-shopping-cart',
+    navigate: [
+      {
+        title: 'Товары',
+        path: '/products',
+      },
+      {
+        title: 'Группы',
+        path: '/products/groups',
+      },
+      {
+        title: 'Категория',
+        path: '/products/categories',
+      }
+    ],
   },
   {
     title: 'Комментарии',

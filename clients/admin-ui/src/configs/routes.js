@@ -10,18 +10,18 @@ const routes = [
   },
   {
     path: '/orders',
-    wrapper: 'Navigate',
+    wrapper: 'Composite',
     module: import(
       /* webpackChunkName: "admin-orders" */
       '@modules/admin-orders'
     ),
   },
   {
-    path: '/orders/create',
-    wrapper: 'Navigate',
+    path: '/orders/payments',
+    wrapper: 'Composite',
     module: import(
-      /* webpackChunkName: "admin-order" */
-      '@modules/admin-order'
+      /* webpackChunkName: "admin-payments" */
+      '@modules/admin-payments'
     ),
   },
   {
@@ -65,6 +65,22 @@ const routes = [
     ),
   },
   {
+    path: '/products/groups',
+    wrapper: 'Composite',
+    module: import(
+      /* webpackChunkName: "admin-group" */
+      '@modules/admin-group'
+      ),
+  },
+  {
+    path: '/products/categories',
+    wrapper: 'Composite',
+    module: import(
+      /* webpackChunkName: "admin-category" */
+      '@modules/admin-category'
+      ),
+  },
+  {
     path: '/products/:uuid',
     wrapper: 'Navigate',
     module: import(
@@ -74,7 +90,7 @@ const routes = [
   },
   {
     path: '/products',
-    wrapper: 'Navigate',
+    wrapper: 'Composite',
     module: import(
       /* webpackChunkName: "admin-products" */
       '@modules/admin-products'

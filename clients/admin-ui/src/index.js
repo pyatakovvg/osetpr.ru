@@ -1,6 +1,7 @@
 
-import Application from '@ui.packages/application';
-import { reducer as dialogReducer } from '@ui.packages/dialog';
+import Application from '@ui.packages/admin-application';
+import { name as dialogReducerName, reducer as dialogReducer } from '@ui.packages/admin-dialog';
+import { name as notificationReducerName, reducer as notificationReducer } from '@ui.packages/admin-notifications';
 
 import { reducer as formReducer } from 'redux-form';
 
@@ -24,7 +25,8 @@ try {
     portal: document.getElementById('root'),
     reducers: {
       form: formReducer,
-      dialog: dialogReducer,
+      [dialogReducerName]: dialogReducer,
+      [notificationReducerName]: notificationReducer,
     },
     wrappers: { Empty, Navigate, Composite },
   });

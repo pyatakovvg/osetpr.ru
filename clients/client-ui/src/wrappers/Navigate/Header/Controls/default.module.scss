@@ -1,0 +1,22 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: flex;
+  flex: 0 0;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.col {
+
+  display: inline-block;
+
+  & + & {
+
+    margin: 0 0 0 16px;
+  }
+}

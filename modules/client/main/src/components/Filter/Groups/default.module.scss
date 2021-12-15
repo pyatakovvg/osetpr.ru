@@ -1,0 +1,58 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  backdrop-filter: blur(4px);
+  background: rgba($gray-darken, .8);
+  border: 1px solid $gray-darken;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+}
+
+.is-has {
+
+  border-color: $gray-lighten;
+}
+
+.header {
+
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 auto;
+  padding: 16px;
+  cursor: pointer;
+}
+
+.title {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.icon {
+
+  display: block;
+  color: $white;
+  font-size: 16px;
+}
+
+.content {
+
+  display: block;
+  padding: 8px 16px 16px;
+}
+
+.checkbox {
+
+  display: block;
+
+  & + & {
+    margin: 8px 0 0;
+  }
+}

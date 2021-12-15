@@ -7,13 +7,15 @@ import orderBuilder from './builder/order.mjs';
 
 
 export default () => async (ctx) => {
-  const { uuid } = ctx['params'];
+  const { externalId } = ctx['params'];
   const { userUuid } = ctx['request']['query'];
+
+  console.log(externalId)
 
   const { data: orders } = await request({
     url: process.env['ORDER_API_SRV'] + '/orders',
     params: {
-      uuid,
+      externalId,
       userUuid,
     },
   });

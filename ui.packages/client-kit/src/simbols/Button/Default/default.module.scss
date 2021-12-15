@@ -1,0 +1,70 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.button {
+
+  position: relative;
+  display: inline-block;
+  padding: 12px 32px 11px;
+  font-size: 14px;
+  font-weight: 600;
+  color: $white;
+  background: $primary;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 150ms;
+
+  &:active {
+
+    transform: scale(.98);
+  }
+
+  &:hover {
+
+    background: $primary-lighten;
+  }
+
+  &:disabled,
+  &:disabled:hover {
+
+    background: $gray-darken;
+    color: $gray-lighten;
+  }
+}
+
+.in-process,
+.in-process:focus,
+.in-process:active {
+
+  color: transparent;
+}
+
+.mode {
+
+  &--success {
+    background: $success;
+
+    &:hover {
+      background: $success-lighten;
+    }
+  }
+
+  &--danger {
+    background: $danger;
+
+    &:hover {
+      background: $danger-lighten;
+    }
+  }
+}
+
+.size {
+
+  &--small {
+
+    padding: 10px 24px 10px;
+    font-size: 13px;
+  }
+}

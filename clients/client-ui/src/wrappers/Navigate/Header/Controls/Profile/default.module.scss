@@ -1,0 +1,39 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: inline-block;
+}
+
+.profile {
+
+  display: inline-flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: $gray-darken;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 150ms, transform 150ms;
+
+  &:active {
+
+    transform: scale(.95);
+  }
+
+  &:hover {
+
+    background: $gray;
+  }
+}
+
+.icon {
+
+  display: inline-block;
+  font-size: 28px;
+  color: $white;
+}

@@ -56,6 +56,14 @@
   color: $white;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  & + & {
+    &:before {
+      display: inline-block;
+      content: ";";
+      margin: 0 8px 0 0;
+    }
+  }
 }
 
 .icon {

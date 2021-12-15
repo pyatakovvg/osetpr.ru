@@ -1,0 +1,77 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  flex: 0 0;
+  justify-content: center;
+  align-items: center;
+  height: 8px;
+  margin: -4px 0 0 -18px;
+}
+
+.container {
+
+  display: inline-block;
+}
+
+.dot-1,
+.dot-2,
+.dot-3 {
+
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: $white;
+  border-radius: 50%;
+
+  & + & {
+
+    margin: 0 0 0 4px;
+  }
+}
+
+.dot-1,
+.dot-3 {
+  animation-name: size;
+  animation-duration: 500ms;
+  animation-direction: alternate-reverse;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.dot-2 {
+  animation-name: size-2;
+  animation-duration: 500ms;
+  animation-direction: alternate-reverse;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes size {
+  from {
+    transform: scale(1);
+    opacity: .6;
+  }
+  to {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes size-2 {
+  from {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1);
+    opacity: .6;
+  }
+}

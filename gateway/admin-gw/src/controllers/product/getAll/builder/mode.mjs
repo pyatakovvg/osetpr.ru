@@ -1,13 +1,12 @@
 
-export default function(data, products = []) {
-  const planProduct = products.find((item) => item['uuid'] === data['uuid']);
+export default function(data) {
   return {
     isUse: data['isUse'],
     isTarget: data['isTarget'],
     uuid: data['uuid'],
     vendor: data['vendor'],
     value: data['value'],
-    price: planProduct ? (Number(data['price']) - (Number(data['price']) * Number(planProduct['percent']) / 100)) : Number(data['price']),
+    price: Number(data['price']),
     currency: data['currency'],
   };
 }

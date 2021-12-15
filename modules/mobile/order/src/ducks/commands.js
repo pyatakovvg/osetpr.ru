@@ -9,12 +9,12 @@ import {
 } from './slice';
 
 
-export const getOrder = (uuid, userUuid) => async (dispatch) => {
+export const getOrder = (externalId, userUuid) => async (dispatch) => {
   try {
     dispatch(getOrderRequestAction());
 
     const result = await request({
-      url: '/orders/' + uuid,
+      url: '/orders/' + externalId,
       method: 'get',
       params: {
         userUuid,
@@ -24,7 +24,7 @@ export const getOrder = (uuid, userUuid) => async (dispatch) => {
     dispatch(getOrderRequestSuccessAction(result['data']));
   }
   catch(error) {
-
+console.log(error)
     dispatch(getOrderRequestFailAction());
     dispatch(pushNotification({
       title: 'Упс! Что-то пошло не так',

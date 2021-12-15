@@ -1,22 +1,53 @@
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useRef, useState, useEffect } from 'react';
 
-import Profile from './Profile';
+import Content from './Content';
+import Description from './Description';
+import Controls from './Controls';
 
 import styles from './default.module.scss';
 
 
+function useOutScreen(ref) {
+  const [isOut, setOut] = useState(false);
+  useEffect(() => {
+    const cartElement = ref['current'];
+    function handleScroll() {
+      const rect = cartElement.getBoundingClientRect();
+      if (rect['bottom'] < 0) {
+        setOut(true);
+      }
+      else {
+        setOut(false);
+      }
+    }
+    document.querySelector('#scroller').addEventListener('scroll', handleScroll);
+    return () => {
+      document.querySelector('#scroller').removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+  return isOut;
+}
+
+
 export default function Header() {
+  const headerRef = useRef(null);
+  const isOut = useOutScreen(headerRef);
+
   return (
-    <div className={styles['header']}>
-      <div className={styles['header__title']}>
-        <div className={styles['container']}>
-          <Link className={styles['logotype']} to={'/'}><i className="fas fa-pizza-slice" />&nbsp;&nbsp;&nbsp;Осетинские пироги</Link>
+    <div ref={headerRef} className={styles['wrapper']}>
+      <div className={styles['container']}>
+        <div className={styles['content']}>
+          <div className={styles['col']}>
+            <Content />
+          </div>
+          <div className={styles['col']}>
+            <Description />
+          </div>
         </div>
-      </div>
-      <div className={styles['controls']}>
-        <Profile />
+        <div className={styles['controls']}>
+          <Controls isOut={isOut} />
+        </div>
       </div>
     </div>
   );

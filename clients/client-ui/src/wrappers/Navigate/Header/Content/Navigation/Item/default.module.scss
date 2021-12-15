@@ -1,0 +1,51 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: block;
+  min-width: 110px;
+  color: $white;
+  border: 1px solid $gray-darken;
+  border-radius: 4px;
+  background: $background;
+  text-align: center;
+  cursor: pointer;
+  transition: color 150ms, background 150ms;
+
+  & + & {
+    margin: 0 0 0 16px;
+  }
+
+  &:hover {
+
+    background: $gray-darken;
+  }
+
+  &--active,
+  &--active:hover {
+
+    background: $primary;
+    border-color: $primary;
+  }
+}
+
+.link {
+
+  display: block;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 8px 24px;
+  color: inherit;
+  outline: none;
+}
+
+.text {
+
+  display: inline-block;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 12px;
+  vertical-align: middle;
+}

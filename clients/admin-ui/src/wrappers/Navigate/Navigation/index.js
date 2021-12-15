@@ -1,5 +1,5 @@
 
-import { Context  } from "@ui.packages/application";
+import { Context  } from "@ui.packages/admin-application";
 
 import React, { useContext } from 'react';
 

@@ -1,0 +1,63 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.content {
+
+  display: block;
+  border-bottom: 1px solid $gray-lighten;
+  margin: 12px 0 0;
+  z-index: 20;
+}
+
+.title {
+
+  position: absolute;
+  top: 25px;
+  left: 0;
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: $gray-lighten;
+  margin-left: 8px;
+  transition: color 150ms, top 150ms, font-size 150ms;
+  transition-timing-function: ease-in-out;
+  z-index: 10;
+}
+
+.require {
+  &:after {
+
+    display: inline-block;
+    margin-left: 4px;
+    content: '*';
+    color: $danger;
+  }
+}
+
+.element {
+
+  display: block;
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 12px 8px;
+  font-size: 14px;
+  color: $white;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.is-focus {
+
+  top: 0;
+  font-size: 11px;
+}

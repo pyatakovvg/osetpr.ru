@@ -1,0 +1,94 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+}
+
+.gallery {
+
+  position: relative;
+  display: block;
+  width: 560px;
+  height: 560px;
+  border-radius: 8px;
+  background: $gray-lighten;
+  border: 4px solid $gray-darken;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.image {
+
+  position: relative;
+  display: block;
+  height: 100%;
+  z-index: 10;
+}
+
+.unavailable {
+
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: block;
+  background: $warning-darken;
+  color: $white;
+  padding: 4px 16px;
+  border-radius: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  z-index: 20;
+}
+
+.aside {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  box-sizing: border-box;
+}
+
+.information {
+
+  display: block;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+  margin: 0 0 0 48px;
+  background: rgba($gray-darken, .8);
+  backdrop-filter: blur(2px);
+  border-radius: 8px;
+  padding: 40px;
+}
+
+.header {
+
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.name {
+
+  display: block;
+  margin: 8px 0 0;
+}
+
+.modes {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0;
+  margin: 32px 0 0;
+}
+
+.controls {
+
+  display: block;
+  text-align: right;
+  margin: 40px 0 0;
+}

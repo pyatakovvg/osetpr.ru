@@ -1,0 +1,14 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 230px;
+}

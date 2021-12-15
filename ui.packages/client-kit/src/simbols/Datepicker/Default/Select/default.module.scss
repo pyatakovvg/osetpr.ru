@@ -1,0 +1,215 @@
+
+@import "~@ui.packages/theme-2";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  border: 1px solid transparent;
+  border-bottom-color: $gray-lighten;
+  background: transparent;
+  cursor: pointer;
+  overflow: auto;
+  transition: border 150ms;
+
+  &:hover,
+  &.focus {}
+
+  &:hover .arrow,
+  &:hover .reset,
+  &.focus .arrow,
+  &.focus .reset {
+    color: $white;
+  }
+}
+
+.value {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  padding: 12px 8px;
+  overflow: auto;
+}
+
+.text {
+
+  display: block;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: .1px;
+  color: $white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 150ms;
+}
+
+.placeholder {
+
+  display: block;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: .1px;
+  color: $gray-lighten;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reset {
+
+  display: inline-flex;
+  flex-direction: column;
+  flex: 0;
+  padding: 0 8px;
+  justify-content: center;
+  align-content: center;
+  color: $gray;
+  font-size: 8px;
+  transition: color 200ms;
+
+  &:hover,
+  .wrapper:hover &:hover {
+
+    color: $danger;
+  }
+}
+
+.arrow {
+
+  display: inline-flex;
+  flex-direction: column;
+  flex: 0;
+  padding: 0 8px 0 0;
+  font-size: 13px;
+  justify-content: center;
+  align-content: center;
+  color: $gray;
+  transition: color 200ms;
+}
+
+.icon {
+
+  display: inline-block;
+  font-size: 16px;
+  color: $gray-lighten;
+}
+
+.read-only,
+.read-only:hover {
+
+  background: transparent;
+  border-color: transparent;
+  cursor: default;
+}
+
+.read-only .reset {
+
+  display: none;
+}
+
+.read-only .icon {
+
+  display: none;
+}
+
+.mode {
+
+  &--primary {
+
+    border-color: $primary;
+
+    &:hover,
+    &.focus {
+      border-color: darken($primary, 5%);
+    }
+
+    .arrow {
+      color: $primary;
+    }
+    &:hover .arrow,
+    &.focus .arrow {
+      color: darken($primary, 5%);
+    }
+  }
+
+  &--success {
+
+    border-color: $success;
+
+    &:hover,
+    &.focus {
+      border-color: darken($success, 5%);
+    }
+
+    .arrow {
+      color: $success;
+    }
+    &:hover .arrow,
+    &.focus .arrow {
+      color: darken($success, 5%);
+    }
+  }
+
+  &--danger {
+
+    border-color: $danger;
+
+    &:hover,
+    &.focus {
+      border-color: darken($danger, 5%);
+    }
+
+    .arrow {
+      color: $danger;
+    }
+    &:hover .arrow,
+    &.focus .arrow {
+      color: darken($danger, 5%);
+    }
+  }
+
+  &--warning {
+
+    border-color: $warning;
+
+    &:hover,
+    &.focus {
+      border-color: darken($warning, 5%);
+    }
+
+    .arrow {
+      color: $warning;
+    }
+    &:hover .arrow,
+    &.focus .arrow {
+      color: darken($warning, 5%);
+    }
+  }
+}
+
+.disabled,
+.disabled:hover {
+
+  background: transparent;
+  border-bottom-color: $gray-darken;
+  color: $gray-darken;
+  cursor: default;
+}
+
+.disabled .icon,
+.disabled:hover .icon,
+.disabled:hover .icon:hover,
+.disabled .text,
+.disabled:hover .text,
+.disabled:hover .text:hover,
+.disabled .reset,
+.disabled:hover .reset,
+.disabled:hover .reset:hover {
+  color: $gray-darken;
+}

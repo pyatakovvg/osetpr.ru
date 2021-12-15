@@ -3,7 +3,7 @@ import { models } from '@sys.packages/db';
 
 
 export default async function updateProperties(uuid) {
-  const { ProductMode, Product, ProductGallery, Currency, Category } = models;
+  const { ProductMode, Product, ProductGallery, Group, Currency, Category } = models;
 
   const result = await Product.findOne({
     where: { uuid },
@@ -14,11 +14,16 @@ export default async function updateProperties(uuid) {
     attributes: ['uuid', 'externalId', 'title', 'originalName', 'description', 'isUse', 'isAvailable', 'updatedAt'],
     include: [
       {
+        model: Group,
+        required: false,
+        attributes: ['uuid', 'value'],
+        as: 'group',
+      },
+      {
         model: Category,
-        required: true,
-        attributes: ['id', 'value'],
+        required: false,
+        attributes: ['uuid', 'value'],
         as: 'category',
-        hierarchy: true,
       },
       {
         model: ProductGallery,

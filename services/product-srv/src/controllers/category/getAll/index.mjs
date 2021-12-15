@@ -7,17 +7,17 @@ export default () => async (ctx) => {
 
   let where = {};
 
-  const { id = null } = ctx['request']['query'];
+  const { uuid = null } = ctx['request']['query'];
 
-  if (id) {
-    where['id'] = id;
+  if (uuid) {
+    where['uuid'] = uuid;
   }
 
   const result = await Category.findAll({
     order: [
-      ['order', 'desc']
+      ['order', 'asc']
     ],
-    attributes: ['id', 'value', 'order'],
+    attributes: ['uuid', 'value', 'order'],
     where: { ...where },
   });
 

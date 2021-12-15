@@ -1,0 +1,35 @@
+
+@import "~@ui.packages/theme";
+
+
+.confirm {
+
+  display: block;
+  padding: 15px 50px 0;
+  width: 460px;
+  box-sizing: border-box;
+}
+
+.content {
+
+  display: block;
+  text-align: left;
+  line-height: 1.6;
+}
+
+.controls {
+
+  display: block;
+  margin: 32px 0 0;
+  text-align: right;
+}
+
+.reset {
+
+  color: $white;
+
+  &:hover {
+
+    color: $pale-grey;
+  }
+}

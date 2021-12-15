@@ -30,8 +30,8 @@ function Categories({ values, onChange }) {
       </div>
       <div className={styles['content']}>
         {filter['categories'].map((item) => (
-          <div key={item['id']} className={styles['row']}>
-            <Checkbox value={ !!~ values.indexOf(item['id'])} onChange={() => handleChange(item['id'])}>
+          <div key={item['uuid']} className={styles['row']}>
+            <Checkbox value={ !!~ values.indexOf(item['uuid'])} onChange={() => handleChange(item['uuid'])}>
               <Text>{ item['value'] }</Text>
             </Checkbox>
           </div>

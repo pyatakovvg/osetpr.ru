@@ -1,0 +1,31 @@
+
+@import "~@ui.packages/theme";
+
+
+.wrapper {
+
+  display: block;
+  width: 400px;
+  padding: 0 32px;
+  box-sizing: border-box;
+}
+
+.header {
+
+  display: block;
+  text-align: center;
+}
+
+
+.content {
+
+  display: block;
+  margin: 32px 0 0;
+}
+
+.controls {
+
+  display: block;
+  text-align: center;
+  margin: 32px 0 0;
+}

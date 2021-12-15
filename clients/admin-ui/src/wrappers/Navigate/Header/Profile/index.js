@@ -1,7 +1,7 @@
 
-import { selectProfile, signOut } from '@ui.packages/application';
+import { selectProfile, signOut } from '@ui.packages/admin-application';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -9,24 +9,30 @@ import cn from 'classnames';
 import styles from './default.module.scss';
 
 
-function getUserName(data) {
-  let name = '';
+function useGetUserName(data) {
+  return useMemo(() => {
+    let name = '';
 
-  if (data['customer']['legal']) {
-    if (data['customer']['legal']['name']) {
-      name += data['customer']['legal']['name'];
+    if (data['customer']['legal']) {
+      if (data['customer']['legal']['name']) {
+        name += data['customer']['legal']['name'];
+      }
     }
-  }
-  else {
-    name = data['login'];
-  }
-  return name;
+    else {
+      name = data['login'];
+    }
+    return name;
+  }, [data]);
 }
 
 function Profile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const profile = useSelector(selectProfile);
+
+  const userName = useGetUserName(profile);
+
 
   async function handleSignOut() {
     const isSignOut = await dispatch(signOut(profile['id']));
@@ -38,8 +44,6 @@ function Profile() {
   if ( ! profile) {
     return null;
   }
-
-  const userName = getUserName(profile);
 
   return (
     <div className={styles['wrapper']}>

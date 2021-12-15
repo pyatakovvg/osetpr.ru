@@ -4,7 +4,7 @@ import { models } from '@sys.packages/db';
 
 export default async function updateProperties(uuid, properties) {
   const { Product } = models;
-
+console.log(properties)
   const product = {};
 
   if ('title' in properties) {
@@ -15,8 +15,8 @@ export default async function updateProperties(uuid, properties) {
     product['description'] = properties['description'];
   }
 
-  if ('categoryId' in properties) {
-    product['categoryId'] = properties['categoryId'];
+  if ('category' in properties) {
+    product['categoryUuid'] = properties['category'] ? properties['category']['uuid'] : null;
   }
 
   if ('updatedAt' in properties) {
