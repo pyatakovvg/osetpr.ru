@@ -18,7 +18,7 @@ function Comment({ className, user, content, isAdmin, createdAt }) {
     <div className={wrapperClassName}>
       <div className={styles['header']}>
         <div className={styles['user']}>
-          <Text>{ user ? user : 'Аноним' }</Text>
+          <Text>{ user ? user : 'osetpr.ru' }</Text>
         </div>
         <div className={styles['date']}>
           <Text>{ moment(createdAt).format('DD.MM.YYYY') }</Text>
