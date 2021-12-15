@@ -9,8 +9,7 @@ self.addEventListener('push', function(event) {
     notificationData = {
       title: 'Пекарня "Осетинские прироги"',
       body: 'Default message',
-      icon: '/icon-vector.svg',
-      image: '/icon-vector.svg',
+      icon: '/favicon.svg',
     };
   }
 
