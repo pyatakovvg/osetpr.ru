@@ -24,6 +24,7 @@ module.exports = {
         user: {
           type: DataType.STRING,
           allowNull: false,
+          defaultValue: 'Аноним',
         },
         content: {
           type: DataType.STRING,
@@ -33,6 +34,11 @@ module.exports = {
           type: DataType.UUID,
           allowNull: true,
           defaultValue: null,
+        },
+        isAdmin: {
+          type: DataType.BOOLEAN,
+          allowNull: false,
+          defaultValue: false,
         },
         createdAt: {
           type: DataType.DATE,
