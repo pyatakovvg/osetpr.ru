@@ -38,7 +38,7 @@ export default async function() {
     }
     catch(error) {
 
-      logger.error(error['message']);
+      logger.error(error);
 
       cb(false);
     }
