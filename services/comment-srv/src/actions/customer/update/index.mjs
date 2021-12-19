@@ -16,7 +16,7 @@ export default async function update(data) {
     transaction,
   });
 
-  const customer = result.toJSON();
+  const customer = result ? result.toJSON() : null;
 
   logger.info('Найден пользователь: ' + JSON.stringify(customer));
 
