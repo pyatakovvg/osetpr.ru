@@ -1,0 +1,14 @@
+User-agent: *
+
+Disallow: /order
+Disallow: /orders
+Disallow: /orders/
+
+Allow: /
+Allow: /products
+Allow: /about
+Allow: /comments
+
+Crawl-delay: 2
+
+Sitemap: https://osetpr.ru/sitemap.xml
