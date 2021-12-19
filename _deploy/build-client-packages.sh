@@ -38,5 +38,7 @@ echo '[--- Client about ---]'
 cd  ../about && npx yarn build
 echo '[--- Client profile ---]'
 cd  ../profile && npx yarn build
+echo '[--- Client page not found ---]'
+cd  ../not-found && npx yarn build
 
 exit 0

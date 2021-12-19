@@ -1,20 +1,12 @@
 
 import React, { useContext } from 'react';
-import { Routes, Route } from 'react-router-dom';
-
-import Error from '../Error';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import ApplicationContext from "../Context";
 
 
-function checkNotFound(routes) {
-  return routes.some((route) => route['path'] === '*');
-}
-
 function Router() {
   const { routes, wrappers } = useContext(ApplicationContext);
-
-  const hasNotFound = checkNotFound(routes);
 
   return (
     <Routes>
@@ -30,7 +22,7 @@ function Router() {
           )} />
         );
       })}
-      { ! hasNotFound && <Route path="*" element={<Error />} />}
+      <Route path="*" element={<Navigate replace to={'/not-found'} />} />
     </Routes>
   );
 }

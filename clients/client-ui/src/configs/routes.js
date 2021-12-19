@@ -56,6 +56,14 @@ const routes = [
       '@modules/client-profile'
     ),
   },
+  {
+    path: '/not-found',
+    wrapper: 'Navigate',
+    module: import(
+      /* webpackChunkName: "client-not-found" */
+      '@modules/client-not-found'
+    ),
+  },
 ];
 
 export default routes;

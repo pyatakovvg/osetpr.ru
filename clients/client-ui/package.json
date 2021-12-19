@@ -13,6 +13,7 @@
     "@modules/client-about": "1.0.0",
     "@modules/client-profile": "1.0.0",
     "@modules/client-comments": "1.0.0",
+    "@modules/client-not-found": "1.0.0",
     "@ui.packages/client-kit": "1.0.0",
     "@ui.packages/client-dialog": "1.0.0",
     "@ui.packages/client-application": "1.0.0",
