@@ -25,6 +25,7 @@ function useOutScreen(ref) {
     return () => {
       document.querySelector('#scroller').removeEventListener('scroll', handleScroll);
     };
+    // eslint-disable-next-line
   }, []);
   return isOut;
 }
