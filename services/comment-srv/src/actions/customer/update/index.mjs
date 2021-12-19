@@ -9,50 +9,58 @@ export default async function update(data) {
 
   logger.info('Поиск пользователя: ' + JSON.stringify(data));
 
-  const result = await Customer.findOne({
-    where: {
-      uuid: data['userUuid'],
-    },
-    transaction,
-  });
-
-  const customer = result ? result.toJSON() : null;
-
-  if (customer) {
-
-    logger.info('Найден пользователь: ' + JSON.stringify(customer));
-    logger.info('Данные на обновление: ' + JSON.stringify(data));
-
-    await Customer.update({
-      uuid: data['userUuid'],
-      customerUuid: data['uuid'],
-      type: data['type'],
-      name: data['name'],
-      phone: data['phone'],
-      email: data['email'],
-    }, {
+  try {
+    const result = await Customer.findOne({
       where: {
         uuid: data['userUuid'],
       },
       transaction,
     });
+
+    const customer = result ? result.toJSON() : null;
+
+    if (customer) {
+
+      logger.info('Найден пользователь: ' + JSON.stringify(customer));
+      logger.info('Данные на обновление: ' + JSON.stringify(data));
+
+      await Customer.update({
+        uuid: data['userUuid'],
+        customerUuid: data['uuid'],
+        type: data['type'],
+        name: data['name'],
+        phone: data['phone'],
+        email: data['email'],
+      }, {
+        where: {
+          uuid: data['userUuid'],
+        },
+        transaction,
+      });
+    }
+    else {
+
+      logger.info('Пользователь не найден');
+      logger.info('Данные на создание: ' + JSON.stringify(data));
+
+      await Customer.create({
+        uuid: data['userUuid'],
+        customerUuid: data['uuid'],
+        type: data['type'],
+        name: data['name'],
+        phone: data['phone'],
+        email: data['email'],
+      }, {
+        transaction,
+      });
+    }
+
+    await transaction.commit();
   }
-  else {
+  catch (error) {
 
-    logger.info('Пользователь не найден');
-    logger.info('Данные на создание: ' + JSON.stringify(data));
+    await transaction.rollback();
 
-    await Customer.create({
-      uuid: data['userUuid'],
-      customerUuid: data['uuid'],
-      type: data['type'],
-      name: data['name'],
-      phone: data['phone'],
-      email: data['email'],
-    }, {
-      transaction,
-    });
+    throw error;
   }
-
-  await transaction.commit();
 }
