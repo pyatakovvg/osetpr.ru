@@ -12,7 +12,7 @@ export default async function() {
     try {
       const result = JSON.parse(data);
 
-      logger.info('Обработка события на создание клиента: ' + data['uuid']);
+      logger.info('Обработка события на создание клиента: ' + result['uuid']);
 
       await customerCreate(result);
 
@@ -30,7 +30,7 @@ export default async function() {
     try {
       const result = JSON.parse(data);
 
-      logger.info('Обработка события на обновление клиента: ' + data['uuid']);
+      logger.info('Обработка события на обновление клиента: ' + result['uuid']);
 
       await customerUpdate(result);
 
