@@ -11,6 +11,9 @@ export default async function() {
   await bindToExchange(process.env['QUEUE_CUSTOMER_CREATE'] + '_' + salt, process.env['EXCHANGE_CUSTOMER_CREATE'], async (data, cb) => {
     try {
       const result = JSON.parse(data);
+
+      logger.info('Обработка события на создание клиента: ' + data['uuid']);
+
       await customerCreate(result);
 
       cb(true);
@@ -26,6 +29,9 @@ export default async function() {
   await bindToExchange(process.env['QUEUE_CUSTOMER_UPDATE'] + '_' + salt, process.env['EXCHANGE_CUSTOMER_UPDATE'], async (data, cb) => {
     try {
       const result = JSON.parse(data);
+
+      logger.info('Обработка события на обновление клиента: ' + data['uuid']);
+
       await customerUpdate(result);
 
       cb(true);
