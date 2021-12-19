@@ -1,4 +1,5 @@
 
+import logger from "@sys.packages/logger";
 import { models, sequelize } from '@sys.packages/db';
 
 
@@ -15,7 +16,11 @@ export default async function update(data) {
 
   const customer = result.toJSON();
 
+  logger.info('Найден пользователь: ' + JSON.stringify(customer));
+
   if (customer) {
+
+    logger.info('Данные на обновление: ' + JSON.stringify(data));
 
     await Customer.update({
       uuid: data['userUuid'],
@@ -26,7 +31,7 @@ export default async function update(data) {
       email: data['email'],
     }, {
       where: {
-        customerUuid: data['uuid'],
+        uuid: data['userUuid'],
       },
       transaction,
     });
@@ -36,6 +41,7 @@ export default async function update(data) {
     await Customer.create({
       uuid: data['userUuid'],
       customerUuid: data['uuid'],
+      type: data['type'],
       name: data['name'],
       phone: data['phone'],
       email: data['email'],
