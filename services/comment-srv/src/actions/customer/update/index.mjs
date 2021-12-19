@@ -18,10 +18,9 @@ export default async function update(data) {
 
   const customer = result ? result.toJSON() : null;
 
-  logger.info('Найден пользователь: ' + JSON.stringify(customer));
-
   if (customer) {
 
+    logger.info('Найден пользователь: ' + JSON.stringify(customer));
     logger.info('Данные на обновление: ' + JSON.stringify(data));
 
     await Customer.update({
@@ -39,6 +38,9 @@ export default async function update(data) {
     });
   }
   else {
+
+    logger.info('Пользователь не найден');
+    logger.info('Данные на создание: ' + JSON.stringify(data));
 
     await Customer.create({
       uuid: data['userUuid'],
