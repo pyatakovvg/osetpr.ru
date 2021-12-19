@@ -23,17 +23,17 @@ export default function (sequelize, DataType) {
     },
     name: {
       type: DataType.STRING(255),
-      allowNull: false,
+      allowNull: true,
       defaultValue: 'No name',
     },
     email: {
       type: DataType.STRING(255),
-      allowNull: false,
+      allowNull: true,
       defaultValue: '',
     },
     phone: {
       type: DataType.STRING(12),
-      allowNull: false,
+      allowNull: true,
       defaultValue: '',
     },
   }, {
