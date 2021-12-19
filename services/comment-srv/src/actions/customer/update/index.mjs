@@ -7,6 +7,8 @@ export default async function update(data) {
   const { Customer } = models;
   const transaction = await sequelize.transaction();
 
+  logger.info('Поиск пользователя: ' + JSON.stringify(data));
+
   const result = await Customer.findOne({
     where: {
       uuid: data['userUuid'],
