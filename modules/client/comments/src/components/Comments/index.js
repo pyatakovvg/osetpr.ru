@@ -20,7 +20,7 @@ function Comments() {
   return (
     <div className={styles['wrapper']}>
       <div className={styles['header']}>
-        <Header>{ numeral(meta['total']).format() } { nounDeclension(meta['total'], ['комментария', 'комментарий', 'комментариев']) }</Header>
+        <Header>{ numeral(meta['total']).format() } { nounDeclension(meta['total'], ['комментариев', 'комментария', 'комментарий']) }</Header>
       </div>
       <div className={styles['content']}>
         {data.map((item) => (
