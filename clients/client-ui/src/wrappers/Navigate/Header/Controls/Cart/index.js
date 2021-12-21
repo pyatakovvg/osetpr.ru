@@ -35,6 +35,7 @@ export default function CartButton({ isOut }) {
     return (
       <div className={styles['wrapper']}>
         <Cart
+          title={'Перейти к оформлению заказа'}
           ref={cartRef}
           count={count}
           inProcess={inProcess}
@@ -46,6 +47,7 @@ export default function CartButton({ isOut }) {
 
   return (
     <Cart
+      title={'Перейти к оформлению заказа'}
       ref={cartRef}
       count={count}
       inProcess={inProcess}

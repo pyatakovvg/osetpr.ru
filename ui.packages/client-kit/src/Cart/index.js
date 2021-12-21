@@ -8,7 +8,7 @@ import cn from 'classnames';
 import styles from './default.module.scss';
 
 
-const Cart = forwardRef(({ count, mode, inProcess, disabled, onClick }, ref) => {
+const Cart = forwardRef(({ title, count, mode, inProcess, disabled, onClick }, ref) => {
   const cartClassName = useMemo(() => cn(styles['cart'], {
     [styles['mode--success']]: mode === Cart.mode.success,
     [styles['disabled']]: disabled,
@@ -22,7 +22,7 @@ const Cart = forwardRef(({ count, mode, inProcess, disabled, onClick }, ref) => 
   }
 
   return (
-    <div ref={ref} className={cartClassName} onClick={() => handleClick()}>
+    <div ref={ref} className={cartClassName} title={title} onClick={() => handleClick()}>
       {count > 0 && (
         <span className={styles['count']}>{ count }</span>
       )}
@@ -37,12 +37,14 @@ const Cart = forwardRef(({ count, mode, inProcess, disabled, onClick }, ref) => 
 });
 
 Cart.propTypes = {
+  title: types.string,
   disabled: types.bool,
   inProcess: types.bool,
   mode: types.oneOf(['success', 'default']),
 };
 
 Cart.defaultProps = {
+  title: '',
   disabled: false,
   inProcess: false,
   mode: 'default',

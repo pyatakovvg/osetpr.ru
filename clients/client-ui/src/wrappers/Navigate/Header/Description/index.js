@@ -15,6 +15,9 @@ export default function Description() {
       <div className={styles['col']}>
         <Text>время приема заказов с 8:00 до 22:00</Text>
       </div>
+      <div className={styles['col']}>
+        <a className={styles['phone']} href={'tel:+79785906060'}>тел: +7 (978) 590-60-60</a>
+      </div>
     </div>
   );
 }

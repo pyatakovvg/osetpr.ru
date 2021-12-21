@@ -51,6 +51,10 @@ function Groups({ values, onChange }) {
     onChange && onChange(newValues);
   }
 
+  function handleResetEvent(event) {
+    event.preventDefault();
+  }
+
   return (
     <div className={wrapperClassName}>
       <div className={styles['header']} onClick={handleCollapse}>
@@ -62,7 +66,11 @@ function Groups({ values, onChange }) {
           {(filter['categories'] || []).map((item) => (
             <div key={item['uuid']} className={styles['checkbox']}>
               <Checkbox value={ !!~ values.indexOf(item['uuid'])} onChange={() => handleChange(item['uuid'])}>
-                <Text>{ item['value'] }</Text>
+                <Text>
+                  <a className={styles['link']} href={process.env['PUBLIC_URL'] + '/?categoryUuid=' + item['uuid']} title={item['value']} onClick={handleResetEvent}>
+                    { item['value'] }
+                  </a>
+                </Text>
               </Checkbox>
             </div>
           ))}

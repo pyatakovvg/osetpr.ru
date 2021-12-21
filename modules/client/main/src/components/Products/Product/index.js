@@ -44,7 +44,7 @@ function Product({ uuid, externalId, title, originalName, gallery, modes, isAvai
 
   return (
     <div className={styles['wrapper']}>
-      <Link className={styles['gallery']} to={process.env['PUBLIC_URL'] + '/products/' + externalId}>
+      <Link className={styles['gallery']} to={process.env['PUBLIC_URL'] + '/products/' + externalId} title={title}>
         <div className={styles['image']}>
           <Image className={cn({ [styles['gray']]: ! isAvailable })} src={gallery[0] ? process.env['REACT_APP_API_HOST'] + '/gallery/' + gallery[0]['uuid'] + '?size=middle' : null} />
         </div>
@@ -79,6 +79,7 @@ function Product({ uuid, externalId, title, originalName, gallery, modes, isAvai
         </div>
         <div className={styles['cart']}>
           <Cart
+            title={'Добавить ' + title.toLowerCase() + ' в корзину'}
             mode={Cart.mode.success}
             disabled={isDisabled || inProcess}
             onClick={() => handleCart({

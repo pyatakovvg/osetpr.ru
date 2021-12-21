@@ -12,11 +12,11 @@ import styles from './default.module.scss';
 function Content() {
   return (
     <div className={styles['wrapper']}>
-      <div className={styles['col']}>
+      <h1 className={styles['col']}>
         <Link className={styles['logotype']} to={'/'}>
           <Logotype />
         </Link>
-      </div>
+      </h1>
       <menu className={styles['col']}>
         <Navigate />
       </menu>

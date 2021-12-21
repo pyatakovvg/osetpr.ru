@@ -36,7 +36,7 @@ export default function Header() {
   const isOut = useOutScreen(headerRef);
 
   return (
-    <div ref={headerRef} className={styles['wrapper']}>
+    <div ref={headerRef} className={styles['wrapper']} role={'banner'}>
       <div className={styles['container']}>
         <div className={styles['content']}>
           <div className={styles['col']}>
