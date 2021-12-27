@@ -60,9 +60,9 @@ function Product({ uuid, externalId, title, originalName, gallery, modes, isAvai
         )}
       </Link>
       <div className={styles['content']}>
-        <div className={styles['title']}>
+        <Header level={2} className={styles['title']}>
           { title }
-        </div>
+        </Header>
         <div className={styles['information']}>
           <div className={styles['modes']}>
             {modes.map((item) => (
