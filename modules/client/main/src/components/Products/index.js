@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Empty from "./Empty";
 import Product from "./Product";
 
+import cn from 'classnames';
 import styles from './default.module.scss';
 
 
@@ -66,7 +67,7 @@ function Products() {
 
   return (
     <div className={styles['wrapper']}>
-      <div className={styles['content']}>
+      <div id={'e-products'} className={cn(styles['content'], 'e-products')}>
         { ! products.length && (
           <Empty />
         )}

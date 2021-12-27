@@ -156,7 +156,7 @@ function Main() {
           </div>
           <span className={cn(styles['icon'], 'fas fa-chevron-right')} />
         </div>
-        <div className={styles['products']}>
+        <div id={'e-products'} className={cn(styles['products'], 'e-products')}>
           { ! products.length && (
             <Empty />
           )}
